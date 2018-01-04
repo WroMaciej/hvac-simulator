@@ -12,15 +12,6 @@ public class Main {
         //System.out.println(System.getProperty("java.library.path"));
         System.loadLibrary("CoolProp");
 
-        System.out.println(CoolProp.HAProps("W","P",100,"T",293.15,"RH",0.5));
-        System.out.println(CoolProp.HAProps("H","P",100,"T",293.15,"RH",0.5));
-
-        System.out.println(CoolProp.HAProps("H","P",100,"T",293.15,"RH",0));
-        System.out.println(CoolProp.HAProps("H","P",100,"T",313.15,"RH",0));
-
-        System.out.println(CoolProp.HAProps("H","P",100,"T",273.15,"RH",0));
-        System.out.println(CoolProp.HAProps("B","P",100,"T",273.15,"RH",0.5));
-
         AllSpecific fluid;
         String fluidName;
         String s1,s2;

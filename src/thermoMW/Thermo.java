@@ -67,6 +67,12 @@ public abstract class Thermo {
         if (fluidName!=null) fluidName = fluidName.toLowerCase(); else fluidName="";
         if (parameterName!=null) parameterName=parameterName.toLowerCase(); else parameterName="";
 
+        char[] nameChar=fluidName.toCharArray(); //tablica znakow
+        if (nameChar[0]=='r') {
+            nameChar[0]='R';
+            fluidName=new String(nameChar);
+        }
+
         //zmiana nazwy dla powietrza mokrego
         if (fluidName.equals("a") || fluidName.equals("powietrze")|| fluidName.equals("moistair")) fluidName="a";
 
