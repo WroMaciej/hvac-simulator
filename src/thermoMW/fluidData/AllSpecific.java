@@ -39,6 +39,8 @@ public class AllSpecific {
     }
 
     public void createAsAir(String p1, double v1, String p2, double v2, double pGaugePa){
+
+
         this.fluidtype=FluidType.AIR;
         common.fluidName="a";
         common.t= Thermo.findAirParameter("t",p1,v1,p2,v2,pGaugePa);
@@ -49,6 +51,7 @@ public class AllSpecific {
         common.cp= Thermo.findAirParameter("cp",p1,v1,p2,v2,pGaugePa);
         common.v= Thermo.findAirParameter("v",p1,v1,p2,v2,pGaugePa);
         if (common.v>0) common.ro=1/common.v; else common.ro=1;
+        air=new Air(common);
         air.pGaugePa=pGaugePa;
         air.rh= Thermo.findAirParameter("rh",p1,v1,p2,v2,pGaugePa);
         air.x= Thermo.findAirParameter("x",p1,v1,p2,v2,pGaugePa);
@@ -75,6 +78,6 @@ public class AllSpecific {
 
     @Override
     public String toString() {
-        return common.fluidName+" "+"t= "+common.t+"C "+" p= "+common.pBarA+" "+" h= "+common.h+"kJ/kg "+" s= "+common.s+"kJ/kgK ";
+        return common.fluidName+" "+"t= "+common.t+"C "+" p= "+common.pBarA+" "+" h= "+common.h+"kJ/kg "+" s= "+common.s+"kJ/kgK "+" cp="+common.cp+"kJ/kgK";
     }
 }

@@ -9,16 +9,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(System.getProperty("java.library.path"));
+        //System.out.println(System.getProperty("java.library.path"));
         System.loadLibrary("CoolProp");
+
+        System.out.println(CoolProp.HAProps("W","P",100,"T",293.15,"RH",0.5));
+        System.out.println(CoolProp.HAProps("H","P",100,"T",293.15,"RH",0.5));
+
+        System.out.println(CoolProp.HAProps("H","P",100,"T",293.15,"RH",0));
+        System.out.println(CoolProp.HAProps("H","P",100,"T",313.15,"RH",0));
+
+        System.out.println(CoolProp.HAProps("H","P",100,"T",273.15,"RH",0));
+        System.out.println(CoolProp.HAProps("B","P",100,"T",273.15,"RH",0.5));
 
         AllSpecific fluid;
         String fluidName;
         String s1,s2;
         double v1,v2;
         Scanner in = new Scanner(System.in);
-
-
 
 
         while(true){
@@ -37,6 +44,7 @@ public class Main {
             fluid=new AllSpecific();
             fluid.createAsCommon(fluidName,s1,v1,s2,v2);
             System.out.println(fluid);
+            System.out.println(fluid.air);
             //fluid.air.airProcess.airMixing.mixWithPoint(fluid,1);
 
 

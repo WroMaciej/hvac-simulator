@@ -17,11 +17,23 @@ public abstract class Thermo {
 
     //szukanie parametru przez CoolProp dla powietrza
     public static double findAirParameter(String wanted, String p1, double v1, String p2, double v2, double pGaugePa){
-            return CoolProp.HAProps(
-                    con("a",wanted,0).parameterName,
+        double r;
+        wanted =con("a",wanted,0).parameterName;
+        r= CoolProp.HAProps(
+                    wanted,
                     con("a",p1,0).parameterName,con("a",p1,v1).value,
                     con("a",p2,0).parameterName,con("a",p2,v2).value,
-                    "P",pGaugePa+100000);
+                    "P",(pGaugePa/1000)+100);
+        switch (wanted){
+            case "T": r=r-T_ABS; break;
+            case "Twb": r=r-T_ABS; break;
+            case "Tdb": r=r-T_ABS; break;
+            case "Tdp": r=r-T_ABS; break;
+            case "P": r=r/100; break;
+        }
+        System.out.println("znaleziono parametr "+wanted+" ="+r);
+        return r;
+
     }
 
     //szukanie parametru przez CoolPack dla reszty czynnikow
@@ -36,16 +48,14 @@ public abstract class Thermo {
                 con(fluidName,p1,0).parameterName,con(fluidName,p1,v1).value,
                 con(fluidName,p2,0).parameterName,con(fluidName,p2,v2).value,
                 con(fluidName,null,0).fluidName);
-        System.out.println("p1="+p1+" v1="+v1+" p2="+p2+" wanted="+wanted+" r="+r);
         switch (wanted){
             case "T": r=r-T_ABS; break;
             case "Twb": r=r-T_ABS; break;
+            case "Tdb": r=r-T_ABS; break;
             case "Tdp": r=r-T_ABS; break;
             case "P": r=r/100000; break;
             case "H": r=r/1000; break;
             case "S": r=r/1000; break;
-            case "Hha": r=r/1000; break;
-            case "SHa": r=r/1000; break;
             case "C": r=r/1000; break;
         }
         return r;
@@ -68,7 +78,7 @@ public abstract class Thermo {
         //jeśli parametr to CISNIENIE
         if (parameterName.equals("p") || parameterName.equals("cisnienie")) {
             parameterName="P";
-            value=value*100000;
+            if (fluidName.equals("a")) value=value*100; else value=value*100000;
         }
         //jeśli parametr to WILGOTNOSC WZGLEDNA
         else if (parameterName.equals("r") || parameterName.equals("rh") || parameterName.equals("relhum") || parameterName.equals("humidity") || parameterName.equals("relative humidity") || parameterName.equals("wilgotnosc wzgledna")) parameterName="R";
@@ -77,22 +87,20 @@ public abstract class Thermo {
             //jeśli parametr to ENTALPIA POW SUCHEGO
         else if (parameterName.equals("h") || parameterName.equals("hda") || parameterName.equals("enthalpy") || parameterName.equals("entalpia") || parameterName.equals("i")) {
             parameterName="H";
-            value=value*1000; //konwersja z kJ/kg do J/kg
+            if (!fluidName.equals("a")) value=value*1000;
         }
         //jeśli parametr to ENTROPIA POW SUCHEGO
         else if (parameterName.equals("s") || parameterName.equals("entropy") || parameterName.equals("entropia") || parameterName.equals("sda")) {
             parameterName="S";
-            value=value*1000; //konwersja z kJ/kgK do J/kgK
+            if (!fluidName.equals("a")) value=value*1000;
         }
         //jeśli parametr to ENTALPIA POW MOKREGO
         else if (parameterName.equals("hw") || parameterName.equals("hha")) {
             parameterName="Hha";
-            value=value*1000; //konwersja z kJ/kg do J/kg
         }
         //jeśli parametr to ENTROPIA POW MOKREGO
         else if (parameterName.equals("sw") || parameterName.equals("sha")) {
             parameterName="Sha";
-            value=value*1000; //konwersja z kJ/kgK do J/kgK
         }
         //jeśli parametr to TEMPERATURA termometru mokrego
         else if (parameterName.equals("twb") || parameterName.equals("tm") || parameterName.equals("t_wb") || parameterName.equals("b") || parameterName.equals("wetbult")|| parameterName.equals("mokry")) {
@@ -108,10 +116,14 @@ public abstract class Thermo {
         else if (parameterName.equals("d") || parameterName.equals("ro") || parameterName.equals("dmass") || parameterName.equals("gestosc")) {
             parameterName="DMASS";
         }
+        //jeśli parametr to GESTOSC
+        else if (parameterName.equals("v") || parameterName.equals("volume") || parameterName.equals("objetosc")) {
+            parameterName="V";
+        }
         //jeśli parametr to CIEPLO WLASCIWE
         else if (parameterName.equals("c") || parameterName.equals("cp") || parameterName.equals("cpmass") || parameterName.equals("cieplo wlasciwe")) {
             parameterName="C";
-            value=value*1000; //konwersja z C na K
+            if (!fluidName.equals("a")) value=value*1000;
         }
         //jeśli parametr to CIEPLO WLASCIWE
         else if (parameterName.equals("phase") ) {

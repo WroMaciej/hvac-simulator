@@ -11,9 +11,23 @@ public class Air  {
 
     protected double tm; //temperatura termometru mokrego
     protected double tr; //temperatura punktu rosy
-    CommonSpecific common;
+    private CommonSpecific common;
 
     public AirProcess airProcess;
+
+
+
+    public Air(CommonSpecific common){
+        this.common=common;
+    }
+
+    @Override
+    public String toString() {
+        return "Powietrze "+ "pGaugePa="+pGaugePa+" Pa t="+common.t+"C rh="+rh+" x="+x+"kg/kg h="+common.h+"kJ/kg tm="+tm+"C tr="+tr+" cp="+common.cp+"kJ/kgK";
+    }
+
+
+
 
     public abstract class AirProcess{
         public AirHumidify humidify;
@@ -60,20 +74,8 @@ public class Air  {
         }
 
 
-
     }
 
-
-
-
-
-    
-    
-
-
-    public Air(CommonSpecific common){
-        this.common=common;
-    }
 
 
 
