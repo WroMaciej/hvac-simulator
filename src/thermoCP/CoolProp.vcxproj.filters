@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\build\CoolPropJAVA_wrap.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\AbstractState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\CPfilepaths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\CPnumerics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\CPstrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\CoolProp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\CoolPropTools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\DataStructures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Helmholtz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\HumidAirProp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Ice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\MatrixMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\ODEIntegrators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\PolyMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Solvers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\SpeedTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\CubicBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\CubicsLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\GeneralizedCubic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\UNIFAC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\UNIFACLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Cubics\VTPRBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\IF97\IF97Backend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\FlashRoutines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\Fluids\Ancillaries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\Fluids\FluidLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\HelmholtzEOSBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\HelmholtzEOSMixtureBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\MixtureDerivatives.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\MixtureParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\PhaseEnvelopeRoutines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\ReducingFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\TransportRoutines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Helmholtz\VLERoutines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\REFPROP\REFPROPBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\REFPROP\REFPROPMixtureBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Incompressible\IncompressibleBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Incompressible\IncompressibleFluid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Incompressible\IncompressibleLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Tabular\BicubicBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Tabular\TTSEBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Programowanie\Projekty\test\CoolProp\src\Backends\Tabular\TabularBackends.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Programowanie\Projekty\test\CoolProp\CMakeLists.txt" />
+    <CustomBuild Include="D:\Programowanie\Projekty\test\CoolProp\src\CoolProp.i" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Programowanie\Projekty\test\CoolProp\build\CoolProp.java" />
+    <None Include="D:\Programowanie\Projekty\test\CoolProp\build\CoolPropJNI.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{54961148-3FA0-36AA-8273-8EDEBD9A17F3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

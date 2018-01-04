@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Programowanie\Projekty\test\CoolProp\CMakeLists.txt" />
+    <CustomBuild Include="D:\Programowanie\Projekty\test\CoolProp\build\CMakeFiles\18224087e448d6df7b3be0d039aff12f\generate_headers.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Programowanie\Projekty\test\CoolProp\build\CMakeFiles\generate_headers" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C4B95C14-7877-37D2-AACE-2943C3BC3440}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
