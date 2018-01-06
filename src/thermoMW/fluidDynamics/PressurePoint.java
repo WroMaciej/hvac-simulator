@@ -1,4 +1,4 @@
-package thermoMW;
+package thermoMW.fluidDynamics;
 
 public class PressurePoint {
     private double v;

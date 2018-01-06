@@ -24,6 +24,8 @@ public class AllSpecific {
 
 
     public void createAsCommon(String fluidName, String parameter1, double value1, String parameter2, double value2) {
+        air=null;
+        refrigerant=null;
         this.fluidtype=FluidType.OTHER;
         common.fluidName=Thermo.con(fluidName,null,0).fluidName;
         common.t=Thermo.findParameter("t",fluidName,parameter1,value1,parameter2,value2);
@@ -39,8 +41,6 @@ public class AllSpecific {
     }
 
     public void createAsAir(String p1, double v1, String p2, double v2, double pGaugePa){
-
-
         this.fluidtype=FluidType.AIR;
         common.fluidName="a";
         common.t= Thermo.findAirParameter("t",p1,v1,p2,v2,pGaugePa);
@@ -57,23 +57,23 @@ public class AllSpecific {
         air.x= Thermo.findAirParameter("x",p1,v1,p2,v2,pGaugePa);
         air.tm= Thermo.findAirParameter("tm",p1,v1,p2,v2,pGaugePa);
         air.tr= Thermo.findAirParameter("tr",p1,v1,p2,v2,pGaugePa);
+        refrigerant=null;
     }
 
-    public void createAsRefrigerant(){
-
+    public void createAsRefrigerant(String fluidName, String parameter1, double value1, String parameter2, double value2){
+        createAsCommon(fluidName,parameter1,value1,parameter2,value2);
+        this.fluidtype=FluidType.REFRIGERANT;
+        refrigerant=new Refrigerant(common);
+        refrigerant.pBarG=common.pBarA-1;
+        refrigerant.t_bubbles=Thermo.findParameter("t",fluidName,"q",0,"p",common.pBarA);
+        refrigerant.t_dew=Thermo.findParameter("t",fluidName,"q",1,"p",common.pBarA);
+        refrigerant.subcooling=common.t-refrigerant.t_bubbles;
+        refrigerant.superheat=common.t-refrigerant.t_dew;
     }
 
     public void createAsLiquid(String fluidName, double pressure, double temperature){
+        createAsCommon(fluidName,"p",pressure,"t",temperature);
         this.fluidtype=FluidType.LIQUID;
-        common.fluidName=Thermo.con(fluidName,null,0).fluidName;
-        common.t=Thermo.findParameter("t",fluidName,"p",pressure,"t",temperature);
-        common.pBarA=Thermo.findParameter("p",fluidName,"p",pressure,"t",temperature);
-        common.h=Thermo.findParameter("h",fluidName,"p",pressure,"t",temperature);
-        common.s=Thermo.findParameter("s",fluidName,"p",pressure,"t",temperature);
-        common.q=Thermo.findParameter("q",fluidName,"p",pressure,"t",temperature);
-        common.cp=Thermo.findParameter("cp",fluidName,"p",pressure,"t",temperature);
-        common.v=Thermo.findParameter("v",fluidName,"p",pressure,"t",temperature);
-        common.ro=Thermo.findParameter("ro",fluidName,"p",pressure,"t",temperature);
     }
 
     @Override

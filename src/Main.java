@@ -24,7 +24,6 @@ public class Main {
             fluidName = in.nextLine();
             System.out.print("Podaj parametr 1: ");
             s1 = in.nextLine();
-            if (s1.equals("exit")) break;
             System.out.print("Podaj wartość parametru 1: ");
             v1 = Double.parseDouble(in.nextLine()) ;
             System.out.print("Podaj parametr 2: ");
@@ -41,9 +40,6 @@ public class Main {
 
 
         }
-        System.out.println();
-        System.out.println("*** Do widzenia! ***");
-
 
 
 
