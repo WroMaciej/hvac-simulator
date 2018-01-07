@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.streams;
 
-import wromaciej.hvac_sim.thermo.fluids.data.AllSpecific;
+import wromaciej.hvac_sim.thermo.fluids.old_data.AllSpecific;
 
 public class FluidStream {
     private double m; //przeplyw kg/s

@@ -2,7 +2,7 @@ package wromaciej.hvac_sim.thermo;
 import thermoCP.*;
 
 /**parametry termodynamiczne czynników*/
-public abstract class Thermo {
+public abstract class ThermoCPAdapter {
 
     public static final double RO=1.18; //gestosc powietrza w war standardowych kg/m3
     public static final double T_ABS=273.15;
@@ -15,35 +15,44 @@ public abstract class Thermo {
         public double value;
     }
 
-    //szukanie parametru przez CoolProp dla powietrza
-    public static double findAirParameter(String wanted, String p1, double v1, String p2, double v2, double pGaugePa){
-        double r;
-        wanted =con("a",wanted,0).parameterName;
-        r= CoolProp.HAProps(
-                    wanted,
-                    con("a",p1,0).parameterName,con("a",p1,v1).value,
-                    con("a",p2,0).parameterName,con("a",p2,v2).value,
+    /**
+     * szukanie parametru przez CoolProp dla powietrza
+     * @param wantedParameter dghdgh
+     * @param p1 gfsgsfg
+     * @param v1
+     * @param p2 gsf
+     * @param v2
+     * @param pGaugePa
+     * @return
+     */
+    public static double findAirParameter(String wantedParameter, String p1, double v1, String p2, double v2, double pGaugePa){
+        wantedParameter = convert("a",wantedParameter,0).parameterName;
+        double r= CoolProp.HAProps(
+                    wantedParameter,
+                    convert("a",p1,0).parameterName, convert("a",p1,v1).value,
+                    convert("a",p2,0).parameterName, convert("a",p2,v2).value,
                     "P",(pGaugePa/1000)+100);
-        switch (wanted){
+        // consider using calculcateRBasingOn....
+        switch (wantedParameter){
             case "T": r=r-T_ABS; break;
             case "Twb": r=r-T_ABS; break;
             case "Tdb": r=r-T_ABS; break;
             case "Tdp": r=r-T_ABS; break;
             case "P": r=r/100; break;
         }
-        System.out.println("znaleziono parametr "+wanted+" ="+r);
+        System.out.println("znaleziono parametr "+wantedParameter+" ="+r);
         return r;
 
     }
 
     //szukanie parametru przez CoolPack dla reszty czynnikow
     public static double findParameter(String wanted, String fluidName, String p1, double v1, String p2, double v2){
-        wanted =con(fluidName,wanted,0).parameterName;
-        fluidName=con(fluidName,null,0).fluidName;
-        p1=con(fluidName,p1,0).parameterName;
-        v1=con(fluidName,p1,v1).value;
-        p2=con(fluidName,p2,0).parameterName;
-        v2=con(fluidName,p2,v2).value;
+        wanted = convert(fluidName,wanted,0).parameterName;
+        fluidName= convert(fluidName,null,0).fluidName;
+        p1= convert(fluidName,p1,0).parameterName;
+        v1= convert(fluidName,p1,v1).value;
+        p2= convert(fluidName,p2,0).parameterName;
+        v2= convert(fluidName,p2,v2).value;
         double r; //zmienne pomocnicze
         double r2;
         r=0;
@@ -51,7 +60,7 @@ public abstract class Thermo {
 
 
         try {
-            if (con(fluidName, null, 0).fluidName.equals("a")) {
+            if (convert(fluidName, null, 0).fluidName.equals("a")) {
                 r = findAirParameter(wanted, p1, v1, p2, v2, 0); //jezeli to powietrze to licz jak dla powietrza
             } else {
                 if (p1.equals("sh") || p1.equals("sc") || p2.equals("sh") || p2.equals("sc")) {
@@ -59,16 +68,12 @@ public abstract class Thermo {
                         r = CoolProp.PropsSI("T", "Q", 1, p2, v2, fluidName); //r to temperatura nasycenia
                         r2 = CoolProp.PropsSI("P", "Q", 1, p2, v2, fluidName); //r2 to cisnienie nasycenia
                         //jesli przegrzanie>0
-                        if (v1 > 0)
-                            r = CoolProp.PropsSI(wanted, "T", r + v1, "P", r2, fluidName); //r to parametr poszukiwany
-                        else r = CoolProp.PropsSI(wanted, "Q", 1, "P", r2, fluidName);
+                        r = getR(wanted, fluidName, v1, v1, r, r2);
                     } else if (p2.equals("sh")) {
                         r = CoolProp.PropsSI("T", "Q", 1, p1, v1, fluidName); //r to temperatura nasycenia
                         r2 = CoolProp.PropsSI("P", "Q", 1, p1, v1, fluidName); //r2 to cisnienie nasycenia
                         //jesli przegrzanie>0
-                        if (v1 > 0)
-                            r = CoolProp.PropsSI(wanted, "T", r + v2, "P", r2, fluidName); //r to parametr poszukiwany
-                        else r = CoolProp.PropsSI(wanted, "Q", 1, "P", r2, fluidName);
+                        r = getR(wanted, fluidName, v1, v2, r, r2);
                     } else if (p1.equals("sc")) {
                         r = CoolProp.PropsSI("T", "Q", 0, p2, v2, fluidName); //r to temperatura nasycenia
                         r2 = CoolProp.PropsSI("P", "Q", 0, p2, v2, fluidName); //r2 to cisnienie nasycenia
@@ -99,6 +104,12 @@ public abstract class Thermo {
             r=CoolProp.PropsSI(wanted, p1, v1, p2, v2, fluidName); //jesli nie znaleziono plynu to uznaj ze jest to woda o temp 10C
         }
 
+        r = calculateRBasingOnWantedParameter(wanted, r);
+        return r;
+
+    }
+
+    private static double calculateRBasingOnWantedParameter(String wanted, double r) {
         switch (wanted){
             case "T": r=r-T_ABS; break;
             case "Twb": r=r-T_ABS; break;
@@ -110,11 +121,17 @@ public abstract class Thermo {
             case "C": r=r/1000; break;
         }
         return r;
+    }
 
+    private static double getR(String wanted, String fluidName, double v1, double v2, double r, double r2) {
+        if (v1 > 0)
+            r = CoolProp.PropsSI(wanted, "T", r + v2, "P", r2, fluidName); //r to parametr poszukiwany
+        else r = CoolProp.PropsSI(wanted, "Q", 1, "P", r2, fluidName);
+        return r;
     }
 
     //konwersja parametrow ze standarowych tego projektu na CoolProp
-    public static ThermoParameter con(String fluidName, String parameterName, double value){
+    public static ThermoParameter convert(String fluidName, String parameterName, double value){
         if (fluidName.length()>0) fluidName = fluidName.toLowerCase(); else fluidName="water";
         if (parameterName!=null) parameterName=parameterName.toLowerCase(); else parameterName="";
         char[] nameChar;
