@@ -1,8 +1,4 @@
-import thermoMW.Thermo;
-import thermoMW.fluidData.*;
-import thermoCP.*;
-
-import java.lang.Math;
+import thermoMW.fluidData.AllSpecific;
 
 import java.util.Scanner;
 
@@ -14,35 +10,31 @@ public class Main {
 
         AllSpecific fluid;
         String fluidName;
-        String s1,s2;
-        double v1,v2;
+        String s1, s2;
+        double v1, v2;
         Scanner in = new Scanner(System.in);
 
 
-
-        while(true){
+        while (true) {
             System.out.print("Podaj nazwę płynu: ");
             fluidName = in.nextLine();
             System.out.print("Podaj parametr 1: ");
             s1 = in.nextLine();
             System.out.print("Podaj wartość parametru 1: ");
-            v1 = Double.parseDouble(in.nextLine()) ;
+            v1 = Double.parseDouble(in.nextLine());
             System.out.print("Podaj parametr 2: ");
             s2 = in.nextLine();
             System.out.print("Podaj wartość parametru 2: ");
-            v2 = Double.parseDouble(in.nextLine()) ;
+            v2 = Double.parseDouble(in.nextLine());
 
-            fluid=new AllSpecific();
-            fluid.createAsCommon(fluidName,s1,v1,s2,v2);
+            fluid = new AllSpecific();
+            fluid.createAsCommon(fluidName, s1, v1, s2, v2);
             System.out.println(fluid);
             System.out.println(fluid.air);
             //fluid.air.airProcess.airMixing.mixWithPoint(fluid,1);
 
 
-
         }
-
-
 
 
     }
