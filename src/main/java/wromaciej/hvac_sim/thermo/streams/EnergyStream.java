@@ -1,4 +1,4 @@
-package thermoMW.allStreams;
+package wromaciej.hvac_sim.thermo.streams;
 
 public class EnergyStream {
     private double energy; //strumien energii kW

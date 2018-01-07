@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim;
 
-import thermoMW.fluidData.AllSpecific;
+import wromaciej.hvac_sim.thermo.fluids.data.AllSpecific;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package thermoMW.fluidData;
+package wromaciej.hvac_sim.thermo.fluids.data;
 
 public enum Insulation {
     MLI(1),

@@ -1,4 +1,4 @@
-package thermoMW.fluidData;
+package wromaciej.hvac_sim.thermo.fluids.data;
 
 public class Refrigerant {
     protected double pBarG; //cisnienie manometryczne

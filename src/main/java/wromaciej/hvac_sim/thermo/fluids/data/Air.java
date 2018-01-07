@@ -1,10 +1,13 @@
-package thermoMW.fluidData;
-import thermoMW.Thermo;
+package wromaciej.hvac_sim.thermo.fluids.data;
+
+
 
 public class Air  {
-    
-    
-    protected double pGaugePa; //nadciśnienie w Pa względem 1bar
+
+    /**
+     * nadciśnienie w Pa względem 1bar
+     */
+    protected double pGaugePa;
 
     protected double rh; //wilgotność względna 0-1
     protected double x; //wilgotność bezwzględna

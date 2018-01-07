@@ -1,4 +1,4 @@
-package thermoMW.fluidDynamics;
+package wromaciej.hvac_sim.thermo.fluids.dynamics;
 
 public class PressurePoint {
     private double v;

@@ -1,6 +1,5 @@
-package thermoMW;
+package wromaciej.hvac_sim.thermo;
 import thermoCP.*;
-import thermoMW.fluidData.AllSpecific;
 
 /**parametry termodynamiczne czynników*/
 public abstract class Thermo {
