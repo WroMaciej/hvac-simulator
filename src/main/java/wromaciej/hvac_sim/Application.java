@@ -1,9 +1,11 @@
+package wromaciej.hvac_sim;
+
 import thermoMW.fluidData.AllSpecific;
 
 import java.util.Scanner;
 
 
-public class Main {
+public class Application {
     public static void main(String[] args) {
         //System.out.println(System.getProperty("java.library.path"));
         System.loadLibrary("CoolProp");
