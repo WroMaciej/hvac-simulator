@@ -1,5 +1,6 @@
 package thermoMW;
 import thermoCP.*;
+import thermoMW.fluidData.AllSpecific;
 
 /**parametry termodynamiczne czynników*/
 public abstract class Thermo {
@@ -48,6 +49,7 @@ public abstract class Thermo {
         double r2;
         r=0;
         r2=0;
+
 
         try {
             if (con(fluidName, null, 0).fluidName.equals("a")) {

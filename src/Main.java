@@ -19,6 +19,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
 
+
         while(true){
             System.out.print("Podaj nazwę płynu: ");
             fluidName = in.nextLine();
