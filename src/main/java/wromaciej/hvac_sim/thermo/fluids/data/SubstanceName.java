@@ -4,10 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public enum SubstanceName {
-    //AIR(Arrays.asList("air", "powietrze")),
-    //WATER(Arrays.asList("w", "water")),
 
-    MOIST_AIR(Arrays.asList("a","Moist Air")),
+    MOIST_AIR(Arrays.asList("Moist Air")),
     BUTENE(Arrays.asList("1-Butene")),
     ACETONE(Arrays.asList("Acetone")),
     AIR(Arrays.asList("Air")),
@@ -142,10 +140,18 @@ public enum SubstanceName {
         return possibleNames.contains(name);
     }
 
-    public static SubstanceName from(String name) {
+    public static SubstanceName stringToName(String name) {
         for(SubstanceName substanceName: SubstanceName.values()) {
             if(substanceName.equalsName(name))
                 return substanceName;
+        }
+        return null;
+    }
+
+    public static String nameToString (SubstanceName name){
+        for(SubstanceName substanceName: SubstanceName.values()) {
+            if(substanceName.equals(name))
+                return substanceName.possibleNames.toArray()
         }
         return null;
     }

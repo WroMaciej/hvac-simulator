@@ -1,66 +1,82 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 public enum SubstanceParameter {
     /**
      * Temperature in C
      */
-    TEMPERATURE,
+    TEMPERATURE(Arrays.asList("t","temperature")),
     /**
      * Absolute pressure barA
      */
-    PRESSURE,
+    PRESSURE(Arrays.asList("p","pressure")),
     /**
      * Specific enthalpy kJ/kg
      */
-    ENTHALY,
+    ENTHALY(Arrays.asList("h","enthalpy")),
     /**
      * Specific entropy kJ/kgK
      */
-    ENTROPY,
+    ENTROPY(Arrays.asList("s","entropy")),
     /**
      * Quality 0-1
      */
-    QUALITY,
-    /**
-     * Specific volume m3/kg
-     */
-    VOLUME,
-    /**
+    QUALITY(Arrays.asList("q","quality")),
+     /**
      * Density kg/m3
      */
-    DENSITY,
+    DENSITY(Arrays.asList("ro","density")),
     /**
      * Specific heat capacity in constant pressure cp kJ/kgK
      */
-    HEAT_CAPACITY,
+    HEAT_CAPACITY(Arrays.asList("cp","heat capacity")),
     /**
      * Relative humidity of AIR 0-1
      */
-    RELATIVE_HUMIDITY,
+    RELATIVE_HUMIDITY(Arrays.asList("rh","humidity")),
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
      */
-    MOISTURE_CONTENT,
+    MOISTURE_CONTENT(Arrays.asList("x","moisture content")),
     /**
      * wetbulb temperature of AIR C
      */
-    TEMPERATURE_WETBULB,
+    TEMPERATURE_WETBULB(Arrays.asList("twb","wetbulb")),
     /**
      * dewpoint of AIR C
      */
-    TEMPERATURE_DEWPOINT,
+    TEMPERATURE_DEWPOINT(Arrays.asList("tdp","dewpoint")),
     /**
      * Subcooling of refrigerant K
      */
 
-    SUBCOOLING,
+    SUBCOOLING(Arrays.asList("sc","subcooling")),
     /**
      * Superheating of refrigerant K
      */
-    SUPERHEATING;
+    SUPERHEATING(Arrays.asList("sh","superheating"));
 
+    private Collection<String> possibleNames;
+
+
+
+    SubstanceParameter(Collection<String> possibleNames) {
+        this.possibleNames = possibleNames;
+    }
+
+    public boolean equalsName(String name) {
+        return possibleNames.contains(name);
+    }
 
     public static SubstanceParameter from(String name) {
-        return SubstanceParameter.valueOf(name.toUpperCase());
+        for(SubstanceParameter substanceParameter: SubstanceParameter.values()) {
+            if(substanceParameter.equalsName(name))
+                return substanceParameter;
+        }
+        return null;
     }
+
 }

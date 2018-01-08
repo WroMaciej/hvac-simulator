@@ -12,10 +12,28 @@ public abstract class ThermoCPAdapter {
 
 
     //klasa przechowująca nazwe czynnika, nazwe parametru i wartość parametru po konwersji dla CoolPack
-    public static class ThermoParameter{
+    public static class ThermoCPParameter{
         public String substanceName;
-        public String parameterName;
+        public String substanceParameter;
         public double value;
+
+        public ThermoParameter(String substanceName, String parameterName, double value) {
+            this.substanceName = substanceName;
+            this.substanceParameter = parameterName;
+            this.value = value;
+        }
+    }
+
+    public static class StandardParameter{
+        public SubstanceName substanceName;
+        public SubstanceParameter substanceParameter;
+        public double value;
+
+        public StandardParameter(SubstanceName substanceName, SubstanceParameter parameterName, double value) {
+            this.substanceName = substanceName;
+            this.substanceParameter = parameterName;
+            this.value = value;
+        }
     }
 
     /**
@@ -27,10 +45,9 @@ public abstract class ThermoCPAdapter {
         switch(parameter){
             case TEMPERATURE: return "T"; break;
             case PRESSURE: return "P"; break;
-            case ENTHALY: : return "H"; break;
+            case ENTHALY: return "H"; break;
             case ENTROPY: return "S"; break;
             case QUALITY: return "Q"; break;
-            case VOLUME: return "V"; break;
             case DENSITY: return "DMASS"; break;
             case HEAT_CAPACITY: return "C"; break;
             case RELATIVE_HUMIDITY: return "R"; break;
@@ -38,20 +55,38 @@ public abstract class ThermoCPAdapter {
             case TEMPERATURE_WETBULB: return "Twb"; break;
             case TEMPERATURE_DEWPOINT: return "Tdp"; break;
         }
+        return "No parameter found";
+    }
+
+    /**
+     * Conversion of string parameter to enum
+     */
+    public static SubstanceParameter stringToSubstanceParameter(String parameter){
+        return SubstanceParameter.from(parameter.toLowerCase());
+    }
+    public static SubstanceName stringToSubstanceName(String name){
+        return SubstanceName.from(name);
     }
 
 
     /**
-     * szukanie parametru przez CoolProp dla powietrza
-     * @param wantedParameter dghdgh
-     * @param p1 gfsgsfg
-     * @param v1
-     * @param p2 gsf
-     * @param v2
-     * @param pGaugePa
-     * @return
+     * Finding parameter for MoistAir
+
      */
-    public static double findAirParameter(String wantedParameter, String p1, double v1, String p2, double v2, double pGaugePa){
+    public static double findAirParameter(SubstanceParameter parameterWanted, SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2, double pGaugePa){
+
+        double r= CoolProp.HAProps(
+                parameterToString(parameterWanted),
+                parameterToString(parameter1),
+                convertParameterToThermoCP(SubstanceName.MOIST_AIR,parameter1,value1).value,
+                parameterToString(parameter2),
+                convertParameterToThermoCP(SubstanceName.MOIST_AIR,parameter2,value2).value,
+                parameterToString(SubstanceParameter.PRESSURE),
+                convertParameterToThermoCP(SubstanceName.MOIST_AIR,SubstanceParameter.PRESSURE,pGaugePa).value);
+
+        r=convertParameterFromThermoCP()
+
+
         wantedParameter = convert("a",wantedParameter,0).parameterName;
         double r= CoolProp.HAProps(
                     wantedParameter,
@@ -83,6 +118,7 @@ public abstract class ThermoCPAdapter {
         double r2;
         r=0;
         r2=0;
+
 
 
         try {
@@ -156,85 +192,59 @@ public abstract class ThermoCPAdapter {
         return r;
     }
 
-    //konwersja parametrow ze standarowych tego projektu na CoolProp
-    public static ThermoParameter convert(SubstanceName substanceName, SubstanceParameter parameterName, double value){
 
-        //jeśli parametr to TEMPERATURA
-        if (parameterName.equals("t") || parameterName.equals("temperature") || parameterName.equals("tdb") || parameterName.equals("t_db") || parameterName.equals("temp") || parameterName.equals("temperatura")) {
-            parameterName="T";
-            value=value+T_ABS; //konwersja z C na K
-        }
-        //jeśli parametr to CISNIENIE
-        if (parameterName.equals("p") || parameterName.equals("cisnienie")) {
-            parameterName="P";
-            if (fluidName.equals("a")) value=value*100; else value=value*100000;
-        }
-        //jeśli parametr to WILGOTNOSC WZGLEDNA
-        else if (parameterName.equals("r") || parameterName.equals("rh") || parameterName.equals("relhum") || parameterName.equals("humidity") || parameterName.equals("relative humidity") || parameterName.equals("wilgotnosc wzgledna")) parameterName="R";
-            //jeśli parametr to WILGOTNOSC BEZWZGLEDNA
-        else if (parameterName.equals("w") || parameterName.equals("x") || parameterName.equals("omega") || parameterName.equals("humrat") || parameterName.equals("water content") || parameterName.equals("wilgotnosc bezwzgledna")) parameterName="W";
-            //jeśli parametr to ENTALPIA POW SUCHEGO
-        else if (parameterName.equals("h") || parameterName.equals("hda") || parameterName.equals("enthalpy") || parameterName.equals("entalpia") || parameterName.equals("i")) {
-            parameterName="H";
-            if (!fluidName.equals("a")) value=value*1000;
-        }
-        //jeśli parametr to ENTROPIA POW SUCHEGO
-        else if (parameterName.equals("s") || parameterName.equals("entropy") || parameterName.equals("entropia") || parameterName.equals("sda")) {
-            parameterName="S";
-            if (!fluidName.equals("a")) value=value*1000;
-        }
-        //jeśli parametr to ENTALPIA POW MOKREGO
-        else if (parameterName.equals("hw") || parameterName.equals("hha")) {
-            parameterName="Hha";
-        }
-        //jeśli parametr to ENTROPIA POW MOKREGO
-        else if (parameterName.equals("sw") || parameterName.equals("sha")) {
-            parameterName="Sha";
-        }
-        //jeśli parametr to TEMPERATURA termometru mokrego
-        else if (parameterName.equals("twb") || parameterName.equals("tm") || parameterName.equals("t_wb") || parameterName.equals("b") || parameterName.equals("wetbult")|| parameterName.equals("mokry")) {
-            parameterName="Twb";
-            value=value+T_ABS; //konwersja z C na K
-        }
-        //jeśli parametr to TEMPERATURA punktu rosy
-        else if (parameterName.equals("tdp") || parameterName.equals("tr") || parameterName.equals("dewpoint") || parameterName.equals("rosa")) {
-            parameterName="Tdp";
-            value=value+T_ABS; //konwersja z C na K
-        }
-        //jeśli parametr to GESTOSC
-        else if (parameterName.equals("d") || parameterName.equals("ro") || parameterName.equals("dmass") || parameterName.equals("gestosc")) {
-            parameterName="DMASS";
-        }
-        //jeśli parametr to GESTOSC
-        else if (parameterName.equals("v") || parameterName.equals("volume") || parameterName.equals("objetosc")) {
-            parameterName="V";
-        }
-        //jeśli parametr to CIEPLO WLASCIWE
-        else if (parameterName.equals("c") || parameterName.equals("cp") || parameterName.equals("cpmass") || parameterName.equals("cieplo wlasciwe")) {
-            parameterName="C";
-            if (!fluidName.equals("a")) value=value*1000;
-        }
-        //jeśli parametr to CIEPLO WLASCIWE
-        else if (parameterName.equals("phase") ) {
-            parameterName="PHASE";
-        }
-        //jeśli parametr to STOPIEN NASYCENIA X
-        else if (parameterName.equals("q") || parameterName.equals("nasycenie")) {
-            parameterName="Q";
-        }
-        //jeśli parametr to PRZEGRZANIE
-        else if (parameterName.equals("sh") || parameterName.equals("superheating") || parameterName.equals("przegrzanie")) {
-            parameterName="sh";
-        }
-        //jeśli parametr to DOCHLODZENIE
-        else if (parameterName.equals("sc") || parameterName.equals("subcooling") || parameterName.equals("dochlodzenie")) {
-            parameterName="sc";
-        }
+    /**
+     * Conversion from standard units to thermoCP units
+     */
+    public static ThermoCPParameter convertParameterToThermoCP(SubstanceName substanceName, SubstanceParameter substanceParameter, double value){
+        double valueTemp=value;
 
-        ThermoParameter r=new ThermoParameter();
-        r.fluidName=fluidName;
-        r.value=value;
-        r.parameterName=parameterName;
-        return r;
+        if (substanceName==SubstanceName.MOIST_AIR){
+            switch (substanceParameter){
+                case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
+                case PRESSURE: valueTemp=(valueTemp/1000)+100; break;
+                case TEMPERATURE_WETBULB: valueTemp=valueTemp+T_ABS; break;
+                case TEMPERATURE_DEWPOINT: valueTemp=valueTemp+T_ABS; break;
+            }
+        }
+        else{
+            switch (substanceParameter){
+                case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
+                case PRESSURE: valueTemp=valueTemp*100; break;
+                case ENTHALY: valueTemp=valueTemp*1000; break;
+                case ENTROPY: valueTemp=valueTemp*1000; break;
+                case HEAT_CAPACITY: valueTemp=valueTemp*1000; break;
+            }
+        }
+        ThermoCPParameter paremeterPoint=new ThermoCPParameter(substanceName,substanceParameter,valueTemp);
+        return paremeterPoint;
     }
+
+    /**
+     * Conversion from thermoCP units to standard units
+     */
+    public static StandardParameter convertParameterFromThermoCP(String substanceName, String substanceParameter, double value){
+        double valueTemp=value;
+
+        if (stringToSubstanceName(substanceName)==SubstanceName.MOIST_AIR){
+            switch (stringToSubstanceParameter(substanceParameter)){
+                case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
+                case PRESSURE: valueTemp=(valueTemp*1000)-100; break;
+                case TEMPERATURE_WETBULB: valueTemp=valueTemp-T_ABS; break;
+                case TEMPERATURE_DEWPOINT: valueTemp=valueTemp-T_ABS; break;
+            }
+        }
+        else{
+            switch (stringToSubstanceParameter(substanceParameter)){
+                case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
+                case PRESSURE: valueTemp=valueTemp/100; break;
+                case ENTHALY: valueTemp=valueTemp/1000; break;
+                case ENTROPY: valueTemp=valueTemp/1000; break;
+                case HEAT_CAPACITY: valueTemp=valueTemp/1000; break;
+            }
+        }
+        StandardParameter paremeterPoint=new StandardParameter(stringToSubstanceName(substanceName),stringToSubstanceParameter(substanceParameter),valueTemp);
+        return paremeterPoint;
+    }
+
 }
