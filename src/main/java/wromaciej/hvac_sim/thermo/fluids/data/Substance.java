@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
 public class Substance {
-    protected String fluidName;
+    protected SubstanceName substanceName;
     protected double t; // temperatura C
     protected double pBarA; //cisnienie bara
     protected double h; //entalpia wlasciwa kJ/kg
@@ -12,8 +12,8 @@ public class Substance {
     protected double v;
     protected double ro;
 
-    public Substance(String fluidName, double t, double pBarA, double h, double s, double q, double cp, double v, double ro) {
-        this.fluidName = fluidName;
+    public Substance(SubstanceName substanceName, double t, double pBarA, double h, double s, double q, double cp, double v, double ro) {
+        this.substanceName=substanceName;
         this.t = t;
         this.pBarA = pBarA;
         this.h = h;
@@ -24,8 +24,8 @@ public class Substance {
         this.ro = ro;
     }
 
-    public String getFluidName() {
-        return fluidName;
+    public SubstanceName getSubstanceName() {
+        return substanceName;
     }
 
     public double getT() {

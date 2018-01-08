@@ -1,5 +1,8 @@
 package wromaciej.hvac_sim.thermo;
 import thermoCP.*;
+import wromaciej.hvac_sim.thermo.fluids.data.Substance;
+import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
+import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
 
 /**parametry termodynamiczne czynników*/
 public abstract class ThermoCPAdapter {
@@ -10,10 +13,33 @@ public abstract class ThermoCPAdapter {
 
     //klasa przechowująca nazwe czynnika, nazwe parametru i wartość parametru po konwersji dla CoolPack
     public static class ThermoParameter{
-        public String fluidName;
+        public String substanceName;
         public String parameterName;
         public double value;
     }
+
+    /**
+     * Conversion of enum to thermoCP library parameter string name
+     * @param parameter to convert
+     * @return name of parameter in thermoCP library
+     */
+    public static String parameterToString(SubstanceParameter parameter){
+        switch(parameter){
+            case TEMPERATURE: return "T"; break;
+            case PRESSURE: return "P"; break;
+            case ENTHALY: : return "H"; break;
+            case ENTROPY: return "S"; break;
+            case QUALITY: return "Q"; break;
+            case VOLUME: return "V"; break;
+            case DENSITY: return "DMASS"; break;
+            case HEAT_CAPACITY: return "C"; break;
+            case RELATIVE_HUMIDITY: return "R"; break;
+            case MOISTURE_CONTENT: return "W"; break;
+            case TEMPERATURE_WETBULB: return "Twb"; break;
+            case TEMPERATURE_DEWPOINT: return "Tdp"; break;
+        }
+    }
+
 
     /**
      * szukanie parametru przez CoolProp dla powietrza
@@ -46,7 +72,7 @@ public abstract class ThermoCPAdapter {
     }
 
     //szukanie parametru przez CoolPack dla reszty czynnikow
-    public static double findParameter(String wanted, String fluidName, String p1, double v1, String p2, double v2){
+    public static double findParameter(SubstanceParameter parameterWanted, SubstanceName fluidName, SubstanceParameter parameter1, double v1, SubstanceParameter parameter2, double v2){
         wanted = convert(fluidName,wanted,0).parameterName;
         fluidName= convert(fluidName,null,0).fluidName;
         p1= convert(fluidName,p1,0).parameterName;
@@ -131,19 +157,7 @@ public abstract class ThermoCPAdapter {
     }
 
     //konwersja parametrow ze standarowych tego projektu na CoolProp
-    public static ThermoParameter convert(String fluidName, String parameterName, double value){
-        if (fluidName.length()>0) fluidName = fluidName.toLowerCase(); else fluidName="water";
-        if (parameterName!=null) parameterName=parameterName.toLowerCase(); else parameterName="";
-        char[] nameChar;
-        nameChar = fluidName.toCharArray(); //tablica znakow
-
-        if (nameChar[0]=='r') {
-            nameChar[0]='R';
-            fluidName=new String(nameChar);
-        }
-
-        //zmiana nazwy dla powietrza mokrego
-        if (fluidName.equals("a") || fluidName.equals("powietrze")|| fluidName.equals("moistair")) fluidName="a";
+    public static ThermoParameter convert(SubstanceName substanceName, SubstanceParameter parameterName, double value){
 
         //jeśli parametr to TEMPERATURA
         if (parameterName.equals("t") || parameterName.equals("temperature") || parameterName.equals("tdb") || parameterName.equals("t_db") || parameterName.equals("temp") || parameterName.equals("temperatura")) {

@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim;
 
 import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
+import wromaciej.hvac_sim.thermo.fluids.data.Substance;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
 import wromaciej.hvac_sim.thermo.fluids.old_data.AllSpecific;
