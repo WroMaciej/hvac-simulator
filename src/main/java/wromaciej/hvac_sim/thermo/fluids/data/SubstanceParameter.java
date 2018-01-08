@@ -1,82 +1,88 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public enum SubstanceParameter {
     /**
      * Temperature in C
      */
-    TEMPERATURE(Arrays.asList("t","temperature")),
+    TEMPERATURE("T"),
     /**
      * Absolute pressure barA
      */
-    PRESSURE(Arrays.asList("p","pressure")),
+    PRESSURE("P"),
     /**
      * Specific enthalpy kJ/kg
      */
-    ENTHALY(Arrays.asList("h","enthalpy")),
+    ENTHALY("H"),
     /**
      * Specific entropy kJ/kgK
      */
-    ENTROPY(Arrays.asList("s","entropy")),
+    ENTROPY("S"),
     /**
      * Quality 0-1
      */
-    QUALITY(Arrays.asList("q","quality")),
+    QUALITY("Q"),
      /**
      * Density kg/m3
      */
-    DENSITY(Arrays.asList("ro","density")),
+    DENSITY("RO"),
     /**
      * Specific heat capacity in constant pressure cp kJ/kgK
      */
-    HEAT_CAPACITY(Arrays.asList("cp","heat capacity")),
+    HEAT_CAPACITY("Cp"),
     /**
      * Relative humidity of AIR 0-1
      */
-    RELATIVE_HUMIDITY(Arrays.asList("rh","humidity")),
+    RELATIVE_HUMIDITY("R"),
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
      */
-    MOISTURE_CONTENT(Arrays.asList("x","moisture content")),
+    MOISTURE_CONTENT("W"),
     /**
      * wetbulb temperature of AIR C
      */
-    TEMPERATURE_WETBULB(Arrays.asList("twb","wetbulb")),
+    TEMPERATURE_WETBULB("Twb"),
     /**
      * dewpoint of AIR C
      */
-    TEMPERATURE_DEWPOINT(Arrays.asList("tdp","dewpoint")),
+    TEMPERATURE_DEWPOINT("Tdp"),
     /**
      * Subcooling of refrigerant K
      */
 
-    SUBCOOLING(Arrays.asList("sc","subcooling")),
+    SUBCOOLING("SC"),
     /**
      * Superheating of refrigerant K
      */
-    SUPERHEATING(Arrays.asList("sh","superheating"));
-
-    private Collection<String> possibleNames;
+    SUPERHEATING("SH");
 
 
+    private String parameterForThermoCP;
 
-    SubstanceParameter(Collection<String> possibleNames) {
-        this.possibleNames = possibleNames;
-    }
+    private static final Map<String, SubstanceParameter> lookup = new HashMap<>();
 
-    public boolean equalsName(String name) {
-        return possibleNames.contains(name);
-    }
-
-    public static SubstanceParameter from(String name) {
-        for(SubstanceParameter substanceParameter: SubstanceParameter.values()) {
-            if(substanceParameter.equalsName(name))
-                return substanceParameter;
+    //Populate the lookup table on loading time
+    static
+    {
+        for(SubstanceParameter substanceParameter : SubstanceParameter.values())
+        {
+            lookup.put(substanceParameter.enumToString(), substanceParameter);
         }
-        return null;
     }
+
+    SubstanceParameter(String nameForThermoCP) {
+        this.parameterForThermoCP = nameForThermoCP;
+    }
+
+    public String enumToString(){
+        return parameterForThermoCP;
+    }
+
+    public static SubstanceParameter stringToEnum(String name){
+        return lookup.get(name);
+
+    }
+
 
 }

@@ -4,7 +4,7 @@ import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
 
 public class FluidFactory {
 
-    public static final String MOIST_AIR = "a";
+
 
     public Substance createAsCommon(String fluidName, String parameter1, double value1, String parameter2, double value2) {
         
