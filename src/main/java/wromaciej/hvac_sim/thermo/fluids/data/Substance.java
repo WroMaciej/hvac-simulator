@@ -38,17 +38,7 @@ public class Substance {
      */
     protected double density;
 
-    public Substance(SubstanceName substanceName, double temperature, double pressure, double enthalpy, double entropy, double quality, double heatCapacity, double volume, double density) {
-        this.substanceName = substanceName;
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.enthalpy = enthalpy;
-        this.entropy = entropy;
-        this.quality = quality;
-        this.heatCapacity = heatCapacity;
-        this.volume = volume;
-        this.density = density;
-    }
+    public Substance(){    }
 
     public SubstanceName getSubstanceName() {
         return substanceName;

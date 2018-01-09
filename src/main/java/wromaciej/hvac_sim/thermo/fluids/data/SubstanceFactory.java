@@ -8,7 +8,8 @@ import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
 public class SubstanceFactory{
 
 
-    public static void createGeneral(Substance substance, SubstanceName substanceName, SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2){
+    public static Substance createGeneral(SubstanceName substanceName, SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2){
+        Substance substance=new Substance();
         if (substanceName!=SubstanceName.MOIST_AIR){
             substance.substanceName=substanceName;
             substance.temperature=ThermoCPAdapter.findParameter(SubstanceParameter.TEMPERATURE,substanceName,parameter1,value1,parameter2,value2);
@@ -22,11 +23,13 @@ public class SubstanceFactory{
         }
         else {
             //create as air
+            substance=createAir(parameter1,value1,parameter2,value2,0);
         }
+        return substance;
     }
 
-    public void createAir(){
-
+    public static Air createAir(SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2, double pGaugePa){
+        
     }
 
 
