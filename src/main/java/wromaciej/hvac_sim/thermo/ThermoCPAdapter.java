@@ -3,14 +3,18 @@ import thermoCP.*;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
 
-/**parametry termodynamiczne czynników*/
+/**
+ * Thermodynamic database of fluids
+ * */
 public abstract class ThermoCPAdapter {
 
     public static final double RO=1.18; //gestosc powietrza w war standardowych kg/m3
     public static final double T_ABS=273.15;
 
 
-    //klasa przechowująca nazwe czynnika, nazwe parametru i wartość parametru po konwersji dla CoolPack
+    /**
+     * Parameters in thermoCP library units
+     */
     public static class ThermoCPParameterPoint{
         public String substanceName;
         public String substanceParameter;
@@ -23,6 +27,9 @@ public abstract class ThermoCPAdapter {
         }
     }
 
+    /**
+     * Parameters in standard units
+     */
     public static class StandardParameterPoint{
         public SubstanceName substanceName;
         public SubstanceParameter substanceParameter;
