@@ -1,3 +1,6 @@
+/**
+ * Repaired factory at 09-01-2018
+ */
 package wromaciej.hvac_sim.thermo.fluids.data;
 
 import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
