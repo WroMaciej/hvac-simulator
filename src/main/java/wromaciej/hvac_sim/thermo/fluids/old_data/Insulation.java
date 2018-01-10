@@ -11,12 +11,16 @@ public enum Insulation {
     ;
 
     private String name; //nazwa wlasna izolacji
+    // REVIEW: w przyszłości zainteresuj się tym: http://jscience.org/api/overview-summary.html#TUTORIAL
+    // Dzięki temu nie będziesz musiał pamiętać w jakiej jednostce jest dane coś i będziesz po prostu dodawał cm do m
+    // itp.
     private double thicknessMM; //glubosc izolacji mm
     private double lambda; //wspolczynnik przewodzenia W/mK
 
     private Insulation(double thicknessMM){
         this.thicknessMM=thicknessMM;
         this.name="NoName insualation";
+        // REVIEW: możesz przyjąć lambdę w konstruktorze podobnie jak thickness
         switch (Insulation.this){
             case MLI            : this.lambda=0.001;
             case BRICK          : this.lambda=0.002;

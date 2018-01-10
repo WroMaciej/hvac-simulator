@@ -6,6 +6,7 @@ public class PressureLossCurve {
     private double x1;
     private double r2; //r2
 
+    // REVIEW: użyj kolekcji, w tym przypadku listy
     private PressurePoint allPoints[];
 
     public PressureLossCurve(PressurePoint... points){
@@ -17,6 +18,8 @@ public class PressureLossCurve {
         if (points.length==1) //jesli podano tylko 1 punkt to wyznacz funkcje kwadratowa
         {}
         else{
+            // REVIEW: a jeżeli już się uparłeś to w bibliotece Guava masz ObjectArrays.concat i moglbys zrobic
+            // prepend po porstu ;)
             allPoints=new PressurePoint[points.length+1];
             allPoints[0]=new PressurePoint(0,0);
 

@@ -3,23 +3,45 @@ import thermoCP.*;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+
 /**
  * Thermodynamic data for 09-01-2018
  */
+// REVIEW sformatuj plik
 public final class ThermoCPAdapter {
 
     public static final double RO=1.18; //gestosc powietrza w war standardowych kg/m3
+    // REVIEW: ta stała może być private - BTW IntelliJ podświetla ci to pole na pomarańczowo - to wskazówka, że
+    // można to poprawić, będąc w tym polu po wciśnięciu alt enter pokaże ci wskazówki co można poprawić automatycznie
     public static final double T_ABS=273.15;
 
+    // REVIEW: ta klasa ma za dużo odpowiedzialności - poza konwersją argumentów łączy też stringi po to by je
+    // wyświetlić w Application. Zdecydowanie lepiej umieścić tę i kolejną metodę w Application lub jakiejś innej
+    // klasie typu util
     public static String getSubstancesList(){
         String list=new String();
         for(SubstanceName substanceName : SubstanceName.values()){
+            // REVIEW równie dobrze mógłbyś zrobić list += substanceName.enumToString()+System.lineSeparator()
             list=list+substanceName.enumToString()+System.lineSeparator();
         }
+        // REVIEW: znacznie lepsza alternatywa niz samodzielne lepienie stringów(ponadto:
+
+        List<String> substanceNames = Arrays.stream(SubstanceName.values())
+                .map(SubstanceName::enumToString)
+                .collect(toList());
+        list = String.join(System.lineSeparator(), substanceNames);
+
         return list;
     }
 
     public static String getParametersList(){
+        // REVIEW: jeżeli już to = "" wystarcza zamiast new String ;) ale i tak polecam zabieg jak zaproponowałem
+        // wyżej - choćby dla ćwiczeń
         String list=new String();
         for(SubstanceParameter substanceParameter : SubstanceParameter.values()){
             list=list+substanceParameter.enumToString()+" - "+substanceParameter.toString() +System.lineSeparator();
@@ -54,6 +76,7 @@ public final class ThermoCPAdapter {
         }
     }
 
+    // REVIEW: po co te 4 metody, skoro nie robią nic więcej co robi SubstanceParameter/Name? :)
     /**
      * Conversion of enum to thermoCP library parameter string name
      */
@@ -135,7 +158,8 @@ public final class ThermoCPAdapter {
 
 
 
-
+// REVIEW - nie ma sensu komentować kodu - mozesz go bezpiecznie usunąć, zawsze w git podejrzysz go jeżeli będziesz
+// chciał zobaczyć co tam kiedyś było
 
     /*
         try {
@@ -204,6 +228,8 @@ public final class ThermoCPAdapter {
         double valueTemp=value;
 
         if (substanceName==SubstanceName.MOIST_AIR){
+            // REVIEW: praca domowa na później - poczytaj o wzorcu projektowym strategy - i pomyśl jak można go użyć,
+            // by pozbyć się tego długiego switch-case
             switch (substanceParameter){
                 case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp*100000; break;//valueTemp=(valueTemp/1000)+100; break;
@@ -220,6 +246,7 @@ public final class ThermoCPAdapter {
                 case HEAT_CAPACITY: valueTemp=valueTemp*1000; break;
             }
         }
+        // REVIEW nie ma potrzeby inicjalizować zmienną i ją potem zwracać w 2 liniach - zrób to w jednej
         ThermoCPParameterPoint paremeterPoint=new ThermoCPParameterPoint(substanceName.enumToString(),substanceParameter.enumToString(),valueTemp);
         return paremeterPoint;
     }
@@ -232,8 +259,16 @@ public final class ThermoCPAdapter {
 
         if (stringToSubstanceName(substanceName)==SubstanceName.MOIST_AIR){
             switch (stringToSubstanceParameter(substanceParameter)){
+                // REVIEW można valueTemp-=T_ABS
                 case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp/100000; break;//valueTemp=(valueTemp*1000)-100; break;
+                // REVIEW: dla 3 case masz taki sam kod, można wtedy zrobić:
+                /*
+                case TEMPERATURE:
+                case TEMPERATURE_WETBULB:
+                case TEMPERATURE_DEWPOINT:
+                    valueTemp=valueTemp-T_ABS; break;
+                 */
                 case TEMPERATURE_WETBULB: valueTemp=valueTemp-T_ABS; break;
                 case TEMPERATURE_DEWPOINT: valueTemp=valueTemp-T_ABS; break;
             }

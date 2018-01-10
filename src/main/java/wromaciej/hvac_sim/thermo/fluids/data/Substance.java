@@ -38,9 +38,13 @@ public class Substance {
      */
     protected double density;
 
+    // REVIEW: w konstruktorze przyjmij wszystkie pola niezbędne do utworzenia obiektu, dzięki temu nie będzie
+    // możliwe, że ten obiekt kiedykolwiek będzie nieprawidłowy
     public Substance(){
 
     }
+
+    // REVIEW nie potrzebujesz czasem getterów? :)
 
     @Override
     public String toString() {
