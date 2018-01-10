@@ -6,10 +6,26 @@ import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
 /**
  * Thermodynamic data for 09-01-2018
  */
-public abstract class ThermoCPAdapter {
+public final class ThermoCPAdapter {
 
     public static final double RO=1.18; //gestosc powietrza w war standardowych kg/m3
     public static final double T_ABS=273.15;
+
+    public static String getSubstancesList(){
+        String list=new String();
+        for(SubstanceName substanceName : SubstanceName.values()){
+            list=list+substanceName.enumToString()+System.lineSeparator();
+        }
+        return list;
+    }
+
+    public static String getParametersList(){
+        String list=new String();
+        for(SubstanceParameter substanceParameter : SubstanceParameter.values()){
+            list=list+substanceParameter.enumToString()+" - "+substanceParameter.toString() +System.lineSeparator();
+        }
+        return list;
+    }
 
     /**
      * Parameters ofr thermoCP library
@@ -63,6 +79,9 @@ public abstract class ThermoCPAdapter {
         return SubstanceName.stringToEnum(name);
     }
 
+    public static double pGaugePaTokPaAbs(double pGaugePa){
+        return (pGaugePa/1000)+100;
+    }
 
     /**
      * Finding parameter for MoistAir
@@ -77,7 +96,8 @@ public abstract class ThermoCPAdapter {
                 substanceParameterToString(parameter2),
                 convertParameterToThermoCP(SubstanceName.MOIST_AIR,parameter2,value2).value,
                 substanceParameterToString(SubstanceParameter.PRESSURE),
-                convertParameterToThermoCP(SubstanceName.MOIST_AIR,SubstanceParameter.PRESSURE,pGaugePa).value);
+                pGaugePaTokPaAbs(pGaugePa));
+        //System.out.println(parameterWanted.enumToString()+" z coolPropa: "+r+" dla p=");
         //convert units to standards
         r=convertParameterFromThermoCP(
                 substanceNameToString(SubstanceName.MOIST_AIR),
@@ -89,17 +109,24 @@ public abstract class ThermoCPAdapter {
     //szukanie parametru przez CoolPack dla reszty czynnikow
     public static double findParameter(SubstanceParameter parameterWanted, SubstanceName substanceName, SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2) {
         //calculate in thermoCP units
-        double r = CoolProp.PropsSI(
-                substanceParameterToString(parameterWanted),
-                substanceParameterToString(parameter1),
-                convertParameterToThermoCP(substanceName, parameter1, value1).value,
-                substanceParameterToString(parameter2),
-                convertParameterToThermoCP(substanceName, parameter2, value2).value,
-                substanceNameToString(substanceName));
-        //convert units to standards
-        r = convertParameterFromThermoCP(
-                substanceNameToString(substanceName),
-                substanceParameterToString(parameterWanted), r).value;
+        double r=0;
+        if (substanceName!=SubstanceName.MOIST_AIR) {
+            r = CoolProp.PropsSI(
+                    substanceParameterToString(parameterWanted),
+                    substanceParameterToString(parameter1),
+                    convertParameterToThermoCP(substanceName, parameter1, value1).value,
+                    substanceParameterToString(parameter2),
+                    convertParameterToThermoCP(substanceName, parameter2, value2).value,
+                    substanceNameToString(substanceName));
+            //convert units to standards
+            r = convertParameterFromThermoCP(
+                    substanceNameToString(substanceName),
+                    substanceParameterToString(parameterWanted), r).value;
+        }
+        else{
+            r=findAirParameter(parameterWanted,parameter1,value1,parameter2,value2,0);
+        }
+
         return r;
     }
 
@@ -179,7 +206,7 @@ public abstract class ThermoCPAdapter {
         if (substanceName==SubstanceName.MOIST_AIR){
             switch (substanceParameter){
                 case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
-                case PRESSURE: valueTemp=(valueTemp/1000)+100; break;
+                case PRESSURE: valueTemp=valueTemp*100000; break;//valueTemp=(valueTemp/1000)+100; break;
                 case TEMPERATURE_WETBULB: valueTemp=valueTemp+T_ABS; break;
                 case TEMPERATURE_DEWPOINT: valueTemp=valueTemp+T_ABS; break;
             }
@@ -187,8 +214,8 @@ public abstract class ThermoCPAdapter {
         else{
             switch (substanceParameter){
                 case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
-                case PRESSURE: valueTemp=valueTemp*100; break;
-                case ENTHALY: valueTemp=valueTemp*1000; break;
+                case PRESSURE: valueTemp=valueTemp*100000; break;
+                case ENTHALPY: valueTemp=valueTemp*1000; break;
                 case ENTROPY: valueTemp=valueTemp*1000; break;
                 case HEAT_CAPACITY: valueTemp=valueTemp*1000; break;
             }
@@ -206,7 +233,7 @@ public abstract class ThermoCPAdapter {
         if (stringToSubstanceName(substanceName)==SubstanceName.MOIST_AIR){
             switch (stringToSubstanceParameter(substanceParameter)){
                 case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
-                case PRESSURE: valueTemp=(valueTemp*1000)-100; break;
+                case PRESSURE: valueTemp=valueTemp/100000; break;//valueTemp=(valueTemp*1000)-100; break;
                 case TEMPERATURE_WETBULB: valueTemp=valueTemp-T_ABS; break;
                 case TEMPERATURE_DEWPOINT: valueTemp=valueTemp-T_ABS; break;
             }
@@ -214,8 +241,8 @@ public abstract class ThermoCPAdapter {
         else{
             switch (stringToSubstanceParameter(substanceParameter)){
                 case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
-                case PRESSURE: valueTemp=valueTemp/100; break;
-                case ENTHALY: valueTemp=valueTemp/1000; break;
+                case PRESSURE: valueTemp=valueTemp/100000; break;
+                case ENTHALPY: valueTemp=valueTemp/1000; break;
                 case ENTROPY: valueTemp=valueTemp/1000; break;
                 case HEAT_CAPACITY: valueTemp=valueTemp/1000; break;
             }

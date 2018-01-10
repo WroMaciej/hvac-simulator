@@ -2,9 +2,7 @@ package wromaciej.hvac_sim;
 
 import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
 import wromaciej.hvac_sim.thermo.fluids.data.Substance;
-import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
-import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameter;
-import wromaciej.hvac_sim.thermo.fluids.old_data.AllSpecific;
+import wromaciej.hvac_sim.thermo.fluids.data.SubstanceFactory;
 
 import java.util.Scanner;
 
@@ -14,25 +12,39 @@ public class Application {
         //System.out.println(System.getProperty("java.library.path"));
         System.loadLibrary("CoolProp");
 
-        AllSpecific fluid;
-        String fluidName;
-        String s1, s2;
-        double v1, v2;
+
+        String substanceName;
+        String parameter1, parameter2;
+        double value1, value2;
+        Substance substance1;
         Scanner in = new Scanner(System.in);
+
+        System.out.println("Available fluids:");
+        System.out.println(ThermoCPAdapter.getSubstancesList());
+        System.out.println();
+        System.out.println("Available parameters");
+        System.out.println(ThermoCPAdapter.getParametersList());
 
 
         while (true) {
-            System.out.print("Podaj nazwę płynu: ");
-            fluidName = in.nextLine();
+            System.out.print("Set fluid name: ");
+            substanceName = in.nextLine();
 
-            System.out.print("Podaj parametr 1: ");
-            s1 = in.nextLine();
-            System.out.print("Podaj wartość parametru 1: ");
-            v1 = Double.parseDouble(in.nextLine());
-            System.out.print("Podaj parametr 2: ");
-            s2 = in.nextLine();
-            System.out.print("Podaj wartość parametru 2: ");
-            v2 = Double.parseDouble(in.nextLine());
+            System.out.print("Set parameter 1: ");
+            parameter1 = in.nextLine();
+            System.out.print("Set value of parameter 1: ");
+            value1 = Double.parseDouble(in.nextLine());
+            System.out.print("Set parameter 2: ");
+            parameter2 = in.nextLine();
+            System.out.print("Set value parameter 2: ");
+            value2 = Double.parseDouble(in.nextLine());
+
+            substance1= SubstanceFactory.createGeneral(ThermoCPAdapter.stringToSubstanceName(substanceName),
+                    ThermoCPAdapter.stringToSubstanceParameter(parameter1),
+                    value1,
+                    ThermoCPAdapter.stringToSubstanceParameter(parameter2),
+                    value2);
+            System.out.println(substance1);
 
 
 

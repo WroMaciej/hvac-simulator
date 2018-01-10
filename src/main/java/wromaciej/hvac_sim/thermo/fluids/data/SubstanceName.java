@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SubstanceName {
 
-    MOIST_AIR("Moist Air"),
+    MOIST_AIR("MoistAir"),
     ACETONE("Acetone"),
     AIR("Air"),
     AMMONIA("Ammonia"),

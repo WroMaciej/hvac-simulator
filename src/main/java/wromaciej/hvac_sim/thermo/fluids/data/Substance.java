@@ -38,11 +38,15 @@ public class Substance {
      */
     protected double density;
 
-    public Substance(){    }
+    public Substance(){
 
-    public SubstanceName getSubstanceName() {
-        return substanceName;
     }
 
-
+    @Override
+    public String toString() {
+        return "Name: " + substanceName.enumToString()
+                +" temperature: "+temperature
+                + " pressure: "+pressure
+                +" enthalpy: " +enthalpy;
+    }
 }

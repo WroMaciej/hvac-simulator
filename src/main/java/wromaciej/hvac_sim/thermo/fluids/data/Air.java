@@ -1,16 +1,35 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
 public class Air extends Substance {
+    /**
+     * RH 0-1
+     */
+    protected double relativeHumidity;
+    /**
+     * X kgH2O/kgDRY
+     */
+    protected double moistureContent;
+    /**
+     * T dewpoint C
+     */
+    protected double dewPoint;
+    /**
+     * T wetbulb C
+     */
+    protected double wetBulb;
+    /**
+     * relative pressure, Pa
+     */
+    protected double pGaugePa;
 
-protected double relativeHumidity;
-protected double moistureContent;
-protected double dewPoint;
-protected double wetBulb;
-
-    public Air(SubstanceName substanceName, double temperature, double pressure, double enthalpy, double entropy, double quality, double heatCapacity, double volume, double density) {
-        super(substanceName, temperature, pressure, enthalpy, entropy, quality, heatCapacity, volume, density);
+    public Air(){
     }
 
-
-
+    @Override
+    public String toString() {
+        return super.toString()
+                +" pGauge: "+ pGaugePa
+                +"Pa rh: "+ relativeHumidity
+                +" x: "+moistureContent;
+    }
 }

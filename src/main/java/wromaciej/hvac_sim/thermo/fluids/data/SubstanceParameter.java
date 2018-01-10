@@ -14,7 +14,7 @@ public enum SubstanceParameter {
     /**
      * Specific enthalpy kJ/kg
      */
-    ENTHALY("H"),
+    ENTHALPY("H"),
     /**
      * Specific entropy kJ/kgK
      */
@@ -26,11 +26,11 @@ public enum SubstanceParameter {
      /**
      * Density kg/m3
      */
-    DENSITY("RO"),
+    DENSITY("D"),
     /**
      * Specific heat capacity in constant pressure cp kJ/kgK
      */
-    HEAT_CAPACITY("Cp"),
+    HEAT_CAPACITY("C"),
     /**
      * Relative humidity of AIR 0-1
      */
