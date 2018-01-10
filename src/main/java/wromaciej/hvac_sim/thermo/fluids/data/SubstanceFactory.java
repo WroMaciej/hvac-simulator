@@ -20,6 +20,7 @@ public final class SubstanceFactory{
      * @return Full point with all SPECIFIC parameters
      */
 
+
     public static Substance createGeneral(SubstanceName substanceName, SubstanceParameter parameter1, double value1, SubstanceParameter parameter2, double value2){
         Substance substance=new Substance();
         if (substanceName!=SubstanceName.MOIST_AIR){
