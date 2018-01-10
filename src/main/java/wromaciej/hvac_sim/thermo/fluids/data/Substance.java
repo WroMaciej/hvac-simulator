@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
+import java.util.Locale;
+
 public class Substance {
     /**
      * Type of substance
@@ -45,8 +47,8 @@ public class Substance {
     @Override
     public String toString() {
         return "Name: " + substanceName.enumToString()
-                +" temperature: "+temperature
-                + " pressure: "+pressure
-                +" enthalpy: " +enthalpy;
+                +" temperature: "+String.format(Locale.US, "%.2f",temperature)
+                + " pressure: "+String.format(Locale.US, "%.2f",pressure)
+                +" enthalpy: " +String.format(Locale.US, "%.2f",enthalpy);
     }
 }
