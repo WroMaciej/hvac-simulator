@@ -2,87 +2,28 @@ package wromaciej.hvac_sim.thermo.fluids.data;
 
 import java.util.*;
 
-public enum SubstanceParameter {
-    /**
-     * Temperature in C
-     */
-    TEMPERATURE("T"),
-    /**
-     * Absolute pressure barA
-     */
-    PRESSURE("P"),
-    /**
-     * Specific enthalpy kJ/kg
-     */
-    ENTHALPY("H"),
-    /**
-     * Specific entropy kJ/kgK
-     */
-    ENTROPY("S"),
-    /**
-     * Quality 0-1
-     */
-    QUALITY("Q"),
-     /**
-     * Density kg/m3
-     */
-    DENSITY("D"),
-    /**
-     * Specific heat capacity in constant pressure cp kJ/kgK
-     */
-    HEAT_CAPACITY("C"),
-    /**
-     * Relative humidity of AIR 0-1
-     */
-    RELATIVE_HUMIDITY("R"),
-    /**
-     * absolute humidity of AIR kg_H2O/kgDRY
-     */
-    MOISTURE_CONTENT("W"),
-    /**
-     * wetbulb temperature of AIR C
-     */
-    TEMPERATURE_WETBULB("Twb"),
-    /**
-     * dewpoint of AIR C
-     */
-    TEMPERATURE_DEWPOINT("Tdp"),
-    /**
-     * Subcooling of refrigerant K
-     */
+public class SubstanceParameter {
+    protected SubstanceParameterType type;
+    protected double value;
 
-    SUBCOOLING("SC"),
-    /**
-     * Superheating of refrigerant K
-     */
-    SUPERHEATING("SH");
-
-
-    private String parameterForThermoCP;
-
-    private static final Map<String, SubstanceParameter> lookup = new HashMap<>();
-
-    //Populate the lookup table on loading time
-    static
-    {
-        for(SubstanceParameter substanceParameter : SubstanceParameter.values())
-        {
-            lookup.put(substanceParameter.enumToString(), substanceParameter);
-        }
+    public SubstanceParameterType getType() {
+        return type;
     }
 
-    SubstanceParameter(String nameForThermoCP) {
-        this.parameterForThermoCP = nameForThermoCP;
+    public double getValue() {
+        return value;
     }
 
-    public String enumToString(){
-        return parameterForThermoCP;
+    public SubstanceParameter(SubstanceParameterType type, double value) {
+        this.type = type;
+        this.value = value;
     }
 
-    public static SubstanceParameter stringToEnum(String name){
-        return lookup.get(name);
-
+    @Override
+    public String toString() {
+        double multipliedValue=type.getMultiplyerForShowing()* value;
+        return String.format(Locale.US,
+                type.getStringFormat(),
+                multipliedValue)+ type.getUnit();
     }
-
-
 }

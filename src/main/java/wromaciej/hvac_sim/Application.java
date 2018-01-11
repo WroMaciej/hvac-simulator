@@ -3,7 +3,9 @@ package wromaciej.hvac_sim;
 import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
 import wromaciej.hvac_sim.thermo.fluids.data.Substance;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceFactory;
+import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameterType;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -18,6 +20,7 @@ public class Application {
         double value1, value2;
         Substance substance1;
         Scanner in = new Scanner(System.in);
+
 
         System.out.println("Available fluids:");
         System.out.println(ThermoCPAdapter.getSubstancesList());
@@ -40,9 +43,9 @@ public class Application {
             value2 = Double.parseDouble(in.nextLine());
 
             substance1= SubstanceFactory.createGeneral(ThermoCPAdapter.stringToSubstanceName(substanceName),
-                    ThermoCPAdapter.stringToSubstanceParameter(parameter1),
+                    ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
                     value1,
-                    ThermoCPAdapter.stringToSubstanceParameter(parameter2),
+                    ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
                     value2);
             System.out.println(substance1);
 

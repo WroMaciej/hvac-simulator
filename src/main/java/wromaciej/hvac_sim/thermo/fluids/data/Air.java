@@ -2,36 +2,62 @@ package wromaciej.hvac_sim.thermo.fluids.data;
 
 import java.util.Locale;
 
-public class Air extends Substance {
+public final class Air extends Substance {
     /**
      * RH 0-1
      */
-    protected double relativeHumidity;
+    protected SubstanceParameter relativeHumidity;
     /**
      * X kgH2O/kgDRY
      */
-    protected double moistureContent;
+    protected SubstanceParameter moistureContent;
     /**
      * T dewpoint C
      */
-    protected double dewPoint;
+    protected SubstanceParameter dewPoint;
     /**
      * T wetbulb C
      */
-    protected double wetBulb;
+    protected SubstanceParameter wetBulb;
     /**
      * relative pressure, Pa
      */
-    protected double pGaugePa;
+    protected SubstanceParameter pGaugePa;
 
     public Air(){
+        super();
+        relativeHumidity=new SubstanceParameter(SubstanceParameterType.RELATIVE_HUMIDITY,0);
+        moistureContent=new SubstanceParameter(SubstanceParameterType.MOISTURE_CONTENT,0);
+        dewPoint=new SubstanceParameter(SubstanceParameterType.TEMPERATURE_DEWPOINT,0);
+        wetBulb=new SubstanceParameter(SubstanceParameterType.TEMPERATURE_WETBULB,0);
+        pGaugePa=new SubstanceParameter(SubstanceParameterType.PRESSURE_GAUGE_PA,0);
     }
 
     @Override
     public String toString() {
         return super.toString()
-                +" pGauge: "+ String.format(Locale.US, "%.2f",pGaugePa)
-                +"Pa rh: "+ String.format(Locale.US, "%.2f",relativeHumidity)
-                +" x: "+String.format(Locale.US, "%.5f",moistureContent);
+                +" pGauge: "+ pGaugePa.toString() + System.lineSeparator()
+                +" rh: "+ relativeHumidity.toString() + System.lineSeparator()
+                +" x: "+moistureContent.toString() + System.lineSeparator();
+    }
+
+    public SubstanceParameter getRelativeHumidity() {
+        return relativeHumidity;
+    }
+
+    public SubstanceParameter getMoistureContent() {
+        return moistureContent;
+    }
+
+    public SubstanceParameter getDewPoint() {
+        return dewPoint;
+    }
+
+    public SubstanceParameter getWetBulb() {
+        return wetBulb;
+    }
+
+    public SubstanceParameter getpGaugePa() {
+        return pGaugePa;
     }
 }
