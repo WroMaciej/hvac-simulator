@@ -48,6 +48,13 @@ public class Application {
                     ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
                     value2);
             System.out.println(substance1);
+            System.out.println("---- AS REFRIGERANT: ----");
+            substance1= SubstanceFactory.createRefrigerant(ThermoCPAdapter.stringToSubstanceName(substanceName),
+                    ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
+                    value1,
+                    ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
+                    value2);
+            System.out.println(substance1);
 
 
 

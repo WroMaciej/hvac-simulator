@@ -62,19 +62,23 @@ public enum SubstanceParameterType {
      * Subcooling of refrigerant K
      */
 
-    SUBCOOLING(Arrays.asList("SC","K","%.2f"), 1),
+    SUBCOOLING(Arrays.asList("SC","K","%.1f"), 1),
     /**
      * Superheating of refrigerant K
      */
-    SUPERHEATING(Arrays.asList("SH","K","%.2f"), 1),
+    SUPERHEATING(Arrays.asList("SH","K","%.1f"), 1),
     /**
-     * Overpressure, Pa
+     * Overpressure, barG
      */
     PRESSURE_GAUGE_BARG(Arrays.asList("Unable","barG","%.2f"), 1),
     /**
      * Delta of temperature, K
      */
-    DELTA_T(Arrays.asList("Unable","K","%.2f"), 1);
+    DELTA_T(Arrays.asList("Unable","K","%.1f"), 1),
+    /**
+     * Delta of pressure, kPa
+     */
+    PRESSURE_DROP(Arrays.asList("Unable","kPa","%.1f"), 1);
 
 
     private List<String> parameters;
@@ -99,11 +103,6 @@ public enum SubstanceParameterType {
         }
     }
 
-
-
-    /*SubstanceParameterType(String nameForThermoCP) {
-        this.parameterForThermoCP = nameForThermoCP;
-    }*/
 
     public String enumToString(){
         return parameterForThermoCP;
