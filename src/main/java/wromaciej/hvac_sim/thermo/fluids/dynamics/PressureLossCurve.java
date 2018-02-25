@@ -1,44 +1,44 @@
 package wromaciej.hvac_sim.thermo.fluids.dynamics;
 
+import java.util.Collections;
+import java.util.List;
+
 public class PressureLossCurve {
-    private double x3;
-    private double x2;
-    private double x1;
-    private double r2; //r2
+    private double coefficientToPowerOf3;
+    private double coefficientToPowerOf2;
+    private double coefficientToPowerOf1;
+    private double relativeErrorOfInterpolation;
 
-    private PressurePoint allPoints[];
+    private List<PressurePoint> installationCurvePoints;
 
-    public PressureLossCurve(PressurePoint... points){
-        x1=0;
-        x2=0;
-        x3=0;
+    private int numberOfKnownPoints() {
+        return installationCurvePoints.size();
+    }
+
+    public PressureLossCurve(List<PressurePoint> installationCurvePoints) {
+        Collections.sort(installationCurvePoints); //sort collection from lowest to highest pressure
+        coefficientToPowerOf1 = 0;
+        coefficientToPowerOf2 = 0;
+        coefficientToPowerOf3 = 0;
         //utworz tablice z punktem 0,0
 
-        if (points.length==1) //jesli podano tylko 1 punkt to wyznacz funkcje kwadratowa
-        {}
-        else{
-            allPoints=new PressurePoint[points.length+1];
-            allPoints[0]=new PressurePoint(0,0);
-
-
-            //skopiuj punkty powyzej punktu 0,0
-            for (int i=points.length-1;i>1;i--){
-                allPoints[i]=points[i-1];
-            }
-
-            //!!!!!  interpolacja wielomianowa (wstawic algorytm)!!!!!
-            //for (int i=0 to )
+        if (numberOfKnownPoints() == 1) //jesli podano tylko 1 punkt to wyznacz funkcje kwadratowa
+        {
+            coefficientToPowerOf2 =
+                    installationCurvePoints.get(0).getPressure() / (Math.pow(installationCurvePoints.get(0).getFlow(), 2));
         }
 
 
     }
 
-    public double getV(double dp){
-        return 0; //dopracowac funkcje odwrotna
+    public double getFlow(double pressureDrop) {
+        return 0; //???
     }
 
-    public double getDp(double v){
-        return x3*v*v*v+x2*v*v+x1*v;
+    public double getPressureDrop(double flow) {
+        return coefficientToPowerOf3 * Math.pow(flow, 3)
+                + coefficientToPowerOf2 * Math.pow(flow, 2)
+                + coefficientToPowerOf1 * Math.pow(flow, 1);
     }
 
 

@@ -1,19 +1,27 @@
 package wromaciej.hvac_sim.thermo.fluids.dynamics;
 
-public class PressurePoint {
-    private double v;
-    private double dp;
+public class PressurePoint implements Comparable<PressurePoint> {
+    private double flow;
+    private double pressure;
 
-    public PressurePoint(double v, double dp){
-        this.v=v;
-        this.dp=dp;
+    public PressurePoint(double flow, double pressure){
+        this.flow = flow;
+        this.pressure = pressure;
     }
 
-    public double getV() {
-        return v;
+    public double getFlow() {
+        return flow;
     }
 
-    public double getDp() {
-        return dp;
+    public double getPressure() {
+        return pressure;
+    }
+
+    @Override
+    public int compareTo(PressurePoint o) {
+        if (this.flow==o.flow) return 0;
+        else if (this.flow<o.flow) return -1;
+        else if (this.flow>o.flow) return 1;
+        return 0;
     }
 }
