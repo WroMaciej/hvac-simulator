@@ -2,7 +2,7 @@
  * Repaired factory at 10-01-2018
  */
 package wromaciej.hvac_sim.thermo.fluids.data;
-import wromaciej.hvac_sim.thermo.ThermoCPAdapter;
+import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
 
 /**
  * Creating of Substance in few ways, depending on its type

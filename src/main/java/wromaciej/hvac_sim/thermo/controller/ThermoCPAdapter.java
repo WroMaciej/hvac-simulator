@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo;
+package wromaciej.hvac_sim.thermo.controller;
 import thermoCP.*;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
 import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameterType;

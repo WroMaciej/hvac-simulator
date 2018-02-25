@@ -130,16 +130,16 @@ public enum SubstanceName {
     TRANS_2_BUTENE("trans-2-Butene"),;
 
 
-    private String nameForThermoCP;
+        private String nameForThermoCP;
 
-    private static final Map<String, SubstanceName> lookup = new HashMap<>();
+    private static final Map<String, SubstanceName> substanceEnumForGivenString = new HashMap<>();
 
     //Populate the lookup table on loading time
     static
     {
         for(SubstanceName substanceName : SubstanceName.values())
         {
-            lookup.put(substanceName.enumToString(), substanceName);
+            substanceEnumForGivenString.put(substanceName.enumToString(), substanceName);
         }
     }
 
@@ -152,7 +152,7 @@ public enum SubstanceName {
     }
 
     public static SubstanceName stringToEnum(String name){
-        return lookup.get(name);
+        return substanceEnumForGivenString.get(name);
 
     }
 

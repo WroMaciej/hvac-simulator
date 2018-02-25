@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.fluids.data;
 
 
+
 public class Substance {
     /**
      * Type of substance
@@ -40,6 +41,8 @@ public class Substance {
     protected SubstanceParameter density;
 
     public Substance(){
+
+
         temperature=new SubstanceParameter(SubstanceParameterType.TEMPERATURE,0);
         pressure=new SubstanceParameter(SubstanceParameterType.PRESSURE,0);
         enthalpy=new SubstanceParameter(SubstanceParameterType.ENTHALPY,0);
