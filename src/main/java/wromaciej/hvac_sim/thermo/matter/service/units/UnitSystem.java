@@ -1,11 +1,7 @@
-package wromaciej.hvac_sim.thermo.controller.units;
+package wromaciej.hvac_sim.thermo.matter.service.units;
 
-import javax.measure.Measurable;
 import javax.measure.quantity.*;
-import javax.measure.unit.SystemOfUnits;
 import javax.measure.unit.Unit;
-
-import static javax.measure.unit.SI.*;
 
 public class UnitSystem {
     Unit<Mass> massUnit;
