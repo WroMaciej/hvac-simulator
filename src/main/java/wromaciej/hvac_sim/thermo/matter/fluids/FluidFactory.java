@@ -5,7 +5,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids;
 import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
 
 /**
- * Creating of Fluid in few ways, depending on its type
+ * Creating of Fluid in few ways, depending on its parameterType
  */
 
 public final class FluidFactory {
@@ -20,7 +20,7 @@ public final class FluidFactory {
      */
 
     public static Fluid createGeneral(FluidName fluidName, FluidParameter parameter1, FluidParameter parameter2) {
-        return createGeneral(fluidName, parameter1.getType(), parameter1.getValue(), parameter2.getType(), parameter2.getValue());
+        return createGeneral(fluidName, parameter1.getParameterType(), parameter1.getValue(), parameter2.getParameterType(), parameter2.getValue());
     }
 
     public static Fluid createGeneral(FluidName fluidName, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2) {
@@ -43,7 +43,7 @@ public final class FluidFactory {
     }
 
     public static Air createAir(FluidParameter parameter1, FluidParameter parameter2, double pGaugePa) {
-        return createAir(parameter1.getType(), parameter1.getValue(), parameter2.getType(), parameter2.getValue(), pGaugePa);
+        return createAir(parameter1.getParameterType(), parameter1.getValue(), parameter2.getParameterType(), parameter2.getValue(), pGaugePa);
     }
 
     public static Air createAir(FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2, double pGaugePa) {
@@ -67,7 +67,7 @@ public final class FluidFactory {
     }
 
     public static Refrigerant createRefrigerant(FluidName fluidName, FluidParameter parameter1, FluidParameter parameter2) {
-        return createRefrigerant(fluidName, parameter1.getType(), parameter1.getValue(), parameter2.getType(), parameter2.getValue());
+        return createRefrigerant(fluidName, parameter1.getParameterType(), parameter1.getValue(), parameter2.getParameterType(), parameter2.getValue());
     }
 
     public static Refrigerant createRefrigerant(FluidName fluidName, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2) {

@@ -1,29 +1,41 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
+import javax.measure.Measurable;
+import javax.measure.unit.Unit;
 import java.util.*;
 
 public class FluidParameter {
-    protected FluidParameterType type;
+    protected FluidParameterType parameterType;
+
+    private Measurable<?> parameterValue;
+    private Unit parameterUnit;
+
+    public double value(){
+        return parameterValue.doubleValue(parameterUnit);
+    }
+
+
     protected double value;
 
-    public FluidParameterType getType() {
-        return type;
+    public FluidParameterType getParameterType() {
+        return parameterType;
     }
 
     public double getValue() {
         return value;
     }
 
-    public FluidParameter(FluidParameterType type, double value) {
-        this.type = type;
+    public FluidParameter(FluidParameterType parameterType, double value) {
+        this.parameterType = parameterType;
         this.value = value;
+
     }
 
     @Override
     public String toString() {
-        double multipliedValue=type.getMultiplyerForShowing()* value;
+        double multipliedValue= parameterType.getMultiplyerForShowing()* value;
         return String.format(Locale.US,
-                type.getStringFormat(),
-                multipliedValue)+ type.getUnit();
+                parameterType.getStringFormat(),
+                multipliedValue)+ parameterType.getUnit();
     }
 }

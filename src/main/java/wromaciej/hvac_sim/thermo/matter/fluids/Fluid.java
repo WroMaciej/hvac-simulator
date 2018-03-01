@@ -51,14 +51,14 @@ public class Fluid {
         heatCapacity=new FluidParameter(FluidParameterType.HEAT_CAPACITY,0);
         volume=new FluidParameter(FluidParameterType.VOLUME,1);
         density=new FluidParameter(FluidParameterType.DENSITY,1);
-        /*temperature.type=FluidParameterType.TEMPERATURE;
-        pressure.type=FluidParameterType.PRESSURE;
-        enthalpy.type=FluidParameterType.ENTHALPY;
-        entropy.type=FluidParameterType.ENTROPY;
-        quality.type=FluidParameterType.QUALITY;
-        heatCapacity.type=FluidParameterType.HEAT_CAPACITY;
-        volume.type=FluidParameterType.VOLUME;
-        density.type=FluidParameterType.DENSITY;*/
+        /*temperature.parameterType=FluidParameterType.TEMPERATURE;
+        pressure.parameterType=FluidParameterType.PRESSURE;
+        enthalpy.parameterType=FluidParameterType.ENTHALPY;
+        entropy.parameterType=FluidParameterType.ENTROPY;
+        quality.parameterType=FluidParameterType.QUALITY;
+        heatCapacity.parameterType=FluidParameterType.HEAT_CAPACITY;
+        volume.parameterType=FluidParameterType.VOLUME;
+        density.parameterType=FluidParameterType.DENSITY;*/
     }
 
     @Override
