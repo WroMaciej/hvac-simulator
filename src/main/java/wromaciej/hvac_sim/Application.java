@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim;
 
 import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
-import wromaciej.hvac_sim.thermo.fluids.data.Substance;
-import wromaciej.hvac_sim.thermo.fluids.data.SubstanceFactory;
+import wromaciej.hvac_sim.thermo.matter.fluids.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.FluidFactory;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class Application {
         String substanceName;
         String parameter1, parameter2;
         double value1, value2;
-        Substance substance1;
+        Fluid fluid1;
         Scanner in = new Scanner(System.in);
 
 
@@ -40,19 +40,19 @@ public class Application {
             System.out.print("Set value parameter 2: ");
             value2 = Double.parseDouble(in.nextLine());
 
-            substance1= SubstanceFactory.createGeneral(ThermoCPAdapter.stringToSubstanceName(substanceName),
+            fluid1 = FluidFactory.createGeneral(ThermoCPAdapter.stringToSubstanceName(substanceName),
                     ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
                     value1,
                     ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
                     value2);
-            System.out.println(substance1);
+            System.out.println(fluid1);
             System.out.println("---- AS REFRIGERANT: ----");
-            substance1= SubstanceFactory.createRefrigerant(ThermoCPAdapter.stringToSubstanceName(substanceName),
+            fluid1 = FluidFactory.createRefrigerant(ThermoCPAdapter.stringToSubstanceName(substanceName),
                     ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
                     value1,
                     ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
                     value2);
-            System.out.println(substance1);
+            System.out.println(fluid1);
 
 
 

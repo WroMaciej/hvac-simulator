@@ -1,12 +1,12 @@
-package wromaciej.hvac_sim.thermo.fluids.data;
+package wromaciej.hvac_sim.thermo.matter.fluids;
 
 import java.util.*;
 
-public class SubstanceParameter {
-    protected SubstanceParameterType type;
+public class FluidParameter {
+    protected FluidParameterType type;
     protected double value;
 
-    public SubstanceParameterType getType() {
+    public FluidParameterType getType() {
         return type;
     }
 
@@ -14,7 +14,7 @@ public class SubstanceParameter {
         return value;
     }
 
-    public SubstanceParameter(SubstanceParameterType type, double value) {
+    public FluidParameter(FluidParameterType type, double value) {
         this.type = type;
         this.value = value;
     }

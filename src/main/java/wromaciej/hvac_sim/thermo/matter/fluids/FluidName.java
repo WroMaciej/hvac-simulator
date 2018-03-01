@@ -1,9 +1,9 @@
-package wromaciej.hvac_sim.thermo.fluids.data;
+package wromaciej.hvac_sim.thermo.matter.fluids;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public enum SubstanceName {
+public enum FluidName {
 
     MOIST_AIR("MoistAir"),
     ACETONE("Acetone"),
@@ -132,18 +132,18 @@ public enum SubstanceName {
 
         private String nameForThermoCP;
 
-    private static final Map<String, SubstanceName> substanceEnumForGivenString = new HashMap<>();
+    private static final Map<String, FluidName> substanceEnumForGivenString = new HashMap<>();
 
     //Populate the lookup table on loading time
     static
     {
-        for(SubstanceName substanceName : SubstanceName.values())
+        for(FluidName fluidName : FluidName.values())
         {
-            substanceEnumForGivenString.put(substanceName.enumToString(), substanceName);
+            substanceEnumForGivenString.put(fluidName.enumToString(), fluidName);
         }
     }
 
-    SubstanceName(String nameForThermoCP) {
+    FluidName(String nameForThermoCP) {
         this.nameForThermoCP = nameForThermoCP;
     }
 
@@ -151,7 +151,7 @@ public enum SubstanceName {
         return nameForThermoCP;
     }
 
-    public static SubstanceName stringToEnum(String name){
+    public static FluidName stringToEnum(String name){
         return substanceEnumForGivenString.get(name);
 
     }

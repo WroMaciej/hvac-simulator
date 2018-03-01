@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.controller;
 import thermoCP.*;
-import wromaciej.hvac_sim.thermo.fluids.data.SubstanceName;
-import wromaciej.hvac_sim.thermo.fluids.data.SubstanceParameterType;
+import wromaciej.hvac_sim.thermo.matter.fluids.FluidName;
+import wromaciej.hvac_sim.thermo.matter.fluids.FluidParameterType;
 
 /**
  * Thermodynamic data for 09-01-2018
@@ -13,16 +13,16 @@ public final class ThermoCPAdapter {
 
     public static String getSubstancesList(){
         String list=new String();
-        for(SubstanceName substanceName : SubstanceName.values()){
-            list=list+substanceName.enumToString()+System.lineSeparator();
+        for(FluidName fluidName : FluidName.values()){
+            list=list+ fluidName.enumToString()+System.lineSeparator();
         }
         return list;
     }
 
     public static String getParametersList(){
         String list=new String();
-        for(SubstanceParameterType substanceParameterType : SubstanceParameterType.values()){
-            list=list+substanceParameterType.enumToString()+" - "+substanceParameterType.toString() +System.lineSeparator();
+        for(FluidParameterType fluidParameterType : FluidParameterType.values()){
+            list=list+ fluidParameterType.enumToString()+" - "+ fluidParameterType.toString() +System.lineSeparator();
         }
         return list;
     }
@@ -43,13 +43,13 @@ public final class ThermoCPAdapter {
     }
 
     public static class StandardParameterPoint{
-        public SubstanceName substanceName;
-        public SubstanceParameterType substanceParameterType;
+        public FluidName fluidName;
+        public FluidParameterType fluidParameterType;
         public double value;
 
-        public StandardParameterPoint(SubstanceName substanceName, SubstanceParameterType parameterName, double value) {
-            this.substanceName = substanceName;
-            this.substanceParameterType = parameterName;
+        public StandardParameterPoint(FluidName fluidName, FluidParameterType parameterName, double value) {
+            this.fluidName = fluidName;
+            this.fluidParameterType = parameterName;
             this.value = value;
         }
     }
@@ -57,26 +57,26 @@ public final class ThermoCPAdapter {
     /**
      * Conversion of enum to thermoCP library parameter string name
      */
-    public static String substanceParameterTypeToString(SubstanceParameterType parameter){
+    public static String substanceParameterTypeToString(FluidParameterType parameter){
         return parameter.enumToString();
     }
     /**
      * Conversion of string parameter to enum
      */
-    public static SubstanceParameterType stringToSubstanceParameterType(String parameter){
-        return SubstanceParameterType.stringToEnum(parameter);
+    public static FluidParameterType stringToSubstanceParameterType(String parameter){
+        return FluidParameterType.stringToEnum(parameter);
     }
     /**
      * Conversion of enum to thermoCP library fluid name
      */
-    public static String substanceNameToString(SubstanceName name){
+    public static String substanceNameToString(FluidName name){
         return name.enumToString();
     }
     /**
      * Conversion of fluid name to enum
      */
-    public static SubstanceName stringToSubstanceName(String name){
-        return SubstanceName.stringToEnum(name);
+    public static FluidName stringToSubstanceName(String name){
+        return FluidName.stringToEnum(name);
     }
 
     public static double pGaugePaTokPaAbs(double pGaugePa){
@@ -87,40 +87,40 @@ public final class ThermoCPAdapter {
      * Finding parameter for MoistAir
 
      */
-    public static double findAirParameter(SubstanceParameterType parameterWanted, SubstanceParameterType parameter1, double value1, SubstanceParameterType parameter2, double value2, double pGaugePa){
+    public static double findAirParameter(FluidParameterType parameterWanted, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2, double pGaugePa){
         //calculate in thermoCP units
         double r= CoolProp.HAProps(
                 substanceParameterTypeToString(parameterWanted),
                 substanceParameterTypeToString(parameter1),
-                convertParameterToThermoCP(SubstanceName.MOIST_AIR,parameter1,value1).value,
+                convertParameterToThermoCP(FluidName.MOIST_AIR,parameter1,value1).value,
                 substanceParameterTypeToString(parameter2),
-                convertParameterToThermoCP(SubstanceName.MOIST_AIR,parameter2,value2).value,
-                substanceParameterTypeToString(SubstanceParameterType.PRESSURE),
+                convertParameterToThermoCP(FluidName.MOIST_AIR,parameter2,value2).value,
+                substanceParameterTypeToString(FluidParameterType.PRESSURE),
                 pGaugePaTokPaAbs(pGaugePa));
         //System.out.println(parameterWanted.enumToString()+" z coolPropa: "+r+" dla p=");
         //convert units to standards
         r=convertParameterFromThermoCP(
-                substanceNameToString(SubstanceName.MOIST_AIR),
+                substanceNameToString(FluidName.MOIST_AIR),
                 substanceParameterTypeToString(parameterWanted),r).value;
         return r;
 
     }
 
     //szukanie parametru przez CoolPack dla reszty czynnikow
-    public static double findParameter(SubstanceParameterType parameterWanted, SubstanceName substanceName, SubstanceParameterType parameter1, double value1, SubstanceParameterType parameter2, double value2) {
+    public static double findParameter(FluidParameterType parameterWanted, FluidName fluidName, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2) {
         //calculate in thermoCP units
         double r=0;
-        if (substanceName!=SubstanceName.MOIST_AIR) {
+        if (fluidName != FluidName.MOIST_AIR) {
             r = CoolProp.PropsSI(
                     substanceParameterTypeToString(parameterWanted),
                     substanceParameterTypeToString(parameter1),
-                    convertParameterToThermoCP(substanceName, parameter1, value1).value,
+                    convertParameterToThermoCP(fluidName, parameter1, value1).value,
                     substanceParameterTypeToString(parameter2),
-                    convertParameterToThermoCP(substanceName, parameter2, value2).value,
-                    substanceNameToString(substanceName));
+                    convertParameterToThermoCP(fluidName, parameter2, value2).value,
+                    substanceNameToString(fluidName));
             //convert units to standards
             r = convertParameterFromThermoCP(
-                    substanceNameToString(substanceName),
+                    substanceNameToString(fluidName),
                     substanceParameterTypeToString(parameterWanted), r).value;
         }
         else{
@@ -131,62 +131,6 @@ public final class ThermoCPAdapter {
     }
 
 
-
-
-
-
-
-
-    /*
-        try {
-            if (convert(fluidName, null, 0).fluidName.equals("a")) {
-                r = findAirParameter(wanted, p1, v1, p2, v2, 0); //jezeli to powietrze to licz jak dla powietrza
-            } else {
-                if (p1.equals("sh") || p1.equals("sc") || p2.equals("sh") || p2.equals("sc")) {
-                    if (p1.equals("sh")) {
-                        r = CoolProp.PropsSI("T", "Q", 1, p2, v2, fluidName); //r to temperatura nasycenia
-                        r2 = CoolProp.PropsSI("P", "Q", 1, p2, v2, fluidName); //r2 to cisnienie nasycenia
-                        //jesli przegrzanie>0
-                        r = getR(wanted, fluidName, v1, v1, r, r2);
-                    } else if (p2.equals("sh")) {
-                        r = CoolProp.PropsSI("T", "Q", 1, p1, v1, fluidName); //r to temperatura nasycenia
-                        r2 = CoolProp.PropsSI("P", "Q", 1, p1, v1, fluidName); //r2 to cisnienie nasycenia
-                        //jesli przegrzanie>0
-                        r = getR(wanted, fluidName, v1, v2, r, r2);
-                    } else if (p1.equals("sc")) {
-                        r = CoolProp.PropsSI("T", "Q", 0, p2, v2, fluidName); //r to temperatura nasycenia
-                        r2 = CoolProp.PropsSI("P", "Q", 0, p2, v2, fluidName); //r2 to cisnienie nasycenia
-                        //jesli przegrzanie>0
-                        if (v1 > 0)
-                            r = CoolProp.PropsSI(wanted, "T", r - v1, "P", r2, fluidName); //r to parametr poszukiwany
-                        else r = CoolProp.PropsSI(wanted, "Q", 0, "P", r2, fluidName);
-                    } else if (p2.equals("sc")) {
-                        r = CoolProp.PropsSI("T", "Q", 0, p1, v1, fluidName); //r to temperatura nasycenia
-                        r2 = CoolProp.PropsSI("P", "Q", 0, p1, v1, fluidName); //r2 to cisnienie nasycenia
-                        //jesli przegrzanie>0
-                        if (v1 > 0)
-                            r = CoolProp.PropsSI(wanted, "T", r - v2, "P", r2, fluidName); //r to parametr poszukiwany
-                        else r = CoolProp.PropsSI(wanted, "Q", 0, "P", r2, fluidName);
-                    }
-
-                } else
-                    r = CoolProp.PropsSI(wanted, p1, v1, p2, v2, fluidName); //jezeli nie jest to dochlodzenie ani przegrzanie to licz normalnie
-            }
-
-        }
-        catch(RuntimeException exception) {
-            fluidName="water";
-            p1="T";
-            v1=10+T_ABS;
-            p2="P";
-            v2=100;
-            r=CoolProp.PropsSI(wanted, p1, v1, p2, v2, fluidName); //jesli nie znaleziono plynu to uznaj ze jest to woda o temp 10C
-        }
-
-        r = calculateRBasingOnWantedParameter(wanted, r);
-        return r;
-
-    }*/
 
 
     private static double getR(String wanted, String fluidName, double v1, double v2, double r, double r2) {
@@ -200,10 +144,10 @@ public final class ThermoCPAdapter {
     /**
      * Conversion from standard units to thermoCP units
      */
-    public static ThermoCPParameterPoint convertParameterToThermoCP(SubstanceName substanceName, SubstanceParameterType substanceParameter, double value){
+    public static ThermoCPParameterPoint convertParameterToThermoCP(FluidName fluidName, FluidParameterType substanceParameter, double value){
         double valueTemp=value;
 
-        if (substanceName==SubstanceName.MOIST_AIR){
+        if (fluidName == FluidName.MOIST_AIR){
             switch (substanceParameter){
                 case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp*100000; break;//valueTemp=(valueTemp/1000)+100; break;
@@ -220,7 +164,7 @@ public final class ThermoCPAdapter {
                 case HEAT_CAPACITY: valueTemp=valueTemp*1000; break;
             }
         }
-        ThermoCPParameterPoint paremeterPoint=new ThermoCPParameterPoint(substanceName.enumToString(),substanceParameter.enumToString(),valueTemp);
+        ThermoCPParameterPoint paremeterPoint=new ThermoCPParameterPoint(fluidName.enumToString(),substanceParameter.enumToString(),valueTemp);
         return paremeterPoint;
     }
 
@@ -230,7 +174,7 @@ public final class ThermoCPAdapter {
     public static StandardParameterPoint convertParameterFromThermoCP(String substanceName, String substanceParameter, double value){
         double valueTemp=value;
 
-        if (stringToSubstanceName(substanceName)==SubstanceName.MOIST_AIR){
+        if (stringToSubstanceName(substanceName)== FluidName.MOIST_AIR){
             switch (stringToSubstanceParameterType(substanceParameter)){
                 case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp/100000; break;//valueTemp=(valueTemp*1000)-100; break;

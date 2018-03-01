@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.fluids.dynamics;
+package wromaciej.hvac_sim.thermo.matter.dynamics;
 
 import java.util.Collections;
 import java.util.List;

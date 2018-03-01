@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.fluids.dynamics;
+package wromaciej.hvac_sim.thermo.matter.dynamics;
 
 public class PressurePoint implements Comparable<PressurePoint> {
     private double flow;

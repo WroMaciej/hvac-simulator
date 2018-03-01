@@ -1,8 +1,8 @@
-package wromaciej.hvac_sim.thermo.fluids.data;
+package wromaciej.hvac_sim.thermo.matter.fluids;
 
 import java.util.*;
 
-public enum SubstanceParameterType {
+public enum FluidParameterType {
 
 
     /**
@@ -85,19 +85,19 @@ public enum SubstanceParameterType {
     private double multiplyerForShowing;
     private String parameterForThermoCP;
 
-    SubstanceParameterType(List<String> parameters, double multiplyerForShowing) {
+    FluidParameterType(List<String> parameters, double multiplyerForShowing) {
         this.parameters = parameters;
         this.multiplyerForShowing=multiplyerForShowing;
         this.parameterForThermoCP=parameters.get(0);
     }
 
 
-    private static final Map<String, SubstanceParameterType> lookup = new HashMap<>();
+    private static final Map<String, FluidParameterType> lookup = new HashMap<>();
 
     //Populate the lookup table on loading time
     static
     {
-        for(SubstanceParameterType substanceParameter : SubstanceParameterType.values())
+        for(FluidParameterType substanceParameter : FluidParameterType.values())
         {
             lookup.put(substanceParameter.enumToString(), substanceParameter);
         }
@@ -108,7 +108,7 @@ public enum SubstanceParameterType {
         return parameterForThermoCP;
     }
 
-    public static SubstanceParameterType stringToEnum(String name){
+    public static FluidParameterType stringToEnum(String name){
         return lookup.get(name);
     }
 
