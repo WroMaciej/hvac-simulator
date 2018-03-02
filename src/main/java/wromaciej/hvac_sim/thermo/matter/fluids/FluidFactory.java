@@ -29,8 +29,8 @@ public final class FluidFactory {
             fluid.fluidName = fluidName;
             fluid.temperature.value = ThermoCPAdapter.findParameter(FluidParameterType.TEMPERATURE, fluidName, parameter1, value1, parameter2, value2);
             fluid.pressure.value = ThermoCPAdapter.findParameter(FluidParameterType.PRESSURE, fluidName, parameter1, value1, parameter2, value2);
-            fluid.enthalpy.value = ThermoCPAdapter.findParameter(FluidParameterType.ENTHALPY, fluidName, parameter1, value1, parameter2, value2);
-            fluid.entropy.value = ThermoCPAdapter.findParameter(FluidParameterType.ENTROPY, fluidName, parameter1, value1, parameter2, value2);
+            fluid.enthalpy.value = ThermoCPAdapter.findParameter(FluidParameterType.SPECIFIC_ENTHALPY, fluidName, parameter1, value1, parameter2, value2);
+            fluid.entropy.value = ThermoCPAdapter.findParameter(FluidParameterType.SPECIFIC_ENTROPY, fluidName, parameter1, value1, parameter2, value2);
             fluid.quality.value = ThermoCPAdapter.findParameter(FluidParameterType.QUALITY, fluidName, parameter1, value1, parameter2, value2);
             fluid.heatCapacity.value = ThermoCPAdapter.findParameter(FluidParameterType.HEAT_CAPACITY, fluidName, parameter1, value1, parameter2, value2);
             fluid.density.value = ThermoCPAdapter.findParameter(FluidParameterType.DENSITY, fluidName, parameter1, value1, parameter2, value2);
@@ -53,8 +53,8 @@ public final class FluidFactory {
         air.pressure.value = 1 + (pGaugePa / 100000);
         air.temperature.value = ThermoCPAdapter.findAirParameter(FluidParameterType.TEMPERATURE, parameter1, value1, parameter2, value2, pGaugePa);
         //air.pressure=ThermoCPAdapter.findAirParameter(FluidParameterType.PRESSURE,parameter1,value1,parameter2,value2,pGaugePa);
-        air.enthalpy.value = ThermoCPAdapter.findAirParameter(FluidParameterType.ENTHALPY, parameter1, value1, parameter2, value2, pGaugePa);
-        air.entropy.value = ThermoCPAdapter.findAirParameter(FluidParameterType.ENTROPY, parameter1, value1, parameter2, value2, pGaugePa);
+        air.enthalpy.value = ThermoCPAdapter.findAirParameter(FluidParameterType.SPECIFIC_ENTHALPY, parameter1, value1, parameter2, value2, pGaugePa);
+        air.entropy.value = ThermoCPAdapter.findAirParameter(FluidParameterType.SPECIFIC_ENTROPY, parameter1, value1, parameter2, value2, pGaugePa);
         air.quality.value = 1;
         air.heatCapacity.value = ThermoCPAdapter.findAirParameter(FluidParameterType.HEAT_CAPACITY, parameter1, value1, parameter2, value2, pGaugePa);
         air.density.value = ThermoCPAdapter.findAirParameter(FluidParameterType.DENSITY, parameter1, value1, parameter2, value2, pGaugePa);

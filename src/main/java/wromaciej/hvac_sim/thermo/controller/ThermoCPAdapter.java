@@ -159,8 +159,8 @@ public final class ThermoCPAdapter {
             switch (substanceParameter){
                 case TEMPERATURE: valueTemp=valueTemp+T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp*100000; break;
-                case ENTHALPY: valueTemp=valueTemp*1000; break;
-                case ENTROPY: valueTemp=valueTemp*1000; break;
+                case SPECIFIC_ENTHALPY: valueTemp=valueTemp*1000; break;
+                case SPECIFIC_ENTROPY: valueTemp=valueTemp*1000; break;
                 case HEAT_CAPACITY: valueTemp=valueTemp*1000; break;
             }
         }
@@ -186,8 +186,8 @@ public final class ThermoCPAdapter {
             switch (stringToSubstanceParameterType(substanceParameter)){
                 case TEMPERATURE: valueTemp=valueTemp-T_ABS; break;
                 case PRESSURE: valueTemp=valueTemp/100000; break;
-                case ENTHALPY: valueTemp=valueTemp/1000; break;
-                case ENTROPY: valueTemp=valueTemp/1000; break;
+                case SPECIFIC_ENTHALPY: valueTemp=valueTemp/1000; break;
+                case SPECIFIC_ENTROPY: valueTemp=valueTemp/1000; break;
                 case HEAT_CAPACITY: valueTemp=valueTemp/1000; break;
             }
         }

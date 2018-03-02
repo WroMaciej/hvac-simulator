@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
+import wromaciej.hvac_sim.thermo.matter.service.units.UnitSystem;
+
 import javax.measure.Measurable;
 import javax.measure.unit.Unit;
 import java.util.*;
@@ -7,11 +9,10 @@ import java.util.*;
 public class FluidParameter {
     protected FluidParameterType parameterType;
 
-    private Measurable<?> parameterValue;
-    private Unit parameterUnit;
+    private Measurable<?> value;
 
     public double value(){
-        return parameterValue.doubleValue(parameterUnit);
+        return parameterValue.doubleValue();
     }
 
 

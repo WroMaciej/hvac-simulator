@@ -48,17 +48,17 @@ public final class Refrigerant extends Fluid {
 
     public Refrigerant(){
         super();
-        pressureGaugeBarG= new FluidParameter(FluidParameterType.PRESSURE_GAUGE_BARG, 0);
-        subcooling= new FluidParameter(FluidParameterType.DELTA_T, 0);
-        superheating= new FluidParameter(FluidParameterType.DELTA_T, 0);
+        pressureGaugeBarG= new FluidParameter(FluidParameterType.PRESSURE_GAUGE, 0);
+        subcooling= new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
+        superheating= new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
         temperatureSaturation= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
         pressureSaturation= new FluidParameter(FluidParameterType.PRESSURE, 0);
         temperatureBubbles= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
         pressureBubbles= new FluidParameter(FluidParameterType.PRESSURE, 0);
         temperatureDew= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
         pressureDew = new FluidParameter(FluidParameterType.PRESSURE, 0);
-        temperatureSlide = new FluidParameter(FluidParameterType.DELTA_T, 0);
-        pressureSlide = new FluidParameter(FluidParameterType.PRESSURE_DROP, 0);
+        temperatureSlide = new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
+        pressureSlide = new FluidParameter(FluidParameterType.PRESSURE_DIFFERENCE, 0);
 
     }
 

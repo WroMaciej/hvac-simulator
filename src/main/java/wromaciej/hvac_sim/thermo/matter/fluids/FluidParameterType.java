@@ -1,40 +1,46 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
+import javax.measure.Measurable;
+import javax.measure.quantity.Energy;
+import javax.measure.quantity.Pressure;
+import javax.measure.quantity.Quantity;
+import javax.measure.quantity.Temperature;
+import javax.measure.unit.Unit;
 import java.util.*;
 
 public enum FluidParameterType {
 
 
     /**
-     * Temperature in C
+     * Temperature
      */
-    TEMPERATURE(Arrays.asList("T","C","%.2f"), 1),
+    TEMPERATURE(Temperature, "T"),
     /**
-     * Absolute pressure barA
+     * Absolute pressure
      */
-    PRESSURE(Arrays.asList("P","barA","%.2f"), 1),
+    PRESSURE(Pressure, "P"),
     /**
-     * Specific enthalpy kJ/kg
+     * Specific enthalpy
      */
-    ENTHALPY(Arrays.asList("H","kJ/kg","%.2f"), 1),
+    SPECIFIC_ENTHALPY(Energy, 1),
     /**
-     * Specific entropy kJ/kgK
+     * Specific entropy
      */
-    ENTROPY(Arrays.asList("S","kJ/kgK","%.2f"), 1),
+    SPECIFIC_ENTROPY(Arrays.asList("S","kJ/kgK","%.2f"), 1),
     /**
      * Quality 0-1
      */
     QUALITY(Arrays.asList("Q","","%.2f"), 1),
      /**
-     * Density kg/m3
+     * Density
      */
     DENSITY(Arrays.asList("D","kg/m3","%.1f"), 1),
     /**
-     * Density kg/m3
+     * Density
      */
-    VOLUME(Arrays.asList("","m3/kg","%.3f"), 1),
+    SPECIFIC_VOLUME(Arrays.asList("","m3/kg","%.3f"), 1),
     /**
-     * Specific heat capacity in constant pressure cp kJ/kgK
+     * Specific heat capacity in constant pressure cp
      */
     HEAT_CAPACITY(Arrays.asList("C","kJ/kgK","%.2f"), 1),
     /**
@@ -45,14 +51,10 @@ public enum FluidParameterType {
      * absolute humidity of AIR kg_H2O/kgDRY
      */
     MOISTURE_CONTENT(Arrays.asList("W","","%.5f"), 1),
-    /**
-     * Overpressure, Pa
-     */
-    PRESSURE_GAUGE_PA(Arrays.asList("Unable","Pa","%.0f"), 1),
+
     /**
      * wetbulb temperature of AIR C
      */
-
     TEMPERATURE_WETBULB(Arrays.asList("Twb","","%.2f"), 1),
     /**
      * dewpoint of AIR C
@@ -70,25 +72,23 @@ public enum FluidParameterType {
     /**
      * Overpressure, barG
      */
-    PRESSURE_GAUGE_BARG(Arrays.asList("Unable","barG","%.2f"), 1),
+    PRESSURE_GAUGE(Arrays.asList("Unable","barG","%.2f"), 1),
     /**
      * Delta of temperature, K
      */
-    DELTA_T(Arrays.asList("Unable","K","%.1f"), 1),
+    TEMPERATURE_DIFFERENCE(Arrays.asList("Unable","K","%.1f"), 1),
     /**
      * Delta of pressure, kPa
      */
-    PRESSURE_DROP(Arrays.asList("Unable","kPa","%.1f"), 1);
+    PRESSURE_DIFFERENCE(Arrays.asList("Unable","kPa","%.1f"), 1);
 
 
-    private List<String> parameters;
-    private double multiplyerForShowing;
-    private String parameterForThermoCP;
+    private Quantity quantityInJScience;
+    private String parameterSymbolInThermoCPlibrary;
 
-    FluidParameterType(List<String> parameters, double multiplyerForShowing) {
-        this.parameters = parameters;
-        this.multiplyerForShowing=multiplyerForShowing;
-        this.parameterForThermoCP=parameters.get(0);
+    FluidParameterType(Quantity quantityInJScience, String parameterSymbolInThermoCPlibrary) {
+        this.quantityInJScience= quantityInJScience;
+        this.parameterSymbolInThermoCPlibrary=parameterSymbolInThermoCPlibrary;
     }
 
 
@@ -105,7 +105,7 @@ public enum FluidParameterType {
 
 
     public String enumToString(){
-        return parameterForThermoCP;
+        return parameterSymbolInThermoCPlibrary;
     }
 
     public static FluidParameterType stringToEnum(String name){
