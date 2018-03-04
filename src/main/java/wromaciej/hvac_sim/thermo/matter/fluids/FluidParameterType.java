@@ -14,19 +14,19 @@ public enum FluidParameterType {
     /**
      * Temperature
      */
-    TEMPERATURE(Temperature, "T"),
+    TEMPERATURE("T"),
     /**
      * Absolute pressure
      */
-    PRESSURE(Pressure, "P"),
+    PRESSURE(new Pressure(){}, "P"),
     /**
      * Specific enthalpy
      */
-    SPECIFIC_ENTHALPY(Energy, 1),
+    SPECIFIC_ENTHALPY(, "H"),
     /**
      * Specific entropy
      */
-    SPECIFIC_ENTROPY(Arrays.asList("S","kJ/kgK","%.2f"), 1),
+    SPECIFIC_ENTROPY(new , "S"),
     /**
      * Quality 0-1
      */
