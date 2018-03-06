@@ -1,18 +1,24 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
+import wromaciej.hvac_sim.thermo.matter.fluids.customQuantities.FluidQuantity;
+import wromaciej.hvac_sim.thermo.matter.fluids.customQuantities.SpecificEnthalpy;
 import wromaciej.hvac_sim.thermo.matter.service.units.UnitSystem;
 
 import javax.measure.Measurable;
+import javax.measure.Measure;
+import javax.measure.quantity.Quantity;
 import javax.measure.unit.Unit;
 import java.util.*;
 
-public class FluidParameter {
+public class FluidParameter<T extends FluidQuantity> {
     protected FluidParameterType parameterType;
 
-    private Measurable<?> value;
+    private Measurable<T> value;
 
     public double value(){
+        Measurable<SpecificEnthalpy> entalpia = Measure.valueOf()
         return parameterValue.doubleValue();
+
     }
 
 

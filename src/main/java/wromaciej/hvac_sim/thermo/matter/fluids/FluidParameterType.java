@@ -83,7 +83,12 @@ public enum FluidParameterType {
     PRESSURE_DIFFERENCE(Arrays.asList("Unable","kPa","%.1f"), 1);
 
 
-    private Quantity quantityInJScience;
+    public Quantity quantityInJScience;
+
+    public Quantity getQuantityInJScience() {
+        return quantityInJScience;
+    }
+
     private String parameterSymbolInThermoCPlibrary;
 
     FluidParameterType(Quantity quantityInJScience, String parameterSymbolInThermoCPlibrary) {
