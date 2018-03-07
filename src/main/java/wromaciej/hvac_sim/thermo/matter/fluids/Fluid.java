@@ -1,20 +1,26 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
 
+import wromaciej.hvac_sim.thermo.matter.fluids.customQuantities.SpecificEnthalpy;
+import wromaciej.hvac_sim.thermo.matter.fluids.customQuantities.Temperature;
+
+import javax.measure.quantity.Pressure;
 
 public class Fluid {
     /**
      * Type of substance
      */
     protected FluidName fluidName;
+
+
     /**
      * Temperature, C
      */
-    protected FluidParameter temperature; // temperatura C
+    protected FluidParameter<Temperature> temperature; // temperatura C
     /**
      * Pressure (absolute), barA
      */
-    protected FluidParameter pressure; //cisnienie bara
+    protected FluidParameter<Pressure> pressure; //cisnienie bara
     /**
      * Enthalpy, kJ/kg
      */
@@ -41,6 +47,8 @@ public class Fluid {
     protected FluidParameter density;
 
     public Fluid(){
+
+        entalpiaTest.
 
 
         temperature=new FluidParameter(FluidParameterType.TEMPERATURE,0);
