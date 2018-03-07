@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.customQuantities;
+package wromaciej.hvac_sim.thermo.matter.specificQuantities.base;
 
 import javax.measure.quantity.Quantity;
 
