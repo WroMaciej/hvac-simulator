@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids;
 
 
-import wromaciej.hvac_sim.thermo.matter.specificQuantities.Temperature;
+import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 
 import javax.measure.quantity.Pressure;
 

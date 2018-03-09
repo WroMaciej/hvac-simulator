@@ -1,6 +1,6 @@
-package wromaciej.hvac_sim.thermo.matter.specificQuantities;
+package wromaciej.hvac_sim.thermo.quantities.specific;
 
-import wromaciej.hvac_sim.thermo.matter.specificQuantities.base.FluidQuantity;
+import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
 import javax.measure.unit.ProductUnit;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;

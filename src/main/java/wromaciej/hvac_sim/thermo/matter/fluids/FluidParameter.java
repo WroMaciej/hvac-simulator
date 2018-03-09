@@ -2,7 +2,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids;
 
 
 
-import wromaciej.hvac_sim.thermo.matter.specificQuantities.base.FluidQuantity;
+import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
 
 import javax.measure.Measurable;
 
