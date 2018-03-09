@@ -3,12 +3,13 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
+import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
 
 public final class Air extends Fluid {
     /**
      * RH 0-1
      */
-    protected AirParameter relativeHumidity;
+    protected AirParameter<RelativeHumidity> relativeHumidity;
     /**
      * X kgH2O/kgDRY
      */
