@@ -1,7 +1,6 @@
 package wromaciej.hvac_sim.thermo.controller;
 import thermoCP.*;
-import wromaciej.hvac_sim.thermo.matter.fluids.FluidName;
-import wromaciej.hvac_sim.thermo.matter.fluids.FluidParameterType;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
 
 /**
  * Thermodynamic data for 09-01-2018
@@ -21,8 +20,8 @@ public final class ThermoCPAdapter {
 
     public static String getParametersList(){
         String list=new String();
-        for(FluidParameterType fluidParameterType : FluidParameterType.values()){
-            list=list+ fluidParameterType.enumToString()+" - "+ fluidParameterType.toString() +System.lineSeparator();
+        for(FluidParameterAdapter fluidParameterAdapter : FluidParameterAdapter.values()){
+            list=list+ fluidParameterAdapter.enumToString()+" - "+ fluidParameterAdapter.toString() +System.lineSeparator();
         }
         return list;
     }
@@ -44,12 +43,12 @@ public final class ThermoCPAdapter {
 
     public static class StandardParameterPoint{
         public FluidName fluidName;
-        public FluidParameterType fluidParameterType;
+        public FluidParameterAdapter fluidParameterAdapter;
         public double value;
 
-        public StandardParameterPoint(FluidName fluidName, FluidParameterType parameterName, double value) {
+        public StandardParameterPoint(FluidName fluidName, FluidParameterAdapter parameterName, double value) {
             this.fluidName = fluidName;
-            this.fluidParameterType = parameterName;
+            this.fluidParameterAdapter = parameterName;
             this.value = value;
         }
     }
@@ -57,14 +56,14 @@ public final class ThermoCPAdapter {
     /**
      * Conversion of enum to thermoCP library parameter string name
      */
-    public static String substanceParameterTypeToString(FluidParameterType parameter){
+    public static String substanceParameterTypeToString(FluidParameterAdapter parameter){
         return parameter.enumToString();
     }
     /**
      * Conversion of string parameter to enum
      */
-    public static FluidParameterType stringToSubstanceParameterType(String parameter){
-        return FluidParameterType.stringToEnum(parameter);
+    public static FluidParameterAdapter stringToSubstanceParameterType(String parameter){
+        return FluidParameterAdapter.stringToEnum(parameter);
     }
     /**
      * Conversion of enum to thermoCP library fluid name
@@ -87,7 +86,7 @@ public final class ThermoCPAdapter {
      * Finding parameter for MoistAir
 
      */
-    public static double findAirParameter(FluidParameterType parameterWanted, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2, double pGaugePa){
+    public static double findAirParameter(FluidParameterAdapter parameterWanted, FluidParameterAdapter parameter1, double value1, FluidParameterAdapter parameter2, double value2, double pGaugePa){
         //calculate in thermoCP units
         double r= CoolProp.HAProps(
                 substanceParameterTypeToString(parameterWanted),
@@ -95,7 +94,7 @@ public final class ThermoCPAdapter {
                 convertParameterToThermoCP(FluidName.MOIST_AIR,parameter1,value1).value,
                 substanceParameterTypeToString(parameter2),
                 convertParameterToThermoCP(FluidName.MOIST_AIR,parameter2,value2).value,
-                substanceParameterTypeToString(FluidParameterType.PRESSURE),
+                substanceParameterTypeToString(FluidParameterAdapter.PRESSURE),
                 pGaugePaTokPaAbs(pGaugePa));
         //System.out.println(parameterWanted.enumToString()+" z coolPropa: "+r+" dla p=");
         //convert units to standards
@@ -107,7 +106,7 @@ public final class ThermoCPAdapter {
     }
 
     //szukanie parametru przez CoolPack dla reszty czynnikow
-    public static double findParameter(FluidParameterType parameterWanted, FluidName fluidName, FluidParameterType parameter1, double value1, FluidParameterType parameter2, double value2) {
+    public static double findParameter(FluidParameterAdapter parameterWanted, FluidName fluidName, FluidParameterAdapter parameter1, double value1, FluidParameterAdapter parameter2, double value2) {
         //calculate in thermoCP units
         double r=0;
         if (fluidName != FluidName.MOIST_AIR) {
@@ -144,7 +143,7 @@ public final class ThermoCPAdapter {
     /**
      * Conversion from standard units to thermoCP units
      */
-    public static ThermoCPParameterPoint convertParameterToThermoCP(FluidName fluidName, FluidParameterType substanceParameter, double value){
+    public static ThermoCPParameterPoint convertParameterToThermoCP(FluidName fluidName, FluidParameterAdapter substanceParameter, double value){
         double valueTemp=value;
 
         if (fluidName == FluidName.MOIST_AIR){

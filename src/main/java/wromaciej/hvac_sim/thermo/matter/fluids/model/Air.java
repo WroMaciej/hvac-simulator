@@ -1,10 +1,14 @@
-package wromaciej.hvac_sim.thermo.matter.fluids;
+package wromaciej.hvac_sim.thermo.matter.fluids.model;
+
+import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 
 public final class Air extends Fluid {
     /**
      * RH 0-1
      */
-    protected FluidParameter relativeHumidity;
+    protected AirParameter relativeHumidity;
     /**
      * X kgH2O/kgDRY
      */
@@ -24,11 +28,11 @@ public final class Air extends Fluid {
 
     public Air(){
         super();
-        relativeHumidity=new FluidParameter(FluidParameterType.RELATIVE_HUMIDITY,0);
-        moistureContent=new FluidParameter(FluidParameterType.MOISTURE_CONTENT,0);
-        dewPoint=new FluidParameter(FluidParameterType.TEMPERATURE_DEWPOINT,0);
-        wetBulb=new FluidParameter(FluidParameterType.TEMPERATURE_WETBULB,0);
-        pGaugePa=new FluidParameter(FluidParameterType.PRESSURE_GAUGE_PA,0);
+        relativeHumidity=new FluidParameter(FluidParameterAdapter.RELATIVE_HUMIDITY,0);
+        moistureContent=new FluidParameter(FluidParameterAdapter.MOISTURE_CONTENT,0);
+        dewPoint=new FluidParameter(FluidParameterAdapter.TEMPERATURE_DEWPOINT,0);
+        wetBulb=new FluidParameter(FluidParameterAdapter.TEMPERATURE_WETBULB,0);
+        pGaugePa=new FluidParameter(FluidParameterAdapter.PRESSURE_GAUGE_PA,0);
     }
 
     @Override

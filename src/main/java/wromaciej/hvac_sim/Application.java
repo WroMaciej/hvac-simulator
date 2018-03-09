@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim;
 
 import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
-import wromaciej.hvac_sim.thermo.matter.fluids.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.FluidFactory;
 
 import java.util.Scanner;

@@ -1,4 +1,7 @@
-package wromaciej.hvac_sim.thermo.matter.fluids;
+package wromaciej.hvac_sim.thermo.matter.fluids.model;
+
+import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 
 public final class Refrigerant extends Fluid {
     /**
@@ -48,17 +51,17 @@ public final class Refrigerant extends Fluid {
 
     public Refrigerant(){
         super();
-        pressureGaugeBarG= new FluidParameter(FluidParameterType.PRESSURE_GAUGE, 0);
-        subcooling= new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
-        superheating= new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
-        temperatureSaturation= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
-        pressureSaturation= new FluidParameter(FluidParameterType.PRESSURE, 0);
-        temperatureBubbles= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
-        pressureBubbles= new FluidParameter(FluidParameterType.PRESSURE, 0);
-        temperatureDew= new FluidParameter(FluidParameterType.TEMPERATURE, 0);
-        pressureDew = new FluidParameter(FluidParameterType.PRESSURE, 0);
-        temperatureSlide = new FluidParameter(FluidParameterType.TEMPERATURE_DIFFERENCE, 0);
-        pressureSlide = new FluidParameter(FluidParameterType.PRESSURE_DIFFERENCE, 0);
+        pressureGaugeBarG= new FluidParameter(FluidParameterAdapter.PRESSURE_GAUGE, 0);
+        subcooling= new FluidParameter(FluidParameterAdapter.TEMPERATURE_DIFFERENCE, 0);
+        superheating= new FluidParameter(FluidParameterAdapter.TEMPERATURE_DIFFERENCE, 0);
+        temperatureSaturation= new FluidParameter(FluidParameterAdapter.TEMPERATURE, 0);
+        pressureSaturation= new FluidParameter(FluidParameterAdapter.PRESSURE, 0);
+        temperatureBubbles= new FluidParameter(FluidParameterAdapter.TEMPERATURE, 0);
+        pressureBubbles= new FluidParameter(FluidParameterAdapter.PRESSURE, 0);
+        temperatureDew= new FluidParameter(FluidParameterAdapter.TEMPERATURE, 0);
+        pressureDew = new FluidParameter(FluidParameterAdapter.PRESSURE, 0);
+        temperatureSlide = new FluidParameter(FluidParameterAdapter.TEMPERATURE_DIFFERENCE, 0);
+        pressureSlide = new FluidParameter(FluidParameterAdapter.PRESSURE_DIFFERENCE, 0);
 
     }
 

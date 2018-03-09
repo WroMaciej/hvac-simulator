@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.matter.fluids;
+package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
 
 
