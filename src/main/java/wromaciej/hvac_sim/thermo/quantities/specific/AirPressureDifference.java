@@ -9,6 +9,6 @@ import javax.measure.unit.Unit;
 public interface AirPressureDifference extends AirQuantity {
 
     public final static Unit<AirPressureDifference> UNIT =
-            new ProductUnit<AirPressureDifference>(SI.KELVIN);
+            new ProductUnit<AirPressureDifference>(SI.PASCAL);
 }
 
