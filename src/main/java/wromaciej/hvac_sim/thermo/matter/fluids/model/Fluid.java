@@ -27,27 +27,27 @@ public class Fluid {
     /**
      * Enthalpy
      */
-    protected FluidParameter<SpecificEnthalpy> specificEnthalpy;
+    private FluidParameter<SpecificEnthalpy> specificEnthalpy;
     /**
      * Entropy
      */
-    protected FluidParameter<SpecificEntropy> specificEntropy;
+    private FluidParameter<SpecificEntropy> specificEntropy;
     /**
      * Quality (x), 0-1
      */
-    protected FluidParameter<Quality> quality;
+    private FluidParameter<Quality> quality;
     /**
      * Heat capacity, kJ/kgK
      */
-    protected FluidParameter<HeatCapacity> heatCapacity;
+    private FluidParameter<HeatCapacity> heatCapacity;
     /**
      * Specific volume, m3/kg
      */
-    protected FluidParameter<SpecificVolume> specificVolume;
+    private FluidParameter<SpecificVolume> specificVolume;
     /**
      * Density, kg/m3
      */
-    protected FluidParameter<Density> density;
+    private FluidParameter<Density> density;
 
 
     @Override
