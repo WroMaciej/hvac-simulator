@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
-import javax.measure.Measurable;
+import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
 
-public interface AirParameter extends Measurable {
+public class AirParameter<Q extends AirQuantity> extends Parameter {
+
 }

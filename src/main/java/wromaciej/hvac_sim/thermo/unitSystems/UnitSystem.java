@@ -1,82 +1,57 @@
 package wromaciej.hvac_sim.thermo.unitSystems;
 
+import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
+
 import javax.measure.quantity.*;
+import javax.measure.unit.ProductUnit;
+import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public final class UnitSystem {
-    private static Unit<Mass> massUnit;
-    private static Unit<Temperature> temperatureUnit;
-    private static Unit<Temperature> temperatureDifferenceUnit;
-    private static Unit<Pressure> pressureUnit;
-    private static Unit<Pressure> pressureDifferenceUnit;
-    private static Unit<Power> heatFluxUnit;
-    private static Unit<Power> electrialPowerUnit;
-    private static Unit<Power> mechanicalPowerUnit;
-    private static Unit<MassFlowRate> massFlowUnit;
-    private static Unit<VolumetricFlowRate> volumeFlowUnit;
-    private static Unit<VolumetricDensity> densityUnit;
-    private static Unit<Energy> energyUnit;
-    private static Unit<?> speficicEnthalpyUnit = energyUnit.divide(massUnit);
-    private static Unit<?> specificEntropyUnit = speficicEnthalpyUnit.divide(temperatureDifferenceUnit);
+
+    private class QuantityClass <Q extends Quantity>{
+        private Class<Q>  typeOfQuantity;
+
+        public QuantityClass(Class<Q> typeOfQuantity) {
+            this.typeOfQuantity = typeOfQuantity;
+        }
+
+        public Class<Q> getTypeOfQuantity() {
+            return typeOfQuantity;
+        }
+    }
+
+    private Map<QuantityClass, Unit> allUnits;
+
 
     /**
      * Loading unit system from some DB or file or...
      */
     public static void loadUnitSystem(){}
 
-    public static Unit<Mass> getMassUnit() {
-        return massUnit;
+    public QuantityClass findObjectByInterface(Quantity quantity){
+
+        for (QuantityClass quantityClass: allUnits.keySet()){
+            if (quantityClass.getTypeOfQuantity().equals(quantity)){
+                return quantityClass;
+            }
+        }
+        return null;
     }
 
-    public static Unit<Temperature> getTemperatureUnit() {
-        return temperatureUnit;
+    public void addUnit(Quantity quantity, Unit unit){
+        allUnits.put(new QuantityClass(quantity), unit);
     }
 
-    public static Unit<Temperature> getTemperatureDifferenceUnit() {
-        return temperatureDifferenceUnit;
+    public Unit getUnitOfQuantity(Quantity quantity){
+        return allUnits.get(findObjectByInterface(quantity));
     }
 
-    public static Unit<Pressure> getPressureUnit() {
-        return pressureUnit;
-    }
+    public UnitSystem() {
+        allUnits=new HashMap<>();
 
-    public static Unit<Pressure> getPressureDifferenceUnit() {
-        return pressureDifferenceUnit;
-    }
-
-    public static Unit<Power> getHeatFluxUnit() {
-        return heatFluxUnit;
-    }
-
-    public static Unit<Power> getElectrialPowerUnit() {
-        return electrialPowerUnit;
-    }
-
-    public static Unit<Power> getMechanicalPowerUnit() {
-        return mechanicalPowerUnit;
-    }
-
-    public static Unit<MassFlowRate> getMassFlowUnit() {
-        return massFlowUnit;
-    }
-
-    public static Unit<VolumetricFlowRate> getVolumeFlowUnit() {
-        return volumeFlowUnit;
-    }
-
-    public static Unit<VolumetricDensity> getDensityUnit() {
-        return densityUnit;
-    }
-
-    public static Unit<Energy> getEnergyUnit() {
-        return energyUnit;
-    }
-
-    public static Unit<?> getSpeficicEnthalpyUnit() {
-        return speficicEnthalpyUnit;
-    }
-
-    public static Unit<?> getSpecificEntropyUnit() {
-        return specificEntropyUnit;
     }
 }
