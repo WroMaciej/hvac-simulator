@@ -3,19 +3,13 @@ package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
 
 import org.jscience.physics.amount.Amount;
-import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
-import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
-import wromaciej.hvac_sim.thermo.quantities.specific.SpecificVolume;
+import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
-import javax.measure.Measurable;
-import javax.measure.Measure;
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
 
-public class Parameter <Q extends Quantity>{
+public class Parameter <Q extends AnyQuantity>{
 
 
 
@@ -43,7 +37,7 @@ public class Parameter <Q extends Quantity>{
 
     public Parameter() {
         UnitSystem unitSystem=new UnitSystem();
-        unit=unitSystem.getUnitOfQuantity(Q);
+        unit=unitSystem.getUnitOfQuantity();
         amount=Amount.valueOf(20,unit);
     }
 

@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 public final class UnitSystem {
 
-    private class QuantityClass <Q extends Quantity>{
+    private class QuantityId <Q extends Quantity>{
         private Class<Q>  typeOfQuantity;
 
         public QuantityClass(Class<Q> typeOfQuantity) {
@@ -24,7 +24,7 @@ public final class UnitSystem {
         }
     }
 
-    private Map<QuantityClass, Unit> allUnits;
+    private Map<Unit, Unit> allUnits;
 
 
     /**
