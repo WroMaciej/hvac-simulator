@@ -4,8 +4,6 @@ package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
 import org.jscience.physics.amount.Amount;
 import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
-import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
-
 import javax.measure.unit.Unit;
 
 

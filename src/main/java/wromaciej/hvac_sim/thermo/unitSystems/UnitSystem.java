@@ -1,48 +1,49 @@
 package wromaciej.hvac_sim.thermo.unitSystems;
 
-import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
-import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 
-import javax.measure.quantity.*;
-import javax.measure.unit.ProductUnit;
-import javax.measure.unit.SI;
+import wromaciej.hvac_sim.thermo.quantities.specific.*;
+import wromaciej.hvac_sim.thermo.quantities.extensive.*;
+import wromaciej.hvac_sim.thermo.quantities.coefficients.*;
 import javax.measure.unit.Unit;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+
 
 public final class UnitSystem {
 
+    private String unitSystemName;
 
-    private Map<AnyQuantity, Unit> allUnits;
+    //specific units
+    private Unit<AirPressureDifference> airPressureDifferenceUnit;
+    private Unit<Density> densityUnit;
+    private Unit<HeatCapacity> heatCapacityUnit;
+    private Unit<MassHumidity> massHumidityUnit;
+    private Unit<MoistureContent> moistureContentUnit;
+    private Unit<Pressure> pressureUnit;
+    private Unit<PressureDifference> pressureDifferenceUnit;
+    private Unit<Quality> qualityUnit;
+    private Unit<RelativeHumidity> relativeHumidityUnit;
+    private Unit<SpecificEnthalpy> specificEnthalpyUnit;
+    private Unit<SpecificEntropy> specificEntropyUnit;
+    private Unit<SpecificVolume> specificVolumeUnit;
+    private Unit<Temperature> temperatureUnit;
+    private Unit<TemperatureDifference> temperatureDifferenceUnit;
 
-    AnyQuantity anyQuantity;
+    //extensive units
+    private Unit<HeatFlow> heatFlowUnit;
+    private Unit<MassFlow> massFlowUnit;
+    private Unit<Power> powerUnit;
+    private Unit<VolumeFlow> volumeFlowUnit;
 
-    private final Unit<SpecificEnthalpy> specificEnthalpyUnit= Unit.valueOf("J").asType(SpecificEnthalpy.class);
-
+    //coefficients
+    private Unit<Velocity> velocityUnit;
 
     /**
      * Loading unit system from some DB or file or...
      */
-    public static void loadUnitSystem(){}
+    public static void loadUnitSystem(String unitSystemName){}
 
-    public Unit findObjectByInterface(AnyQuantity quantity){
+    public UnitSystem() {}
 
-        if (quantity.){
-
-        }
-    }
-
-    public void addUnit(Quantity quantity, Unit unit){
-        allUnits.put(new QuantityClass(quantity), unit);
-    }
-
-    public Unit getUnitOfQuantity(Quantity quantity){
-        return allUnits.get(findObjectByInterface(quantity));
-    }
-
-    public UnitSystem() {
-        allUnits=new HashMap<>();
-
+    public UnitSystem(String unitSystemName) {
+        loadUnitSystem(unitSystemName);
     }
 }
