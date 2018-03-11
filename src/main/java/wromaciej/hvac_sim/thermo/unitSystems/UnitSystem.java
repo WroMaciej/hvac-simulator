@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.unitSystems;
 
+import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 
 import javax.measure.quantity.*;
@@ -12,19 +13,12 @@ import java.util.TreeMap;
 
 public final class UnitSystem {
 
-    private class QuantityId <Q extends Quantity>{
-        private Class<Q>  typeOfQuantity;
 
-        public QuantityClass(Class<Q> typeOfQuantity) {
-            this.typeOfQuantity = typeOfQuantity;
-        }
+    private Map<AnyQuantity, Unit> allUnits;
 
-        public Class<Q> getTypeOfQuantity() {
-            return typeOfQuantity;
-        }
-    }
+    AnyQuantity anyQuantity;
 
-    private Map<Unit, Unit> allUnits;
+    private final Unit<SpecificEnthalpy> specificEnthalpyUnit= Unit.valueOf("J").asType(SpecificEnthalpy.class);
 
 
     /**
@@ -32,14 +26,11 @@ public final class UnitSystem {
      */
     public static void loadUnitSystem(){}
 
-    public QuantityClass findObjectByInterface(Quantity quantity){
+    public Unit findObjectByInterface(AnyQuantity quantity){
 
-        for (QuantityClass quantityClass: allUnits.keySet()){
-            if (quantityClass.getTypeOfQuantity().equals(quantity)){
-                return quantityClass;
-            }
+        if (quantity.){
+
         }
-        return null;
     }
 
     public void addUnit(Quantity quantity, Unit unit){

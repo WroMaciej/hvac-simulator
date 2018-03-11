@@ -11,18 +11,16 @@ import javax.measure.unit.Unit;
 
 public class Parameter <Q extends AnyQuantity>{
 
-
-
     private Amount<Q> amount;
 
-    private Unit<Q> unit;
+    private Unit<Q> actualUnit;
 
     public Double getValue(){
-        return amount.doubleValue(unit);
+        return amount.doubleValue(actualUnit);
     }
 
     public void setValue(double value){
-        amount=Amount.valueOf(value, unit);
+        amount=Amount.valueOf(value, actualUnit);
     }
 
     public Amount<Q> getAmount() {
@@ -33,19 +31,15 @@ public class Parameter <Q extends AnyQuantity>{
         this.amount = amount;
     }
 
-
-
-    public Parameter() {
-        UnitSystem unitSystem=new UnitSystem();
-        unit=unitSystem.getUnitOfQuantity();
-        amount=Amount.valueOf(20,unit);
+    public Parameter(Unit unitInUnitSystem) {
+        this.actualUnit=unitInUnitSystem;
     }
 
-    public Unit<Q> getUnit() {
-        return unit;
+    public Unit<Q> getActualUnit() {
+        return actualUnit;
     }
 
-    public void setUnit(Unit<Q> unit) {
-        this.unit = unit;
+    public void setActualUnit(Unit<Q> actualUnit) {
+        this.actualUnit = actualUnit;
     }
 }
