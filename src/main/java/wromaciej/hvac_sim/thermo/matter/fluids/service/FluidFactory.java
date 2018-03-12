@@ -1,7 +1,7 @@
 /**
  * Repaired factory at 10-01-2018
  */
-package wromaciej.hvac_sim.thermo.matter.fluids;
+package wromaciej.hvac_sim.thermo.matter.fluids.service;
 import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
 import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;

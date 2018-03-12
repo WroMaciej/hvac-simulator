@@ -1,10 +1,10 @@
 package wromaciej.hvac_sim.thermo.matter;
 
 import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
-import wromaciej.hvac_sim.thermo.matter.fluids.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.model.fluids.*;
 
 class FluidFactoryTest {

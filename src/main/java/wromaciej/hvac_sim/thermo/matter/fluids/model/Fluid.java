@@ -3,7 +3,9 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
+import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 
 public class Fluid {
@@ -11,6 +13,19 @@ public class Fluid {
      * Type of fluid
      */
     private FluidName fluidName;
+
+    /**
+     * State of matter:
+     * GAS,
+     * LIQUID,
+     * GAS_LIQUID,
+     * LIQUID_SOLID,
+     * OVERCRITICAL,
+     * SOLID,
+     * UNDEFINED;
+     */
+
+    private StateOfMatter stateOfMatter;
 
     /**
      * Temperature
@@ -37,18 +52,21 @@ public class Fluid {
      */
     private FluidParameter<Quality> quality;
     /**
-     * Heat capacity, kJ/kgK
+     * Heat capacity
      */
     private FluidParameter<HeatCapacity> heatCapacity;
     /**
-     * Specific volume, m3/kg
+     * Specific volume
      */
     private FluidParameter<SpecificVolume> specificVolume;
     /**
-     * Density, kg/m3
+     * Density
      */
     private FluidParameter<Density> density;
 
+
+    public Fluid() {
+    }
 
     @Override
     public String toString() {

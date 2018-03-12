@@ -1,66 +1,46 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.thermo.controller.FluidParameterAdapter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
+import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
+import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
+import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 public final class Air extends Fluid {
     /**
-     * RH 0-1
+     * Relative Humidity 0-1
      */
-    protected AirParameter<RelativeHumidity> relativeHumidity;
+    private AirParameter<RelativeHumidity> relativeHumidity;
     /**
-     * X kgH2O/kgDRY
+     * Moisture Content x kgH2O/kgDRY
      */
-    protected FluidParameter moistureContent;
+    private AirParameter<MoistureContent> moistureContent;
     /**
-     * T dewpoint C
+     * Temperature of Dewpoint (x=idem)
      */
-    protected FluidParameter dewPoint;
-    /**
-     * T wetbulb C
+    private AirParameter<Temperature> dewPointTemperature;
+     /**
+     * Temperature of wet bult (h=idem)
      */
-    protected FluidParameter wetBulb;
-    /**
-     * relative pressure, Pa
-     */
-    protected FluidParameter pGaugePa;
+    private AirParameter<Temperature> wetBulbTemperature;
+
+
 
     public Air(){
         super();
-        relativeHumidity=new FluidParameter(FluidParameterAdapter.RELATIVE_HUMIDITY,0);
-        moistureContent=new FluidParameter(FluidParameterAdapter.MOISTURE_CONTENT,0);
-        dewPoint=new FluidParameter(FluidParameterAdapter.TEMPERATURE_DEWPOINT,0);
-        wetBulb=new FluidParameter(FluidParameterAdapter.TEMPERATURE_WETBULB,0);
-        pGaugePa=new FluidParameter(FluidParameterAdapter.PRESSURE_GAUGE_PA,0);
+        relativeHumidity=new AirParameter<>(UnitSystem.getActualUnitSystem().getRelativeHumidityUnit());
+        moistureContent=new AirParameter<>(UnitSystem.getActualUnitSystem().getMoistureContentUnit());
+        dewPointTemperature =new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
+        wetBulbTemperature=new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
+
     }
 
     @Override
     public String toString() {
         return super.toString()
-                +" pGauge: "+ pGaugePa.toString() + System.lineSeparator()
                 +" rh: "+ relativeHumidity.toString() + System.lineSeparator()
                 +" x: "+moistureContent.toString() + System.lineSeparator();
     }
 
-    public FluidParameter getRelativeHumidity() {
-        return relativeHumidity;
-    }
 
-    public FluidParameter getMoistureContent() {
-        return moistureContent;
-    }
-
-    public FluidParameter getDewPoint() {
-        return dewPoint;
-    }
-
-    public FluidParameter getWetBulb() {
-        return wetBulb;
-    }
-
-    public FluidParameter getpGaugePa() {
-        return pGaugePa;
-    }
 }

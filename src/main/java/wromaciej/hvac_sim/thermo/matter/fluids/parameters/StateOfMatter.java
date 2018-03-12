@@ -6,5 +6,6 @@ public enum StateOfMatter {
     GAS_LIQUID,
     LIQUID_SOLID,
     OVERCRITICAL,
-    SOLID;
+    SOLID,
+    UNDEFINED;
 }

@@ -9,27 +9,27 @@ public enum FluidParameterAdapter {
     /**
      * Temperature
      */
-    TEMPERATURE("T"),
+    TEMPERATURE("T","C"),
     /**
      * Absolute pressure
      */
-    PRESSURE("P"),
+    PRESSURE("P","Pa"),
     /**
      * Specific enthalpy
      */
-    SPECIFIC_ENTHALPY("H"),
+    SPECIFIC_ENTHALPY("H","kJ/kg"),
     /**
      * Specific entropy
      */
-    SPECIFIC_ENTROPY("S"),
+    SPECIFIC_ENTROPY("S","kJ/kgK"),
     /**
      * Quality 0-1
      */
-    QUALITY("Q"),
+    QUALITY("Q","1"),
      /**
      * Density
      */
-    DENSITY("D"),
+    DENSITY("D","kg/m3"),
 
     /**
      * Specific heat capacity in constant pressure cp
@@ -38,56 +38,30 @@ public enum FluidParameterAdapter {
     /**
      * Relative humidity of AIR 0-1
      */
-    RELATIVE_HUMIDITY("R","%")),
+    RELATIVE_HUMIDITY("R","%"),
+
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
      */
-    FluidParameterAdapter("W"), 1),
+    MOISTURE_CONTENT("W","1"),
 
     /**
      * wetbulb temperature of AIR C
      */
-    FluidParameterAdapter("Twb","C"),
+    WET_BULB_TEMPERATURE("Twb","C"),
     /**
      * dewpoint of AIR C
      */
-    FluidParameterAdapter("Tdp","C"),
-    /**
-     * Subcooling of refrigerant K
-     */
+    DEW_POINT_TEMPERATURE("Tdp","C");
 
-    FluidParameterAdapter(Arrays.asList("SC","K","%.1f"), 1),
-    /**
-     * Superheating of refrigerant K
-     */
-    FluidParameterAdapter(Arrays.asList("SH","K","%.1f"), 1),
-    /**
-     * Overpressure, barG
-     */
-    FluidParameterAdapter(Arrays.asList("Unable","barG","%.2f"), 1),
-    /**
-     * Delta of temperature, K
-     */
-    FluidParameterAdapter(Arrays.asList("Unable","K","%.1f"), 1),
-    /**
-     * Delta of pressure, kPa
-     */
-    FluidParameterAdapter(Arrays.asList("Unable","kPa","%.1f"), 1);
-
-
-    public Quantity quantityInJScience;
-
-    public Quantity getQuantityInJScience() {
-        return quantityInJScience;
-    }
 
     private String parameterSymbolInThermoCPlibrary;
+    private String unitUsedInThermoCPlibrary;
 
-    FluidParameterAdapter(Quantity quantityInJScience, String parameterSymbolInThermoCPlibrary) {
-        this.quantityInJScience= quantityInJScience;
-        this.parameterSymbolInThermoCPlibrary=parameterSymbolInThermoCPlibrary;
+    FluidParameterAdapter(String parameterSymbolInThermoCPlibrary, String unitUsedInThermoCPlibrary) {
+        this.parameterSymbolInThermoCPlibrary = parameterSymbolInThermoCPlibrary;
+        this.unitUsedInThermoCPlibrary = unitUsedInThermoCPlibrary;
     }
-
 
     private static final Map<String, FluidParameterAdapter> lookup = new HashMap<>();
 
@@ -108,17 +82,5 @@ public enum FluidParameterAdapter {
     public static FluidParameterAdapter stringToEnum(String name){
         return lookup.get(name);
     }
-
-    public String getUnit(){
-        return this.parameters.get(1);
-    }
-    public String getStringFormat(){
-        return this.parameters.get(2);
-    }
-    public double getMultiplyerForShowing(){
-        return multiplyerForShowing;
-    }
-
-
 
 }
