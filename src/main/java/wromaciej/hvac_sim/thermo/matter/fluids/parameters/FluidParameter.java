@@ -9,4 +9,8 @@ public class FluidParameter<Q extends FluidQuantity> extends Parameter {
     public FluidParameter(Unit unitInUnitSystem) {
         super(unitInUnitSystem);
     }
+
+    public FluidParameter(Unit unitInUnitSystem, double value) {
+        super(unitInUnitSystem, value);
+    }
 }

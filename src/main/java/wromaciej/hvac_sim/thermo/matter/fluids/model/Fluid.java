@@ -32,6 +32,10 @@ public class Fluid {
      */
     private FluidParameter<Temperature> temperature;
     /**
+     * Absolute temperature
+     */
+    private FluidParameter<Temperature> absoluteTemperature;
+    /**
      * Pressure (absolute)
      */
     private FluidParameter<Pressure> absolutePressure;

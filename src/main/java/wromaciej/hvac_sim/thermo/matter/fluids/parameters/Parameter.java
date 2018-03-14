@@ -33,6 +33,11 @@ public class Parameter<Q extends AnyQuantity> {
         this.actualUnit = unitInUnitSystem;
     }
 
+    public Parameter(Unit unitInUnitSystem, double value) {
+        this.actualUnit = unitInUnitSystem;
+        setValue(value);
+    }
+
     public Unit<Q> getActualUnit() {
         return actualUnit;
     }

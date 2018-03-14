@@ -8,4 +8,8 @@ public class RefrigerantParameter <Q extends RefrigerantQuantity> extends Parame
     public RefrigerantParameter(Unit unitInUnitSystem) {
         super(unitInUnitSystem);
     }
+
+    public RefrigerantParameter(Unit unitInUnitSystem, double value) {
+        super(unitInUnitSystem, value);
+    }
 }
