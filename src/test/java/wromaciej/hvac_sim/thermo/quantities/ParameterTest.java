@@ -20,7 +20,7 @@ public class ParameterTest {
     @Test
     public void unitConversionTest(){
         //GIVEN
-        Unit<Pressure> pressureUnit=(Unit) SI.PASCAL;
+        Unit<Pressure> pressureUnit= SI.PASCAL;
 
         //WHEN
 
