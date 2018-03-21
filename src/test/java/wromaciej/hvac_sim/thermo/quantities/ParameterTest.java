@@ -2,59 +2,51 @@ package wromaciej.hvac_sim.thermo.quantities;
 
 import org.junit.Test;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
+import wromaciej.hvac_sim.thermo.quantities.base.EnergyFlow;
+import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
+import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
+import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
-import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 
-import javax.measure.quantity.Acceleration;
-import javax.measure.quantity.Velocity;
-import javax.measure.unit.AlternateUnit;
-import javax.measure.unit.ProductUnit;
+import javax.measure.quantity.Energy;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
-
-import static javax.measure.unit.SI.KELVIN;
-import static javax.measure.unit.SI.SECOND;
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 
 public class ParameterTest {
 
 
     @Test
-    public void unitConversionTest(){
+    public void shouldReturnTrueForEqualityOfSameParametersDiffersOnlyInUnit(){
         //GIVEN
-        //Unit<Velocity> velocityUnit= SI.METER.divide(SI.SECOND).asType(Velocity.class);
-
-        Unit<?> anyUnit = SI.KILO(SI.JOULE).divide(SI.KILOGRAM);
-
-        Unit<SpecificEnthalpy> specificEnthalpyUnit = anyUnit.asType(SpecificEnthalpy.class);
-
-        //Unit<Temperature> unitTest= new ProductUnit(KELVIN);
-
-
-
-        Parameter<SpecificEnthalpy> specificEnthalpy= new Parameter(new ProductUnit(SI.JOULE.divide(SI.METER)) ,20.0);
+        Unit<SpecificEnthalpy> joulePerKilogram = SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class);
+        Unit<SpecificEnthalpy> kiloJoulePerKilogram = SI.KILO(SI.JOULE).divide(SI.KILOGRAM).asType(SpecificEnthalpy.class);
 
         //WHEN
+        Parameter<SpecificEnthalpy> specificEnthalpyJoule= new Parameter(joulePerKilogram ,1000.0);
+        Parameter<SpecificEnthalpy> specificEnthalpyKiloJoule = new Parameter(kiloJoulePerKilogram, 1.0);
 
         //THEN
+        assertEquals(specificEnthalpyJoule,specificEnthalpyKiloJoule);
     }
 
     @Test
-    public void shouldReturnSameValueAfterUnitConversion(){
-//        //GIVEN
-//        Parameter<Pressure> pressureInPa;
-//        pressureInPa=new Parameter<>(SI.PASCAL, 1000);
-//        //WHEN
-//        Parameter<Pressure> pressureInBar;
-//        pressureInBar=new Parameter<>(SI.KILO(SI.PASCAL), 1);
-//        //pressureInBar.setActualUnit(SI.PASCAL);
-//        //THEN
-//        assertEquals(pressureInPa.getValue(), pressureInBar.getValue(),1 );
+    public void shouldReturnHeatFlowForMassFlowTimesSpecificEnthalpy(){
+        //GIVEN
+        Unit<SpecificEnthalpy> kiloJoulePerKilogram = SI.KILO(SI.JOULE).divide(SI.KILOGRAM).asType(SpecificEnthalpy.class);
+        Unit<MassFlow> kilogramPerSecond= SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class);
+        Parameter<SpecificEnthalpy> specificEnthalpy = new Parameter(kiloJoulePerKilogram, 5.0);
+        Parameter<MassFlow> massFlow = new Parameter<>(kilogramPerSecond, 2.0);
 
+        Unit<HeatFlow> wattUnit= SI.WATT.asType(HeatFlow.class);
+        Parameter<HeatFlow> definedHeatFlow=new Parameter<>(wattUnit, 10000);
 
+        //WHEN
+        Parameter<HeatFlow> resultingHeatFlow;
+        resultingHeatFlow = specificEnthalpy.times(massFlow);
+
+        //THEN
+        assertEquals(resultingHeatFlow, definedHeatFlow);
     }
 }

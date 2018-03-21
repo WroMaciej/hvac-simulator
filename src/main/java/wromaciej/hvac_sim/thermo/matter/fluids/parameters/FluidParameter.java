@@ -7,11 +7,14 @@ import javax.measure.unit.Unit;
 
 public class FluidParameter<Q extends FluidQuantity> extends Parameter {
 
-    public FluidParameter(ProductUnit unitInUnitSystem) {
+    public FluidParameter(Unit unitInUnitSystem) {
         super(unitInUnitSystem);
     }
 
-    public FluidParameter(ProductUnit unitInUnitSystem, double value) {
+    public FluidParameter(Unit unitInUnitSystem, double value) {
         super(unitInUnitSystem, value);
+    }
+
+    public FluidParameter() {
     }
 }

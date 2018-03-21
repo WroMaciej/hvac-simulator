@@ -9,5 +9,5 @@ import javax.measure.unit.Unit;
 
 public interface HeatFlow extends EnergyFlow {
     public final static Unit<HeatFlow> UNIT =
-            new ProductUnit<HeatFlow>(SI.WATT);
+            new ProductUnit(SI.JOULE.divide(SI.SECOND));
 }

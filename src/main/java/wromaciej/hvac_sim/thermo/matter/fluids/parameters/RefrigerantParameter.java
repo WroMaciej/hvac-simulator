@@ -6,11 +6,15 @@ import javax.measure.unit.ProductUnit;
 import javax.measure.unit.Unit;
 
 public class RefrigerantParameter <Q extends RefrigerantQuantity> extends Parameter {
-    public RefrigerantParameter(ProductUnit unitInUnitSystem) {
+
+    public RefrigerantParameter() {
+    }
+
+    public RefrigerantParameter(Unit unitInUnitSystem) {
         super(unitInUnitSystem);
     }
 
-    public RefrigerantParameter(ProductUnit unitInUnitSystem, double value) {
+    public RefrigerantParameter(Unit unitInUnitSystem, double value) {
         super(unitInUnitSystem, value);
     }
 }

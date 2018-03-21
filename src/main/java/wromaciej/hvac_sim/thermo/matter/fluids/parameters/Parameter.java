@@ -3,8 +3,6 @@ package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
 import org.jscience.physics.amount.Amount;
 import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
-
-import javax.measure.unit.ProductUnit;
 import javax.measure.unit.Unit;
 
 
@@ -12,7 +10,7 @@ public class Parameter<Q extends AnyQuantity> {
 
     private Amount<Q> amount;
 
-    private ProductUnit<Q> actualUnit;
+    private Unit<Q> actualUnit;
 
     public Double getValue() {
         return amount.doubleValue(actualUnit);
@@ -30,12 +28,14 @@ public class Parameter<Q extends AnyQuantity> {
         this.amount = amount;
     }
 
-    public Parameter(ProductUnit unitInUnitSystem) {
+    public Parameter(){}
+
+    public Parameter(Unit<Q> unitInUnitSystem) {
         this.actualUnit = unitInUnitSystem;
     }
 
-    public Parameter(ProductUnit unitInUnitSystem, double value) {
-        this.actualUnit = new ProductUnit(unitInUnitSystem) ;
+    public Parameter(Unit<Q> unitInUnitSystem, double value) {
+        this.actualUnit = unitInUnitSystem; ;
         setValue(value);
     }
 
@@ -43,7 +43,38 @@ public class Parameter<Q extends AnyQuantity> {
         return actualUnit;
     }
 
-    public void setActualUnit(ProductUnit actualUnit) {
+    public void setActualUnit(Unit<Q> actualUnit) {
         this.actualUnit = actualUnit;
+        amount = Amount.valueOf(getValue(),actualUnit);
+    }
+
+
+    public Parameter times (Parameter that){
+        Amount resultingAmount=amount.times(that.getAmount());;
+        Unit resultingUnit=resultingAmount.getUnit();
+        Parameter resultingParameter=new Parameter<>(resultingUnit);
+        resultingParameter.setAmount(resultingAmount);
+        return resultingParameter;
+    }
+
+
+    @Override
+    public String toString() {
+        return getValue() + getActualUnit().toString();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        Parameter<Q> thatParameter = (Parameter<Q>) that;
+        Amount<Q> thatAmount= (Amount) thatParameter.amount;
+        return amount.approximates(thatAmount);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return amount.hashCode();
     }
 }
