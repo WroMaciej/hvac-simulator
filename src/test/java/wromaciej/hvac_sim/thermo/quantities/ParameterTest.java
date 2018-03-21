@@ -7,6 +7,8 @@ import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
+import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
+import wromaciej.hvac_sim.thermo.quantities.specific.TemperatureDifference;
 
 import javax.measure.quantity.Energy;
 import javax.measure.unit.SI;
@@ -32,7 +34,7 @@ public class ParameterTest {
     }
 
     @Test
-    public void shouldReturnHeatFlowForMassFlowTimesSpecificEnthalpy(){
+    public void shouldReturn10kWHeatFlowForMassFlowTimesSpecificEnthalpy(){
         //GIVEN
         Unit<SpecificEnthalpy> kiloJoulePerKilogram = SI.KILO(SI.JOULE).divide(SI.KILOGRAM).asType(SpecificEnthalpy.class);
         Unit<MassFlow> kilogramPerSecond= SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class);
@@ -48,5 +50,19 @@ public class ParameterTest {
 
         //THEN
         assertEquals(resultingHeatFlow, definedHeatFlow);
+    }
+
+    @Test
+    public void shoudReturn10KelvinsFor5Ktimes2(){
+        //GIVEN
+        Parameter<TemperatureDifference> temperatureDifferenceDefinedAs5K= new Parameter(SI.KELVIN.asType(TemperatureDifference.class),5);
+        Parameter<TemperatureDifference> temperatureDifferenceDefinedAs10K= new Parameter(SI.KELVIN.asType(TemperatureDifference.class),10);
+
+        //WHEN
+        Parameter<TemperatureDifference> temperatureDifferenceAfter2TimesMultiplication= temperatureDifferenceDefinedAs5K.times(2.0);
+
+        //THEN
+        assertEquals(temperatureDifferenceAfter2TimesMultiplication,temperatureDifferenceDefinedAs10K);
+
     }
 }

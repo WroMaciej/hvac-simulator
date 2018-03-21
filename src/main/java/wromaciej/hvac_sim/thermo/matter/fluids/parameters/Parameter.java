@@ -48,11 +48,19 @@ public class Parameter<Q extends AnyQuantity> {
         amount = Amount.valueOf(getValue(),actualUnit);
     }
 
+    public Parameter times (double factor){
+        Amount resultingAmount=amount.times(factor);
+        Unit resultingUnit=resultingAmount.getUnit();
+        Parameter resultingParameter=new Parameter(resultingUnit);
+        resultingParameter.setAmount(resultingAmount);
+        return resultingParameter;
+    }
+
 
     public Parameter times (Parameter that){
-        Amount resultingAmount=amount.times(that.getAmount());;
+        Amount resultingAmount=amount.times(that.getAmount());
         Unit resultingUnit=resultingAmount.getUnit();
-        Parameter resultingParameter=new Parameter<>(resultingUnit);
+        Parameter resultingParameter=new Parameter(resultingUnit);
         resultingParameter.setAmount(resultingAmount);
         return resultingParameter;
     }
