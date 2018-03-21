@@ -4,6 +4,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 import org.jscience.physics.amount.Amount;
 import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
 
+import javax.measure.unit.ProductUnit;
 import javax.measure.unit.Unit;
 
 
@@ -11,7 +12,7 @@ public class Parameter<Q extends AnyQuantity> {
 
     private Amount<Q> amount;
 
-    private Unit<Q> actualUnit;
+    private ProductUnit<Q> actualUnit;
 
     public Double getValue() {
         return amount.doubleValue(actualUnit);
@@ -29,12 +30,12 @@ public class Parameter<Q extends AnyQuantity> {
         this.amount = amount;
     }
 
-    public Parameter(Unit unitInUnitSystem) {
+    public Parameter(ProductUnit unitInUnitSystem) {
         this.actualUnit = unitInUnitSystem;
     }
 
-    public Parameter(Unit unitInUnitSystem, double value) {
-        this.actualUnit = unitInUnitSystem;
+    public Parameter(ProductUnit unitInUnitSystem, double value) {
+        this.actualUnit = new ProductUnit(unitInUnitSystem) ;
         setValue(value);
     }
 
@@ -42,7 +43,7 @@ public class Parameter<Q extends AnyQuantity> {
         return actualUnit;
     }
 
-    public void setActualUnit(Unit<Q> actualUnit) {
+    public void setActualUnit(ProductUnit actualUnit) {
         this.actualUnit = actualUnit;
     }
 }

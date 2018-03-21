@@ -28,10 +28,10 @@ public final class Air extends Fluid {
 
     public Air(){
         super();
-        relativeHumidity=new AirParameter<>(UnitSystem.getActualUnitSystem().getRelativeHumidityUnit());
-        moistureContent=new AirParameter<>(UnitSystem.getActualUnitSystem().getMoistureContentUnit());
-        dewPointTemperature =new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
-        wetBulbTemperature=new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
+//        relativeHumidity=new AirParameter<>(UnitSystem.getActualUnitSystem().getRelativeHumidityUnit());
+//        moistureContent=new AirParameter<>(UnitSystem.getActualUnitSystem().getMoistureContentUnit());
+//        dewPointTemperature =new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
+//        wetBulbTemperature=new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
 
     }
 
