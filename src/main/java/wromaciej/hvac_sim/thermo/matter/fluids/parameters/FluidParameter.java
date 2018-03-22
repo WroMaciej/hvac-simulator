@@ -17,4 +17,5 @@ public class FluidParameter<Q extends FluidQuantity> extends Parameter {
 
     public FluidParameter() {
     }
+
 }

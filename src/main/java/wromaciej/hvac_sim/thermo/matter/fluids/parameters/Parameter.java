@@ -12,6 +12,16 @@ public class Parameter<Q extends AnyQuantity> {
 
     private Unit<Q> actualUnit;
 
+    private ParameterType parameterType;
+
+    public ParameterType getParameterType() {
+        return parameterType;
+    }
+
+    public void setParameterType(ParameterType parameterType) {
+        this.parameterType = parameterType;
+    }
+
     public Double getValue() {
         return amount.doubleValue(actualUnit);
     }
@@ -47,6 +57,7 @@ public class Parameter<Q extends AnyQuantity> {
         this.actualUnit = actualUnit;
         amount = Amount.valueOf(getValue(),actualUnit);
     }
+
 
     public static Parameter amountToParameter(Amount resultingAmount) {
         Unit resultingUnit=resultingAmount.getUnit();

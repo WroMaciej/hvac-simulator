@@ -1,7 +1,6 @@
 package wromaciej.hvac_sim.thermo.quantities.extensive;
 
 import wromaciej.hvac_sim.thermo.quantities.base.EnergyFlow;
-import wromaciej.hvac_sim.thermo.quantities.specific.AirPressureDifference;
 
 import javax.measure.unit.ProductUnit;
 import javax.measure.unit.SI;

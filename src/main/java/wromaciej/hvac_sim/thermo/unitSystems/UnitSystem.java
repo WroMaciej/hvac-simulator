@@ -1,9 +1,11 @@
 package wromaciej.hvac_sim.thermo.unitSystems;
 
 
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 import wromaciej.hvac_sim.thermo.quantities.extensive.*;
 import wromaciej.hvac_sim.thermo.quantities.coefficients.*;
+
 import javax.measure.unit.Unit;
 
 
@@ -17,7 +19,7 @@ public final class UnitSystem {
     private static UnitSystem actualUnitSystem;
 
     //specific units
-    private Unit<AirPressureDifference> airPressureDifferenceUnit;
+    private Unit<PressureDifference> airPressureDifferenceUnit;
     private Unit<Density> densityUnit;
     private Unit<HeatCapacity> heatCapacityUnit;
     private Unit<MassHumidity> massHumidityUnit;
@@ -41,12 +43,35 @@ public final class UnitSystem {
     //coefficients
     private Unit<Velocity> velocityUnit;
 
+    //default values
+    private Parameter<Pressure> atmosphericPressure;
+    private Parameter<Temperature> atmosphericTemperature;
+
+
+    public Parameter<Pressure> getAtmosphericPressure() {
+        return atmosphericPressure;
+    }
+
+    public void setAtmosphericPressure(Parameter<Pressure> atmosphericPressure) {
+        this.atmosphericPressure = atmosphericPressure;
+    }
+
+    public Parameter<Temperature> getAtmosphericTemperature() {
+        return atmosphericTemperature;
+    }
+
+    public void setAtmosphericTemperature(Parameter<Temperature> atmosphericTemperature) {
+        this.atmosphericTemperature = atmosphericTemperature;
+    }
+
     /**
      * Loading unit system from some DB or file or...
      */
-    public static void loadUnitSystem(String unitSystemName){}
+    public static void loadUnitSystem(String unitSystemName) {
+    }
 
-    public UnitSystem() {}
+    public UnitSystem() {
+    }
 
     public UnitSystem(String unitSystemName) {
         loadUnitSystem(unitSystemName);
@@ -60,14 +85,6 @@ public final class UnitSystem {
         UnitSystem.actualUnitSystem = newActualUnitSystem;
     }
 
-
-    public Unit<AirPressureDifference> getAirPressureDifferenceUnit() {
-        return airPressureDifferenceUnit;
-    }
-
-    public void setAirPressureDifferenceUnit(Unit<AirPressureDifference> airPressureDifferenceUnit) {
-        this.airPressureDifferenceUnit = airPressureDifferenceUnit;
-    }
 
     public Unit<Density> getDensityUnit() {
         return densityUnit;
@@ -211,5 +228,13 @@ public final class UnitSystem {
 
     public void setVelocityUnit(Unit<Velocity> velocityUnit) {
         this.velocityUnit = velocityUnit;
+    }
+
+    public Unit<PressureDifference> getAirPressureDifferenceUnit() {
+        return airPressureDifferenceUnit;
+    }
+
+    public void setAirPressureDifferenceUnit(Unit<PressureDifference> airPressureDifferenceUnit) {
+        this.airPressureDifferenceUnit = airPressureDifferenceUnit;
     }
 }

@@ -1,16 +1,14 @@
 package wromaciej.hvac_sim.thermo.quantities;
 
-import com.sun.javafx.tools.packager.Param;
 import org.junit.Test;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.quantities.base.EnergyFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.Power;
 import wromaciej.hvac_sim.thermo.quantities.extensive.VolumeFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
-import javax.measure.quantity.Energy;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
@@ -95,5 +93,10 @@ public class ParameterTest {
         density.setActualUnit(SI.GRAM.divide(SI.CUBIC_METRE).asType(Density.class));
         //THEN
         assertEquals(density.getValue(),500,0.01);
+    }
+
+    @Test
+    public void shouldReturn(){
+        AirParameter<>
     }
 }
