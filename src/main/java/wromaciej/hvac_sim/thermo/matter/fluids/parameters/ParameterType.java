@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
+import javax.measure.unit.Unit;
+
 public enum ParameterType {
     /**
      * Temperature
@@ -52,12 +54,25 @@ public enum ParameterType {
 
 
 
-    private String parameterSymbolInThermoCPlibrary;
-    private String unitUsedInThermoCPlibrary;
+    private String parameterSymbolInThermoCP;
+    private String stringUnitInThermoCP;
 
     ParameterType(String parameterSymbolInThermoCPlibrary, String unitUsedInThermoCPlibrary) {
-        this.parameterSymbolInThermoCPlibrary = parameterSymbolInThermoCPlibrary;
-        this.unitUsedInThermoCPlibrary = unitUsedInThermoCPlibrary;
+        this.parameterSymbolInThermoCP = parameterSymbolInThermoCPlibrary;
+        this.stringUnitInThermoCP = unitUsedInThermoCPlibrary;
     }
+
+    public String getParameterSymbolInThermoCP() {
+        return parameterSymbolInThermoCP;
+    }
+
+    public String getStringUnitInThermoCP() {
+        return stringUnitInThermoCP;
+    }
+
+    public Unit getUnitInThermoCP() {
+        return Unit.valueOf(stringUnitInThermoCP);
+    }
+
 
 }

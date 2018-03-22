@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.thermo.quantities;
 
 import org.junit.Test;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
@@ -97,6 +98,6 @@ public class ParameterTest {
 
     @Test
     public void shouldReturn(){
-        AirParameter<>
+
     }
 }

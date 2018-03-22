@@ -97,6 +97,14 @@ public class Parameter<Q extends AnyQuantity> {
         return amountToParameter(resultingAmount);
     }
 
+    /**
+     * Returns value calculated in unit of thermoCP library
+     */
+    public double getValueInThermoCPUnit(){
+        return amount.doubleValue((Unit) Unit.valueOf(parameterType.getStringUnitInThermoCP()) );
+    }
+
+
 
     @Override
     public String toString() {
