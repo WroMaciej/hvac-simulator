@@ -53,7 +53,7 @@ public class ParameterTest {
     }
 
     @Test
-    public void shoudReturn10KelvinsFor5Ktimes2(){
+    public void shouldReturn10KelvinsFor5Ktimes2(){
         //GIVEN
         Parameter<TemperatureDifference> temperatureDifferenceDefinedAs5K= new Parameter(SI.KELVIN.asType(TemperatureDifference.class),5);
         Parameter<TemperatureDifference> temperatureDifferenceDefinedAs10K= new Parameter(SI.KELVIN.asType(TemperatureDifference.class),10);
