@@ -9,6 +9,5 @@ import javax.measure.unit.Unit;
 
 public interface Temperature extends FluidQuantity, SolidQuantity {
 
-    public final static Unit<Temperature> UNIT =
-            new ProductUnit<Temperature>(SI.KELVIN);
+    public final static Unit<Temperature> UNIT = (Unit) SI.KELVIN;
 }
