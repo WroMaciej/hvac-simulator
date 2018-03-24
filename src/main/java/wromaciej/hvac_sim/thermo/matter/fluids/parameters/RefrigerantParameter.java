@@ -5,7 +5,7 @@ import wromaciej.hvac_sim.thermo.quantities.base.RefrigerantQuantity;
 import javax.measure.unit.ProductUnit;
 import javax.measure.unit.Unit;
 
-public class RefrigerantParameter <Q extends RefrigerantQuantity> extends Parameter {
+public class RefrigerantParameter <Q extends RefrigerantQuantity> extends FluidParameter {
 
     public RefrigerantParameter() {
     }

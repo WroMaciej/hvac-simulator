@@ -1,7 +1,9 @@
 package wromaciej.hvac_sim.thermo.unitSystems;
 
 
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.AirParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
@@ -46,18 +48,18 @@ public final class UnitSystem {
     private Unit<Velocity> velocityUnit;
 
     //default values
-    private Fluid atmosphere;
+    private Air atmosphere;
 
-    public Fluid getAtmosphere() {
+    public Air getAtmosphere() {
         return atmosphere;
     }
 
-    public void setAtmosphere(Fluid atmosphere) {
+    public void setAtmosphere(Air atmosphere) {
         this.atmosphere = atmosphere;
     }
 
     public FluidParameter<Pressure> getAtmosphericPressure() {
-        return atmosphere.getAbsolutePressure();
+        return  atmosphere.getAbsolutePressure();
     }
 
 
