@@ -7,43 +7,43 @@ import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 public final class Refrigerant extends Fluid {
 
     /**
-     * Subcooling, K
+     * Subcooling
      */
     protected FluidParameter<Temperature> subcooling;
     /**
-     * Superheating K
+     * Superheating
      */
     protected FluidParameter<Temperature> superheating;
     /**
-     * Saturated temperature C
+     * Saturated temperature
      */
     protected FluidParameter<Temperature> temperatureSaturation;
     /**
-     * Saturated pressure barA
+     * Saturated pressure
      */
     protected FluidParameter<Pressure> pressureSaturation;
     /**
-     * Saturated temperature C
+     * Saturated temperature
      */
     protected FluidParameter<Temperature> temperatureBubbles;
     /**
-     * Saturated pressure barA
+     * Saturated pressure
      */
     protected FluidParameter<Pressure> pressureBubbles;
     /**
-     * Saturated temperature C
+     * Saturated temperature
      */
     protected FluidParameter<Temperature> temperatureDew;
     /**
-     * Saturated pressure barA
+     * Saturated pressure
      */
     protected FluidParameter<Pressure> pressureDew;
     /**
-     * Saturated temperature K
+     * Saturated temperature
      */
     protected FluidParameter<Temperature> temperatureSlide;
     /**
-     * Saturated pressure kPa
+     * Saturated pressure
      */
     protected FluidParameter<Pressure> pressureSlide;
 
