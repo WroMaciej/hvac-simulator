@@ -2,6 +2,10 @@ package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
 import thermoCP.CoolProp;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
+import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
+import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
+import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
+import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 public class ThermoCPAdapter {
@@ -23,8 +27,9 @@ public class ThermoCPAdapter {
         return wantedParameter;
     }
 
-    public static AirParameter findAirParameter(ParameterType wantedParameterType, FluidParameter knownParameter1, FluidParameter knownParameter2, FluidParameter knownParameter3){
-        AirParameter wantedParameter = new AirParameter();
+    public static FluidParameter findAirParameter(ParameterType wantedParameterType, FluidParameter<? extends AirQuantity> knownParameter1, FluidParameter<? extends AirQuantity> knownParameter2, FluidParameter<? extends AirQuantity> knownParameter3){
+
+        FluidParameter wantedParameter = new FluidParameter();
         wantedParameter.setParameterType(wantedParameterType);
         wantedParameter.setActualUnit(wantedParameterType.getUnitInThermoCP());
         wantedParameter.setValue(
@@ -41,7 +46,7 @@ public class ThermoCPAdapter {
         return wantedParameter;
     }
 
-    public static AirParameter findAirParameterAtAtmosphericPressure(ParameterType wantedParameterType, AirParameter knownParameter1, AirParameter knownParameter2){
-        return findAirParameter(wantedParameterType, knownParameter1, knownParameter2, UnitSystem.getActualUnitSystem().getAtmosphericTemperature());
+    public static FluidParameter findAirParameterAtAtmosphericPressure(ParameterType wantedParameterType, FluidParameter<? extends AirQuantity> knownParameter1, FluidParameter<? extends AirQuantity> knownParameter2){
+        return findAirParameter(wantedParameterType, knownParameter1, knownParameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
     }
 }

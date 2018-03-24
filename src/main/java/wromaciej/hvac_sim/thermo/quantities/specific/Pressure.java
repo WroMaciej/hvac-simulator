@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.quantities.specific;
 
+import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
 
 import javax.measure.unit.ProductUnit;
