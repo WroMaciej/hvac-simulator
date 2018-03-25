@@ -38,14 +38,33 @@ public class Parameter<Q extends AnyQuantity> {
         this.amount = amount;
     }
 
-    public Parameter(){}
+    public Parameter(){
+        this.parameterType=ParameterType.OTHER;
+    }
+
+    public Parameter(ParameterType parameterType){
+        this.parameterType = parameterType;
+    }
+
+    public Parameter(ParameterType parameterType, Unit<Q> unitInUnitSystem) {
+        this.parameterType = parameterType;
+        this.actualUnit = unitInUnitSystem;
+    }
+
+    public Parameter(ParameterType parameterType, Unit<Q> unitInUnitSystem, double value) {
+        this.parameterType = parameterType;
+        this.actualUnit = unitInUnitSystem;
+        setValue(value);
+    }
 
     public Parameter(Unit<Q> unitInUnitSystem) {
+        this.parameterType = ParameterType.OTHER;
         this.actualUnit = unitInUnitSystem;
     }
 
     public Parameter(Unit<Q> unitInUnitSystem, double value) {
-        this.actualUnit = unitInUnitSystem; ;
+        this.parameterType = ParameterType.OTHER;
+        this.actualUnit = unitInUnitSystem;
         setValue(value);
     }
 

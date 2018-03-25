@@ -4,6 +4,11 @@ import javax.measure.unit.Unit;
 
 public enum ParameterType {
     /**
+     * Parameter unknown at that moment
+     */
+    OTHER("",""),
+
+    /**
      * Temperature
      */
     TEMPERATURE("T","C"),

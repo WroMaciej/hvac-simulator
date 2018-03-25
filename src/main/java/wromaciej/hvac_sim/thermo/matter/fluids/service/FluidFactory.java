@@ -2,26 +2,26 @@ package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
-import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
-public final class FluidFactory {
+public abstract class FluidFactory {
 
-    public static Fluid createFluid(FluidName fluidName, FluidParameter parameter1, FluidParameter parameter2) {
 
+    public static Fluid createFluid(FluidName fluidName, FluidParameter knownParameter1, FluidParameter knownParameter2) {
+        if (fluidName==FluidName.MOIST_AIR) return createAirAtAtmospericPressure(knownParameter1, knownParameter2);
         Fluid fluid = new Fluid();
-        if (fluidName != FluidName.MOIST_AIR) {
-            fluid.setFluidName(fluidName);
+        fluid.setFluidName(fluidName);
+        fluid.setFluidType(FluidType.GENERAL);
+        fluid.setAbsolutePressure(ParametersData.findFluidParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
 
-        }
-        else fluid= createAir(parameter1,  parameter2);
 
         return fluid;
     }
 
-    public static Air createAir(FluidParameter<? extends AirQuantity> parameter1, FluidParameter<? extends AirQuantity> parameter2){
+    public static Air createAirAtAtmospericPressure(FluidParameter<? extends AirQuantity> parameter1, FluidParameter<? extends AirQuantity> parameter2){
         return createAir(parameter1, parameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
     }
 

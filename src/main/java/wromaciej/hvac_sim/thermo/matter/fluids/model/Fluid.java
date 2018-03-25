@@ -12,7 +12,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 
 public class Fluid {
-    
+
     /**
      * Type of fluid
      */
@@ -92,6 +92,14 @@ public class Fluid {
                 +" temperature: "+temperature.toString() + System.lineSeparator()
                 + " pressure: "+absolutePressure.toString() + System.lineSeparator()
                 +" enthalpy: " +specificEnthalpy.toString() + System.lineSeparator();
+    }
+
+    public FluidType getFluidType() {
+        return fluidType;
+    }
+
+    public void setFluidType(FluidType fluidType) {
+        this.fluidType = fluidType;
     }
 
     public FluidName getFluidName() {

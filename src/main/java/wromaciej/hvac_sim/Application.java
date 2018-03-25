@@ -1,6 +1,6 @@
 //package wromaciej.hvac_sim;
 //
-//import wromaciej.hvac_sim.thermo.controller.ThermoCPAdapter;
+//import wromaciej.hvac_sim.thermo.controller.ParametersData;
 //import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 //import wromaciej.hvac_sim.thermo.matter.fluids.serviceOLD.FluidFactory;
 //
@@ -21,10 +21,10 @@
 //
 //
 //        System.out.println("Available fluids:");
-//        System.out.println(ThermoCPAdapter.getSubstancesList());
+//        System.out.println(ParametersData.getSubstancesList());
 //        System.out.println();
 //        System.out.println("Available parameters");
-//        System.out.println(ThermoCPAdapter.getParametersList());
+//        System.out.println(ParametersData.getParametersList());
 //
 //
 //        while (true) {
@@ -40,17 +40,17 @@
 //            System.out.print("Set value parameter 2: ");
 //            value2 = Double.parseDouble(in.nextLine());
 //
-//            fluid1 = FluidFactory.createGeneral(ThermoCPAdapter.stringToSubstanceName(substanceName),
-//                    ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
+//            fluid1 = FluidFactory.createGeneral(ParametersData.stringToSubstanceName(substanceName),
+//                    ParametersData.stringToSubstanceParameterType(parameter1),
 //                    value1,
-//                    ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
+//                    ParametersData.stringToSubstanceParameterType(parameter2),
 //                    value2);
 //            System.out.println(fluid1);
 //            System.out.println("---- AS REFRIGERANT: ----");
-//            fluid1 = FluidFactory.createRefrigerant(ThermoCPAdapter.stringToSubstanceName(substanceName),
-//                    ThermoCPAdapter.stringToSubstanceParameterType(parameter1),
+//            fluid1 = FluidFactory.createRefrigerant(ParametersData.stringToSubstanceName(substanceName),
+//                    ParametersData.stringToSubstanceParameterType(parameter1),
 //                    value1,
-//                    ThermoCPAdapter.stringToSubstanceParameterType(parameter2),
+//                    ParametersData.stringToSubstanceParameterType(parameter2),
 //                    value2);
 //            System.out.println(fluid1);
 //
