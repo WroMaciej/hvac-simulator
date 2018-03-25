@@ -12,8 +12,14 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 
 public class Fluid {
+    
     /**
      * Type of fluid
+     */
+    private FluidType fluidType;
+
+    /**
+     * Name of chemical formula
      */
     private FluidName fluidName;
 
