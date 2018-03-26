@@ -116,6 +116,16 @@ public class Parameter<Q extends AnyQuantity> {
         return amountToParameter(resultingAmount);
     }
 
+    public Parameter power (int exp){
+        Amount resultingAmount=amount.pow(exp);
+        return amountToParameter(resultingAmount);
+    }
+
+    public Parameter inverse(){
+        Amount resultingAmount=amount.inverse();
+        return amountToParameter(resultingAmount);
+    }
+
     /**
      * Returns value calculated in unit of thermoCP library
      */

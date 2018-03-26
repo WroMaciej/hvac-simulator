@@ -9,6 +9,10 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 public abstract class FluidFactory {
 
+    public static StateOfMatter setStateOfMatter(Fluid fluid){
+        return StateOfMatter.UNDEFINED;
+    }
+
 
     public static Fluid createFluid(FluidName fluidName, FluidParameter knownParameter1, FluidParameter knownParameter2) {
         if (fluidName==FluidName.MOIST_AIR) return createAirAtAtmospericPressure(knownParameter1, knownParameter2);
@@ -16,8 +20,22 @@ public abstract class FluidFactory {
         fluid.setFluidName(fluidName);
         fluid.setFluidType(FluidType.GENERAL);
         fluid.setAbsolutePressure(ParametersData.findFluidParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
+        fluid.setTemperature(ParametersData.findFluidParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
+        fluid.setDensity(ParametersData.findFluidParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEnthalpy(ParametersData.findFluidParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setHeatCapacity(ParametersData.findFluidParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEntropy(ParametersData.findFluidParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificVolume(fluid.getDensity().inverse());
+
+        fluid.setQuality(ParametersData.findFluidParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
+
+        fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
+        fluid.setAbsoluteTemperature();
+
+        fluid.setStateOfMatter(setStateOfMatter(fluid));
 
 
+        fluid.setCalculated(true);
         return fluid;
     }
 
