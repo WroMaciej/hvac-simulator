@@ -2,13 +2,9 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
-import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
-import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
-import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 
 public class Fluid {
@@ -41,43 +37,43 @@ public class Fluid {
     /**
      * Temperature
      */
-    private FluidParameter<Temperature> temperature;
+    private Parameter<Temperature> temperature;
     /**
      * Absolute temperature
      */
-    private FluidParameter<Temperature> absoluteTemperature;
+    private Parameter<Temperature> absoluteTemperature;
     /**
      * Pressure (absolute)
      */
-    private FluidParameter<Pressure> absolutePressure;
+    private Parameter<Pressure> absolutePressure;
     /**
      * Pressure (gauge)
      */
-    private FluidParameter<Pressure> gaugePressure;
+    private Parameter<Pressure> gaugePressure;
     /**
      * Enthalpy
      */
-    private FluidParameter<SpecificEnthalpy> specificEnthalpy;
+    private Parameter<SpecificEnthalpy> specificEnthalpy;
     /**
      * Entropy
      */
-    private FluidParameter<SpecificEntropy> specificEntropy;
+    private Parameter<SpecificEntropy> specificEntropy;
     /**
      * Quality (x), 0-1
      */
-    private FluidParameter<Quality> quality;
+    private Parameter<Quality> quality;
     /**
      * Heat capacity
      */
-    private FluidParameter<HeatCapacity> heatCapacity;
+    private Parameter<HeatCapacity> heatCapacity;
     /**
      * Specific volume
      */
-    private FluidParameter<SpecificVolume> specificVolume;
+    private Parameter<SpecificVolume> specificVolume;
     /**
      * Density
      */
-    private FluidParameter<Density> density;
+    private Parameter<Density> density;
 
 
     public Fluid() {
@@ -126,83 +122,83 @@ public class Fluid {
         this.stateOfMatter = stateOfMatter;
     }
 
-    public FluidParameter<Temperature> getTemperature() {
+    public Parameter<Temperature> getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(FluidParameter<Temperature> temperature) {
+    public void setTemperature(Parameter<Temperature> temperature) {
         this.temperature = temperature;
     }
 
-    public FluidParameter<Temperature> getAbsoluteTemperature() {
+    public Parameter<Temperature> getAbsoluteTemperature() {
         return absoluteTemperature;
     }
 
-    public void setAbsoluteTemperature(FluidParameter<Temperature> absoluteTemperature) {
+    public void setAbsoluteTemperature(Parameter<Temperature> absoluteTemperature) {
         this.absoluteTemperature = absoluteTemperature;
     }
 
-    public FluidParameter<Pressure> getAbsolutePressure() {
+    public Parameter<Pressure> getAbsolutePressure() {
         return absolutePressure;
     }
 
-    public void setAbsolutePressure(FluidParameter<Pressure> absolutePressure) {
+    public void setAbsolutePressure(Parameter<Pressure> absolutePressure) {
         this.absolutePressure = absolutePressure;
     }
 
-    public FluidParameter<Pressure> getGaugePressure() {
+    public Parameter<Pressure> getGaugePressure() {
         return gaugePressure;
     }
 
-    public void setGaugePressure(FluidParameter<Pressure> gaugePressure) {
+    public void setGaugePressure(Parameter<Pressure> gaugePressure) {
         this.gaugePressure = gaugePressure;
     }
 
-    public FluidParameter<SpecificEnthalpy> getSpecificEnthalpy() {
+    public Parameter<SpecificEnthalpy> getSpecificEnthalpy() {
         return specificEnthalpy;
     }
 
-    public void setSpecificEnthalpy(FluidParameter<SpecificEnthalpy> specificEnthalpy) {
+    public void setSpecificEnthalpy(Parameter<SpecificEnthalpy> specificEnthalpy) {
         this.specificEnthalpy = specificEnthalpy;
     }
 
-    public FluidParameter<SpecificEntropy> getSpecificEntropy() {
+    public Parameter<SpecificEntropy> getSpecificEntropy() {
         return specificEntropy;
     }
 
-    public void setSpecificEntropy(FluidParameter<SpecificEntropy> specificEntropy) {
+    public void setSpecificEntropy(Parameter<SpecificEntropy> specificEntropy) {
         this.specificEntropy = specificEntropy;
     }
 
-    public FluidParameter<Quality> getQuality() {
+    public Parameter<Quality> getQuality() {
         return quality;
     }
 
-    public void setQuality(FluidParameter<Quality> quality) {
+    public void setQuality(Parameter<Quality> quality) {
         this.quality = quality;
     }
 
-    public FluidParameter<HeatCapacity> getHeatCapacity() {
+    public Parameter<HeatCapacity> getHeatCapacity() {
         return heatCapacity;
     }
 
-    public void setHeatCapacity(FluidParameter<HeatCapacity> heatCapacity) {
+    public void setHeatCapacity(Parameter<HeatCapacity> heatCapacity) {
         this.heatCapacity = heatCapacity;
     }
 
-    public FluidParameter<SpecificVolume> getSpecificVolume() {
+    public Parameter<SpecificVolume> getSpecificVolume() {
         return specificVolume;
     }
 
-    public void setSpecificVolume(FluidParameter<SpecificVolume> specificVolume) {
+    public void setSpecificVolume(Parameter<SpecificVolume> specificVolume) {
         this.specificVolume = specificVolume;
     }
 
-    public FluidParameter<Density> getDensity() {
+    public Parameter<Density> getDensity() {
         return density;
     }
 
-    public void setDensity(FluidParameter<Density> density) {
+    public void setDensity(Parameter<Density> density) {
         this.density = density;
     }
 }

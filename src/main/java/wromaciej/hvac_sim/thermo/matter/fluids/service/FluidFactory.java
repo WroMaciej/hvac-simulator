@@ -14,20 +14,20 @@ public abstract class FluidFactory {
     }
 
 
-    public static Fluid createFluid(FluidName fluidName, FluidParameter knownParameter1, FluidParameter knownParameter2) {
+    public static Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName==FluidName.MOIST_AIR) return createAirAtAtmospericPressure(knownParameter1, knownParameter2);
         Fluid fluid = new Fluid();
         fluid.setFluidName(fluidName);
         fluid.setFluidType(FluidType.GENERAL);
-        fluid.setAbsolutePressure(ParametersData.findFluidParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
-        fluid.setTemperature(ParametersData.findFluidParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setDensity(ParametersData.findFluidParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEnthalpy(ParametersData.findFluidParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
-        fluid.setHeatCapacity(ParametersData.findFluidParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEntropy(ParametersData.findFluidParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setAbsolutePressure(ParametersData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
+        fluid.setTemperature(ParametersData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
+        fluid.setDensity(ParametersData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEnthalpy(ParametersData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setHeatCapacity(ParametersData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEntropy(ParametersData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
         fluid.setSpecificVolume(fluid.getDensity().inverse());
 
-        fluid.setQuality(ParametersData.findFluidParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setQuality(ParametersData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
 
         fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
         fluid.setAbsoluteTemperature();
@@ -39,11 +39,11 @@ public abstract class FluidFactory {
         return fluid;
     }
 
-    public static Air createAirAtAtmospericPressure(FluidParameter<? extends AirQuantity> parameter1, FluidParameter<? extends AirQuantity> parameter2){
+    public static Air createAirAtAtmospericPressure(Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2){
         return createAir(parameter1, parameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
     }
 
-    public static Air createAir(FluidParameter<? extends AirQuantity> parameter1, FluidParameter<? extends AirQuantity> parameter2, FluidParameter<? extends AirQuantity> parameter3){
+    public static Air createAir(Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2, Parameter<? extends AirQuantity> parameter3){
         Air air= new Air();
         air.setFluidName(FluidName.MOIST_AIR);
 

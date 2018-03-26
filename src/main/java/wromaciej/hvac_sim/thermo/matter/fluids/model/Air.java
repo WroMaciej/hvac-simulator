@@ -1,6 +1,5 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidParameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
@@ -9,19 +8,19 @@ public final class Air extends Fluid {
     /**
      * Relative Humidity 0-1
      */
-    private FluidParameter<RelativeHumidity> relativeHumidity;
+    private Parameter<RelativeHumidity> relativeHumidity;
     /**
      * Moisture Content x kgH2O/kgDRY
      */
-    private FluidParameter<MoistureContent> moistureContent;
+    private Parameter<MoistureContent> moistureContent;
     /**
      * Temperature of Dewpoint (x=idem)
      */
-    private FluidParameter<Temperature> dewPointTemperature;
+    private Parameter<Temperature> dewPointTemperature;
      /**
      * Temperature of wet bult (h=idem)
      */
-    private FluidParameter<Temperature> wetBulbTemperature;
+    private Parameter<Temperature> wetBulbTemperature;
 
 
 
