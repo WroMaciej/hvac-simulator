@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;

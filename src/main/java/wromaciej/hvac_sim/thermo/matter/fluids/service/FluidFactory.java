@@ -30,7 +30,7 @@ public abstract class FluidFactory {
         fluid.setQuality(ParametersData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
 
         fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
-        fluid.setAbsoluteTemperature();
+        //fluid.setAbsoluteTemperature();
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
 

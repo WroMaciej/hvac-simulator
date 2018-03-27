@@ -11,7 +11,7 @@ public enum ParameterType {
     /**
      * Temperature
      */
-    TEMPERATURE("T","C"),
+    TEMPERATURE("T","℃"),
     /**
      * Absolute pressure
      */
@@ -31,7 +31,7 @@ public enum ParameterType {
     /**
      * Density
      */
-    DENSITY("D","kg/m3"),
+    DENSITY("D","kg/m^3"),
 
     /**
      * Specific heat capacity in constant pressure cp
@@ -50,11 +50,11 @@ public enum ParameterType {
     /**
      * wetbulb temperature of AIR
      */
-    WET_BULB_TEMPERATURE("Twb","C"),
+    WET_BULB_TEMPERATURE("Twb","℃"),
     /**
      * dewpoint of AIR
      */
-    DEW_POINT_TEMPERATURE("Tdp","C");
+    DEW_POINT_TEMPERATURE("Tdp","℃");
 
 
 
@@ -62,9 +62,9 @@ public enum ParameterType {
     private String parameterSymbolInThermoCP;
     private String stringUnitInThermoCP;
 
-    ParameterType(String parameterSymbolInThermoCPlibrary, String unitUsedInThermoCPlibrary) {
+    ParameterType(String parameterSymbolInThermoCPlibrary, String stringUnitInThermoCP) {
         this.parameterSymbolInThermoCP = parameterSymbolInThermoCPlibrary;
-        this.stringUnitInThermoCP = unitUsedInThermoCPlibrary;
+        this.stringUnitInThermoCP = stringUnitInThermoCP;
     }
 
     public String getParameterSymbolInThermoCP() {
@@ -76,7 +76,9 @@ public enum ParameterType {
     }
 
     public Unit getUnitInThermoCP() {
-        return Unit.valueOf(stringUnitInThermoCP);
+        System.out.println("s:"+stringUnitInThermoCP);
+        System.out.println("u:"+ (Unit) Unit.valueOf(stringUnitInThermoCP));
+        return (Unit) Unit.valueOf(stringUnitInThermoCP);
     }
 
 
