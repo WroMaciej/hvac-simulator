@@ -23,7 +23,6 @@ public class Parameter<Q extends AnyQuantity> {
     }
 
     public Double getValue() {
-        System.out.println("get value unit: "+actualUnit);
         return amount.doubleValue(actualUnit);
     }
 
@@ -75,7 +74,6 @@ public class Parameter<Q extends AnyQuantity> {
 
     public void setActualUnit(Unit<Q> actualUnit) {
         this.actualUnit = actualUnit;
-        System.out.println("setting actual unit to: "+actualUnit);
         //amount = Amount.valueOf(getValue(),actualUnit);
     }
 

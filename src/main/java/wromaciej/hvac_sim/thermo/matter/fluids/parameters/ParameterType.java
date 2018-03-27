@@ -19,11 +19,11 @@ public enum ParameterType {
     /**
      * Specific enthalpy
      */
-    SPECIFIC_ENTHALPY("H","kJ/kg"),
+    SPECIFIC_ENTHALPY("H","J/kg"),
     /**
      * Specific entropy
      */
-    SPECIFIC_ENTROPY("S","kJ/(kg*K)"),
+    SPECIFIC_ENTROPY("S","J/(kg*K)"),
     /**
      * Quality 0-1
      */
@@ -36,7 +36,7 @@ public enum ParameterType {
     /**
      * Specific heat capacity in constant pressure cp
      */
-    HEAT_CAPACITY("C","kJ/(kg*K)"),
+    HEAT_CAPACITY("C","J/(kg*K)"),
     /**
      * Relative humidity of AIR 0-1
      */
@@ -76,8 +76,6 @@ public enum ParameterType {
     }
 
     public Unit getUnitInThermoCP() {
-        System.out.println("s:"+stringUnitInThermoCP);
-        System.out.println("u:"+ (Unit) Unit.valueOf(stringUnitInThermoCP));
         return (Unit) Unit.valueOf(stringUnitInThermoCP);
     }
 

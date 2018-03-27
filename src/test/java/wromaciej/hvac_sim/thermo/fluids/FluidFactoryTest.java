@@ -26,5 +26,8 @@ public class FluidFactoryTest {
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1.0);
 
         Fluid fluid= FluidFactory.createFluid(FluidName.WATER, temperature, pressure);
+
+        System.out.println(fluid.getTemperature());
+        System.out.println(fluid.getHeatCapacity());
     }
 }
