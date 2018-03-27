@@ -21,6 +21,7 @@ public class FluidFactoryTest {
 
     @Test
     public void shouldReturnFluidForFactory(){
+
         Parameter<Temperature> temperature= new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20.0  );
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1.0);
 

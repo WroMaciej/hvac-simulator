@@ -7,6 +7,8 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
+import javax.measure.unit.NonSI;
+
 public abstract class FluidFactory {
 
     public static StateOfMatter setStateOfMatter(Fluid fluid){
@@ -29,7 +31,13 @@ public abstract class FluidFactory {
 
         fluid.setQuality(ParametersData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
 
-        fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
+        try{
+            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
+        }
+        catch (NullPointerException e){
+            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+        }
+
         //fluid.setAbsoluteTemperature();
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));

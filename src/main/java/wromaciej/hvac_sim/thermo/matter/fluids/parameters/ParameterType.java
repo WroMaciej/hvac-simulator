@@ -11,7 +11,7 @@ public enum ParameterType {
     /**
      * Temperature
      */
-    TEMPERATURE("T","℃"),
+    TEMPERATURE("T","K"),
     /**
      * Absolute pressure
      */
@@ -23,11 +23,11 @@ public enum ParameterType {
     /**
      * Specific entropy
      */
-    SPECIFIC_ENTROPY("S","kJ/kgK"),
+    SPECIFIC_ENTROPY("S","kJ/(kg*K)"),
     /**
      * Quality 0-1
      */
-    QUALITY("Q","1"),
+    QUALITY("Q","kg/kg"),
     /**
      * Density
      */
@@ -36,7 +36,7 @@ public enum ParameterType {
     /**
      * Specific heat capacity in constant pressure cp
      */
-    HEAT_CAPACITY("C","kJ/kgK"),
+    HEAT_CAPACITY("C","kJ/(kg*K)"),
     /**
      * Relative humidity of AIR 0-1
      */
@@ -45,16 +45,16 @@ public enum ParameterType {
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
      */
-    MOISTURE_CONTENT("W","1"),
+    MOISTURE_CONTENT("W","kg/kg"),
 
     /**
      * wetbulb temperature of AIR
      */
-    WET_BULB_TEMPERATURE("Twb","℃"),
+    WET_BULB_TEMPERATURE("Twb","K"),
     /**
      * dewpoint of AIR
      */
-    DEW_POINT_TEMPERATURE("Tdp","℃");
+    DEW_POINT_TEMPERATURE("Tdp","K");
 
 
 
