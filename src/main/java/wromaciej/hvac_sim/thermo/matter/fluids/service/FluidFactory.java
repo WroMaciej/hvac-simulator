@@ -56,14 +56,14 @@ public abstract class FluidFactory {
         Air air = new Air();
         air.setFluidName(FluidName.MOIST_AIR);
         air.setFluidType(FluidType.AIR);
-        air.setAbsolutePressure(FluidData.findAirParameter(ParameterType.PRESSURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setAbsolutePressure(FluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
         air.setTemperature(FluidData.findAirParameter(ParameterType.TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
-        air.setDensity(FluidData.findAirParameter(ParameterType.DENSITY, knownParameter1, knownParameter2, knownParameter3));
+        //air.setDensity(FluidData.findAirParameter(ParameterType.DENSITY, knownParameter1, knownParameter2, knownParameter3));
         air.setSpecificEnthalpy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTHALPY, knownParameter1, knownParameter2, knownParameter3));
         air.setHeatCapacity(FluidData.findAirParameter(ParameterType.HEAT_CAPACITY, knownParameter1, knownParameter2, knownParameter3));
         air.setSpecificEntropy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTROPY, knownParameter1, knownParameter2, knownParameter3));
-        air.setSpecificVolume(air.getDensity().inverse());
-        air.setQuality(FluidData.findAirParameter(ParameterType.QUALITY, knownParameter1, knownParameter2, knownParameter3));
+        //air.setSpecificVolume(air.getDensity().inverse());
+        //air.setQuality(FluidData.findAirParameter(ParameterType.QUALITY, knownParameter1, knownParameter2, knownParameter3));
         try {
             air.setGaugePressure(air.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
         } catch (NullPointerException e) {

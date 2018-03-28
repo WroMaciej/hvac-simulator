@@ -44,7 +44,7 @@ public enum ParameterType {
     /**
      * Relative humidity of AIR 0-1
      */
-    RELATIVE_HUMIDITY("R","%"),
+    RELATIVE_HUMIDITY("R","Pa/Pa"),
 
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
@@ -54,11 +54,15 @@ public enum ParameterType {
     /**
      * wetbulb temperature of AIR
      */
-    WET_BULB_TEMPERATURE("Twb","K"),
+    WET_BULB_TEMPERATURE("T_wb","K"),
     /**
      * dewpoint of AIR
      */
-    DEW_POINT_TEMPERATURE("Tdp","K");
+    DEW_POINT_TEMPERATURE("T_dp","K"),
+    /**
+     * Absolute pressure
+     */
+    AIR_PRESSURE("P","kPa");
 
 
 

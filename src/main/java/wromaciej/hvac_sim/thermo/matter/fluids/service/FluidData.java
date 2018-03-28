@@ -54,6 +54,7 @@ public abstract class FluidData {
                         knownParameter3.getValueInThermoCPUnit()
                 )
         );
+        System.out.println(wantedParameterType.toString()+" : "+ wantedParameter);
         return wantedParameter;
     }
 
