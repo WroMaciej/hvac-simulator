@@ -31,7 +31,38 @@ public final class Air extends Fluid {
 //        moistureContent=new AirParameter<>(UnitSystem.getActualUnitSystem().getMoistureContentUnit());
 //        dewPointTemperature =new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
 //        wetBulbTemperature=new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
+    }
 
+    public Parameter<RelativeHumidity> getRelativeHumidity() {
+        return relativeHumidity;
+    }
+
+    public void setRelativeHumidity(Parameter<RelativeHumidity> relativeHumidity) {
+        this.relativeHumidity = relativeHumidity;
+    }
+
+    public Parameter<MoistureContent> getMoistureContent() {
+        return moistureContent;
+    }
+
+    public void setMoistureContent(Parameter<MoistureContent> moistureContent) {
+        this.moistureContent = moistureContent;
+    }
+
+    public Parameter<Temperature> getDewPointTemperature() {
+        return dewPointTemperature;
+    }
+
+    public void setDewPointTemperature(Parameter<Temperature> dewPointTemperature) {
+        this.dewPointTemperature = dewPointTemperature;
+    }
+
+    public Parameter<Temperature> getWetBulbTemperature() {
+        return wetBulbTemperature;
+    }
+
+    public void setWetBulbTemperature(Parameter<Temperature> wetBulbTemperature) {
+        this.wetBulbTemperature = wetBulbTemperature;
     }
 
     @Override

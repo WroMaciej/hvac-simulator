@@ -2,6 +2,10 @@ package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
 
 import javax.measure.unit.Unit;
 
+/**
+ * List of specific parameters which are available in fluid library
+ */
+
 public enum ParameterType {
     /**
      * Parameter unknown at that moment
