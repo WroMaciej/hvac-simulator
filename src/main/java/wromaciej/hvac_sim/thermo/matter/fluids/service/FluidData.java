@@ -8,7 +8,16 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 /**
  * ThermoCP library ADAPTER
  */
-public abstract class ParametersData {
+public abstract class FluidData {
+
+    public static void loadLibrary(){
+        try{
+            System.loadLibrary("CoolProp");
+        }
+        catch(UnsatisfiedLinkError e){
+            throw new UnsatisfiedLinkError("Error: can`t find fluid data library");
+        }
+    }
 
     public static Parameter findParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR)
@@ -56,6 +65,6 @@ public abstract class ParametersData {
         return findParameter(wantedParameterType, fluidName, knownParameter1, knownParameter2);
     }
 
-    public ParametersData() {
+    public FluidData() {
     }
 }

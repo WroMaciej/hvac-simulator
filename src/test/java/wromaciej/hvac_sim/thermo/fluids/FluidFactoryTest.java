@@ -5,6 +5,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
@@ -16,7 +17,7 @@ public class FluidFactoryTest {
 
     static{
         //load library
-        System.loadLibrary("CoolProp");
+        FluidData.loadLibrary();
     }
 
     @Test

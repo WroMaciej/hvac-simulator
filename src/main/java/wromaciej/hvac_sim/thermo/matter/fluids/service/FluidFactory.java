@@ -21,15 +21,15 @@ public abstract class FluidFactory {
         Fluid fluid = new Fluid();
         fluid.setFluidName(fluidName);
         fluid.setFluidType(FluidType.GENERAL);
-        fluid.setAbsolutePressure(ParametersData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
-        fluid.setTemperature(ParametersData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setDensity(ParametersData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEnthalpy(ParametersData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
-        fluid.setHeatCapacity(ParametersData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEntropy(ParametersData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setAbsolutePressure(FluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2) );
+        fluid.setTemperature(FluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
+        fluid.setDensity(FluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEnthalpy(FluidData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setHeatCapacity(FluidData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEntropy(FluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
         fluid.setSpecificVolume(fluid.getDensity().inverse());
 
-        fluid.setQuality(ParametersData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setQuality(FluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
 
         try{
             fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
