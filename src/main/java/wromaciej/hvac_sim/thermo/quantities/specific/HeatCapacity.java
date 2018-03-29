@@ -11,5 +11,5 @@ import javax.measure.unit.Unit;
 public interface HeatCapacity extends FluidQuantity, SolidQuantity, AirQuantity {
 
     public final static Unit<HeatCapacity> UNIT =
-            new ProductUnit<HeatCapacity>(SI.JOULE.divide(SI.KILOGRAM.divide(SI.KELVIN)));
+            new ProductUnit<HeatCapacity>(SI.JOULE.divide(SI.KILOGRAM.times(SI.KELVIN)));
 }

@@ -17,7 +17,7 @@ public enum ParameterType {
      */
     TEMPERATURE("T","K"),
     /**
-     * Absolute pressure
+     * Absolute pressure of general fluid
      */
     PRESSURE("P","Pa"),
     /**
@@ -44,25 +44,35 @@ public enum ParameterType {
     /**
      * Relative humidity of AIR 0-1
      */
-    RELATIVE_HUMIDITY("R","Pa/Pa"),
+    AIR_RELATIVE_HUMIDITY("R","Pa/Pa"),
 
     /**
      * absolute humidity of AIR kg_H2O/kgDRY
      */
-    MOISTURE_CONTENT("W","kg/kg"),
+    AIR_MOISTURE_CONTENT("W","kg/kg"),
 
     /**
      * wetbulb temperature of AIR
      */
-    WET_BULB_TEMPERATURE("T_wb","K"),
+    AIR_WET_BULB_TEMPERATURE("T_wb","K"),
     /**
      * dewpoint of AIR
      */
-    DEW_POINT_TEMPERATURE("T_dp","K"),
+    AIR_DEW_POINT_TEMPERATURE("T_dp","K"),
     /**
-     * Absolute pressure
+     * Absolute pressure of Air
      */
-    AIR_PRESSURE("P","kPa");
+    AIR_PRESSURE("P","kPa"),
+    /**
+     * Specific volume of Air
+     */
+    AIR_SPECIFIC_VOLUME("V","(m^3)/kg"),
+    /**
+     * Specific volume of Air
+     */
+    AIR_WATER_PARTIAL_PRESSURE("P_w","kPa");
+
+
 
 
 

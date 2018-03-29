@@ -14,7 +14,11 @@ import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 
 import javax.measure.quantity.Dimensionless;
 import javax.measure.unit.NonSI;
+import javax.measure.unit.ProductUnit;
 import javax.measure.unit.SI;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class FluidFactoryTest {
 
@@ -24,29 +28,29 @@ public class FluidFactoryTest {
     }
 
     @Test
-    public void shouldReturnFluidParametersAfterCreationInFactory() {
+    public void shouldReturnAbout4200JperkgKForStandardWaterHeatCapacity() {
+        //GIVEN
         Parameter<Temperature> temperature = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1.0);
-
+        //WHEN
         Fluid fluid = FluidFactory.createFluid(FluidName.WATER, temperature, pressure);
+        fluid.getHeatCapacity().setActualUnit(new ProductUnit<>(SI.JOULE.divide(SI.KILOGRAM.times(SI.KELVIN))));
 
-        System.out.println(fluid.getTemperature());
-        System.out.println(fluid.getHeatCapacity());
+        //THEN
+        assertEquals(fluid.getHeatCapacity().getValue(),4200, 100);
     }
 
     @Test
-    public void shouldReturnAirParametersAfterCreationInFactory() {
+    public void shouldReturn74gPerKgForStandardAir() {
+        //GIVEN
         Parameter<Temperature> temperature = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
-        Parameter<RelativeHumidity> relativeHumidity = new Parameter<>(ParameterType.RELATIVE_HUMIDITY, Dimensionless.UNIT.asType(RelativeHumidity.class), 0.5);
+        Parameter<RelativeHumidity> relativeHumidity = new Parameter<>(ParameterType.AIR_RELATIVE_HUMIDITY, Dimensionless.UNIT.asType(RelativeHumidity.class), 0.5);
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.AIR_PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
-
+        //WHEN
         Air air = FluidFactory.createAir(temperature, relativeHumidity, pressure);
+        //THEN
+        assertEquals(air.getMoistureContent().getValue(),0.0074, 0.0001);
 
-        System.out.println(air.getTemperature());
-        System.out.println(air.getAbsolutePressure());
 
-        System.out.println(air.getMoistureContent());
-        System.out.println(air.getWetBulbTemperature());
-        System.out.println(air.getDewPointTemperature());
     }
 }

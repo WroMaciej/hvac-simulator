@@ -8,6 +8,8 @@ import javax.measure.unit.Unit;
 
 public class Parameter<Q extends AnyQuantity> {
 
+    public static Parameter<?> ONE = amountToParameter(Amount.ONE);
+
     private Amount<Q> amount;
 
     private Unit<Q> actualUnit;

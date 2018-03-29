@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
+import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 
@@ -15,22 +16,26 @@ public final class Air extends Fluid {
      */
     private Parameter<MoistureContent> moistureContent;
     /**
+     * Content of steam in mixture kgH2O/kgWET
+     */
+    private Parameter<MoistureContent> waterFraction;
+    /**
      * Temperature of Dewpoint (x=idem)
      */
     private Parameter<Temperature> dewPointTemperature;
-     /**
+    /**
      * Temperature of wet bult (h=idem)
      */
     private Parameter<Temperature> wetBulbTemperature;
+    /**
+     * Partial pressure of water in mixture
+     */
+    private Parameter<Pressure> waterPartialPressure;
 
 
 
-    public Air(){
+    public Air() {
         super();
-//        relativeHumidity=new AirParameter<>(UnitSystem.getActualUnitSystem().getRelativeHumidityUnit());
-//        moistureContent=new AirParameter<>(UnitSystem.getActualUnitSystem().getMoistureContentUnit());
-//        dewPointTemperature =new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
-//        wetBulbTemperature=new AirParameter<>(UnitSystem.getActualUnitSystem().getTemperatureUnit());
     }
 
     public Parameter<RelativeHumidity> getRelativeHumidity() {
@@ -65,11 +70,27 @@ public final class Air extends Fluid {
         this.wetBulbTemperature = wetBulbTemperature;
     }
 
+    public Parameter<MoistureContent> getWaterFraction() {
+        return waterFraction;
+    }
+
+    public void setWaterFraction(Parameter<MoistureContent> waterFraction) {
+        this.waterFraction = waterFraction;
+    }
+
+    public Parameter<Pressure> getWaterPartialPressure() {
+        return waterPartialPressure;
+    }
+
+    public void setWaterPartialPressure(Parameter<Pressure> waterPartialPressure) {
+        this.waterPartialPressure = waterPartialPressure;
+    }
+
     @Override
     public String toString() {
         return super.toString()
-                +" rh: "+ relativeHumidity.toString() + System.lineSeparator()
-                +" x: "+moistureContent.toString() + System.lineSeparator();
+                + " rh: " + relativeHumidity.toString() + System.lineSeparator()
+                + " x: " + moistureContent.toString() + System.lineSeparator();
     }
 
 

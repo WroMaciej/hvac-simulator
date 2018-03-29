@@ -5,7 +5,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
-import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
+import wromaciej.hvac_sim.thermo.quantities.specific.Quality;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
@@ -58,12 +58,13 @@ public abstract class FluidFactory {
         air.setFluidType(FluidType.AIR);
         air.setAbsolutePressure(FluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
         air.setTemperature(FluidData.findAirParameter(ParameterType.TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
-        //air.setDensity(FluidData.findAirParameter(ParameterType.DENSITY, knownParameter1, knownParameter2, knownParameter3));
+        air.setSpecificVolume(FluidData.findAirParameter(ParameterType.AIR_SPECIFIC_VOLUME, knownParameter1, knownParameter2, knownParameter3));
+        air.setDensity(air.getSpecificVolume().inverse());
         air.setSpecificEnthalpy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTHALPY, knownParameter1, knownParameter2, knownParameter3));
         air.setHeatCapacity(FluidData.findAirParameter(ParameterType.HEAT_CAPACITY, knownParameter1, knownParameter2, knownParameter3));
         air.setSpecificEntropy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTROPY, knownParameter1, knownParameter2, knownParameter3));
-        //air.setSpecificVolume(air.getDensity().inverse());
-        //air.setQuality(FluidData.findAirParameter(ParameterType.QUALITY, knownParameter1, knownParameter2, knownParameter3));
+
+        air.setQuality(new Parameter<>(Quality.UNIT, 1.0));
         try {
             air.setGaugePressure(air.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
         } catch (NullPointerException e) {
@@ -71,10 +72,12 @@ public abstract class FluidFactory {
         }
         air.setAbsoluteTemperature(air.getTemperature());
         air.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
-        air.setRelativeHumidity(FluidData.findAirParameter(ParameterType.RELATIVE_HUMIDITY, knownParameter1, knownParameter2, knownParameter3));
-        air.setMoistureContent(FluidData.findAirParameter(ParameterType.MOISTURE_CONTENT, knownParameter1, knownParameter2, knownParameter3));
-        air.setDewPointTemperature(FluidData.findAirParameter(ParameterType.DEW_POINT_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
-        air.setWetBulbTemperature(FluidData.findAirParameter(ParameterType.WET_BULB_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setRelativeHumidity(FluidData.findAirParameter(ParameterType.AIR_RELATIVE_HUMIDITY, knownParameter1, knownParameter2, knownParameter3));
+        air.setMoistureContent(FluidData.findAirParameter(ParameterType.AIR_MOISTURE_CONTENT, knownParameter1, knownParameter2, knownParameter3));
+        air.setDewPointTemperature(FluidData.findAirParameter(ParameterType.AIR_DEW_POINT_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setWetBulbTemperature(FluidData.findAirParameter(ParameterType.AIR_WET_BULB_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setWaterFraction(air.getMoistureContent().divide(Parameter.ONE.plus(air.getMoistureContent())));
+        air.setWaterPartialPressure(FluidData.findAirParameter(ParameterType.AIR_WATER_PARTIAL_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
 
         air.setStateOfMatter(setStateOfMatter(air));
         air.setCalculated(true);
