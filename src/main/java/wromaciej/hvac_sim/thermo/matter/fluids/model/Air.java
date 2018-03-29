@@ -86,12 +86,7 @@ public final class Air extends Fluid {
         this.waterPartialPressure = waterPartialPressure;
     }
 
-    @Override
-    public String toString() {
-        return super.toString()
-                + " rh: " + relativeHumidity.toString() + System.lineSeparator()
-                + " x: " + moistureContent.toString() + System.lineSeparator();
-    }
+
 
 
 }

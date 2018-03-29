@@ -81,15 +81,6 @@ public class Fluid {
     }
 
 
-    @Override
-    public String toString() {
-
-        return "Name: " + fluidName.enumToString() + System.lineSeparator()
-                +" temperature: "+temperature.toString() + System.lineSeparator()
-                + " pressure: "+absolutePressure.toString() + System.lineSeparator()
-                +" enthalpy: " +specificEnthalpy.toString() + System.lineSeparator();
-    }
-
     public FluidType getFluidType() {
         return fluidType;
     }
