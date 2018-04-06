@@ -25,4 +25,9 @@ public class IdealProcess {
         if (fluid.getFluidType() == FluidType.AIR) return FluidFactory.createAir(fluid.getSpecificEntropy(), endParameter, fluid.getAbsolutePressure());
         return FluidFactory.createFluid(fluid.getFluidName(), fluid.getSpecificEntropy(), endParameter);
     }
+
+    public static Fluid isEnthalpic(Fluid fluid, Parameter endParameter){
+        if (fluid.getFluidType() == FluidType.AIR) return FluidFactory.createAir(fluid.getSpecificEnthalpy(), endParameter, fluid.getAbsolutePressure());
+        return FluidFactory.createFluid(fluid.getFluidName(), fluid.getSpecificEnthalpy(), endParameter);
+    }
 }
