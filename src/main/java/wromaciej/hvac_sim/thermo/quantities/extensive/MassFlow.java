@@ -7,6 +7,5 @@ import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
 public interface MassFlow extends MatterFlow {
-    public final static Unit<MassFlow> UNIT =
-            new ProductUnit<MassFlow>(SI.KILOGRAM.divide(SI.SECOND));
+    Unit<MassFlow> UNIT = new ProductUnit<>(SI.KILOGRAM.divide(SI.SECOND));
 }

@@ -1,14 +1,14 @@
 package wromaciej.hvac_sim.thermo.quantities.specific;
 
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
-import wromaciej.hvac_sim.thermo.quantities.base.FluidQuantity;
+import wromaciej.hvac_sim.thermo.quantities.base.AnyQuantity;
 
 import javax.measure.quantity.Dimensionless;
 import javax.measure.unit.ProductUnit;
-import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
-public interface RelativeHumidity extends AirQuantity {
+public interface Efficiency extends AnyQuantity {
 
-    Unit<RelativeHumidity> UNIT = new ProductUnit<>(SI.PASCAL.divide(SI.PASCAL));
+    Unit<Efficiency> UNIT = new ProductUnit<>(Dimensionless.UNIT);
+
 }

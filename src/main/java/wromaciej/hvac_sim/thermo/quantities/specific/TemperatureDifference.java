@@ -8,6 +8,6 @@ import javax.measure.unit.Unit;
 
 public interface TemperatureDifference extends FluidQuantity {
 
-    public final static Unit<TemperatureDifference> UNIT = (Unit) SI.KELVIN;
+    Unit<TemperatureDifference> UNIT = (Unit) SI.KELVIN;
 }
 

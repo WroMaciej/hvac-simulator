@@ -16,6 +16,8 @@ import wromaciej.hvac_sim.thermo.quantities.specific.TemperatureDifference;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class IdealProcessTest {
@@ -40,6 +42,7 @@ public class IdealProcessTest {
 
         //THEN
         assertEquals(deltaTempDuringEnthalpyCalculation.getValue(), deltaTempDuringProcess.getValue(), 0.1);
+
 
 
 

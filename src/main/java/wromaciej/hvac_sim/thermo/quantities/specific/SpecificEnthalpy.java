@@ -9,6 +9,5 @@ import javax.measure.unit.Unit;
 
 public interface SpecificEnthalpy extends FluidQuantity, AirQuantity {
 
-    Unit<SpecificEnthalpy> UNIT =
-            new ProductUnit(SI.JOULE.divide(SI.KILOGRAM));
+    Unit<SpecificEnthalpy> UNIT = new ProductUnit(SI.JOULE.divide(SI.KILOGRAM));
 }

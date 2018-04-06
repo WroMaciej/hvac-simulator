@@ -7,6 +7,5 @@ import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
 public interface VolumeFlow extends MatterFlow {
-    public final static Unit<VolumeFlow> UNIT =
-            new ProductUnit<VolumeFlow>(SI.CUBIC_METRE.divide(SI.SECOND));
+    Unit<VolumeFlow> UNIT = new ProductUnit<>(SI.CUBIC_METRE.divide(SI.SECOND));
 }

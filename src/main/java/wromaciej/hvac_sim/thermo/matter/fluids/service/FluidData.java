@@ -8,7 +8,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 /**
  * ThermoCP library ADAPTER
  */
-public abstract class FluidData {
+public class FluidData {
 
     public static void loadLibrary(){
         try{

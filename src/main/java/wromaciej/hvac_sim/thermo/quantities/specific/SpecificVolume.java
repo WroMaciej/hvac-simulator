@@ -11,7 +11,6 @@ import javax.measure.unit.Unit;
 
 public interface SpecificVolume extends FluidQuantity, SolidQuantity, AirQuantity {
 
-    public final static Unit<SpecificVolume> UNIT =
-            new ProductUnit<SpecificVolume>(SI.CUBIC_METRE.divide(SI.KILOGRAM));
+    Unit<SpecificVolume> UNIT = new ProductUnit<>(SI.CUBIC_METRE.divide(SI.KILOGRAM));
 }
 

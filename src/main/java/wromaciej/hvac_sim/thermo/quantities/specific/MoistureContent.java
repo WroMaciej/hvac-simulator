@@ -9,6 +9,5 @@ import javax.measure.unit.Unit;
 
 public interface MoistureContent extends AirQuantity {
 
-    public final static Unit<MoistureContent> UNIT =
-            new ProductUnit<MoistureContent>(Dimensionless.UNIT);
+    Unit<MoistureContent> UNIT = new ProductUnit<>(Dimensionless.UNIT);
 }

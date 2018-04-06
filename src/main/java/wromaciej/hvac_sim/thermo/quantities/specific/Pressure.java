@@ -9,5 +9,5 @@ import javax.measure.unit.Unit;
 
 public interface Pressure extends FluidQuantity, AirQuantity {
 
-    public final static Unit<Pressure> UNIT =(Unit) SI.PASCAL;
+    Unit<Pressure> UNIT = (Unit) SI.PASCAL;
 }

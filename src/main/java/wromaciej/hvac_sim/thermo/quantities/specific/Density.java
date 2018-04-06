@@ -10,7 +10,6 @@ import javax.measure.unit.Unit;
 
 public interface Density extends FluidQuantity, SolidQuantity, AirQuantity {
 
-    public final static Unit<Density> UNIT =
-            new ProductUnit<Density>(SI.KILOGRAM.divide(SI.CUBIC_METRE));
+    Unit<Density> UNIT = new ProductUnit<>(SI.KILOGRAM.divide(SI.CUBIC_METRE));
 }
 

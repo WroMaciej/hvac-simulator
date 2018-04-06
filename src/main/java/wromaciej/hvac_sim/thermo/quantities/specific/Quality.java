@@ -8,6 +8,5 @@ import javax.measure.unit.Unit;
 
 public interface Quality extends FluidQuantity {
 
-    public final static Unit<Quality> UNIT =
-            new ProductUnit<Quality>(Dimensionless.UNIT);
+    Unit<Quality> UNIT = new ProductUnit<>(Dimensionless.UNIT);
 }
