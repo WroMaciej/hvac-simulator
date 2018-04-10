@@ -6,6 +6,8 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
+import java.util.Objects;
+
 
 public class Fluid {
 
@@ -75,11 +77,26 @@ public class Fluid {
      */
     private Parameter<Density> density;
 
-
     public Fluid() {
         isCalculated=false;
     }
 
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        Fluid fluid = (Fluid) that;
+
+        return fluidName == fluid.fluidName &&
+                Objects.equals(temperature, fluid.temperature) &&
+                Objects.equals(absolutePressure, fluid.absolutePressure) &&
+                Objects.equals(specificEntropy, fluid.specificEntropy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fluidName, temperature, absolutePressure, specificEntropy);
+    }
 
     public FluidType getFluidType() {
         return fluidType;

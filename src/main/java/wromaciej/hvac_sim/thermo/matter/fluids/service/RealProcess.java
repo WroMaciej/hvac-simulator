@@ -3,6 +3,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids.service;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.specific.Efficiency;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
@@ -16,12 +17,9 @@ public class RealProcess {
     public static Fluid compression(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
         Parameter<SpecificEnthalpy> idealWork = getEnthalpyDifference(fluid, idealCompression(fluid, endParameter));
         Parameter<SpecificEnthalpy> realWork = idealWork.divide(efficiency);
-
-        Parameter<SpecificEnthalpy> enthalpyAfterIdealCompression = fluid.getSpecificEnthalpy().plus(idealWork);
         Parameter<SpecificEnthalpy> enthalpyAfterRealCompression = fluid.getSpecificEnthalpy().plus(realWork);
-
-        Fluid fluidAfterIdealCompression = idealCompression(fluid, enthalpyAfterIdealCompression);
-        return IdealProcess.isoBaric(fluidAfterIdealCompression, enthalpyAfterRealCompression);
+        enthalpyAfterRealCompression.setParameterType(ParameterType.SPECIFIC_ENTHALPY);
+        return FluidFactory.createFluid(fluid.getFluidName(), endParameter, enthalpyAfterRealCompression);
     }
 
     public static Fluid expansion(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
