@@ -10,41 +10,49 @@ import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 
 public class RealProcess {
 
-    public static Parameter<SpecificEnthalpy> getEnthalpyDifference(Fluid beforeProcess, Fluid afterProcess) {
+    private IdealProcess idealProcess;
+    private FluidFactory fluidFactory;
+
+    public RealProcess(IdealProcess idealProcess, FluidFactory fluidFactory) {
+        this.idealProcess = idealProcess;
+        this.fluidFactory = fluidFactory;
+    }
+
+    public Parameter<SpecificEnthalpy> getEnthalpyDifference(Fluid beforeProcess, Fluid afterProcess) {
         return afterProcess.getSpecificEnthalpy().minus(beforeProcess.getSpecificEnthalpy());
     }
 
-    public static Fluid compression(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
+    public Fluid compression(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
         Parameter<SpecificEnthalpy> idealWork = getEnthalpyDifference(fluid, idealCompression(fluid, endParameter));
         Parameter<SpecificEnthalpy> realWork = idealWork.divide(efficiency);
         Parameter<SpecificEnthalpy> enthalpyAfterRealCompression = fluid.getSpecificEnthalpy().plus(realWork);
         enthalpyAfterRealCompression.setParameterType(ParameterType.SPECIFIC_ENTHALPY);
-        return FluidFactory.createFluid(fluid.getFluidName(), endParameter, enthalpyAfterRealCompression);
+        return fluidFactory.createFluid(fluid.getFluidName(), endParameter, enthalpyAfterRealCompression);
     }
 
-    public static Fluid expansion(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
+    public Fluid expansion(Fluid fluid, Parameter endParameter, Parameter<Efficiency> efficiency) {
         return compression(fluid, endParameter, efficiency);
     }
 
-    public static Fluid idealCompression(Fluid fluid, Parameter endParameter) {
-        return IdealProcess.isEntropic(fluid, endParameter);
+    public Fluid idealCompression(Fluid fluid, Parameter endParameter) {
+        return idealProcess.isEntropic(fluid, endParameter);
     }
 
-    public static Fluid idealExpansion(Fluid fluid, Parameter endParameter) {
+    public Fluid idealExpansion(Fluid fluid, Parameter endParameter) {
         return idealCompression(fluid, endParameter);
     }
 
-    public static Fluid throttling(Fluid fluid, Parameter endParameter) {
-        return IdealProcess.isEnthalpic(fluid, endParameter);
+    public Fluid throttling(Fluid fluid, Parameter endParameter) {
+        return idealProcess.isEnthalpic(fluid, endParameter);
     }
 
-    public static Fluid humidification(Air air, Parameter endParameter) {
-        return IdealProcess.isEnthalpic(air, endParameter);
+    public Fluid humidification(Air air, Parameter endParameter) {
+        return idealProcess.isEnthalpic(air, endParameter);
     }
 
-    public static Fluid heatExchange(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureLoss) {
+    public Fluid heatExchange(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureLoss) {
         Fluid fluidAfterThrottling = throttling(fluid, fluid.getAbsolutePressure().minus(pressureLoss));
-        return IdealProcess.isoBaric(fluidAfterThrottling, endParameter);
+        return idealProcess.isoBaric(fluidAfterThrottling, endParameter);
     }
 
 

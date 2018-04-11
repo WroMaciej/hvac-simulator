@@ -12,14 +12,17 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
-public abstract class FluidFactory {
+public class FluidFactory {
 
-    public static StateOfMatter setStateOfMatter(Fluid fluid) {
+    public FluidFactory() {
+    }
+
+    public StateOfMatter setStateOfMatter(Fluid fluid) {
         return StateOfMatter.UNDEFINED;
     }
 
 
-    public static Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
+    public Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR) return createAirAtAtmosphericPressure(knownParameter1, knownParameter2);
         Fluid fluid = new Fluid();
         fluid.setFluidName(fluidName);
@@ -45,14 +48,14 @@ public abstract class FluidFactory {
         return fluid;
     }
 
-    public static Air createAirAtAtmosphericPressure(Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2) {
+    public Air createAirAtAtmosphericPressure(Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2) {
         if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null)
             return createAir(parameter1, parameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
         return createAir(parameter1, parameter2, new Parameter(NonSI.BAR, 1));
 
     }
 
-    public static Air createAir(Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
+    public Air createAir(Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
         Air air = new Air();
         air.setFluidName(FluidName.MOIST_AIR);
         air.setFluidType(FluidType.AIR);
