@@ -32,11 +32,11 @@ public abstract class FluidFactory {
         fluid.setSpecificEntropy(FluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
         fluid.setSpecificVolume(fluid.getDensity().inverse());
         fluid.setQuality(FluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
-        try {
+        if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null)
             fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
-        } catch (NullPointerException e) {
-            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
-        }
+       else
+           fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+
         fluid.setAbsoluteTemperature(fluid.getTemperature());
         fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
