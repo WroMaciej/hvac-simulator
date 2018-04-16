@@ -35,7 +35,7 @@ public class RealProcess {
     }
 
     public Fluid idealCompression(Fluid fluid, Parameter endParameter) {
-        return idealProcess.isEntropic(fluid, endParameter);
+        return idealProcess.isentropic(fluid, endParameter);
     }
 
     public Fluid idealExpansion(Fluid fluid, Parameter endParameter) {
@@ -43,16 +43,16 @@ public class RealProcess {
     }
 
     public Fluid throttling(Fluid fluid, Parameter endParameter) {
-        return idealProcess.isEnthalpic(fluid, endParameter);
+        return idealProcess.isenthalpic(fluid, endParameter);
     }
 
     public Fluid humidification(Air air, Parameter endParameter) {
-        return idealProcess.isEnthalpic(air, endParameter);
+        return idealProcess.isenthalpic(air, endParameter);
     }
 
     public Fluid heatExchange(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureLoss) {
         Fluid fluidAfterThrottling = throttling(fluid, fluid.getAbsolutePressure().minus(pressureLoss));
-        return idealProcess.isoBaric(fluidAfterThrottling, endParameter);
+        return idealProcess.isobaric(fluidAfterThrottling, endParameter);
     }
 
 

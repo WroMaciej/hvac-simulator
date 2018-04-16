@@ -16,26 +16,26 @@ import wromaciej.hvac_sim.thermo.quantities.specific.TemperatureDifference;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class IdealProcessTest {
 
-    static {
-        //load library
-        FluidData.loadLibrary();
-    }
+
 
     @Test
     public void shouldReturnSameTemperatureDifferenceByIsobaricHeatingOfWaterAndEquationCalculation(){
         //GIVEN
+        FluidData fluidData = new FluidData();
+        fluidData.loadLibrary();
+        FluidFactory fluidFactory= new FluidFactory(fluidData);
+        IdealProcess idealProcess = new IdealProcess(fluidFactory);
+
         Parameter<Temperature> temperatureBeforeIsobaricProcess = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<Temperature> temperatureAfterIsobaricProcess = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 50);
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1.0);
-        Fluid fluidBeforeProcess = FluidFactory.createFluid(FluidName.WATER, temperatureBeforeIsobaricProcess, pressure);
+        Fluid fluidBeforeProcess = fluidFactory.createFluid(FluidName.WATER, temperatureBeforeIsobaricProcess, pressure);
         //WHEN
-        Fluid fluidAfterProcess = IdealProcess.isoBaric(fluidBeforeProcess, temperatureAfterIsobaricProcess);
+        Fluid fluidAfterProcess = idealProcess.isobaric(fluidBeforeProcess, temperatureAfterIsobaricProcess);
         Parameter<TemperatureDifference> deltaTempDuringProcess= fluidAfterProcess.getTemperature().minus(fluidBeforeProcess.getTemperature());
         Parameter<SpecificEnthalpy> deltaEnthalpyDuringProcess = fluidAfterProcess.getSpecificEnthalpy().minus(fluidBeforeProcess.getSpecificEnthalpy());
         Parameter<Temperature> deltaTempDuringEnthalpyCalculation = deltaEnthalpyDuringProcess.divide(fluidAfterProcess.getHeatCapacity());

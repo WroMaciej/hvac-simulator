@@ -10,7 +10,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
  */
 public class FluidData {
 
-    public static void loadLibrary(){
+    public void loadLibrary(){
         try{
             System.loadLibrary("CoolProp");
         }
@@ -19,7 +19,7 @@ public class FluidData {
         }
     }
 
-    public static Parameter findParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
+    public Parameter findParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR)
             return findAirParameterAtAtmosphericPressure(wantedParameterType, knownParameter1, knownParameter2);
 
@@ -39,7 +39,7 @@ public class FluidData {
         return wantedParameter;
     }
 
-    public static Parameter findAirParameter(ParameterType wantedParameterType, Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
+    public Parameter findAirParameter(ParameterType wantedParameterType, Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
         Parameter wantedParameter = new Parameter();
         wantedParameter.setParameterType(wantedParameterType);
         wantedParameter.setActualUnit(wantedParameterType.getUnitInThermoCP());
@@ -57,11 +57,11 @@ public class FluidData {
         return wantedParameter;
     }
 
-    public static Parameter findAirParameterAtAtmosphericPressure(ParameterType wantedParameterType, Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2) {
+    public Parameter findAirParameterAtAtmosphericPressure(ParameterType wantedParameterType, Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2) {
         return findAirParameter(wantedParameterType, knownParameter1, knownParameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
     }
 
-    public static Parameter findRefrigerantParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2){
+    public Parameter findRefrigerantParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2){
         return findParameter(wantedParameterType, fluidName, knownParameter1, knownParameter2);
     }
 

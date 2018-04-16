@@ -14,7 +14,10 @@ import javax.measure.unit.SI;
 
 public class FluidFactory {
 
-    public FluidFactory() {
+    private FluidData fluidData;
+
+    public FluidFactory(FluidData fluidData) {
+        this.fluidData = fluidData;
     }
 
     public StateOfMatter setStateOfMatter(Fluid fluid) {
@@ -27,14 +30,14 @@ public class FluidFactory {
         Fluid fluid = new Fluid();
         fluid.setFluidName(fluidName);
         fluid.setFluidType(FluidType.GENERAL);
-        fluid.setAbsolutePressure(FluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setTemperature(FluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setDensity(FluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEnthalpy(FluidData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
-        fluid.setHeatCapacity(FluidData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEntropy(FluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
+        fluid.setTemperature(fluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
+        fluid.setDensity(fluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEnthalpy(fluidData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
+        fluid.setHeatCapacity(fluidData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setSpecificEntropy(fluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
         fluid.setSpecificVolume(fluid.getDensity().inverse());
-        fluid.setQuality(FluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
+        fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
         if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null)
             fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
        else
@@ -59,13 +62,13 @@ public class FluidFactory {
         Air air = new Air();
         air.setFluidName(FluidName.MOIST_AIR);
         air.setFluidType(FluidType.AIR);
-        air.setAbsolutePressure(FluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
-        air.setTemperature(FluidData.findAirParameter(ParameterType.TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
-        air.setSpecificVolume(FluidData.findAirParameter(ParameterType.AIR_SPECIFIC_VOLUME, knownParameter1, knownParameter2, knownParameter3));
+        air.setAbsolutePressure(fluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setTemperature(fluidData.findAirParameter(ParameterType.TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setSpecificVolume(fluidData.findAirParameter(ParameterType.AIR_SPECIFIC_VOLUME, knownParameter1, knownParameter2, knownParameter3));
         air.setDensity(air.getSpecificVolume().inverse());
-        air.setSpecificEnthalpy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTHALPY, knownParameter1, knownParameter2, knownParameter3));
-        air.setHeatCapacity(FluidData.findAirParameter(ParameterType.HEAT_CAPACITY, knownParameter1, knownParameter2, knownParameter3));
-        air.setSpecificEntropy(FluidData.findAirParameter(ParameterType.SPECIFIC_ENTROPY, knownParameter1, knownParameter2, knownParameter3));
+        air.setSpecificEnthalpy(fluidData.findAirParameter(ParameterType.SPECIFIC_ENTHALPY, knownParameter1, knownParameter2, knownParameter3));
+        air.setHeatCapacity(fluidData.findAirParameter(ParameterType.HEAT_CAPACITY, knownParameter1, knownParameter2, knownParameter3));
+        air.setSpecificEntropy(fluidData.findAirParameter(ParameterType.SPECIFIC_ENTROPY, knownParameter1, knownParameter2, knownParameter3));
 
         air.setQuality(new Parameter<>(Quality.UNIT, 1.0));
         try {
@@ -75,12 +78,12 @@ public class FluidFactory {
         }
         air.setAbsoluteTemperature(air.getTemperature());
         air.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
-        air.setRelativeHumidity(FluidData.findAirParameter(ParameterType.AIR_RELATIVE_HUMIDITY, knownParameter1, knownParameter2, knownParameter3));
-        air.setMoistureContent(FluidData.findAirParameter(ParameterType.AIR_MOISTURE_CONTENT, knownParameter1, knownParameter2, knownParameter3));
-        air.setDewPointTemperature(FluidData.findAirParameter(ParameterType.AIR_DEW_POINT_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
-        air.setWetBulbTemperature(FluidData.findAirParameter(ParameterType.AIR_WET_BULB_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setRelativeHumidity(fluidData.findAirParameter(ParameterType.AIR_RELATIVE_HUMIDITY, knownParameter1, knownParameter2, knownParameter3));
+        air.setMoistureContent(fluidData.findAirParameter(ParameterType.AIR_MOISTURE_CONTENT, knownParameter1, knownParameter2, knownParameter3));
+        air.setDewPointTemperature(fluidData.findAirParameter(ParameterType.AIR_DEW_POINT_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setWetBulbTemperature(fluidData.findAirParameter(ParameterType.AIR_WET_BULB_TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
         air.setWaterFraction(air.getMoistureContent().divide(Parameter.ONE.plus(air.getMoistureContent())));
-        air.setWaterPartialPressure(FluidData.findAirParameter(ParameterType.AIR_WATER_PARTIAL_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
+        air.setWaterPartialPressure(fluidData.findAirParameter(ParameterType.AIR_WATER_PARTIAL_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
 
         air.setStateOfMatter(setStateOfMatter(air));
         air.setCalculated(true);

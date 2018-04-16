@@ -12,27 +12,27 @@ public class IdealProcess {
         this.fluidFactory = fluidFactory;
     }
 
-    public Fluid isoThermal(Fluid fluid, Parameter endParameter){
+    public Fluid isothermal(Fluid fluid, Parameter endParameter){
         if (fluid.getFluidType() == FluidType.AIR) return fluidFactory.createAir(fluid.getTemperature(), endParameter, fluid.getAbsolutePressure());
         return fluidFactory.createFluid(fluid.getFluidName(), fluid.getTemperature(), endParameter);
     }
 
-    public Fluid isoBaric(Fluid fluid, Parameter endParameter){
+    public Fluid isobaric(Fluid fluid, Parameter endParameter){
         if (fluid.getFluidType() == FluidType.AIR) return fluidFactory.createAir(fluid.getAbsolutePressure(), endParameter, fluid.getAbsolutePressure());
         return fluidFactory.createFluid(fluid.getFluidName(), fluid.getAbsolutePressure(), endParameter);
     }
 
-    public Fluid isoChoric(Fluid fluid, Parameter endParameter){
+    public Fluid isochoric(Fluid fluid, Parameter endParameter){
         if (fluid.getFluidType() == FluidType.AIR) return fluidFactory.createAir(fluid.getSpecificVolume(), endParameter, fluid.getAbsolutePressure());
         return fluidFactory.createFluid(fluid.getFluidName(), fluid.getSpecificVolume(), endParameter);
     }
 
-    public Fluid isEntropic(Fluid fluid, Parameter endParameter){
+    public Fluid isentropic(Fluid fluid, Parameter endParameter){
         if (fluid.getFluidType() == FluidType.AIR) return fluidFactory.createAir(fluid.getSpecificEntropy(), endParameter, fluid.getAbsolutePressure());
         return fluidFactory.createFluid(fluid.getFluidName(), fluid.getSpecificEntropy(), endParameter);
     }
 
-    public Fluid isEnthalpic(Fluid fluid, Parameter endParameter){
+    public Fluid isenthalpic(Fluid fluid, Parameter endParameter){
         if (fluid.getFluidType() == FluidType.AIR) return fluidFactory.createAir(fluid.getSpecificEnthalpy(), endParameter, fluid.getAbsolutePressure());
         return fluidFactory.createFluid(fluid.getFluidName(), fluid.getSpecificEnthalpy(), endParameter);
     }

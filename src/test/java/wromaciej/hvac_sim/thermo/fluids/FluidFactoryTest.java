@@ -22,18 +22,17 @@ import static org.junit.Assert.assertThat;
 
 public class FluidFactoryTest {
 
-    static {
-        //load library
-        FluidData.loadLibrary();
-    }
 
     @Test
     public void shouldReturnAbout4200JperkgKForStandardWaterHeatCapacity() {
         //GIVEN
+        FluidData fluidData = new FluidData();
+        fluidData.loadLibrary();
+        FluidFactory fluidFactory= new FluidFactory(fluidData);
         Parameter<Temperature> temperature = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1.0);
         //WHEN
-        Fluid fluid = FluidFactory.createFluid(FluidName.WATER, temperature, pressure);
+        Fluid fluid = fluidFactory.createFluid(FluidName.WATER, temperature, pressure);
         fluid.getHeatCapacity().setActualUnit(new ProductUnit<>(SI.JOULE.divide(SI.KILOGRAM.times(SI.KELVIN))));
 
         //THEN
@@ -43,11 +42,14 @@ public class FluidFactoryTest {
     @Test
     public void shouldReturn74gPerKgForStandardAir() {
         //GIVEN
+        FluidData fluidData = new FluidData();
+        fluidData.loadLibrary();
+        FluidFactory fluidFactory= new FluidFactory(fluidData);
         Parameter<Temperature> temperature = new Parameter<>(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<RelativeHumidity> relativeHumidity = new Parameter<>(ParameterType.AIR_RELATIVE_HUMIDITY, Dimensionless.UNIT.asType(RelativeHumidity.class), 0.5);
         Parameter<Pressure> pressure = new Parameter<>(ParameterType.AIR_PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
         //WHEN
-        Air air = FluidFactory.createAir(temperature, relativeHumidity, pressure);
+        Air air = fluidFactory.createAir(temperature, relativeHumidity, pressure);
         //THEN
         assertEquals(air.getMoistureContent().getValue(),0.0074, 0.0001);
 
