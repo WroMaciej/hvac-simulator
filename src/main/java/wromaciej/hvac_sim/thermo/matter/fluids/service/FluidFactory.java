@@ -38,7 +38,7 @@ public class FluidFactory {
         fluid.setSpecificEntropy(fluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
         fluid.setSpecificVolume(fluid.getDensity().inverse());
         fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
-        if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null)
+        if (UnitSystem.getActualUnitSystem() != null)
             fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
        else
            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
