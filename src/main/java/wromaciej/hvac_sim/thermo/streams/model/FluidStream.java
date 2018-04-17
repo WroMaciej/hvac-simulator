@@ -26,10 +26,10 @@ public class FluidStream {
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 
-    public FluidStream(int id, Fluid specificParameters) {
-        this.id = id;
+    public FluidStream(Fluid specificParameters) {
+        this.id = Ids.getUniqueId();
         this.specificParameters = specificParameters;
-        intletBond = new Bond(Ids.getUniqueId(), id);
-        outletBond = new Bond(Ids.getUniqueId(), id);
+        intletBond = new Bond(id);
+        outletBond = new Bond(id);
     }
 }

@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
+import wromaciej.hvac_sim.thermo.Ids;
+
 import java.util.Objects;
 
 public class Bond {
@@ -8,8 +10,8 @@ public class Bond {
     private final int ownerId;
     private int targetId;
 
-    public Bond(int bondId, int ownerId) {
-        this.bondId = bondId;
+    public Bond(int ownerId) {
+        this.bondId = Ids.getUniqueId();
         this.ownerId = ownerId;
     }
 
