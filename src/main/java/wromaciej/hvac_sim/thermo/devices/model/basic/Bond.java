@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
-import wromaciej.hvac_sim.thermo.Ids;
+import wromaciej.hvac_sim.ids.Ids;
 
 import java.util.Objects;
 

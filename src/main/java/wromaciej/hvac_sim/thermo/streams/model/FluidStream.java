@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
-import wromaciej.hvac_sim.thermo.Ids;
+import wromaciej.hvac_sim.ids.Ids;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Bond;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;

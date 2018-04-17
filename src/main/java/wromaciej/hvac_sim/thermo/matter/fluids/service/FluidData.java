@@ -10,7 +10,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
  */
 public class FluidData {
 
-    public void loadLibrary(){
+    private void loadLibrary(){
         try{
             System.loadLibrary("CoolProp");
         }
@@ -65,6 +65,7 @@ public class FluidData {
         return findParameter(wantedParameterType, fluidName, knownParameter1, knownParameter2);
     }
 
-    public FluidData() {
+    public FluidData(boolean shouldLoadLibrary) {
+        if (shouldLoadLibrary) loadLibrary();
     }
 }
