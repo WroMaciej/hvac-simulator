@@ -10,13 +10,21 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
  */
 public class FluidData {
 
+    private boolean isLibraryLoaded = false;
+
+    public boolean isLibraryLoaded(){
+        return isLibraryLoaded;
+    }
+
     private void loadLibrary(){
+        isLibraryLoaded = false;
         try{
             System.loadLibrary("CoolProp");
         }
         catch(UnsatisfiedLinkError e){
             throw new UnsatisfiedLinkError("Error: can`t find fluid data library");
         }
+        isLibraryLoaded = true;
     }
 
     public Parameter findParameter(ParameterType wantedParameterType, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
@@ -66,6 +74,6 @@ public class FluidData {
     }
 
     public FluidData(boolean shouldLoadLibrary) {
-        if (shouldLoadLibrary) loadLibrary();
+        if ((isLibraryLoaded) && (shouldLoadLibrary)) loadLibrary();
     }
 }
