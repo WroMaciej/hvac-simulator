@@ -6,8 +6,17 @@ import java.util.Objects;
 
 public class Bond {
 
+    /**
+     * Id of the bond
+     */
     private final int bondId;
+    /**
+     * Id of the owner of the bond
+     */
     private final int ownerId;
+    /**
+     * Id of the object connected to
+     */
     private int targetId;
 
     public Bond(int ownerId) {

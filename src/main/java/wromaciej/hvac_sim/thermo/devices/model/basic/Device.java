@@ -2,7 +2,7 @@ package wromaciej.hvac_sim.thermo.devices.model.basic;
 
 import java.util.Collection;
 
-public abstract class Device {
+public abstract class Device implements Computable {
 
     private final int id;
     private final Collection<Bond> bonds;
