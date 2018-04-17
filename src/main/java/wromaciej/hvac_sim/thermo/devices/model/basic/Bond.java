@@ -19,8 +19,8 @@ public class Bond {
      */
     private int targetId;
 
-    public Bond(int ownerId) {
-        this.bondId = Ids.getUniqueId();
+    public Bond(int bondId, int ownerId) {
+        this.bondId = bondId;
         this.ownerId = ownerId;
     }
 

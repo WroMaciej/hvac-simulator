@@ -1,15 +1,12 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
+import wromaciej.hvac_sim.display.Item;
+
 import java.util.Collection;
 
-public abstract class Device implements Computable {
+public abstract class Device extends Item {
 
-    private final int id;
-    private final Collection<Bond> bonds;
-
-
-    public Device(int id, Collection<Bond> bonds) {
-        this.id = id;
-        this.bonds = bonds;
+    public Device(int id) {
+        super(id);
     }
 }

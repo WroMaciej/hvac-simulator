@@ -1,20 +1,30 @@
 package wromaciej.hvac_sim.display;
 
+import wromaciej.hvac_sim.thermo.devices.model.basic.Computable;
+
 /**
  * Any object that could be treated as a part of process
  */
-public class Item {
+public abstract class Item implements Displayable, Computable {
 
     private final int id;
-    private final Displayable object;
     private String name;
-    private double scale;
 
-    private double positionX;
-    private double positionY;
+    private DisplayParameters displayParameters;
 
-    public Item(int id, Displayable object) {
+    public Item(int id) {
         this.id = id;
-        this.object = object;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
