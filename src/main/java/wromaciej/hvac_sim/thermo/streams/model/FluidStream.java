@@ -1,8 +1,11 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
-import wromaciej.hvac_sim.display.Item;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.thermo.devices.model.basic.Bond;
+import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.thermo.devices.model.basic.bonds.Bond;
+import wromaciej.hvac_sim.thermo.devices.model.basic.bonds.BondDirection;
+import wromaciej.hvac_sim.thermo.devices.model.basic.bonds.InletBond;
+import wromaciej.hvac_sim.thermo.devices.model.basic.bonds.OutletBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
@@ -27,14 +30,17 @@ public class FluidStream extends AnyStream {
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 
-    
-
 
     public FluidStream(int id, Fluid specificParameters, IdGenerator idGenerator) {
         super(id);
         this.specificParameters = specificParameters;
-        intletBond = new Bond(idGenerator.getUniqueId(), id);
+        inletBond = new Bond(idGenerator.getUniqueId(), id);
         outletBond = new Bond(idGenerator.getUniqueId(), id);
+    }
+
+    public FluidStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
+        super(id, idGenerator, new InletBond<FluidStream, Device>(BondDirection.INLET, ,  ), outletBond);
+        this.specificParameters = specificParameters;
     }
 
     @Override

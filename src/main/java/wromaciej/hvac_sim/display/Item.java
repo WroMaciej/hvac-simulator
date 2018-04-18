@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.display;
 
+import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Computable;
 
 /**
@@ -12,7 +13,7 @@ public abstract class Item implements Displayable, Computable {
 
     private DisplayParameters displayParameters;
 
-    public Item(int id) {
+    public Item(int id, IdGenerator idGenerator) {
         this.id = id;
     }
 
