@@ -12,6 +12,8 @@ public class Ids implements IdGenerator {
         return maximalId.incrementAndGet();
     }
 
-    public Ids() {}
+    public Ids() {
+        maximalId = new AtomicInteger();
+    }
 
 }

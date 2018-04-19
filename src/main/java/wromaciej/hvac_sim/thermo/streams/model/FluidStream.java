@@ -33,9 +33,9 @@ public final class FluidStream extends AnyStream {
     public FluidStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
         super(id, idGenerator);
         this.specificParameters = specificParameters;
-        InletBond<FluidStream, Device> fluidStreamIntletBond= new InletBond<>(idGenerator.getUniqueId(), this);
+        InletBond<FluidStream, Device> fluidStreamInletBond= new InletBond<>(idGenerator.getUniqueId(), this);
         OutletBond<FluidStream, Device> fluidStreamOutletBond= new OutletBond<>(idGenerator.getUniqueId(), this);
-        this.setBonds(fluidStreamIntletBond, fluidStreamOutletBond);
+        this.setBonds(fluidStreamInletBond, fluidStreamOutletBond);
     }
 
 
