@@ -7,6 +7,10 @@ import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
 import java.util.Objects;
 
 public abstract class Bond {
+    private final int bondId;
+    /**
+     * Id of the owner of the bond
+     */
 
     /**
      * Flow direction in/out
@@ -16,10 +20,7 @@ public abstract class Bond {
     /**
      * Id of the bond
      */
-    private final int bondId;
-    /**
-     * Id of the owner of the bond
-     */
+
     private final Item ownerItem;
     /**
      * Id of the object connected to
@@ -39,15 +40,15 @@ public abstract class Bond {
         this.name = name;
     }
 
-    public Bond(BondDirection flowDirection, Item ownerItem, int bondId) {
+
+    public Bond(int bondId, BondDirection flowDirection, Item ownerItem) {
+        this.bondId = bondId;
         this.flowDirection = flowDirection;
         this.ownerItem = ownerItem;
-        this.bondId = bondId;
     }
 
-
     public void disconnect(){
-        this.targetBond = null;
+        this.targetBond =  null;
     }
 
     public int getBondId() {

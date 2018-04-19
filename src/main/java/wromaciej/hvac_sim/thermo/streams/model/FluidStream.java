@@ -11,10 +11,10 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.VolumeFlow;
 
-public class FluidStream extends AnyStream {
+public final class FluidStream extends AnyStream {
 
 
-    private final Fluid specificParameters;
+    private Fluid specificParameters;
     private Parameter<MassFlow> massFlow;
     private Parameter<VolumeFlow> volumeFlow;
 
@@ -30,18 +30,14 @@ public class FluidStream extends AnyStream {
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 
-
-    public FluidStream(int id, Fluid specificParameters, IdGenerator idGenerator) {
-        super(id);
-        this.specificParameters = specificParameters;
-        inletBond = new Bond(idGenerator.getUniqueId(), id);
-        outletBond = new Bond(idGenerator.getUniqueId(), id);
-    }
-
     public FluidStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
-        super(id, idGenerator, new InletBond<FluidStream, Device>(BondDirection.INLET, ,  ), outletBond);
+        super(id, idGenerator);
         this.specificParameters = specificParameters;
+        InletBond<FluidStream, Device> fluidStreamIntletBond= new InletBond<>(idGenerator.getUniqueId(), this);
+        OutletBond<FluidStream, Device> fluidStreamOutletBond= new OutletBond<>(idGenerator.getUniqueId(), this);
+        this.setBonds(fluidStreamIntletBond, fluidStreamOutletBond);
     }
+
 
     @Override
     public String display() {

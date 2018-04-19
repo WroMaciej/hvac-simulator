@@ -5,5 +5,9 @@ import org.junit.Test;
 public class BondTest {
 
     @Test
-    public void shouldAllowToBond
+    public void shouldAllowToBondInletDeviceToStreamOutlet(){
+        //GIVEN
+        
+
+    }
 }

@@ -4,8 +4,8 @@ import wromaciej.hvac_sim.display.Item;
 
 public final class OutletBond <T extends Item, K extends Item> extends Bond {
 
-    public OutletBond(Item ownerItem, int bondId) {
-        super(BondDirection.OUTLET, ownerItem, bondId);
+    public OutletBond(int bondId, Item ownerItem) {
+        super(bondId, BondDirection.OUTLET, ownerItem);
     }
 
     public void connectTo(InletBond<K, T> inletBond) {
