@@ -6,9 +6,9 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SolverChecker {
+public class FluidSolver {
 
-    Set<Item> allItems;
+    Set<Parameter> parameters;
 
     public SolverChecker(Item... items) {
         this.allItems = new HashSet<>();
@@ -44,6 +44,4 @@ public class SolverChecker {
     public boolean isEverythingSolved(){
         return notSolvedItems().isEmpty();
     }
-
-
 }

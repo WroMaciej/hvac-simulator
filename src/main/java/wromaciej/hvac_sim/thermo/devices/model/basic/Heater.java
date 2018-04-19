@@ -39,6 +39,7 @@ public class Heater extends Device {
     public boolean solve() {
 
 
+
         return false;
     }
 }

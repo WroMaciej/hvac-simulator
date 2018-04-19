@@ -1,6 +1,10 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
+import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.solver.IndividualSolver;
+import wromaciej.hvac_sim.solver.SolverChecker;
+import wromaciej.hvac_sim.thermo.Item;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
@@ -8,7 +12,7 @@ import wromaciej.hvac_sim.thermo.quantities.specific.*;
 import java.util.Objects;
 
 
-public class Fluid {
+public class Fluid implements IndividualSolver {
 
     /**
      * Type of fluid
@@ -20,7 +24,6 @@ public class Fluid {
      */
     private FluidName fluidName;
 
-    private boolean isCalculated;
 
     /**
      * State of matter:
@@ -77,24 +80,32 @@ public class Fluid {
     private Parameter<Density> density;
 
     public Fluid() {
-        isCalculated=false;
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) return true;
-        if (that == null || getClass() != that.getClass()) return false;
-        Fluid fluid = (Fluid) that;
-
-        return fluidName == fluid.fluidName &&
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fluid fluid = (Fluid) o;
+        return fluidType == fluid.fluidType &&
+                fluidName == fluid.fluidName &&
+                stateOfMatter == fluid.stateOfMatter &&
                 Objects.equals(temperature, fluid.temperature) &&
+                Objects.equals(absoluteTemperature, fluid.absoluteTemperature) &&
                 Objects.equals(absolutePressure, fluid.absolutePressure) &&
-                Objects.equals(specificEntropy, fluid.specificEntropy);
+                Objects.equals(gaugePressure, fluid.gaugePressure) &&
+                Objects.equals(specificEnthalpy, fluid.specificEnthalpy) &&
+                Objects.equals(specificEntropy, fluid.specificEntropy) &&
+                Objects.equals(quality, fluid.quality) &&
+                Objects.equals(heatCapacity, fluid.heatCapacity) &&
+                Objects.equals(specificVolume, fluid.specificVolume) &&
+                Objects.equals(density, fluid.density);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fluidName, temperature, absolutePressure, specificEntropy);
+
+        return Objects.hash(fluidType, fluidName, stateOfMatter, temperature, absoluteTemperature, absolutePressure, gaugePressure, specificEnthalpy, specificEntropy, quality, heatCapacity, specificVolume, density);
     }
 
     public FluidType getFluidType() {
@@ -111,14 +122,6 @@ public class Fluid {
 
     public void setFluidName(FluidName fluidName) {
         this.fluidName = fluidName;
-    }
-
-    public boolean isCalculated() {
-        return isCalculated;
-    }
-
-    public void setCalculated(boolean calculated) {
-        isCalculated = calculated;
     }
 
     public StateOfMatter getStateOfMatter() {
@@ -207,5 +210,12 @@ public class Fluid {
 
     public void setDensity(Parameter<Density> density) {
         this.density = density;
+    }
+
+
+
+    @Override
+    public boolean solve() {
+        return false;
     }
 }
