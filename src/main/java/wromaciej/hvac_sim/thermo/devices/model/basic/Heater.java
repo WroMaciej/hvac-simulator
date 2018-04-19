@@ -36,7 +36,9 @@ public class Heater extends Device {
     }
 
     @Override
-    public boolean compute() {
+    public boolean solve() {
+
+
         return false;
     }
 }

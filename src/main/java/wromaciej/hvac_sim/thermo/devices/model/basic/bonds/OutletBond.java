@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic.bonds;
 
-import wromaciej.hvac_sim.display.Item;
+import wromaciej.hvac_sim.thermo.Item;
 
 public final class OutletBond <T extends Item, K extends Item> extends Bond {
 

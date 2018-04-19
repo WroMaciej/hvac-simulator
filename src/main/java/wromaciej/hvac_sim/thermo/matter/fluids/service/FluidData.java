@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
 import thermoCP.CoolProp;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;

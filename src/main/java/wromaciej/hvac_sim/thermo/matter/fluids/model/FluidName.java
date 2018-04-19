@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.parameters;
+package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import java.util.HashMap;
 import java.util.Map;

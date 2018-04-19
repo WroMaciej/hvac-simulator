@@ -1,8 +1,6 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic.bonds;
 
-import wromaciej.hvac_sim.display.Item;
-import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
-import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
+import wromaciej.hvac_sim.thermo.Item;
 
 import java.util.Objects;
 

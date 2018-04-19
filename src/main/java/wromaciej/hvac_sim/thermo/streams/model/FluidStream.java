@@ -67,7 +67,7 @@ public final class FluidStream extends AnyStream {
     }
 
     @Override
-    public boolean compute() {
+    public boolean solve() {
         return false;
     }
 }

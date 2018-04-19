@@ -39,7 +39,7 @@ public final class HeatStream extends AnyStream {
     }
 
     @Override
-    public boolean compute() {
+    public boolean solve() {
         return false;
     }
 }

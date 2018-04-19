@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
