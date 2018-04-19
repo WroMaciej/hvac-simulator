@@ -20,11 +20,7 @@ public class BondTest {
         Heater heater = new Heater(idGenerator.getUniqueId(), idGenerator);
 
         //WHEN
-        OutletBond<FluidStream, Device> outletBond = new OutletBond<>(idGenerator.getUniqueId(), heater);
-        outletBond.connectTo(heater.getFluidInlet()); //IT WORKS
-        outletBond.connectTo(heater.getFluidOutlet()); //IT DOES NOT WORK - GOOD
-
-        fluidStream.getOutletBond().connectTo(heater.getFluidInlet()); //IT DOES NOT WORK - BAD
+        fluidStream.getOutletBond().connectTo(heater.getFluidInlet());
 
 
     }

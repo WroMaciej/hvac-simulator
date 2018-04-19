@@ -18,6 +18,10 @@ public final class FluidStream extends AnyStream {
     private Parameter<MassFlow> massFlow;
     private Parameter<VolumeFlow> volumeFlow;
 
+    private final InletBond<FluidStream, Device> inletBond;
+    private final OutletBond<FluidStream, Device> outletBond;
+
+
 
 
     public void setMassFlow(Parameter<MassFlow> massFlow) {
@@ -33,11 +37,29 @@ public final class FluidStream extends AnyStream {
     public FluidStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
         super(id, idGenerator);
         this.specificParameters = specificParameters;
-        InletBond<FluidStream, Device> fluidStreamInletBond= new InletBond<>(idGenerator.getUniqueId(), this);
-        OutletBond<FluidStream, Device> fluidStreamOutletBond= new OutletBond<>(idGenerator.getUniqueId(), this);
-        this.setBonds(fluidStreamInletBond, fluidStreamOutletBond);
+        inletBond = new InletBond<>(idGenerator.getUniqueId(), this);
+        outletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
     }
 
+    public Fluid getSpecificParameters() {
+        return specificParameters;
+    }
+
+    public Parameter<MassFlow> getMassFlow() {
+        return massFlow;
+    }
+
+    public Parameter<VolumeFlow> getVolumeFlow() {
+        return volumeFlow;
+    }
+
+    public InletBond<FluidStream, Device> getInletBond() {
+        return inletBond;
+    }
+
+    public OutletBond<FluidStream, Device> getOutletBond() {
+        return outletBond;
+    }
 
     @Override
     public String display() {
