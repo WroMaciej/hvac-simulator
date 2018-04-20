@@ -1,8 +1,9 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.service;
+package wromaciej.hvac_sim.thermo.matter.fluids.service.processes;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 
 public class IdealProcess {
 

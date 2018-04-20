@@ -1,9 +1,10 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.service;
+package wromaciej.hvac_sim.thermo.matter.fluids.service.processes;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.quantities.specific.Efficiency;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;

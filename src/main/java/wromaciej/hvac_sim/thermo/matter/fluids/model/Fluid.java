@@ -1,10 +1,8 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
-import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.solver.IndividualSolver;
-import wromaciej.hvac_sim.solver.SolverChecker;
-import wromaciej.hvac_sim.thermo.Item;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
@@ -13,6 +11,11 @@ import java.util.Objects;
 
 
 public class Fluid implements IndividualSolver {
+
+    /**
+     * Tool for dealing with solving fluid
+     */
+    public FluidSolver fluidSolver;
 
     /**
      * Type of fluid
@@ -80,6 +83,7 @@ public class Fluid implements IndividualSolver {
     private Parameter<Density> density;
 
     public Fluid() {
+
     }
 
     @Override

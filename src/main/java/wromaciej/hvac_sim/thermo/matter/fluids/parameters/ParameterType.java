@@ -8,7 +8,7 @@ import javax.measure.unit.Unit;
 
 public enum ParameterType {
     /**
-     * Parameter unknown at that moment
+     * Item unknown at that moment
      */
     OTHER("",""),
 

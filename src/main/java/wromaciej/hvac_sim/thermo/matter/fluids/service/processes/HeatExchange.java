@@ -2,23 +2,38 @@ package wromaciej.hvac_sim.thermo.matter.fluids.service.processes;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 
-public class PressureDropProcess {
+public class HeatExchange {
 
-    private int pressureIntervals;
+    private IdealProcess idealProcess;
+    private RealProcess realProcess;
+    private FluidFactory fluidFactory;
 
-    public PressureDropProcess(int pressureIntervals) {
-        this.pressureIntervals = pressureIntervals;
+    public HeatExchange(IdealProcess idealProcess, RealProcess realProcess, FluidFactory fluidFactory) {
+        this.idealProcess = idealProcess;
+        this.realProcess = realProcess;
+        this.fluidFactory = fluidFactory;
     }
 
-    public Fluid pressureDropProcess(Fluid process, Parameter<PressureDifference> pressureDrop, int intervals) {
-        Fluid fluidAfterStep;
+    public Fluid heatExchangeOneStep(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureLoss) {
+        Fluid fluidAfterThrottling = realProcess.throttling(fluid, fluid.getAbsolutePressure().minus(pressureLoss));
+        return idealProcess.isobaric(fluidAfterThrottling, endParameter);
+    }
+
+    public Fluid pressureDropProcess(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureDrop, int intervals) {
+        Fluid fluidAfterStep = fluid; //or a copy?
+        Parameter<PressureDifference> pressureDropStep = pressureDrop.divide(intervals);
+        Parameter startParameter = fluid.fluidSolver.getParameterByType(endParameter.getParameterType());
+        Parameter parameterStep = endParameter.minus(startParameter).divide(intervals);
+
         for (int stepNumber = 0; stepNumber < intervals; stepNumber++) {
-            Fluid
+            fluidAfterStep = heatExchangeOneStep(fluidAfterStep,   )
         }
 
-
     }
+
+
 
 }

@@ -2,46 +2,58 @@ package wromaciej.hvac_sim.solver;
 
 import wromaciej.hvac_sim.thermo.Item;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class FluidSolver {
 
     Set<Parameter> parameters;
+    Map<ParameterType, Parameter> parametersByTypeMap;
 
-    public SolverChecker(Item... items) {
-        this.allItems = new HashSet<>();
-        for (Item item : items) {
-            this.allItems.add(item);
+    public FluidSolver(Parameter... parameters) {
+        this.parameters = new HashSet<>();
+        this.parametersByTypeMap = new HashMap<>();
+
+        for (Parameter parameter : parameters) {
+            this.parameters.add(parameter);
+            this.parametersByTypeMap.put(parameter.getParameterType(), parameter);
         }
     }
 
-    public int notSolvedItemsNumber() {
-        int notSolvedSum = 0;
-        for (Item item : allItems) {
-            if (item.isSolved() == false) notSolvedSum++;
-        }
-        return notSolvedSum;
+    public Parameter getParameterByType(ParameterType parameterType){
+        return parametersByTypeMap.get(parameterType);
     }
 
-    public Set<Item> solvedItems() {
-        Set<Item> solvedItemsSet = new HashSet<>();
-        for (Item item : allItems) {
-            if (item.isSolved()) solvedItemsSet.add(item);
-        }
-        return solvedItemsSet;
-    }
-
-    public Set<Item> notSolvedItems() {
-        Set<Item> notSolvedItemsSet = new HashSet<>();
-        for (Item item : allItems) {
-            if (!item.isSolved()) notSolvedItemsSet.add(item);
-        }
-        return notSolvedItemsSet;
-    }
-
-    public boolean isEverythingSolved(){
-        return notSolvedItems().isEmpty();
-    }
+//    public int notSolvedItemsNumber() {
+//        int notSolvedSum = 0;
+//        for (Parameter parameter : parameters) {
+//            if (parameter.isSolved() == false) notSolvedSum++;
+//        }
+//        return notSolvedSum;
+//    }
+//
+//    public Set<Parameter> solvedItems() {
+//        Set<Item> solvedItemsSet = new HashSet<>();
+//        for (Parameter parameter : parameters) {
+//            if (parameter.isSolved()) solvedItemsSet.add(parameter);
+//        }
+//        return solvedItemsSet;
+//    }
+//
+//    public Set<Parameter> notSolvedItems() {
+//        Set<Parameter> notSolvedItemsSet = new HashSet<>();
+//        for (Parameter parameter : parameters) {
+//            if (!parameter.isSolved()) notSolvedItemsSet.add(parameter);
+//        }
+//        return notSolvedItemsSet;
+//    }
+//
+//    public boolean isEverythingSolved(){
+//        return notSolvedItems().isEmpty();
+//    }
 }

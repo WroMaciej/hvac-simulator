@@ -1,17 +1,18 @@
 package wromaciej.hvac_sim.solver;
 
 import wromaciej.hvac_sim.thermo.Item;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SolverChecker {
 
-    Set<Item> allItems;
+    List<Item> allItems;
 
     public SolverChecker(Item... items) {
-        this.allItems = new HashSet<>();
+        this.allItems = new ArrayList<>();
         for (Item item : items) {
             this.allItems.add(item);
         }
@@ -25,16 +26,16 @@ public class SolverChecker {
         return notSolvedSum;
     }
 
-    public Set<Item> solvedItems() {
-        Set<Item> solvedItemsSet = new HashSet<>();
+    public List<Item> solvedItems() {
+        List<Item> solvedItemsSet = new HashSet<>();
         for (Item item : allItems) {
             if (item.isSolved()) solvedItemsSet.add(item);
         }
         return solvedItemsSet;
     }
 
-    public Set<Item> notSolvedItems() {
-        Set<Item> notSolvedItemsSet = new HashSet<>();
+    public List<Item> notSolvedItems() {
+        List<Item> notSolvedItemsSet = new HashSet<>();
         for (Item item : allItems) {
             if (!item.isSolved()) notSolvedItemsSet.add(item);
         }
