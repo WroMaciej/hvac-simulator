@@ -9,8 +9,8 @@ import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 
 public final class HeatStream extends AnyStream {
     private Parameter<HeatFlow> heatFlow;
-    private final InletBond<FluidStream, Device> inletBond;
-    private final OutletBond<FluidStream, Device> outletBond;
+    public final InletBond<FluidStream, Device> inletBond;
+    public final OutletBond<FluidStream, Device> outletBond;
 
 
 
@@ -25,13 +25,6 @@ public final class HeatStream extends AnyStream {
         return heatFlow;
     }
 
-    public InletBond<FluidStream, Device> getInletBond() {
-        return inletBond;
-    }
-
-    public OutletBond<FluidStream, Device> getOutletBond() {
-        return outletBond;
-    }
 
     @Override
     public String display() {

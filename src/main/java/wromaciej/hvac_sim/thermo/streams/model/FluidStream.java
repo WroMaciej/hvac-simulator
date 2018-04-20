@@ -18,8 +18,8 @@ public final class FluidStream extends AnyStream {
     private Parameter<MassFlow> massFlow;
     private Parameter<VolumeFlow> volumeFlow;
 
-    private final InletBond<FluidStream, Device> inletBond;
-    private final OutletBond<FluidStream, Device> outletBond;
+    public final InletBond<FluidStream, Device> inletBond;
+    public final OutletBond<FluidStream, Device> outletBond;
 
 
 
@@ -53,13 +53,6 @@ public final class FluidStream extends AnyStream {
         return volumeFlow;
     }
 
-    public InletBond<FluidStream, Device> getInletBond() {
-        return inletBond;
-    }
-
-    public OutletBond<FluidStream, Device> getOutletBond() {
-        return outletBond;
-    }
 
     @Override
     public String display() {

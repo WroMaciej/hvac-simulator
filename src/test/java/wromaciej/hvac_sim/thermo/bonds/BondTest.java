@@ -17,8 +17,10 @@ public class BondTest {
         FluidStream fluidStream = new FluidStream(idGenerator.getUniqueId(), idGenerator, fluid);
         Heater heater = new Heater(idGenerator.getUniqueId(), idGenerator);
 
+
+
         //WHEN
-        fluidStream.getOutletBond().connectTo(heater.getFluidInlet());
+        fluidStream.outletBond.connectTo(heater.fluidInletBond);
 
 
     }
