@@ -82,9 +82,7 @@ public class Fluid implements IndividualSolver {
      */
     private Parameter<Density> density;
 
-    public Fluid() {
-
-    }
+    public Fluid() { }
 
     @Override
     public boolean equals(Object o) {

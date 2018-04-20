@@ -1,6 +1,8 @@
 package wromaciej.hvac_sim.solver;
 
 import wromaciej.hvac_sim.thermo.Item;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
@@ -23,6 +25,35 @@ public class FluidSolver {
             this.parameters.add(parameter);
             this.parametersByTypeMap.put(parameter.getParameterType(), parameter);
         }
+    }
+
+    public FluidSolver(Fluid fluid){
+        this(fluid.getAbsoluteTemperature(),
+                fluid.getAbsolutePressure(),
+                fluid.getSpecificEnthalpy(),
+                fluid.getSpecificEntropy(),
+                fluid.getQuality(),
+                fluid.getHeatCapacity(),
+                fluid.getSpecificVolume(),
+                fluid.getDensity() );
+    }
+
+    public FluidSolver(Air air){
+        this(air.getAbsoluteTemperature(),
+                air.getAbsolutePressure(),
+                air.getSpecificEnthalpy(),
+                air.getSpecificEntropy(),
+                air.getQuality(),
+                air.getHeatCapacity(),
+                air.getSpecificVolume(),
+                air.getDensity(),
+                air.getDewPointTemperature(),
+                air.getMoistureContent(),
+                air.getRelativeHumidity(),
+                air.getWaterFraction(),
+                air.getWaterPartialPressure(),
+                air.getWetBulbTemperature() );
+
     }
 
     public Parameter getParameterByType(ParameterType parameterType){

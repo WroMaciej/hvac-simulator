@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
+import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
@@ -48,7 +49,7 @@ public class FluidFactory {
         fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
-        fluid.setCalculated(true);
+        fluid.fluidSolver = new FluidSolver(fluid);
         return fluid;
     }
 
@@ -87,7 +88,9 @@ public class FluidFactory {
         air.setWaterPartialPressure(fluidData.findAirParameter(ParameterType.AIR_WATER_PARTIAL_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
 
         air.setStateOfMatter(setStateOfMatter(air));
-        air.setCalculated(true);
+
+        air.fluidSolver = new FluidSolver(air);
         return air;
     }
+
 }

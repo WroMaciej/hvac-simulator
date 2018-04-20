@@ -27,7 +27,7 @@ public class SolverChecker {
     }
 
     public List<Item> solvedItems() {
-        List<Item> solvedItemsSet = new HashSet<>();
+        List<Item> solvedItemsSet = new ArrayList<>();
         for (Item item : allItems) {
             if (item.isSolved()) solvedItemsSet.add(item);
         }
@@ -35,7 +35,7 @@ public class SolverChecker {
     }
 
     public List<Item> notSolvedItems() {
-        List<Item> notSolvedItemsSet = new HashSet<>();
+        List<Item> notSolvedItemsSet = new ArrayList<>();
         for (Item item : allItems) {
             if (!item.isSolved()) notSolvedItemsSet.add(item);
         }
