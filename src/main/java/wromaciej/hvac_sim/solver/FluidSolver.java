@@ -43,6 +43,13 @@ public class FluidSolver {
         return fluidName;
     }
 
+    private List<Parameter> userDefinedParameters(Fluid fluid){
+        List<Parameter> userDefinedParametersList = new ArrayList<>();
+        for (Parameter parameter : fluid.fluidSolver.allParameters){
+            if (parameter.isUserDefined()) userDefinedParametersList.add(parameter)
+        }
+    }
+
     public FluidSolver(FluidName fluidName, Parameter... parameters) {
         this.fluidName = fluidName;
         //this.knownParameters = new HashMap<>();

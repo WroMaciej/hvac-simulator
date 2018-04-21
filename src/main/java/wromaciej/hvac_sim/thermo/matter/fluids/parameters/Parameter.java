@@ -16,6 +16,8 @@ public class Parameter<Q extends AnyQuantity> {
 
     private ParameterType parameterType;
 
+    private boolean userDefined = false;
+
     public ParameterType getParameterType() {
         return parameterType;
     }
@@ -79,6 +81,13 @@ public class Parameter<Q extends AnyQuantity> {
         //amount = Amount.valueOf(getValue(),actualUnit);
     }
 
+    public boolean isUserDefined() {
+        return userDefined;
+    }
+
+    public void setUserDefined(boolean userDefined) {
+        this.userDefined = userDefined;
+    }
 
     public static Parameter amountToParameter(Amount resultingAmount) {
         Unit resultingUnit=resultingAmount.getUnit();
