@@ -8,22 +8,31 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FluidSolver {
 
     private class KnownFluidParameters{
-        Parameter knownParameter1;
-        Parameter knownParameter2;
+        public Parameter knownParameter1;
+        public Parameter knownParameter2;
+
+        public KnownFluidParameters() {
+        }
     }
 
     private class KnownAirParameters extends KnownFluidParameters{
-        Parameter airPressure;
+        public Parameter airPressure;
+
+        public KnownAirParameters() {
+        }
     }
 
     private FluidName fluidName;
 
     private Map<ParameterType, Parameter> knownParameters;
+
+    private List<Parameter> allParameters;
 
     public FluidSolver(FluidName fluidName, Parameter... parameters) {
         this.fluidName = fluidName;
@@ -96,13 +105,28 @@ public class FluidSolver {
     }
 
 
-    public boolean isSolvable(Fluid fluid) {
-        if ((fluidName != null) && (fluid.fluidSolver.numberOfKnownParameters() >= 2)) return true;
-        else return false;
+    public SolverResult isSolvable(Fluid fluid) {
+
+        if ((fluidName != null) && (fluid.fluidSolver.numberOfKnownParameters() == 2)) return SolverResult.GOOD_DATA
+        else if (fluid.fluidSolver.numberOfKnownParameters() < 2) return SolverResult.INSUFFICIENT_DATA;
+        else return SolverResult.TOO_MANY_CONSTRAINTS;
     }
 
-    private KnownFluidParameters knownFluidParameters(FluidSolver fluidSolver){
+    public SolverResult isSolvable(Air air){
 
+
+    }
+
+    private KnownFluidParameters knownFluidParameters(){
+        KnownFluidParameters knownFluidParameters = new KnownFluidParameters();
+        knownFluidParameters.knownParameter1 = knownParameters.
+    }
+1
+    private KnownAirParameters knownAirParameters(){
+//        KnownAirParameters knownAirParameters = new KnownAirParameters();
+//        knownAirParameters.knownParameter1 = null;
+//        kn
+//        knownAirParameters.airPressure
     }
 
 
