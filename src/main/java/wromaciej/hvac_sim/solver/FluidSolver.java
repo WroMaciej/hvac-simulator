@@ -8,9 +8,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FluidSolver {
 
@@ -33,7 +31,7 @@ public class FluidSolver {
 
     //private Map<ParameterType, Parameter> knownParameters;
 
-    private List<Parameter> allParameters;
+    private List<Parameter> definedParameters;
 
     public void setFluidName(FluidName fluidName) {
         this.fluidName = fluidName;
@@ -45,15 +43,16 @@ public class FluidSolver {
 
     private List<Parameter> userDefinedParameters(Fluid fluid){
         List<Parameter> userDefinedParametersList = new ArrayList<>();
-        for (Parameter parameter : fluid.fluidSolver.allParameters){
-            if (parameter.isUserDefined()) userDefinedParametersList.add(parameter)
+        for (Parameter parameter : fluid.fluidSolver.definedParameters){
+            if (parameter.isUserDefined()) userDefinedParametersList.add(parameter);
         }
+        return userDefinedParametersList;
     }
 
     public FluidSolver(FluidName fluidName, Parameter... parameters) {
         this.fluidName = fluidName;
         //this.knownParameters = new HashMap<>();
-        this.allParameters = new ArrayList<>();
+        this.definedParameters = new ArrayList<>();
 
         for (Parameter parameter : parameters) {
             addParameter(parameter);
@@ -61,6 +60,7 @@ public class FluidSolver {
     }
 
     public FluidSolver(Fluid fluid) {
+        //this(fluid.getFluidName(), fluid.fluidSolver.userDefinedParameters(fluid).toArray(new Parameter[fluid.fluidSolver.userDefinedParameters(fluid).size()]));
         this(fluid.getFluidName(),
                 fluid.getAbsoluteTemperature(),
                 //fluid.getAbsolutePressure(),
@@ -93,7 +93,7 @@ public class FluidSolver {
 
     public void clearAllParameters() {
         //knownParameters.clear();
-        allParameters.clear();
+        definedParameters.clear();
     }
 
     public void clearFluidName() {
@@ -106,19 +106,19 @@ public class FluidSolver {
 
     public void removeParameter(Parameter parameter) {
         //knownParameters.remove(parameter.getParameterType());
-        allParameters.remove(parameter);
+        definedParameters.remove(parameter);
     }
 
     public void addParameter(Parameter knownParameter) {
         if ((knownParameter.getParameterType() != ParameterType.OTHER)
-                && (allParameters.indexOf(knownParameter) == -1))
+                && (definedParameters.indexOf(knownParameter) == -1))
             //knownParameters.put(knownParameter.getParameterType(), knownParameter);
-            allParameters.add(knownParameter);
+            definedParameters.add(knownParameter);
     }
 
-    private boolean isOneParameterOfGivenType(ParameterType checkingParameter) {
+    private boolean isOnlyOneParameterOfGivenType(ParameterType checkingParameter) {
         char numberOfParameters = 0;
-        for (Parameter parameter : allParameters) {
+        for (Parameter parameter : definedParameters) {
             if (parameter.getParameterType() == checkingParameter)
                 numberOfParameters++;
             if (numberOfParameters > 1) break;
@@ -137,15 +137,15 @@ public class FluidSolver {
 //    }
 
 
-    private int numberOfKnownParameters() {
+    private int numberOfDefinedParameters() {
         //return knownParameters.size();
-        return allParameters.size();
+        return definedParameters.size();
     }
 
 
     public SolverResult solverResult(Fluid fluid) {
-        if ((fluidName != null) && (fluid.fluidSolver.numberOfKnownParameters() == 2)) return SolverResult.GOOD_DATA
-        else if (fluid.fluidSolver.numberOfKnownParameters() < 2) return SolverResult.INSUFFICIENT_DATA;
+        if ((fluidName != null) && (fluid.fluidSolver.numberOfDefinedParameters() == 2)) return SolverResult.GOOD_DATA
+        else if (fluid.fluidSolver.numberOfDefinedParameters() < 2) return SolverResult.INSUFFICIENT_DATA;
         else return SolverResult.TOO_MANY_CONSTRAINTS;
     }
 
@@ -154,10 +154,6 @@ public class FluidSolver {
         else return false;
     }
 
-    public SolverResult isSolvable(Air air) {
-
-
-    }
 
     private KnownFluidParameters knownFluidParameters() {
         KnownFluidParameters knownFluidParameters = new KnownFluidParameters();
