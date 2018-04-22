@@ -3,8 +3,10 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.solver.IndividualSolver;
+import wromaciej.hvac_sim.solver.SolverResult;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
 import java.util.Objects;
@@ -15,7 +17,9 @@ public class Fluid implements IndividualSolver {
     /**
      * Tool for dealing with solving fluid
      */
-    public FluidSolver fluidSolver;
+    private final FluidSolver fluidSolver;
+
+    private final FluidFactory fluidFactory;
 
     /**
      * Type of fluid
@@ -217,7 +221,7 @@ public class Fluid implements IndividualSolver {
 
 
     @Override
-    public boolean solve() {
-        return false;
+    public SolverResult solve() {
+        return fluidSolver.solve(this, fluidFactory);
     }
 }

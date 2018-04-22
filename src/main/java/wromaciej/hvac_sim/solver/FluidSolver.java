@@ -1,8 +1,6 @@
 package wromaciej.hvac_sim.solver;
 
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
@@ -12,22 +10,13 @@ import java.util.List;
 
 public class FluidSolver {
 
-    private class KnownFluidParameters {
-        public Parameter knownParameter1;
-        public Parameter knownParameter2;
 
-        public KnownFluidParameters() {
-        }
-    }
 
-    private class KnownAirParameters extends KnownFluidParameters {
-        public Parameter airPressure;
-
-        public KnownAirParameters() {
-        }
-    }
+    private char NEEDED_GENERAL_FLUID_PARAMETERS = 2;
+    private char NEEDED_AIR_PARAMETERS = 3;
 
     private FluidName fluidName;
+    private FluidType fluidType;
 
     //private Map<ParameterType, Parameter> knownParameters;
 
@@ -41,6 +30,14 @@ public class FluidSolver {
         return fluidName;
     }
 
+    public FluidType getFluidType() {
+        return fluidType;
+    }
+
+    public void setFluidType(FluidType fluidType) {
+        this.fluidType = fluidType;
+    }
+
     private List<Parameter> userDefinedParameters(Fluid fluid){
         List<Parameter> userDefinedParametersList = new ArrayList<>();
         for (Parameter parameter : fluid.fluidSolver.definedParameters){
@@ -49,8 +46,9 @@ public class FluidSolver {
         return userDefinedParametersList;
     }
 
-    public FluidSolver(FluidName fluidName, Parameter... parameters) {
+    public FluidSolver(FluidName fluidName, FluidType fluidType, Parameter... parameters) {
         this.fluidName = fluidName;
+        this.fluidType = fluidType;
         //this.knownParameters = new HashMap<>();
         this.definedParameters = new ArrayList<>();
 
@@ -59,39 +57,8 @@ public class FluidSolver {
         }
     }
 
-    public FluidSolver(Fluid fluid) {
-        //this(fluid.getFluidName(), fluid.fluidSolver.userDefinedParameters(fluid).toArray(new Parameter[fluid.fluidSolver.userDefinedParameters(fluid).size()]));
-        this(fluid.getFluidName(),
-                fluid.getAbsoluteTemperature(),
-                //fluid.getAbsolutePressure(),
-                //fluid.getSpecificEnthalpy(),
-                fluid.getSpecificEntropy());
-                //fluid.getQuality(),
-                //fluid.getHeatCapacity(),
-                //fluid.getSpecificVolume(),
-                //fluid.getDensity());
-    }
 
-    public FluidSolver(Air air) {
-        this(air.getFluidName(),
-                air.getAbsoluteTemperature(),
-                air.getAbsolutePressure(),
-                //air.getSpecificEnthalpy(),
-                //air.getSpecificEntropy(),
-                //air.getQuality(),
-                //air.getHeatCapacity(),
-                //air.getSpecificVolume(),
-                //air.getDensity(),
-                //air.getDewPointTemperature(),
-                air.getMoistureContent());
-                //air.getRelativeHumidity(),
-                //air.getWaterFraction(),
-                //air.getWaterPartialPressure(),
-                //air.getWetBulbTemperature());
-
-    }
-
-    public void clearAllParameters() {
+    public void clearDefinedParameters() {
         //knownParameters.clear();
         definedParameters.clear();
     }
@@ -107,6 +74,13 @@ public class FluidSolver {
     public void removeParameter(Parameter parameter) {
         //knownParameters.remove(parameter.getParameterType());
         definedParameters.remove(parameter);
+    }
+
+    public void removeParameter(ParameterType parameterType) {
+        for (Parameter parameter : definedParameters){
+            if (parameter.getParameterType() == parameterType)
+                removeParameter(parameter);
+        }
     }
 
     public void addParameter(Parameter knownParameter) {
@@ -127,52 +101,72 @@ public class FluidSolver {
         else return false;
     }
 
-    private int numberOfDifferentParameters(Fluid fluid){
 
+    private int numberOfUniqueParameters() {
+        int sumOfUniqueParameters = 0;
+        for (Parameter parameter : definedParameters){
+            if (isOnlyOneParameterOfGivenType(parameter.getParameterType())) sumOfUniqueParameters++;
+        }
+        return sumOfUniqueParameters;
     }
 
-
-//    public Parameter getParameterByType(ParameterType parameterType) {
-//        //return knownParameters.get(parameterType);
-//    }
-
-
-    private int numberOfDefinedParameters() {
-        //return knownParameters.size();
-        return definedParameters.size();
-    }
-
-
-    public SolverResult solverResult(Fluid fluid) {
-        if ((fluidName != null) && (fluid.fluidSolver.numberOfDefinedParameters() == 2)) return SolverResult.GOOD_DATA
-        else if (fluid.fluidSolver.numberOfDefinedParameters() < 2) return SolverResult.INSUFFICIENT_DATA;
-        else return SolverResult.TOO_MANY_CONSTRAINTS;
-    }
-
-    public boolean isSolvable(Fluid fluid) {
-        if (fluid.fluidSolver.solverResult(fluid) == SolverResult.GOOD_DATA) return true;
+    private boolean hasOnlyUniqueParameters(){
+        if (numberOfUniqueParameters() == definedParameters.size()) return true;
         else return false;
     }
 
 
-    private KnownFluidParameters knownFluidParameters() {
-        KnownFluidParameters knownFluidParameters = new KnownFluidParameters();
-        knownFluidParameters.knownParameter1 = knownParameters.
-    }
-1
 
-    private KnownAirParameters knownAirParameters() {
-//        KnownAirParameters knownAirParameters = new KnownAirParameters();
-//        knownAirParameters.knownParameter1 = null;
-//        kn
-//        knownAirParameters.airPressure
-    }
+//    public SolverResult solverResult(Fluid fluid) {
+//        if (fluid.getClass() == Fluid.class){
+//
+//        }
+//
+//        if ((fluidName != null) && (fluid.fluidSolver.numberOfUniqueParameters() == NEEDED_FLUID_PARAMETERS)) return SolverResult.GOOD_DATA
+//        else if (fluid.fluidSolver.numberOfUniqueParameters() < NEEDED_FLUID_PARAMETERS) return SolverResult.INSUFFICIENT_DATA;
+//        else return SolverResult.TOO_MANY_CONSTRAINTS;
+//    }
+//
+//
+//
+//    public boolean isSolvable(Fluid fluid) {
+//        if (fluid.fluidSolver.solverResult(fluid) == SolverResult.GOOD_DATA) return true;
+//        else return false;
+//    }
 
 
-    public Fluid solvedFluid(Fluid fluid, FluidFactory fluidFactory) {
-        if (isSolvable(fluid)) {
-            fluid = fluidFactory.createFluid(fluid.fluidSolver.fluidName, );
-        } else return null;
+
+
+    public SolverResult solve(Fluid fluid, FluidFactory fluidFactory) {
+        if ((fluid.fluidSolver.fluidType != FluidType.AIR) && (fluid.fluidSolver.fluidName == null))
+            return SolverResult.INSUFFICIENT_DATA;
+        else{
+            int numberOfUniqueParameters = fluid.fluidSolver.numberOfUniqueParameters();
+
+            if (fluid.fluidSolver.fluidType == FluidType.AIR){
+                if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!hasOnlyUniqueParameters()))
+                    return SolverResult.TOO_MANY_CONSTRAINTS;
+                else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
+                    return SolverResult.INSUFFICIENT_DATA;
+                else
+                    fluid = fluidFactory.createAir(
+                            definedParameters.get(1),
+                            definedParameters.get(2),
+                            definedParameters.get(3));
+            }
+            else if (fluid.fluidSolver.fluidType == FluidType.GENERAL){
+                if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!hasOnlyUniqueParameters()))
+                    return SolverResult.TOO_MANY_CONSTRAINTS;
+                else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
+                    return SolverResult.INSUFFICIENT_DATA;
+                else
+                    fluid = fluidFactory.createFluid(
+                            fluid.fluidSolver.fluidName,
+                            definedParameters.get(1),
+                            definedParameters.get(2));
+            }
+        }
+        return null; //there is no that case
     }
 
 

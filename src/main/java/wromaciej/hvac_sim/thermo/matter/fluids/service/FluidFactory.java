@@ -49,7 +49,7 @@ public class FluidFactory {
         fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
-        fluid.fluidSolver = new FluidSolver(fluid);
+        fluid.fluidSolver = new FluidSolver(fluidName, FluidType.GENERAL,  knownParameter1, knownParameter2);
         return fluid;
     }
 
@@ -89,7 +89,7 @@ public class FluidFactory {
 
         air.setStateOfMatter(setStateOfMatter(air));
 
-        air.fluidSolver = new FluidSolver(air);
+        air.fluidSolver = new FluidSolver(air.getFluidName(), FluidType.AIR, knownParameter1, knownParameter2, knownParameter3);
         return air;
     }
 
