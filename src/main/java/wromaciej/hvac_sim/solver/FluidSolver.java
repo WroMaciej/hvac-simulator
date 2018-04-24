@@ -12,41 +12,55 @@ public class FluidSolver {
     private final FluidDefinition fluidDefinition;
     private final FluidFactory fluidFactory;
 
+    private SolverResult solverResult;
+
+    public SolverResult getSolverResult() {
+        return solverResult;
+    }
+
     public FluidSolver(FluidDefinition fluidDefinition, FluidFactory fluidFactory) {
+        this.solverResult = SolverResult.NOT_SOLVED_NODATA;
         this.fluidDefinition = fluidDefinition;
         this.fluidFactory = fluidFactory;
     }
 
-    public SolverResult solve(Fluid fluid) {
+    public Fluid solve() {
+        Fluid fluid = null;
         FluidDefinition innerFluidDefinition = fluidDefinition;
         if ((innerFluidDefinition.getFluidType() != FluidType.AIR) && (innerFluidDefinition.getFluidName() == null))
-            return SolverResult.NOT_SOLVED_NODATA;
+            solverResult = SolverResult.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = innerFluidDefinition.numberOfUniqueParameters();
 
             if (innerFluidDefinition.getFluidType() == FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!innerFluidDefinition.hasOnlyUniqueParameters()))
-                    return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
+                    solverResult =  SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
-                    return SolverResult.NOT_SOLVED_NODATA;
-                else
+                    solverResult =  SolverResult.NOT_SOLVED_NODATA;
+                else{
                     fluid = fluidFactory.createAir(
                             innerFluidDefinition.getDefinedParameters().get(0),
                             innerFluidDefinition.getDefinedParameters().get(1),
                             innerFluidDefinition.getDefinedParameters().get(2));
+                    solverResult =  SolverResult.SOLVED;
+                }
+
             }
             else if (innerFluidDefinition.getFluidType() != FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!innerFluidDefinition.hasOnlyUniqueParameters()))
-                    return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
+                    solverResult =  SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
-                    return SolverResult.NOT_SOLVED_NODATA;
-                else
+                    solverResult =  SolverResult.NOT_SOLVED_NODATA;
+                else{
                     fluid = fluidFactory.createFluid(
                             innerFluidDefinition.getFluidName(),
                             innerFluidDefinition.getDefinedParameters().get(0),
                             innerFluidDefinition.getDefinedParameters().get(1));
+                    solverResult =  SolverResult.SOLVED;
+                }
+
             }
         }
-        return SolverResult.SOLVED;
+        return fluid;
     }
 }

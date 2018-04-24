@@ -27,10 +27,13 @@ public class FluidSolverTest {
         Parameter<Pressure> pressure = new Parameter(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
         FluidDefinition fluidDefinition = new FluidDefinition(FluidName.WATER, FluidType.GENERAL, temperature, pressure);
         FluidSolver fluidSolver = new FluidSolver(fluidDefinition, fluidFactory);
-        //fluidDefinition.solve(water, fluidFactory);
 
-        fluidSolver.solve(water);
+        water = fluidSolver.solve();
 
         System.out.println(water);
+        System.out.println(fluidSolver.getSolverResult());
     }
+
+    @Test
+    public void shouldReturnWaterFromFluid
 }

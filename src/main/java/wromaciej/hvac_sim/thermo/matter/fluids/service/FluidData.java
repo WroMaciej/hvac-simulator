@@ -75,6 +75,6 @@ public class FluidData {
     }
 
     public FluidData(boolean shouldLoadLibrary) {
-        if ((isLibraryLoaded) && (shouldLoadLibrary)) loadLibrary();
+        if ((!isLibraryLoaded) && (shouldLoadLibrary)) loadLibrary();
     }
 }
