@@ -34,8 +34,8 @@ public final class Air extends Fluid {
 
 
 
-    public Air(FluidFactory fluidFactory) {
-        super(fluidFactory);
+    public Air() {
+        super();
     }
 
     @Override

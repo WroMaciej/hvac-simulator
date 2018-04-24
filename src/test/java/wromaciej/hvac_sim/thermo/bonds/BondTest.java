@@ -15,9 +15,7 @@ public class BondTest {
     public void shouldAllowToBondInletDeviceToStreamOutlet(){
         //GIVEN
         IdGenerator idGenerator = new Ids();
-        FluidData fluidData = new FluidData(false);
-        FluidFactory fluidFactory = new FluidFactory(fluidData);
-        Fluid fluid = new Fluid(fluidFactory);
+        Fluid fluid = new Fluid();
         FluidStream fluidStream = new FluidStream(idGenerator.getUniqueId(), idGenerator, fluid);
         Heater heater = new Heater(idGenerator.getUniqueId(), idGenerator);
 

@@ -47,6 +47,10 @@ public class FluidDefinition {
 
     }
 
+    public List<Parameter> getDefinedParameters() {
+        return definedParameters;
+    }
+
     public void setDefinedParameters(Parameter... parameters){
         clearDefinedParameters();
         if (parameters != null){
@@ -99,7 +103,7 @@ public class FluidDefinition {
     }
 
 
-    private int numberOfUniqueParameters() {
+    public int numberOfUniqueParameters() {
         int sumOfUniqueParameters = 0;
         for (Parameter parameter : definedParameters){
             if (isOnlyOneParameterOfGivenType(parameter.getParameterType())) sumOfUniqueParameters++;
@@ -107,7 +111,7 @@ public class FluidDefinition {
         return sumOfUniqueParameters;
     }
 
-    private boolean hasOnlyUniqueParameters(){
+    public boolean hasOnlyUniqueParameters(){
         if (numberOfUniqueParameters() == definedParameters.size()) return true;
         else return false;
     }

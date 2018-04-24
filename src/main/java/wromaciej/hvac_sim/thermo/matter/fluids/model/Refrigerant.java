@@ -48,7 +48,7 @@ public final class Refrigerant extends Fluid {
     protected Parameter<Pressure> pressureSlide;
 
     public Refrigerant(FluidFactory fluidFactory){
-        super(fluidFactory);
+        super();
     }
 
 

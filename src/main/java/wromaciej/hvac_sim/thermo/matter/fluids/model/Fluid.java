@@ -20,7 +20,6 @@ public class Fluid implements IndividualSolver {
      * Tool for dealing with solving fluid
      */
     public FluidDefinition fluidDefinition;
-    protected FluidFactory fluidFactory;
     protected Map<ParameterType, Parameter> parametersByType;
 
 
@@ -89,8 +88,7 @@ public class Fluid implements IndividualSolver {
      */
     private Parameter<Density> density;
 
-    public Fluid(FluidFactory fluidFactory) {
-        this.fluidFactory = fluidFactory;
+    public Fluid() {
         fluidDefinition = new FluidDefinition(null, null, null);
         parametersByType = new HashMap<>();
     }
@@ -268,6 +266,6 @@ public class Fluid implements IndividualSolver {
 
     @Override
     public SolverResult solve() {
-        return fluidDefinition.solve(this, fluidFactory);
+        return null;//fluidDefinition.solve(this, fluidFactory);
     }
 }
