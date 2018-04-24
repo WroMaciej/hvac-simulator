@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
-import wromaciej.hvac_sim.solver.FluidSolver;
+import wromaciej.hvac_sim.solver.FluidDefinition;
 import wromaciej.hvac_sim.solver.IndividualSolver;
 import wromaciej.hvac_sim.solver.SolverResult;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -19,7 +19,7 @@ public class Fluid implements IndividualSolver {
     /**
      * Tool for dealing with solving fluid
      */
-    public FluidSolver fluidSolver;
+    public FluidDefinition fluidDefinition;
     protected FluidFactory fluidFactory;
     protected Map<ParameterType, Parameter> parametersByType;
 
@@ -91,7 +91,7 @@ public class Fluid implements IndividualSolver {
 
     public Fluid(FluidFactory fluidFactory) {
         this.fluidFactory = fluidFactory;
-        fluidSolver = new FluidSolver(null, null, null);
+        fluidDefinition = new FluidDefinition(null, null, null);
         parametersByType = new HashMap<>();
     }
 
@@ -268,6 +268,6 @@ public class Fluid implements IndividualSolver {
 
     @Override
     public SolverResult solve() {
-        return fluidSolver.solve(this, fluidFactory);
+        return fluidDefinition.solve(this, fluidFactory);
     }
 }

@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Test;
-import wromaciej.hvac_sim.solver.FluidSolver;
+import wromaciej.hvac_sim.solver.FluidDefinition;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
@@ -24,11 +24,11 @@ public class FluidSolverTest {
         Fluid water = new Fluid(fluidFactory);
         Parameter<Temperature> temperature = new Parameter(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<Pressure> pressure = new Parameter(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
-        FluidSolver fluidSolver = new FluidSolver(FluidName.WATER, FluidType.GENERAL, temperature, pressure);
-        //fluidSolver.solve(water, fluidFactory);
+        FluidDefinition fluidSolver = new FluidDefinition(FluidName.WATER, FluidType.GENERAL, temperature, pressure);
+        //fluidDefinition.solve(water, fluidFactory);
 
-        water.fluidSolver=fluidSolver;
-        water.fluidSolver.solve(water, fluidFactory);
+        water.fluidDefinition =fluidSolver;
+        water.fluidDefinition.solve(water, fluidFactory);
 
         System.out.println(water);
     }
