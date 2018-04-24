@@ -1,9 +1,8 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.solver.SolverResult;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
-import wromaciej.hvac_sim.thermo.generals.bonds.Bond;
-import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
@@ -59,8 +58,9 @@ public final class FluidStream extends AnyStream {
         return null;
     }
 
+
     @Override
-    public boolean solve() {
-        return false;
+    public SolverResult solve() {
+        return null;
     }
 }

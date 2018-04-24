@@ -51,6 +51,7 @@ public class FluidFactory {
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
         fluid.fluidSolver = new FluidSolver(fluidName, FluidType.GENERAL, knownParameter1, knownParameter2);
+        fluid.updateParameters();
         return fluid;
     }
 
@@ -62,7 +63,7 @@ public class FluidFactory {
     }
 
     public Air createAir(Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
-        Air air = new Air();
+        Air air = new Air(this);
         air.setFluidName(FluidName.MOIST_AIR);
         air.setFluidType(FluidType.AIR);
         air.setAbsolutePressure(fluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
@@ -91,6 +92,7 @@ public class FluidFactory {
         air.setStateOfMatter(setStateOfMatter(air));
 
         air.fluidSolver = new FluidSolver(air.getFluidName(), FluidType.AIR, knownParameter1, knownParameter2, knownParameter3);
+        air.updateParameters();
         return air;
     }
 

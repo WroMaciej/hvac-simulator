@@ -29,7 +29,7 @@ public class RealProcess {
     }
 
     public int calculateIntervalsNumber(Fluid fluid, Parameter<PressureDifference> pressureDrop){
-        Parameter<Pressure> absolutePressure =  fluid.fluidSolver.getParameterByType(ParameterType.PRESSURE);
+        Parameter<Pressure> absolutePressure =  fluid.getAbsolutePressure();
         double relativePressureDrop = absolutePressure.divide(pressureDrop).getValue();
         double intervalsFromFormula = 500.0 * relativePressureDrop;
         if (intervalsFromFormula < MIN_INTERVALS) return MIN_INTERVALS;
@@ -81,11 +81,11 @@ public class RealProcess {
     private Fluid heatExchangeWithPressureDrop(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureDrop, int intervals) {
         Fluid fluidAfterStep = fluid; //or a copy?
         Parameter<PressureDifference> pressureDropStep = pressureDrop.divide(intervals);
-        Parameter startParameter = fluid.fluidSolver.getParameterByType(endParameter.getParameterType());
+        Parameter startParameter = fluid.getParameterByType(endParameter.getParameterType());
         Parameter parameterStep = endParameter.minus(startParameter).divide(intervals);
         for (int stepNumber = 0; stepNumber < intervals; stepNumber++) {
             fluidAfterStep = heatExchangeOneStep(fluidAfterStep, startParameter.plus(parameterStep), pressureDropStep);
-            startParameter = fluidAfterStep.fluidSolver.getParameterByType(endParameter.getParameterType());
+            startParameter = fluidAfterStep.getParameterByType(endParameter.getParameterType());
         }
         return fluidAfterStep;
     }

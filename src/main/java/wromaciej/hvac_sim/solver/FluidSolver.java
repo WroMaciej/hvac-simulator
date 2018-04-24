@@ -51,9 +51,12 @@ public class FluidSolver {
 
     public void setDefinedParameters(Parameter... parameters){
         clearDefinedParameters();
-        for (Parameter parameter : parameters) {
-            addParameter(parameter);
+        if (parameters != null){
+            for (Parameter parameter : parameters) {
+                addParameter(parameter);
+            }
         }
+
     }
 
 

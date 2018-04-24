@@ -7,9 +7,12 @@ import wromaciej.hvac_sim.solver.SolverResult;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -19,7 +22,8 @@ public class Fluid implements IndividualSolver {
      * Tool for dealing with solving fluid
      */
     public FluidSolver fluidSolver;
-    private FluidFactory fluidFactory;
+    protected FluidFactory fluidFactory;
+    protected Map<ParameterType, Parameter> parametersByType;
 
 
     /**
@@ -90,6 +94,29 @@ public class Fluid implements IndividualSolver {
     public Fluid(FluidFactory fluidFactory) {
         this.fluidFactory = fluidFactory;
         fluidSolver = new FluidSolver(null, null, null);
+        parametersByType = new HashMap<>();
+    }
+
+    public Parameter getParameterByType(ParameterType parameterType){
+        updateParameters();
+        return parametersByType.get(parameterType);
+    }
+
+    protected void addParameter(Parameter parameter){
+        if (parameter.getParameterType()!= ParameterType.OTHER){
+            parametersByType.put(parameter.getParameterType(), parameter);
+        }
+    }
+
+    public void updateParameters(){
+        parametersByType.clear();
+        addParameter(absoluteTemperature);
+        addParameter(absolutePressure);
+        addParameter(specificEnthalpy);
+        addParameter(specificEntropy);
+        addParameter(quality);
+        addParameter(density);
+        addParameter(heatCapacity);
     }
 
     @Override
