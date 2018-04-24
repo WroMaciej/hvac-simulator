@@ -6,7 +6,7 @@ import wromaciej.hvac_sim.thermo.generals.bonds.Bond;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.VolumeFlow;

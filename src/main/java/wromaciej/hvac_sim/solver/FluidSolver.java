@@ -1,9 +1,10 @@
 package wromaciej.hvac_sim.solver;
 
+import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
+import wromaciej.hvac_sim.thermo.matter.fluids.fluid.FluidFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,12 +116,12 @@ public class FluidSolver {
 
 
     public SolverResult solve(Fluid fluid, FluidFactory fluidFactory) {
-        if ((fluid.fluidSolver.fluidType != FluidType.AIR) && (fluid.fluidSolver.fluidName == null))
+        if ((fluidType != FluidType.AIR) && (fluidName == null))
             return SolverResult.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluid.fluidSolver.numberOfUniqueParameters();
 
-            if (fluid.fluidSolver.fluidType == FluidType.AIR){
+            if (fluidType == FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!hasOnlyUniqueParameters()))
                     return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
@@ -131,14 +132,14 @@ public class FluidSolver {
                             definedParameters.get(1),
                             definedParameters.get(2));
             }
-            else if (fluid.fluidSolver.fluidType != FluidType.AIR){
+            else if (fluidType != FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!hasOnlyUniqueParameters()))
                     return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
                     return SolverResult.NOT_SOLVED_NODATA;
                 else
                     fluid = fluidFactory.createFluid(
-                            fluid.fluidSolver.fluidName,
+                            fluidName,
                             definedParameters.get(0),
                             definedParameters.get(1));
             }

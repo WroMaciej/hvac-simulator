@@ -1,11 +1,12 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.service;
+package wromaciej.hvac_sim.thermo.matter.fluids.fluid;
 
 import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
+import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.thermo.quantities.specific.Quality;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
@@ -42,14 +43,14 @@ public class FluidFactory {
         fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
         if (UnitSystem.getActualUnitSystem() != null)
             fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
-       else
-           fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+        else
+            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
 
         fluid.setAbsoluteTemperature(fluid.getTemperature());
         fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
-        fluid.fluidSolver = new FluidSolver(fluidName, FluidType.GENERAL,  knownParameter1, knownParameter2);
+        fluid.fluidSolver = new FluidSolver(fluidName, FluidType.GENERAL, knownParameter1, knownParameter2);
         return fluid;
     }
 

@@ -1,12 +1,13 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.model;
+package wromaciej.hvac_sim.thermo.matter.fluids.fluid;
 
 
 import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.solver.IndividualSolver;
 import wromaciej.hvac_sim.solver.SolverResult;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
-import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
 import java.util.Objects;
@@ -117,7 +118,7 @@ public class Fluid implements IndividualSolver {
         return fluidType;
     }
 
-    public void setFluidType(FluidType fluidType) {
+    protected void setFluidType(FluidType fluidType) {
         this.fluidType = fluidType;
     }
 
@@ -125,7 +126,7 @@ public class Fluid implements IndividualSolver {
         return fluidName;
     }
 
-    public void setFluidName(FluidName fluidName) {
+    protected void setFluidName(FluidName fluidName) {
         this.fluidName = fluidName;
     }
 
@@ -133,7 +134,7 @@ public class Fluid implements IndividualSolver {
         return stateOfMatter;
     }
 
-    public void setStateOfMatter(StateOfMatter stateOfMatter) {
+    protected void setStateOfMatter(StateOfMatter stateOfMatter) {
         this.stateOfMatter = stateOfMatter;
     }
 
@@ -141,7 +142,7 @@ public class Fluid implements IndividualSolver {
         return temperature;
     }
 
-    public void setTemperature(Parameter<Temperature> temperature) {
+    protected void setTemperature(Parameter<Temperature> temperature) {
         this.temperature = temperature;
     }
 
@@ -149,7 +150,7 @@ public class Fluid implements IndividualSolver {
         return absoluteTemperature;
     }
 
-    public void setAbsoluteTemperature(Parameter<Temperature> absoluteTemperature) {
+    protected void setAbsoluteTemperature(Parameter<Temperature> absoluteTemperature) {
         this.absoluteTemperature = absoluteTemperature;
     }
 
@@ -157,7 +158,7 @@ public class Fluid implements IndividualSolver {
         return absolutePressure;
     }
 
-    public void setAbsolutePressure(Parameter<Pressure> absolutePressure) {
+    protected void setAbsolutePressure(Parameter<Pressure> absolutePressure) {
         this.absolutePressure = absolutePressure;
     }
 
@@ -165,7 +166,7 @@ public class Fluid implements IndividualSolver {
         return gaugePressure;
     }
 
-    public void setGaugePressure(Parameter<Pressure> gaugePressure) {
+    protected void setGaugePressure(Parameter<Pressure> gaugePressure) {
         this.gaugePressure = gaugePressure;
     }
 
@@ -173,7 +174,7 @@ public class Fluid implements IndividualSolver {
         return specificEnthalpy;
     }
 
-    public void setSpecificEnthalpy(Parameter<SpecificEnthalpy> specificEnthalpy) {
+    protected void setSpecificEnthalpy(Parameter<SpecificEnthalpy> specificEnthalpy) {
         this.specificEnthalpy = specificEnthalpy;
     }
 
@@ -181,7 +182,7 @@ public class Fluid implements IndividualSolver {
         return specificEntropy;
     }
 
-    public void setSpecificEntropy(Parameter<SpecificEntropy> specificEntropy) {
+    protected void setSpecificEntropy(Parameter<SpecificEntropy> specificEntropy) {
         this.specificEntropy = specificEntropy;
     }
 
@@ -189,7 +190,7 @@ public class Fluid implements IndividualSolver {
         return quality;
     }
 
-    public void setQuality(Parameter<Quality> quality) {
+    protected void setQuality(Parameter<Quality> quality) {
         this.quality = quality;
     }
 
@@ -197,7 +198,7 @@ public class Fluid implements IndividualSolver {
         return heatCapacity;
     }
 
-    public void setHeatCapacity(Parameter<HeatCapacity> heatCapacity) {
+    protected void setHeatCapacity(Parameter<HeatCapacity> heatCapacity) {
         this.heatCapacity = heatCapacity;
     }
 
@@ -205,7 +206,7 @@ public class Fluid implements IndividualSolver {
         return specificVolume;
     }
 
-    public void setSpecificVolume(Parameter<SpecificVolume> specificVolume) {
+    protected void setSpecificVolume(Parameter<SpecificVolume> specificVolume) {
         this.specificVolume = specificVolume;
     }
 
@@ -213,7 +214,7 @@ public class Fluid implements IndividualSolver {
         return density;
     }
 
-    public void setDensity(Parameter<Density> density) {
+    protected void setDensity(Parameter<Density> density) {
         this.density = density;
     }
 
