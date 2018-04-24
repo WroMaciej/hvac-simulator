@@ -18,7 +18,8 @@ public class Fluid implements IndividualSolver {
     /**
      * Tool for dealing with solving fluid
      */
-    public FluidSolver fluidSolver = new FluidSolver(null, null, null);
+    public FluidSolver fluidSolver;
+    private FluidFactory fluidFactory;
 
 
     /**
@@ -86,7 +87,10 @@ public class Fluid implements IndividualSolver {
      */
     private Parameter<Density> density;
 
-    public Fluid() { }
+    public Fluid(FluidFactory fluidFactory) {
+        this.fluidFactory = fluidFactory;
+        fluidSolver = new FluidSolver(null, null, null);
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -30,7 +30,7 @@ public class FluidFactory {
 
     public Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR) return createAirAtAtmosphericPressure(knownParameter1, knownParameter2);
-        Fluid fluid = new Fluid();
+        Fluid fluid = new Fluid(this);
         fluid.setFluidName(fluidName);
         fluid.setFluidType(FluidType.GENERAL);
         fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
