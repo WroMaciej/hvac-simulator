@@ -22,7 +22,7 @@ public class FluidSolverTest {
     public void shouldReturnWaterForTemperatureAndPressure(){
         FluidData fluidData = new FluidData(true);
         FluidFactory fluidFactory = new FluidFactory(fluidData);
-        Fluid water = new Fluid();
+        Fluid water; //= new Fluid();
         Parameter<Temperature> temperature = new Parameter(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
         Parameter<Pressure> pressure = new Parameter(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
         FluidDefinition fluidDefinition = new FluidDefinition(FluidName.WATER, FluidType.GENERAL, temperature, pressure);
@@ -35,5 +35,18 @@ public class FluidSolverTest {
     }
 
     @Test
-    public void shouldReturnWaterFromFluid
+    public void shouldReturnWaterFromFluid(){
+        FluidData fluidData = new FluidData(true);
+        FluidFactory fluidFactory = new FluidFactory(fluidData);
+        Fluid water = new Fluid();
+        Parameter<Temperature> temperature = new Parameter(ParameterType.TEMPERATURE, SI.CELSIUS.asType(Temperature.class), 20);
+        Parameter<Pressure> pressure = new Parameter(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
+        water.fluidDefinition = new FluidDefinition(FluidName.WATER, FluidType.GENERAL, temperature, pressure);
+        FluidSolver fluidSolver = new FluidSolver(water.fluidDefinition, fluidFactory);
+
+        water = fluidSolver.solve();
+
+        System.out.println(water);
+        System.out.println(fluidSolver.getSolverResult());
+    }
 }
