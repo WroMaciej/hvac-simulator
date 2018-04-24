@@ -17,9 +17,8 @@ public class Fluid implements IndividualSolver {
     /**
      * Tool for dealing with solving fluid
      */
-    private final FluidSolver fluidSolver;
+    public FluidSolver fluidSolver = new FluidSolver(null, null, null);
 
-    private final FluidFactory fluidFactory;
 
     /**
      * Type of fluid

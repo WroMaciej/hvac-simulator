@@ -1,11 +1,9 @@
 package wromaciej.hvac_sim.solver;
 
-import wromaciej.hvac_sim.thermo.Item;
+import wromaciej.hvac_sim.thermo.generals.Item;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SolverChecker {
 

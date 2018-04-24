@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.solver;
 
 public enum SolverResult {
-    INSUFFICIENT_DATA,
-    TOO_MANY_CONSTRAINTS,
-    GOOD_DATA;
+    NOT_SOLVED_NODATA,
+    NOT_SOLVED_TOO_MUCH_DATA,
+    SOLVED;
 }

@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo;
+package wromaciej.hvac_sim.thermo.generals;
 
 import wromaciej.hvac_sim.display.DisplayParameters;
 import wromaciej.hvac_sim.display.Displayable;

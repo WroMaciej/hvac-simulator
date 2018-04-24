@@ -38,20 +38,18 @@ public class FluidSolver {
         this.fluidType = fluidType;
     }
 
-    private List<Parameter> userDefinedParameters(Fluid fluid){
-        List<Parameter> userDefinedParametersList = new ArrayList<>();
-        for (Parameter parameter : fluid.fluidSolver.definedParameters){
-            if (parameter.isUserDefined()) userDefinedParametersList.add(parameter);
-        }
-        return userDefinedParametersList;
-    }
-
     public FluidSolver(FluidName fluidName, FluidType fluidType, Parameter... parameters) {
         this.fluidName = fluidName;
         this.fluidType = fluidType;
         //this.knownParameters = new HashMap<>();
         this.definedParameters = new ArrayList<>();
 
+        setDefinedParameters(parameters);
+
+    }
+
+    public void setDefinedParameters(Parameter... parameters){
+        clearDefinedParameters();
         for (Parameter parameter : parameters) {
             addParameter(parameter);
         }
@@ -67,9 +65,6 @@ public class FluidSolver {
         fluidName = null;
     }
 
-//    public void clearParameter(ParameterType parameterType) {
-//        //knownParameters.remove(parameterType);
-//    }
 
     public void removeParameter(Parameter parameter) {
         //knownParameters.remove(parameter.getParameterType());
@@ -117,56 +112,38 @@ public class FluidSolver {
 
 
 
-//    public SolverResult solverResult(Fluid fluid) {
-//        if (fluid.getClass() == Fluid.class){
-//
-//        }
-//
-//        if ((fluidName != null) && (fluid.fluidSolver.numberOfUniqueParameters() == NEEDED_FLUID_PARAMETERS)) return SolverResult.GOOD_DATA
-//        else if (fluid.fluidSolver.numberOfUniqueParameters() < NEEDED_FLUID_PARAMETERS) return SolverResult.INSUFFICIENT_DATA;
-//        else return SolverResult.TOO_MANY_CONSTRAINTS;
-//    }
-//
-//
-//
-//    public boolean isSolvable(Fluid fluid) {
-//        if (fluid.fluidSolver.solverResult(fluid) == SolverResult.GOOD_DATA) return true;
-//        else return false;
-//    }
-
-
 
 
     public SolverResult solve(Fluid fluid, FluidFactory fluidFactory) {
         if ((fluid.fluidSolver.fluidType != FluidType.AIR) && (fluid.fluidSolver.fluidName == null))
-            return SolverResult.INSUFFICIENT_DATA;
+            return SolverResult.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluid.fluidSolver.numberOfUniqueParameters();
 
             if (fluid.fluidSolver.fluidType == FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!hasOnlyUniqueParameters()))
-                    return SolverResult.TOO_MANY_CONSTRAINTS;
+                    return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
-                    return SolverResult.INSUFFICIENT_DATA;
+                    return SolverResult.NOT_SOLVED_NODATA;
                 else
                     fluid = fluidFactory.createAir(
-                            definedParameters.get(1),
-                            definedParameters.get(2),
-                            definedParameters.get(3));
-            }
-            else if (fluid.fluidSolver.fluidType == FluidType.GENERAL){
-                if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!hasOnlyUniqueParameters()))
-                    return SolverResult.TOO_MANY_CONSTRAINTS;
-                else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
-                    return SolverResult.INSUFFICIENT_DATA;
-                else
-                    fluid = fluidFactory.createFluid(
-                            fluid.fluidSolver.fluidName,
+                            definedParameters.get(0),
                             definedParameters.get(1),
                             definedParameters.get(2));
             }
+            else if (fluid.fluidSolver.fluidType != FluidType.AIR){
+                if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!hasOnlyUniqueParameters()))
+                    return SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
+                else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
+                    return SolverResult.NOT_SOLVED_NODATA;
+                else
+                    fluid = fluidFactory.createFluid(
+                            fluid.fluidSolver.fluidName,
+                            definedParameters.get(0),
+                            definedParameters.get(1));
+            }
         }
-        return null; //there is no that case
+        return SolverResult.SOLVED;
     }
 
 
