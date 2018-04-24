@@ -2,8 +2,8 @@ package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Test;
 import wromaciej.hvac_sim.solver.FluidSolver;
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.FluidFactory;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;

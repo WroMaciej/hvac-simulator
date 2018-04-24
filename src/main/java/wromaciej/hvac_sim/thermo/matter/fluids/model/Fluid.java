@@ -1,11 +1,9 @@
-package wromaciej.hvac_sim.thermo.matter.fluids.fluid;
+package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
 import wromaciej.hvac_sim.solver.FluidSolver;
 import wromaciej.hvac_sim.solver.IndividualSolver;
 import wromaciej.hvac_sim.solver.SolverResult;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;

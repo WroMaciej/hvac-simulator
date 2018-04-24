@@ -1,7 +1,7 @@
 //package wromaciej.hvac_sim;
 //
 //import wromaciej.hvac_sim.thermo.controller.FluidData;
-//import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
+//import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 //import wromaciej.hvac_sim.thermo.matter.fluids.serviceOLD.FluidFactory;
 //
 //import java.util.Scanner;

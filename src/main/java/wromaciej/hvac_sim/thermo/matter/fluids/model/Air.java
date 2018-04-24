@@ -1,7 +1,5 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
@@ -54,7 +52,7 @@ public final class Air extends Fluid {
         return relativeHumidity;
     }
 
-    public void setRelativeHumidity(Parameter<RelativeHumidity> relativeHumidity) {
+    protected void setRelativeHumidity(Parameter<RelativeHumidity> relativeHumidity) {
         this.relativeHumidity = relativeHumidity;
     }
 
@@ -62,7 +60,7 @@ public final class Air extends Fluid {
         return moistureContent;
     }
 
-    public void setMoistureContent(Parameter<MoistureContent> moistureContent) {
+    protected void setMoistureContent(Parameter<MoistureContent> moistureContent) {
         this.moistureContent = moistureContent;
     }
 
@@ -70,7 +68,7 @@ public final class Air extends Fluid {
         return dewPointTemperature;
     }
 
-    public void setDewPointTemperature(Parameter<Temperature> dewPointTemperature) {
+    protected void setDewPointTemperature(Parameter<Temperature> dewPointTemperature) {
         this.dewPointTemperature = dewPointTemperature;
     }
 
@@ -78,7 +76,7 @@ public final class Air extends Fluid {
         return wetBulbTemperature;
     }
 
-    public void setWetBulbTemperature(Parameter<Temperature> wetBulbTemperature) {
+    protected void setWetBulbTemperature(Parameter<Temperature> wetBulbTemperature) {
         this.wetBulbTemperature = wetBulbTemperature;
     }
 
@@ -86,7 +84,7 @@ public final class Air extends Fluid {
         return waterFraction;
     }
 
-    public void setWaterFraction(Parameter<MoistureContent> waterFraction) {
+    protected void setWaterFraction(Parameter<MoistureContent> waterFraction) {
         this.waterFraction = waterFraction;
     }
 
@@ -94,7 +92,7 @@ public final class Air extends Fluid {
         return waterPartialPressure;
     }
 
-    public void setWaterPartialPressure(Parameter<Pressure> waterPartialPressure) {
+    protected void setWaterPartialPressure(Parameter<Pressure> waterPartialPressure) {
         this.waterPartialPressure = waterPartialPressure;
     }
 

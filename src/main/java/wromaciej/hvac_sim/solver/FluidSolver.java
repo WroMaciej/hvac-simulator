@@ -1,10 +1,10 @@
 package wromaciej.hvac_sim.solver;
 
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.Fluid;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.fluid.FluidFactory;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 
 import java.util.ArrayList;
 import java.util.List;
