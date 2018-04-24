@@ -153,11 +153,13 @@ public class Parameter<Q extends AnyQuantity> {
 
     @Override
     public boolean equals(Object that) {
+        System.out.println(this + " is equal"+ that +" ?");
+
         if (this == that) return true;
         if (that == null || getClass() != that.getClass()) return false;
         Parameter<Q> thatParameter = (Parameter<Q>) that;
         Amount<Q> thatAmount= (Amount) thatParameter.amount;
-        return amount.approximates(thatAmount);
+        return amount.equals(thatAmount); //.approximates(thatAmount);
     }
 
     @Override

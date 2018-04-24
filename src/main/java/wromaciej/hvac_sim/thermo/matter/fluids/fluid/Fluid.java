@@ -249,7 +249,24 @@ public class Fluid implements IndividualSolver {
         this.density = density;
     }
 
-
+    @Override
+    public String toString() {
+        return "Fluid{" +
+                "fluidType=" + fluidType +
+                ", fluidName=" + fluidName +
+                ", stateOfMatter=" + stateOfMatter +
+                ", temperature=" + temperature +
+                ", absoluteTemperature=" + absoluteTemperature +
+                ", absolutePressure=" + absolutePressure +
+                ", gaugePressure=" + gaugePressure +
+                ", specificEnthalpy=" + specificEnthalpy +
+                ", specificEntropy=" + specificEntropy +
+                ", quality=" + quality +
+                ", heatCapacity=" + heatCapacity +
+                ", specificVolume=" + specificVolume +
+                ", density=" + density +
+                '}';
+    }
 
     @Override
     public SolverResult solve() {

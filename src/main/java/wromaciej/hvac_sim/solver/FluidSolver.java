@@ -53,7 +53,9 @@ public class FluidSolver {
         clearDefinedParameters();
         if (parameters != null){
             for (Parameter parameter : parameters) {
+                System.out.println("adding "+parameter);
                 addParameter(parameter);
+                System.out.println("added "+parameter);
             }
         }
 
