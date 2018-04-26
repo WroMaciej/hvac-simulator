@@ -3,15 +3,15 @@ package wromaciej.hvac_sim.thermo.generals;
 import wromaciej.hvac_sim.display.DisplayParameters;
 import wromaciej.hvac_sim.display.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.general.OwnSolver;
-import wromaciej.hvac_sim.solver.itemSolvers.ExternalSolver;
+import wromaciej.hvac_sim.solver.general.InternalSolver;
+import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.general.SolverChecker;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 
 /**
  * Any object that could be treated as a part of process
  */
-public abstract class Item implements Displayable, OwnSolver {
+public abstract class Item implements Displayable, InternalSolver {
 
     private final int id;
     private String name;
@@ -27,13 +27,7 @@ public abstract class Item implements Displayable, OwnSolver {
         this.actualExternalSolver = actualExternalSolver;
     }
 
-    public boolean isSolved() {
-        return isSolved;
-    }
 
-    public void setSolved(boolean solved) {
-        isSolved = solved;
-    }
 
     private DisplayParameters displayParameters;
 
@@ -63,5 +57,10 @@ public abstract class Item implements Displayable, OwnSolver {
     @Override
     public SolverResult solve() {
         return actualExternalSolver.solve(this);
+    }
+
+    @Override
+    public boolean isSolved() {
+        return isSolved;
     }
 }

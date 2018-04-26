@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.solver.itemSolvers;
+package wromaciej.hvac_sim.solver.externals;
 
 import wromaciej.hvac_sim.solver.result.SolverResult;
 

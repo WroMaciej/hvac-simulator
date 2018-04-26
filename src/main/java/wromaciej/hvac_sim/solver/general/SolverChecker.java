@@ -7,37 +7,37 @@ import java.util.List;
 
 public class SolverChecker {
 
-    List<Item> allItems;
+    List<InternalSolver> internalSolvers;
 
-    public SolverChecker(Item... items) {
-        this.allItems = new ArrayList<>();
-        for (Item item : items) {
-            this.allItems.add(item);
+    public SolverChecker(InternalSolver... internalSolvers) {
+        this.internalSolvers = new ArrayList<>();
+        for (InternalSolver internalSolver : internalSolvers) {
+            this.internalSolvers.add(internalSolver);
         }
     }
 
     public int notSolvedItemsNumber() {
         int notSolvedSum = 0;
-        for (Item item : allItems) {
-            if (item.isSolved() == false) notSolvedSum++;
+        for (InternalSolver internalSolver : internalSolvers) {
+            if (internalSolver.isSolved() == false) notSolvedSum++;
         }
         return notSolvedSum;
     }
 
-    public List<Item> solvedItems() {
-        List<Item> solvedItemsSet = new ArrayList<>();
-        for (Item item : allItems) {
-            if (item.isSolved()) solvedItemsSet.add(item);
+    public List<InternalSolver> solvedItems() {
+        List<InternalSolver> solvedItemsList = new ArrayList<>();
+        for (InternalSolver internalSolver : internalSolvers) {
+            if (internalSolver.isSolved()) solvedItemsList.add(internalSolver);
         }
-        return solvedItemsSet;
+        return solvedItemsList;
     }
 
-    public List<Item> notSolvedItems() {
-        List<Item> notSolvedItemsSet = new ArrayList<>();
-        for (Item item : allItems) {
-            if (!item.isSolved()) notSolvedItemsSet.add(item);
+    public List<InternalSolver> notSolvedItems() {
+        List<InternalSolver> notSolvedItemsList = new ArrayList<>();
+        for (InternalSolver internalSolver : internalSolvers) {
+            if (!internalSolver.isSolved()) notSolvedItemsList.add(internalSolver);
         }
-        return notSolvedItemsSet;
+        return notSolvedItemsList;
     }
 
     public boolean isEverythingSolved(){

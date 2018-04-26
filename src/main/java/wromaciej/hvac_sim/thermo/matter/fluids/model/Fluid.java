@@ -3,9 +3,8 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.solver.fluidSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.fluidSolvers.FluidSolver;
-import wromaciej.hvac_sim.solver.general.OwnSolver;
+import wromaciej.hvac_sim.solver.general.InternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
-import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
@@ -16,13 +15,14 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class Fluid implements OwnSolver {
+public class Fluid implements InternalSolver {
 
     /**
      * Tool for dealing with solving fluid
      */
     public FluidDefinition fluidDefinition;
     private FluidSolver actualFluidSolver;
+    private boolean isSolved;
 
     protected Map<ParameterType, Parameter> parametersByType;
 
@@ -273,5 +273,10 @@ public class Fluid implements OwnSolver {
     @Override
     public SolverResult solve() {
         return actualFluidSolver.solve(this);
+    }
+
+    @Override
+    public boolean isSolved() {
+        return isSolved;
     }
 }
