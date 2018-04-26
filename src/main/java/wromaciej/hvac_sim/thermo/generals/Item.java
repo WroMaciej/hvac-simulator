@@ -3,27 +3,28 @@ package wromaciej.hvac_sim.thermo.generals;
 import wromaciej.hvac_sim.display.DisplayParameters;
 import wromaciej.hvac_sim.display.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.itemSolvers.ItemSolver;
+import wromaciej.hvac_sim.solver.general.OwnSolver;
+import wromaciej.hvac_sim.solver.itemSolvers.ExternalSolver;
 import wromaciej.hvac_sim.solver.general.SolverChecker;
-import wromaciej.hvac_sim.solver.result.SolverResultType;
+import wromaciej.hvac_sim.solver.result.SolverResult;
 
 /**
  * Any object that could be treated as a part of process
  */
-public abstract class Item implements Displayable {
+public abstract class Item implements Displayable, OwnSolver {
 
     private final int id;
     private String name;
     private boolean isSolved;
     protected SolverChecker solverChecker;
-    private ItemSolver actualItemSolver;
+    private ExternalSolver actualExternalSolver;
 
-    public ItemSolver getActualItemSolver() {
-        return actualItemSolver;
+    public ExternalSolver getActualExternalSolver() {
+        return actualExternalSolver;
     }
 
-    public void setActualItemSolver(ItemSolver actualItemSolver) {
-        this.actualItemSolver = actualItemSolver;
+    public void setActualExternalSolver(ExternalSolver actualExternalSolver) {
+        this.actualExternalSolver = actualExternalSolver;
     }
 
     public boolean isSolved() {
@@ -59,7 +60,8 @@ public abstract class Item implements Displayable {
     }
 
 
-    public SolverResultType solve() {
-        return actualItemSolver.solve(this);
+    @Override
+    public SolverResult solve() {
+        return actualExternalSolver.solve(this);
     }
 }

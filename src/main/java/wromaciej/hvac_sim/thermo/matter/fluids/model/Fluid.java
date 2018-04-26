@@ -3,6 +3,8 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.solver.fluidSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.fluidSolvers.FluidSolver;
+import wromaciej.hvac_sim.solver.general.OwnSolver;
+import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
@@ -14,12 +16,14 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class Fluid  {
+public class Fluid implements OwnSolver {
 
     /**
      * Tool for dealing with solving fluid
      */
     public FluidDefinition fluidDefinition;
+    private FluidSolver actualFluidSolver;
+
     protected Map<ParameterType, Parameter> parametersByType;
 
 
@@ -145,7 +149,7 @@ public class Fluid  {
         return fluidType;
     }
 
-    protected void setFluidType(FluidType fluidType) {
+    void setFluidType(FluidType fluidType) {
         this.fluidType = fluidType;
     }
 
@@ -153,7 +157,7 @@ public class Fluid  {
         return fluidName;
     }
 
-    protected void setFluidName(FluidName fluidName) {
+    void setFluidName(FluidName fluidName) {
         this.fluidName = fluidName;
     }
 
@@ -161,7 +165,7 @@ public class Fluid  {
         return stateOfMatter;
     }
 
-    protected void setStateOfMatter(StateOfMatter stateOfMatter) {
+    void setStateOfMatter(StateOfMatter stateOfMatter) {
         this.stateOfMatter = stateOfMatter;
     }
 
@@ -169,7 +173,7 @@ public class Fluid  {
         return temperature;
     }
 
-    protected void setTemperature(Parameter<Temperature> temperature) {
+    void setTemperature(Parameter<Temperature> temperature) {
         this.temperature = temperature;
     }
 
@@ -177,7 +181,7 @@ public class Fluid  {
         return absoluteTemperature;
     }
 
-    protected void setAbsoluteTemperature(Parameter<Temperature> absoluteTemperature) {
+    void setAbsoluteTemperature(Parameter<Temperature> absoluteTemperature) {
         this.absoluteTemperature = absoluteTemperature;
     }
 
@@ -185,7 +189,7 @@ public class Fluid  {
         return absolutePressure;
     }
 
-    protected void setAbsolutePressure(Parameter<Pressure> absolutePressure) {
+    void setAbsolutePressure(Parameter<Pressure> absolutePressure) {
         this.absolutePressure = absolutePressure;
     }
 
@@ -193,7 +197,7 @@ public class Fluid  {
         return gaugePressure;
     }
 
-    protected void setGaugePressure(Parameter<Pressure> gaugePressure) {
+    void setGaugePressure(Parameter<Pressure> gaugePressure) {
         this.gaugePressure = gaugePressure;
     }
 
@@ -201,7 +205,7 @@ public class Fluid  {
         return specificEnthalpy;
     }
 
-    protected void setSpecificEnthalpy(Parameter<SpecificEnthalpy> specificEnthalpy) {
+    void setSpecificEnthalpy(Parameter<SpecificEnthalpy> specificEnthalpy) {
         this.specificEnthalpy = specificEnthalpy;
     }
 
@@ -209,7 +213,7 @@ public class Fluid  {
         return specificEntropy;
     }
 
-    protected void setSpecificEntropy(Parameter<SpecificEntropy> specificEntropy) {
+    void setSpecificEntropy(Parameter<SpecificEntropy> specificEntropy) {
         this.specificEntropy = specificEntropy;
     }
 
@@ -217,7 +221,7 @@ public class Fluid  {
         return quality;
     }
 
-    protected void setQuality(Parameter<Quality> quality) {
+    void setQuality(Parameter<Quality> quality) {
         this.quality = quality;
     }
 
@@ -225,7 +229,7 @@ public class Fluid  {
         return heatCapacity;
     }
 
-    protected void setHeatCapacity(Parameter<HeatCapacity> heatCapacity) {
+    void setHeatCapacity(Parameter<HeatCapacity> heatCapacity) {
         this.heatCapacity = heatCapacity;
     }
 
@@ -233,7 +237,7 @@ public class Fluid  {
         return specificVolume;
     }
 
-    protected void setSpecificVolume(Parameter<SpecificVolume> specificVolume) {
+    void setSpecificVolume(Parameter<SpecificVolume> specificVolume) {
         this.specificVolume = specificVolume;
     }
 
@@ -241,7 +245,7 @@ public class Fluid  {
         return density;
     }
 
-    protected void setDensity(Parameter<Density> density) {
+    void setDensity(Parameter<Density> density) {
         this.density = density;
     }
 
@@ -264,8 +268,10 @@ public class Fluid  {
                 '}';
     }
 
-    public SolverResultType solve(FluidSolver fluidSolver)
-    {
-        return null;//fluidDefinition.solve(this, fluidFactory);
+
+
+    @Override
+    public SolverResult solve() {
+        return actualFluidSolver.solve(this);
     }
 }
