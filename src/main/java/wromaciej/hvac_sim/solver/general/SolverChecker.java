@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.solver;
+package wromaciej.hvac_sim.solver.general;
 
 import wromaciej.hvac_sim.thermo.generals.Item;
 

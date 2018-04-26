@@ -1,5 +1,6 @@
-package wromaciej.hvac_sim.solver;
+package wromaciej.hvac_sim.solver.fluidSolvers;
 
+import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
@@ -12,14 +13,14 @@ public class FluidSolver {
     private final FluidDefinition fluidDefinition;
     private final FluidFactory fluidFactory;
 
-    private SolverResult solverResult;
+    private SolverResultType solverResultType;
 
-    public SolverResult getSolverResult() {
-        return solverResult;
+    public SolverResultType getSolverResultType() {
+        return solverResultType;
     }
 
     public FluidSolver(FluidDefinition fluidDefinition, FluidFactory fluidFactory) {
-        this.solverResult = SolverResult.NOT_SOLVED_NODATA;
+        this.solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         this.fluidDefinition = fluidDefinition;
         this.fluidFactory = fluidFactory;
     }
@@ -28,39 +29,41 @@ public class FluidSolver {
         Fluid fluid = null;
         //FluidDefinition fluidDefinition;
         if ((fluidDefinition.getFluidType() != FluidType.AIR) && (fluidDefinition.getFluidName() == null))
-            solverResult = SolverResult.NOT_SOLVED_NODATA;
+            solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluidDefinition.numberOfUniqueParameters();
 
             if (fluidDefinition.getFluidType() == FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
-                    solverResult =  SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
+                    solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
-                    solverResult =  SolverResult.NOT_SOLVED_NODATA;
+                    solverResultType =  SolverResultType.NOT_SOLVED_NODATA;
                 else{
                     fluid = fluidFactory.createAir(
                             fluidDefinition.getDefinedParameters().get(0),
                             fluidDefinition.getDefinedParameters().get(1),
                             fluidDefinition.getDefinedParameters().get(2));
-                    solverResult =  SolverResult.SOLVED;
+                    solverResultType =  SolverResultType.SOLVED;
                 }
 
             }
             else if (fluidDefinition.getFluidType() != FluidType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
-                    solverResult =  SolverResult.NOT_SOLVED_TOO_MUCH_DATA;
+                    solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
-                    solverResult =  SolverResult.NOT_SOLVED_NODATA;
+                    solverResultType =  SolverResultType.NOT_SOLVED_NODATA;
                 else{
                     fluid = fluidFactory.createFluid(
                             fluidDefinition.getFluidName(),
                             fluidDefinition.getDefinedParameters().get(0),
                             fluidDefinition.getDefinedParameters().get(1));
-                    solverResult =  SolverResult.SOLVED;
+                    solverResultType =  SolverResultType.SOLVED;
                 }
 
             }
         }
         return fluid;
     }
+
+
 }

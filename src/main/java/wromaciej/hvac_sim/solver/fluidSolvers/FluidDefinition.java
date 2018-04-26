@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.solver;
+package wromaciej.hvac_sim.solver.fluidSolvers;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;

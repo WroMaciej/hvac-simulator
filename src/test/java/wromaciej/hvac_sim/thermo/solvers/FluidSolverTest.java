@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Test;
-import wromaciej.hvac_sim.solver.FluidDefinition;
-import wromaciej.hvac_sim.solver.FluidSolver;
+import wromaciej.hvac_sim.solver.fluidSolvers.FluidDefinition;
+import wromaciej.hvac_sim.solver.fluidSolvers.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
@@ -31,7 +31,7 @@ public class FluidSolverTest {
         water = fluidSolver.solve();
 
         System.out.println(water);
-        System.out.println(fluidSolver.getSolverResult());
+        System.out.println(fluidSolver.getSolverResultType());
     }
 
     @Test
@@ -47,6 +47,6 @@ public class FluidSolverTest {
         water = fluidSolver.solve();
 
         System.out.println(water);
-        System.out.println(fluidSolver.getSolverResult());
+        System.out.println(fluidSolver.getSolverResultType());
     }
 }

@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.solver.FluidDefinition;
+import wromaciej.hvac_sim.solver.fluidSolvers.FluidDefinition;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
@@ -23,6 +23,7 @@ public class FluidFactory {
         return StateOfMatter.UNDEFINED;
     }
 
+    public void setFluid(Fluid fluid, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2);
 
     public Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR) return createAirAtAtmosphericPressure(knownParameter1, knownParameter2);

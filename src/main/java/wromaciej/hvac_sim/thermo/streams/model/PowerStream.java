@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.SolverResult;
+import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
@@ -28,7 +28,7 @@ public class PowerStream extends AnyStream {
 
 
     @Override
-    public SolverResult solve() {
+    public SolverResultType solve() {
         return null;
     }
 }

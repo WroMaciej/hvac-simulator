@@ -1,7 +1,6 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -28,8 +27,5 @@ public class Heater extends Device {
         return null;
     }
 
-    @Override
-    public SolverResult solve() {
-        return null;
-    }
+
 }
