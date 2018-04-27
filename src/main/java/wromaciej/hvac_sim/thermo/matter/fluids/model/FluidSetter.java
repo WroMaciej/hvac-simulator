@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.solver.fluidSolvers.FluidDefinition;
+import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
@@ -30,7 +30,7 @@ public class FluidSetter {
         if (fluidName == FluidName.MOIST_AIR)  changeAirStateAtAtmosphericPressure((Air) fluid, knownParameter1, knownParameter2);
         else{
             fluid.setFluidName(fluidName);
-            fluid.setFluidType(FluidType.GENERAL);
+            fluid.setMatterType(MatterType.GENERAL_FLUID);
             fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
             fluid.setTemperature(fluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
             fluid.setDensity(fluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
@@ -48,7 +48,7 @@ public class FluidSetter {
             fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
             fluid.setStateOfMatter(setStateOfMatter(fluid));
-            fluid.fluidDefinition = new FluidDefinition(fluidName, fluid.getFluidType(), knownParameter1, knownParameter2);
+            fluid.fluidDefinition = new FluidDefinition(fluidName, fluid.getMatterType(), knownParameter1, knownParameter2);
             fluid.updateParameters();
         }
     }
@@ -62,7 +62,7 @@ public class FluidSetter {
 
     public void changeAirState(Air air, Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
         air.setFluidName(FluidName.MOIST_AIR);
-        air.setFluidType(FluidType.AIR);
+        air.setMatterType(MatterType.AIR);
         air.setAbsolutePressure(fluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));
         air.setTemperature(fluidData.findAirParameter(ParameterType.TEMPERATURE, knownParameter1, knownParameter2, knownParameter3));
         air.setSpecificVolume(fluidData.findAirParameter(ParameterType.AIR_SPECIFIC_VOLUME, knownParameter1, knownParameter2, knownParameter3));
@@ -88,7 +88,7 @@ public class FluidSetter {
 
         air.setStateOfMatter(setStateOfMatter(air));
 
-        air.fluidDefinition = new FluidDefinition(air.getFluidName(), air.getFluidType(), knownParameter1, knownParameter2, knownParameter3);
+        air.fluidDefinition = new FluidDefinition(air.getFluidName(), air.getMatterType(), knownParameter1, knownParameter2, knownParameter3);
         air.updateParameters();
     }
 }

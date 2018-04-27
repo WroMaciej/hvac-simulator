@@ -7,8 +7,8 @@ import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 
 public class Heater extends Device {
-    //public final InletBond<Device, MaterialStream> fluidInletBond;
-    //public final OutletBond<Device, MaterialStream> fluidOutletBond;
+    //public final InletBond<Device, MatterStream> fluidInletBond;
+    //public final OutletBond<Device, MatterStream> fluidOutletBond;
     public final InletBond<Device, HeatStream> heatInlet;
 
     private final Channel<FluidStream> channel;

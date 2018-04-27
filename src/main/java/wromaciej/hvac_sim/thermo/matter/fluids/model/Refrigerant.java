@@ -9,43 +9,43 @@ public final class Refrigerant extends Fluid {
     /**
      * Subcooling
      */
-    protected Parameter<Temperature> subcooling;
+    private Parameter<Temperature> subcooling;
     /**
      * Superheating
      */
-    protected Parameter<Temperature> superheating;
+    private Parameter<Temperature> superheating;
     /**
      * Saturated temperature
      */
-    protected Parameter<Temperature> temperatureSaturation;
+    private Parameter<Temperature> temperatureSaturation;
     /**
      * Saturated pressure
      */
-    protected Parameter<Pressure> pressureSaturation;
+    private Parameter<Pressure> pressureSaturation;
     /**
      * Saturated temperature
      */
-    protected Parameter<Temperature> temperatureBubbles;
+    private Parameter<Temperature> temperatureBubbles;
     /**
      * Saturated pressure
      */
-    protected Parameter<Pressure> pressureBubbles;
+    private Parameter<Pressure> pressureBubbles;
     /**
      * Saturated temperature
      */
-    protected Parameter<Temperature> temperatureDew;
+    private Parameter<Temperature> temperatureDew;
     /**
      * Saturated pressure
      */
-    protected Parameter<Pressure> pressureDew;
+    private Parameter<Pressure> pressureDew;
     /**
      * Saturated temperature
      */
-    protected Parameter<Temperature> temperatureSlide;
+    private Parameter<Temperature> temperatureSlide;
     /**
      * Saturated pressure
      */
-    protected Parameter<Pressure> pressureSlide;
+    private Parameter<Pressure> pressureSlide;
 
     public Refrigerant(FluidFactory fluidFactory){
         super();

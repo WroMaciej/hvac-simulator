@@ -1,13 +1,13 @@
-package wromaciej.hvac_sim.solver.fluidSolvers;
+package wromaciej.hvac_sim.solver.matterSolvers;
 
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidType;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 
-public class FluidSolver implements ExternalSolver<Fluid> {
+public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
 
     private char NEEDED_GENERAL_FLUID_PARAMETERS = 2;
     private char NEEDED_AIR_PARAMETERS = 3;
@@ -30,12 +30,12 @@ public class FluidSolver implements ExternalSolver<Fluid> {
     public Fluid solve() {
         Fluid fluid = null;
         //FluidDefinition fluidDefinition;
-        if ((fluidDefinition.getFluidType() != FluidType.AIR) && (fluidDefinition.getFluidName() == null))
+        if ((fluidDefinition.getFluidType() != MatterType.AIR) && (fluidDefinition.getFluidName() == null))
             solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluidDefinition.numberOfUniqueParameters();
 
-            if (fluidDefinition.getFluidType() == FluidType.AIR){
+            if (fluidDefinition.getFluidType() == MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
@@ -49,7 +49,7 @@ public class FluidSolver implements ExternalSolver<Fluid> {
                 }
 
             }
-            else if (fluidDefinition.getFluidType() != FluidType.AIR){
+            else if (fluidDefinition.getFluidType() != MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)
@@ -70,12 +70,12 @@ public class FluidSolver implements ExternalSolver<Fluid> {
     public SolverResult solve() {
         Fluid fluid = null;
         //FluidDefinition fluidDefinition;
-        if ((fluidDefinition.getFluidType() != FluidType.AIR) && (fluidDefinition.getFluidName() == null))
+        if ((fluidDefinition.getFluidType() != MatterType.AIR) && (fluidDefinition.getFluidName() == null))
             solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluidDefinition.numberOfUniqueParameters();
 
-            if (fluidDefinition.getFluidType() == FluidType.AIR){
+            if (fluidDefinition.getFluidType() == MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
@@ -89,7 +89,7 @@ public class FluidSolver implements ExternalSolver<Fluid> {
                 }
 
             }
-            else if (fluidDefinition.getFluidType() != FluidType.AIR){
+            else if (fluidDefinition.getFluidType() != MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!fluidDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)

@@ -1,10 +1,8 @@
-package wromaciej.hvac_sim.solver.fluidSolvers;
+package wromaciej.hvac_sim.solver.matterSolvers;
 
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 public class FluidDefinition {
 
     private FluidName fluidName;
-    private FluidType fluidType;
+    private MatterType fluidType;
 
     //private Map<ParameterType, Parameter> knownParameters;
 
@@ -26,11 +24,11 @@ public class FluidDefinition {
         return fluidName;
     }
 
-    public FluidType getFluidType() {
+    public MatterType getFluidType() {
         return fluidType;
     }
 
-    public void setFluidType(FluidType fluidType) {
+    public void setFluidType(MatterType fluidType) {
         this.fluidType = fluidType;
     }
 
@@ -38,7 +36,7 @@ public class FluidDefinition {
         this.definedParameters = new ArrayList<>();
     }
 
-    public FluidDefinition(FluidName fluidName, FluidType fluidType, Parameter... parameters) {
+    public FluidDefinition(FluidName fluidName, MatterType fluidType, Parameter... parameters) {
         this();
         this.fluidName = fluidName;
         this.fluidType = fluidType;

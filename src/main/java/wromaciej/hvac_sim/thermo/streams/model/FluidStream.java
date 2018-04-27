@@ -3,7 +3,7 @@ package wromaciej.hvac_sim.thermo.streams.model;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 
-public class FluidStream extends MaterialStream {
+public class FluidStream extends MatterStream {
 
     private Fluid specificParameters;
 

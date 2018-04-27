@@ -5,21 +5,21 @@ import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Material;
+import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.VolumeFlow;
 
-public abstract class MaterialStream extends AnyStream {
+public abstract class MatterStream extends AnyStream {
 
 
     private Parameter<MassFlow> massFlow;
     private Parameter<VolumeFlow> volumeFlow;
 
-    private Material specificParameters;
+    private Matter specificParameters;
 
-    public final InletBond<MaterialStream, Device> inletBond;
-    public final OutletBond<MaterialStream, Device> outletBond;
+    public final InletBond<MatterStream, Device> inletBond;
+    public final OutletBond<MatterStream, Device> outletBond;
 
 
 
@@ -34,7 +34,7 @@ public abstract class MaterialStream extends AnyStream {
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 
-    public MaterialStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
+    public MatterStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
         super(id, idGenerator);
         this.specificParameters = specificParameters;
         inletBond = new InletBond<>(idGenerator.getUniqueId(), this);
