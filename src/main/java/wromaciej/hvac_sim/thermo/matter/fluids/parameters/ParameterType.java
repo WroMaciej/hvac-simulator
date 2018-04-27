@@ -17,7 +17,7 @@ public enum ParameterType {
      */
     TEMPERATURE("T","K"),
     /**
-     * Absolute pressure of general fluid
+     * Absolute pressure of internals fluid
      */
     PRESSURE("P","Pa"),
     /**

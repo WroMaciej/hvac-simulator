@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.generals;
 
-import wromaciej.hvac_sim.solver.general.InternalSolver;
+import wromaciej.hvac_sim.solver.internals.InternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;

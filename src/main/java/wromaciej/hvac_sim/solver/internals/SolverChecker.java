@@ -1,6 +1,4 @@
-package wromaciej.hvac_sim.solver.general;
-
-import wromaciej.hvac_sim.thermo.generals.Item;
+package wromaciej.hvac_sim.solver.internals;
 
 import java.util.ArrayList;
 import java.util.List;

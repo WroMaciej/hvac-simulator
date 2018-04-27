@@ -3,9 +3,9 @@ package wromaciej.hvac_sim.thermo.generals;
 import wromaciej.hvac_sim.display.DisplayParameters;
 import wromaciej.hvac_sim.display.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.general.InternalSolver;
+import wromaciej.hvac_sim.solver.internals.InternalSolver;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
-import wromaciej.hvac_sim.solver.general.SolverChecker;
+import wromaciej.hvac_sim.solver.internals.SolverChecker;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 
 /**

@@ -3,16 +3,17 @@ package wromaciej.hvac_sim.solver.matterSolvers;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.thermo.quantities.base.MatterFlow;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FluidDefinition {
+public class FluidDefinition extends MatterDefinition {
 
     private FluidName fluidName;
     private MatterType fluidType;
 
-    //private Map<ParameterType, Parameter> knownParameters;
+
 
     private List<Parameter> definedParameters;
 
@@ -61,7 +62,6 @@ public class FluidDefinition {
 
 
     public void clearDefinedParameters() {
-        //knownParameters.clear();
         definedParameters.clear();
     }
 
@@ -71,7 +71,6 @@ public class FluidDefinition {
 
 
     public void removeParameter(Parameter parameter) {
-        //knownParameters.remove(parameter.getParameterType());
         definedParameters.remove(parameter);
     }
 
@@ -85,7 +84,6 @@ public class FluidDefinition {
     public void addParameter(Parameter knownParameter) {
         if ((knownParameter.getParameterType() != ParameterType.OTHER)
                 && (definedParameters.indexOf(knownParameter) == -1))
-            //knownParameters.put(knownParameter.getParameterType(), knownParameter);
             definedParameters.add(knownParameter);
     }
 
