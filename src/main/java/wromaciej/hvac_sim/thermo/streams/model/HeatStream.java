@@ -10,8 +10,8 @@ import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 
 public final class HeatStream extends AnyStream {
     private Parameter<HeatFlow> heatFlow;
-    public final InletBond<FluidStream, Device> inletBond;
-    public final OutletBond<FluidStream, Device> outletBond;
+    public final InletBond<HeatStream, Device> inletBond;
+    public final OutletBond<HeatStream, Device> outletBond;
 
 
 

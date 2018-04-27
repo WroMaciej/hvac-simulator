@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.generals.bonds;
 
+import wromaciej.hvac_sim.thermo.generals.Bondable;
 import wromaciej.hvac_sim.thermo.generals.Item;
 
 import java.util.Objects;
@@ -19,7 +20,7 @@ public abstract class Bond {
      * Id of the bond
      */
 
-    private final Item ownerItem;
+    private final Bondable ownerItem;
     /**
      * Id of the object connected to
      */
@@ -39,7 +40,7 @@ public abstract class Bond {
     }
 
 
-    public Bond(int bondId, BondDirection flowDirection, Item ownerItem) {
+    public Bond(int bondId, BondDirection flowDirection, Bondable ownerItem) {
         this.bondId = bondId;
         this.flowDirection = flowDirection;
         this.ownerItem = ownerItem;
@@ -53,7 +54,7 @@ public abstract class Bond {
         return bondId;
     }
 
-    public Item getOwnerItem() {
+    public Bondable getOwnerItem() {
         return ownerItem;
     }
 

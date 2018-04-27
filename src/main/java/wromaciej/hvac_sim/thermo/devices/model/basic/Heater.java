@@ -1,26 +1,23 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.thermo.generals.Channel;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
-import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
-import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
+import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 
 public class Heater extends Device {
-    public final InletBond<Device, FluidStream> fluidInletBond;
-    public final OutletBond<Device, FluidStream> fluidOutletBond;
+    //public final InletBond<Device, MaterialStream> fluidInletBond;
+    //public final OutletBond<Device, MaterialStream> fluidOutletBond;
     public final InletBond<Device, HeatStream> heatInlet;
-    private Parameter<PressureDifference> pressureDrop;
 
-    public Heater(int id, IdGenerator idGenerator) {
+    private final Channel<FluidStream> channel;
+
+    public Heater(int id, IdGenerator idGenerator, InletBond<Device, HeatStream> heatInlet, Channel<FluidStream> channel) {
         super(id, idGenerator);
-        fluidInletBond = new InletBond<>(idGenerator.getUniqueId(), this);
-        fluidOutletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
-        heatInlet = new InletBond<>(idGenerator.getUniqueId(), this);
+        this.heatInlet = heatInlet;
+        this.channel = channel;
     }
-
 
     @Override
     public String display() {

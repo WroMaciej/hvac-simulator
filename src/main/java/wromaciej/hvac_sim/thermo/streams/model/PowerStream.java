@@ -10,8 +10,8 @@ import wromaciej.hvac_sim.thermo.quantities.extensive.Power;
 
 public class PowerStream extends AnyStream {
     private Parameter<Power> powerStream;
-    public final InletBond<FluidStream, Device> inletBond;
-    public final OutletBond<FluidStream, Device> outletBond;
+    public final InletBond<PowerStream, Device> inletBond;
+    public final OutletBond<PowerStream, Device> outletBond;
 
     public PowerStream(int id, IdGenerator idGenerator, Parameter<Power> powerStream) {
         super(id, idGenerator);

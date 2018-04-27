@@ -11,7 +11,7 @@ import wromaciej.hvac_sim.solver.result.SolverResult;
 /**
  * Any object that could be treated as a part of process
  */
-public abstract class Item implements Displayable, InternalSolver {
+public abstract class Item implements Displayable, InternalSolver, Bondable {
 
     private final int id;
     private String name;
