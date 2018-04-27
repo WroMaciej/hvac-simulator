@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter;
 
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
-import wromaciej.hvac_sim.solver.internals.InternalSolver;
+import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.matterSolvers.MatterSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
@@ -12,7 +12,7 @@ import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
 import java.util.Map;
 
-public abstract class Matter implements InternalSolver {
+public abstract class Matter implements Solvable {
 
     /**
      * Tool for dealing with solving fluid

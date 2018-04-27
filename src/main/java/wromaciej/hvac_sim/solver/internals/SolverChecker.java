@@ -5,35 +5,35 @@ import java.util.List;
 
 public class SolverChecker {
 
-    List<InternalSolver> internalSolvers;
+    List<Solvable> solvables;
 
-    public SolverChecker(InternalSolver... internalSolvers) {
-        this.internalSolvers = new ArrayList<>();
-        for (InternalSolver internalSolver : internalSolvers) {
-            this.internalSolvers.add(internalSolver);
+    public SolverChecker(Solvable... solvables) {
+        this.solvables = new ArrayList<>();
+        for (Solvable solvable : solvables) {
+            this.solvables.add(solvable);
         }
     }
 
     public int notSolvedItemsNumber() {
         int notSolvedSum = 0;
-        for (InternalSolver internalSolver : internalSolvers) {
-            if (internalSolver.isSolved() == false) notSolvedSum++;
+        for (Solvable solvable : solvables) {
+            if (solvable.isSolved() == false) notSolvedSum++;
         }
         return notSolvedSum;
     }
 
-    public List<InternalSolver> solvedItems() {
-        List<InternalSolver> solvedItemsList = new ArrayList<>();
-        for (InternalSolver internalSolver : internalSolvers) {
-            if (internalSolver.isSolved()) solvedItemsList.add(internalSolver);
+    public List<Solvable> solvedItems() {
+        List<Solvable> solvedItemsList = new ArrayList<>();
+        for (Solvable solvable : solvables) {
+            if (solvable.isSolved()) solvedItemsList.add(solvable);
         }
         return solvedItemsList;
     }
 
-    public List<InternalSolver> notSolvedItems() {
-        List<InternalSolver> notSolvedItemsList = new ArrayList<>();
-        for (InternalSolver internalSolver : internalSolvers) {
-            if (!internalSolver.isSolved()) notSolvedItemsList.add(internalSolver);
+    public List<Solvable> notSolvedItems() {
+        List<Solvable> notSolvedItemsList = new ArrayList<>();
+        for (Solvable solvable : solvables) {
+            if (!solvable.isSolved()) notSolvedItemsList.add(solvable);
         }
         return notSolvedItemsList;
     }

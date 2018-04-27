@@ -3,7 +3,7 @@ package wromaciej.hvac_sim.thermo.generals;
 import wromaciej.hvac_sim.display.DisplayParameters;
 import wromaciej.hvac_sim.display.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.internals.InternalSolver;
+import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.internals.SolverChecker;
 import wromaciej.hvac_sim.solver.result.SolverResult;
@@ -11,7 +11,7 @@ import wromaciej.hvac_sim.solver.result.SolverResult;
 /**
  * Any object that could be treated as a part of process
  */
-public abstract class Item implements Displayable, InternalSolver, Bondable {
+public abstract class Item implements Displayable, Solvable, Bondable {
 
     private final int id;
     private String name;
