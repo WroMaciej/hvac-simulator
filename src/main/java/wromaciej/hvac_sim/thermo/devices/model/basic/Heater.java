@@ -2,7 +2,6 @@ package wromaciej.hvac_sim.thermo.devices.model.basic;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.thermo.generals.Channel;
-import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
 import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 

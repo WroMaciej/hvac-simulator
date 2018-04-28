@@ -5,11 +5,21 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 
 public class OutletStreamBond <T extends MatterStream> extends Bond {
-    public OutletStreamBond(int bondId, BondDirection flowDirection, Item ownerItem) {
-        super(bondId, BondDirection.OUTLET, ownerItem);
+    public OutletStreamBond(int bondId, BondDirection flowDirection, T ownerStream) {
+        super(bondId, BondDirection.OUTLET, ownerStream);
     }
 
     public void connectTo(InletDeviceBond<T> outletDeviceBond){
         this.targetBond = outletDeviceBond;
+    }
+
+    @Override
+    public InletDeviceBond<T> getTargetBond() {
+        return (InletDeviceBond<T>) targetBond;
+    }
+
+    @Override
+    public T getOwnerItem() {
+        return (T) super.getOwnerItem();
     }
 }

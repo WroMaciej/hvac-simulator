@@ -26,17 +26,13 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     private SolverResult solveMassFlows(Channel<MatterStream> channelToSolve){
         Channel<FluidStream> fluidStreamChannel = new Channel<>(null,null,null);
-        fluidStreamChannel.getInletBond().getK()
-
-        if (channelToSolve.getInletBond())
-            (C) channelToSolve.getInletBond().getTargetBond().
 
         return null;
     }
 
     private SolverResult solvePressures(Channel<MatterStream> channelToSolve){
         definedPressures=new ArrayList<>();
-        channelToSolve.getInletBond().
+        channelToSolve.
 
         return null;
     }

@@ -3,9 +3,8 @@ package wromaciej.hvac_sim.thermo.generals;
 import wromaciej.hvac_sim.solver.externals.ChannelSolver;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.result.SolverResult;
-import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
-import wromaciej.hvac_sim.thermo.generals.bonds.InletBond;
-import wromaciej.hvac_sim.thermo.generals.bonds.OutletBond;
+import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
+import wromaciej.hvac_sim.thermo.generals.bonds.OutletDeviceBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
@@ -13,30 +12,45 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 public class Channel<T extends MatterStream> implements Solvable, Bondable {
 
-    private final InletBond<Device, T> inletBond;
-    private final OutletBond<Device, T> outletBond;
+//    private final InletBond<Device, T> inletBond;
+//    private final OutletBond<Device, T> outletBond;
+private final Item ownerItem;
+
     private T inletStream;
     private T outletStream;
-    private final Item ownerItem;
+
+    private final InletDeviceBond<T> inletDeviceBond;
+    private final OutletDeviceBond<T> outletDeviceBond;
+
+
     private Parameter<PressureDifference> pressureDrop;
     private ChannelSolver channelSolver;
     private boolean isSolved;
 
-    public Channel(InletBond<Device, T> inletBond, OutletBond<Device, T> outletBond, T inletStream, T outletStream, Item ownerItem) {
-        this.inletBond = inletBond;
-        this.outletBond = outletBond;
-        this.inletStream = inletStream;
-        this.outletStream = outletStream;
+
+    public Channel(Item ownerItem, InletDeviceBond<T> inletDeviceBond, OutletDeviceBond<T> outletDeviceBond, ) {
         this.ownerItem = ownerItem;
-        inletStream = inletBond.getK();
+        this.inletDeviceBond = inletDeviceBond;
+        this.outletDeviceBond = outletDeviceBond;
+        
+        inletStream = inletDeviceBond.getTargetBond().getOwnerItem();
+        outletStream = outletDeviceBond.getTargetBond().getOwnerItem();
     }
 
-    public InletBond<Device, T> getInletBond() {
-        return inletBond;
+    public InletDeviceBond<T> getInletDeviceBond() {
+        return inletDeviceBond;
     }
 
-    public OutletBond<Device, T> getOutletBond() {
-        return outletBond;
+    public OutletDeviceBond<T> getOutletDeviceBond() {
+        return outletDeviceBond;
+    }
+
+    public T getInletStream() {
+        return inletStream;
+    }
+
+    public T getOutletStream() {
+        return outletStream;
     }
 
     public Item getOwnerItem() {
