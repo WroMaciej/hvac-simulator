@@ -15,10 +15,21 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
 
     private final InletBond<Device, T> inletBond;
     private final OutletBond<Device, T> outletBond;
+    private T inletStream;
+    private T outletStream;
     private final Item ownerItem;
     private Parameter<PressureDifference> pressureDrop;
     private ChannelSolver channelSolver;
     private boolean isSolved;
+
+    public Channel(InletBond<Device, T> inletBond, OutletBond<Device, T> outletBond, T inletStream, T outletStream, Item ownerItem) {
+        this.inletBond = inletBond;
+        this.outletBond = outletBond;
+        this.inletStream = inletStream;
+        this.outletStream = outletStream;
+        this.ownerItem = ownerItem;
+        inletStream = inletBond.getK();
+    }
 
     public InletBond<Device, T> getInletBond() {
         return inletBond;
@@ -66,11 +77,7 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
     private Parameter<MassFlow> additionalMassFlow;
 
 
-    public Channel(InletBond<Device, T> inletBond, OutletBond<Device, T> outletBond, Item ownerItem) {
-        this.inletBond = inletBond;
-        this.outletBond = outletBond;
-        this.ownerItem = ownerItem;
-    }
+
 
     @Override
     public SolverResult solve() {

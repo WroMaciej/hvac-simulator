@@ -12,7 +12,7 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelSolver implements ExternalSolver<Channel<MatterStream>> {
+public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStream>> {
 
     private List<Parameter<MassFlow>> definedMassFlows;
     private List<Parameter<Pressure>> definedPressures;
@@ -44,7 +44,7 @@ public class ChannelSolver implements ExternalSolver<Channel<MatterStream>> {
 
 
     @Override
-    public SolverResult solve(Channel<MatterStream> channelToSolve) {
+    public SolverResult solve(Channel<? extends MatterStream> channelToSolve) {
         return null;
     }
 }

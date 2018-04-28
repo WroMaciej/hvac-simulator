@@ -20,7 +20,7 @@ public abstract class Bond {
      * Id of the bond
      */
 
-    private final Bondable ownerItem;
+    private final Item ownerItem;
     /**
      * Id of the object connected to
      */
@@ -40,7 +40,7 @@ public abstract class Bond {
     }
 
 
-    public Bond(int bondId, BondDirection flowDirection, Bondable ownerItem) {
+    public Bond(int bondId, BondDirection flowDirection, Item ownerItem) {
         this.bondId = bondId;
         this.flowDirection = flowDirection;
         this.ownerItem = ownerItem;
@@ -54,7 +54,7 @@ public abstract class Bond {
         return bondId;
     }
 
-    public Bondable getOwnerItem() {
+    public Item getOwnerItem() {
         return ownerItem;
     }
 

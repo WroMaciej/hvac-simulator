@@ -41,7 +41,7 @@ public abstract class MatterStream extends AnyStream {
         outletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
     }
 
-    public Fluid getSpecificParameters() {
+    public Matter getSpecificParameters() {
         return specificParameters;
     }
 
