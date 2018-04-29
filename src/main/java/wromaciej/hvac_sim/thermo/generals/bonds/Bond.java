@@ -2,10 +2,11 @@ package wromaciej.hvac_sim.thermo.generals.bonds;
 
 import wromaciej.hvac_sim.thermo.generals.Bondable;
 import wromaciej.hvac_sim.thermo.generals.Item;
+import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
 
 import java.util.Objects;
 
-public abstract class Bond {
+public abstract class Bond<T extends AnyStream> {
     private final int bondId;
     /**
      * Id of the owner of the bond
@@ -53,6 +54,10 @@ public abstract class Bond {
     public int getBondId() {
         return bondId;
     }
+
+//    public boolean connectableWith(Bond<T> secondBond){
+//        if
+//    }
 
     public Item getOwnerItem() {
         return ownerItem;
