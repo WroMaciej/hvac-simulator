@@ -63,4 +63,9 @@ public abstract class Item implements Displayable, Solvable, Bondable {
     public boolean isSolved() {
         return isSolved;
     }
+
+    @Override
+    public String display() {
+        return null;
+    }
 }

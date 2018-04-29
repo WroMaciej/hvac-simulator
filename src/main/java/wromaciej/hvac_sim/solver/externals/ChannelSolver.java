@@ -1,7 +1,9 @@
 package wromaciej.hvac_sim.solver.externals;
 
+import wromaciej.hvac_sim.solver.SolverParameters;
 import wromaciej.hvac_sim.solver.result.SolverResult;
-import wromaciej.hvac_sim.thermo.generals.Channel;
+import wromaciej.hvac_sim.solver.result.SolverResultType;
+import wromaciej.hvac_sim.thermo.generals.bonds.Channel;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
@@ -14,25 +16,28 @@ import java.util.List;
 
 public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStream>> {
 
-    private List<Parameter<MassFlow>> definedMassFlows;
-    private List<Parameter<Pressure>> definedPressures;
-    private Parameter<PressureDifference> definedPressureDrop;
-
-    private boolean isMassFlowsSolvable(Channel channelToSolve){
-        definedMassFlows=new ArrayList<>();
-
-
-    }
 
     private SolverResult solveMassFlows(Channel<MatterStream> channelToSolve){
-        Channel<FluidStream> fluidStreamChannel = new Channel<>(null,null,null);
+        SolverResultType solverResultType;
+        final int NEEDED_PARAMETERS = 3;
+        SolverParameters solverParameters = new SolverParameters(
+                NEEDED_PARAMETERS,
+                channelToSolve.getInletStream().getMassFlow(),
+        channelToSolve.getOutletStream().getMassFlow(),
+        channelToSolve.getAdditionalMassFlow());
+        solverResultType=solverParameters.solverResultType();
+        if (solverResultType== SolverResultType.SOLVED){
+            if (channelToSolve.getAdditionalMassFlow()!=null){
+                channelToSolve.getAdditionalMassFlow() = //ITS FINAL
+            }
 
-        return null;
+
+        }
+        return new SolverResult(null,solverResultType);
     }
 
     private SolverResult solvePressures(Channel<MatterStream> channelToSolve){
-        definedPressures=new ArrayList<>();
-        channelToSolve.
+
 
         return null;
     }
