@@ -8,9 +8,10 @@ import wromaciej.hvac_sim.thermo.generals.bonds.OutletDeviceBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
+import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
-public class Channel<T extends MatterStream> implements Solvable, Bondable {
+public class Channel<T extends AnyStream> implements Solvable, Bondable {
 
 //    private final InletBond<Device, T> inletBond;
 //    private final OutletBond<Device, T> outletBond;
@@ -32,7 +33,7 @@ private final Item ownerItem;
         this.ownerItem = ownerItem;
         this.inletDeviceBond = inletDeviceBond;
         this.outletDeviceBond = outletDeviceBond;
-        
+
         inletStream = inletDeviceBond.getTargetBond().getOwnerItem();
         outletStream = outletDeviceBond.getTargetBond().getOwnerItem();
     }
