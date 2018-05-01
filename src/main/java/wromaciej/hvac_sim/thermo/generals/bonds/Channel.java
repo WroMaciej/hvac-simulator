@@ -26,11 +26,11 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
     /**
      * Pressure loss through the channel
      */
-    private final Parameter<PressureDifference> pressureDrop;
+    private Parameter<PressureDifference> pressureDrop;
     /**
      * Additional mass flow >0 when it comes from the outside
      */
-    private final Parameter<MassFlow> additionalMassFlow;
+    private Parameter<MassFlow> additionalMassFlow;
 
     private ChannelSolver channelSolver;
     private boolean isSolved;
@@ -86,6 +86,9 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         return additionalMassFlow;
     }
 
+    public void setAdditionalMassFlow(Parameter<MassFlow> additionalMassFlow) {
+        this.additionalMassFlow = additionalMassFlow;
+    }
 
     @Override
     public SolverResult solve() {

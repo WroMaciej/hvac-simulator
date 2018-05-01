@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
@@ -32,7 +33,16 @@ public final class Air extends Fluid {
      */
     private Parameter<Pressure> waterPartialPressure;
 
-
+    @Override
+    protected void clearAllParameters() {
+        super.clearAllParameters();
+        relativeHumidity = new Parameter<>(ParameterType.AIR_RELATIVE_HUMIDITY);
+        moistureContent = new Parameter<>(ParameterType.AIR_MOISTURE_CONTENT);
+        waterFraction = new Parameter<>();
+        dewPointTemperature = new Parameter<>(ParameterType.AIR_DEW_POINT_TEMPERATURE);
+        wetBulbTemperature = new Parameter<>(ParameterType.AIR_WET_BULB_TEMPERATURE);
+        waterPartialPressure = new Parameter<>(ParameterType.AIR_WATER_PARTIAL_PRESSURE);
+    }
 
     public Air() {
         super();

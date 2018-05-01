@@ -42,6 +42,13 @@ public class Parameter<Q extends AnyQuantity> {
         this.amount = amount;
     }
 
+    public boolean isDefined() {
+        if (amount != null) return true;
+        else return false;
+    }
+
+
+
     public Parameter(){
         this.parameterType=ParameterType.OTHER;
     }

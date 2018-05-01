@@ -65,6 +65,21 @@ public abstract class Matter implements Solvable {
      */
     protected Parameter<Density> density;
 
+    protected void clearAllParameters(){
+        temperature = new Parameter<>();
+        absoluteTemperature = new Parameter<>(ParameterType.TEMPERATURE);
+        absolutePressure = new Parameter<>(ParameterType.PRESSURE);
+        gaugePressure = new Parameter<>();
+        specificEnthalpy = new Parameter<>(ParameterType.SPECIFIC_ENTHALPY);
+        heatCapacity = new Parameter<>(ParameterType.HEAT_CAPACITY);
+        specificVolume = new Parameter<>();
+        density = new Parameter<>(ParameterType.DENSITY);
+    }
+
+    public Matter() {
+        clearAllParameters();
+    }
+
     public FluidDefinition getFluidDefinition() {
         return fluidDefinition;
     }

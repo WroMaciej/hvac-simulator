@@ -4,6 +4,7 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
@@ -42,8 +43,15 @@ public class Fluid extends Matter{
      */
     private Parameter<Quality> quality;
 
+    @Override
+    protected void clearAllParameters() {
+        super.clearAllParameters();
+        specificEntropy= new Parameter<>(ParameterType.SPECIFIC_ENTROPY);
+        quality = new Parameter<>(ParameterType.QUALITY);
+    }
 
     public Fluid() {
+        clearAllParameters();
         fluidDefinition = new FluidDefinition(null, null, null);
         parametersByType = new HashMap<>();
     }
