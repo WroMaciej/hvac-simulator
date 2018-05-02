@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter;
 
+import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.matterSolvers.MatterSolver;
@@ -18,7 +19,8 @@ public abstract class Matter implements Solvable {
      * Tool for dealing with solving fluid
      */
     public FluidDefinition fluidDefinition;
-    private MatterSolver actualMatterSolver;
+    //private MatterSolver actualMatterSolver;
+    private ExternalSolver actualMatterSolver;
     private boolean isSolved;
 
     protected Map<ParameterType, Parameter> parametersByType;

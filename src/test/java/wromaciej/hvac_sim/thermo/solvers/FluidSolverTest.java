@@ -28,7 +28,7 @@ public class FluidSolverTest {
         FluidDefinition fluidDefinition = new FluidDefinition(FluidName.WATER, MatterType.GENERAL_FLUID, temperature, pressure);
         FluidSolver fluidSolver = new FluidSolver(fluidDefinition, fluidFactory);
 
-        water = fluidSolver.solve();
+        water = fluidSolver.solve(water);
 
         System.out.println(water);
         System.out.println(fluidSolver.getSolverResultType());
