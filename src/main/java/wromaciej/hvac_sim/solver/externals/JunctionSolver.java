@@ -15,15 +15,10 @@ import java.util.List;
 public class JunctionSolver {
 
 
-
-    //private int neededParameters;
     private List<ParameterWithDirection> allParameters;
     private List<ParameterWithDirection> undefinedParameters;
     private List<ParameterWithDirection> definedParameters;
 
-    public List<ParameterWithDirection> getDefinedParameters() {
-        return definedParameters;
-    }
 
     public JunctionSolver(List<ParameterWithDirection> parametersWithDirections) {
         if (parametersWithDirections != null){
@@ -34,8 +29,6 @@ public class JunctionSolver {
             }
         }
     }
-
-
 
     private int allParametersNumber(){
         return allParameters.size();
@@ -57,12 +50,12 @@ public class JunctionSolver {
         getUndefinedParameter()=null;
     }
 
-    private Parameter getBalance(){
+    private ParameterWithDirection getBalance(){
         Parameter sum = new Parameter();
-        for (Parameter parameter : definedParameters){
-            sum = sum.plus(parameter);
+        for (ParameterWithDirection parameterWithDirection : definedParameters){
+            sum = sum.plus(parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer));
         }
-        return sum;
+
     }
 
 

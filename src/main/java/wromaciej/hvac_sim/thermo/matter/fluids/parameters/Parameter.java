@@ -144,6 +144,29 @@ public class Parameter<Q extends AnyQuantity> {
         return amountToParameter(resultingAmount);
     }
 
+    public Parameter abs(){
+        Amount resultingAmount=amount.abs();
+        return amountToParameter(resultingAmount);
+    }
+
+    public Parameter opposite(){
+        Amount resultingAmount=amount.opposite();
+        return amountToParameter(resultingAmount);
+    }
+
+    public boolean isPositive(){
+        if (!abs().equals(opposite())) return false;
+        else return true;
+    }
+
+    public boolean isNegative(){
+        return !isPositive();
+    }
+
+    public boolean isZero(){
+        return this.equals(opposite());
+    }
+
     /**
      * Returns value calculated in unit of thermoCP library
      */
