@@ -32,17 +32,16 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
      */
 
     private ParameterWithDirection extraMassFlow;
-    private Parameter<MassFlow> additionalMassFlow;
 
     private ChannelSolver channelSolver;
     private boolean isSolved;
 
-    public Channel(Item ownerItem, InletDeviceBond<T> inletDeviceBond, OutletDeviceBond<T> outletDeviceBond, Parameter<PressureDifference> pressureDrop, Parameter<MassFlow> additionalMassFlow) {
+    public Channel(Item ownerItem, InletDeviceBond<T> inletDeviceBond, OutletDeviceBond<T> outletDeviceBond, Parameter<PressureDifference> pressureDrop, ParameterWithDirection extraMassFlow) {
         this.ownerItem = ownerItem;
         this.inletDeviceBond = inletDeviceBond;
         this.outletDeviceBond = outletDeviceBond;
         this.pressureDrop = pressureDrop;
-        this.additionalMassFlow = additionalMassFlow;
+        this.extraMassFlow = extraMassFlow;
 
         inletStream = inletDeviceBond.getTargetBond().getOwnerItem();
         outletStream = outletDeviceBond.getTargetBond().getOwnerItem();
@@ -68,9 +67,6 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         return ownerItem;
     }
 
-    public Parameter<PressureDifference> getPressureDrop() {
-        return pressureDrop;
-    }
 
     public ChannelSolver getChannelSolver() {
         return channelSolver;
@@ -84,16 +80,25 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         isSolved = solved;
     }
 
-    public Parameter<MassFlow> getAdditionalMassFlow() {
-        return additionalMassFlow;
+    public ParameterWithDirection getExtraMassFlow() {
+        return extraMassFlow;
     }
 
-    public void setAdditionalMassFlow(Parameter<MassFlow> additionalMassFlow) {
-        this.additionalMassFlow = additionalMassFlow;
+    public void setExtraMassFlow(ParameterWithDirection extraMassFlow) {
+        this.extraMassFlow = extraMassFlow;
+    }
+
+    public Parameter<PressureDifference> getPressureDrop() {
+        return pressureDrop;
+    }
+
+    public void setPressureDrop(Parameter<PressureDifference> pressureDrop) {
+        this.pressureDrop = pressureDrop;
     }
 
     @Override
     public SolverResult solve() {
+
         return channelSolver.solve(this);
     }
 
