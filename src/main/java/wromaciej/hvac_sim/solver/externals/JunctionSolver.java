@@ -2,6 +2,8 @@ package wromaciej.hvac_sim.solver.externals;
 
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
+import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
+import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 
 import java.util.List;
@@ -10,27 +12,25 @@ import java.util.List;
  *
  */
 
-public class SolverBalancedJunction {
+public class JunctionSolver {
+
+
 
     //private int neededParameters;
-    private List<Parameter> allParameters;
-    private List<Parameter> undefinedParameters;
-    private List<Parameter> definedParameters;
+    private List<ParameterWithDirection> allParameters;
+    private List<ParameterWithDirection> undefinedParameters;
+    private List<ParameterWithDirection> definedParameters;
 
-    public List<Parameter> getDefinedParameters() {
+    public List<ParameterWithDirection> getDefinedParameters() {
         return definedParameters;
     }
 
-    public SolverBalancedJunction(Parameter...parameters) {
-        setAllParameters(parameters);
-    }
-
-    private void setAllParameters(Parameter... parameters){
-        if (parameters != null){
-            for (Parameter parameter : parameters) {
-                allParameters.add(parameter);
-                if (parameter.isDefined()) definedParameters.add(parameter);
-                else undefinedParameters.add(parameter);
+    public JunctionSolver(List<ParameterWithDirection> parametersWithDirections) {
+        if (parametersWithDirections != null){
+            for (ParameterWithDirection parameterWithDirection : parametersWithDirections) {
+                allParameters.add(parameterWithDirection);
+                if (parameterWithDirection.getParameter().isDefined()) definedParameters.add(parameterWithDirection);
+                else undefinedParameters.add(parameterWithDirection);
             }
         }
     }

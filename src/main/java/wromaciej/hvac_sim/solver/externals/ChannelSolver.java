@@ -11,12 +11,12 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
     private SolverResult solveMassFlows(Channel<MatterStream> channelToSolve){
         SolverResultType solverResultType;
         final int NEEDED_PARAMETERS = 3;
-        SolverBalancedJunction solverBalancedJunction = new SolverBalancedJunction(
+        JunctionSolver junctionSolver = new JunctionSolver(
                 NEEDED_PARAMETERS,
                 channelToSolve.getInletStream().getMassFlow(),
                 channelToSolve.getOutletStream().getMassFlow(),
                 channelToSolve.getAdditionalMassFlow());
-        solverResultType= solverBalancedJunction.solverResultType();
+        solverResultType= junctionSolver.solverResultType();
         if (solverResultType == SolverResultType.SOLVED){
             if (channelToSolve.getAdditionalMassFlow()!=null){
                 channelToSolve.setAdditionalMassFlow(); //ITS FINAL
