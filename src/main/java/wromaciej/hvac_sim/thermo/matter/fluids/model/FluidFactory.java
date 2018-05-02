@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
+import wromaciej.hvac_sim.solver.matterSolvers.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.quantities.base.AirQuantity;
@@ -14,22 +15,22 @@ import javax.measure.unit.SI;
 public class FluidFactory {
 
     private final FluidData fluidData;
+    private final FluidSolver fluidSolver;
 
-    public FluidFactory(FluidData fluidData) {
+    public FluidFactory(FluidData fluidData, FluidSolver fluidSolver) {
+
         this.fluidData = fluidData;
+        this.fluidSolver = fluidSolver;
     }
 
     public StateOfMatter setStateOfMatter(Fluid fluid) {
         return StateOfMatter.UNDEFINED;
     }
 
-    public void setFluid(Fluid fluid, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2){
-
-    }
 
     public Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR) return createAirAtAtmosphericPressure(knownParameter1, knownParameter2);
-        Fluid fluid = new Fluid();
+        Fluid fluid = new Fluid(fluidSolver);
         fluid.setFluidName(fluidName);
         fluid.setMatterType(MatterType.GENERAL_FLUID);
         fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
@@ -62,7 +63,7 @@ public class FluidFactory {
     }
 
     public Air createAir(Parameter<? extends AirQuantity> knownParameter1, Parameter<? extends AirQuantity> knownParameter2, Parameter<? extends AirQuantity> knownParameter3) {
-        Air air = new Air();
+        Air air = new Air(fluidSolver);
         air.setFluidName(FluidName.MOIST_AIR);
         air.setMatterType(MatterType.AIR);
         air.setAbsolutePressure(fluidData.findAirParameter(ParameterType.AIR_PRESSURE, knownParameter1, knownParameter2, knownParameter3));

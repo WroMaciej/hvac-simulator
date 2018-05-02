@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
+import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
@@ -47,8 +48,8 @@ public final class Refrigerant extends Fluid {
      */
     private Parameter<Pressure> pressureSlide;
 
-    public Refrigerant(FluidFactory fluidFactory){
-        super();
+    public Refrigerant(ExternalSolver<Refrigerant> refrigerantSolver){
+        super(refrigerantSolver);
     }
 
 

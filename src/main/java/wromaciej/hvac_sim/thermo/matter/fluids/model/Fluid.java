@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 
+import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -50,7 +51,8 @@ public class Fluid extends Matter{
         quality = new Parameter<>(ParameterType.QUALITY);
     }
 
-    public Fluid() {
+    public Fluid(ExternalSolver<? extends Fluid> fluidSolver) {
+        super(fluidSolver);
         clearAllParameters();
         fluidDefinition = new FluidDefinition(null, null, null);
         parametersByType = new HashMap<>();

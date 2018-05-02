@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
+import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.specific.MoistureContent;
@@ -44,8 +45,8 @@ public final class Air extends Fluid {
         waterPartialPressure = new Parameter<>(ParameterType.AIR_WATER_PARTIAL_PRESSURE);
     }
 
-    public Air() {
-        super();
+    public Air(ExternalSolver<? extends Fluid> airSolver) {
+        super(airSolver);
     }
 
     @Override

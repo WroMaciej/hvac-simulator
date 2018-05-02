@@ -3,7 +3,6 @@ package wromaciej.hvac_sim.thermo.matter;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.internals.Solvable;
-import wromaciej.hvac_sim.solver.matterSolvers.MatterSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -19,8 +18,8 @@ public abstract class Matter implements Solvable {
      * Tool for dealing with solving fluid
      */
     public FluidDefinition fluidDefinition;
-    //private MatterSolver actualMatterSolver;
-    private ExternalSolver actualMatterSolver;
+    //private MatterSolver matterSolver;
+    private ExternalSolver matterSolver;
     private boolean isSolved;
 
     protected Map<ParameterType, Parameter> parametersByType;
@@ -78,7 +77,8 @@ public abstract class Matter implements Solvable {
         density = new Parameter<>(ParameterType.DENSITY);
     }
 
-    public Matter() {
+    public Matter(ExternalSolver matterSolver) {
+        this.matterSolver = matterSolver;
         clearAllParameters();
     }
 
@@ -200,7 +200,7 @@ public abstract class Matter implements Solvable {
 
     @Override
     public SolverResult solve() {
-        return actualMatterSolver.solve(this);
+        return matterSolver.solve(this);
     }
 
     @Override
