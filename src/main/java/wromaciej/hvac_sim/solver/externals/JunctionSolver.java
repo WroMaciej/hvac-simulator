@@ -52,7 +52,8 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         Parameter sum = new Parameter();
         ParameterWithDirection resultingParameterWithDirection;
         for (ParameterWithDirection parameterWithDirection : getDefinedParameters(toSolve)){
-            sum = sum.plus(parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer));
+            if (!sum.isDefined()) sum=parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer);
+            else sum = sum.plus(parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer));
         }
         if (sum.isPositive()) resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.OUTLET);
         else resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.INLET);

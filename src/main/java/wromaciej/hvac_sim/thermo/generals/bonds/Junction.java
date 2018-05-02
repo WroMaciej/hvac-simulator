@@ -17,6 +17,7 @@ public class Junction implements Solvable{
 
     public Junction(List<ParameterWithDirection> allParameters, JunctionSolver junctionSolver) {
         this.allParameters = allParameters;
+        this.junctionSolver = junctionSolver;
     }
 
     @Override
