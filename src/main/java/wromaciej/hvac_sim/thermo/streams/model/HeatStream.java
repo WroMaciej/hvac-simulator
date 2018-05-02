@@ -1,23 +1,26 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.thermo.generals.bonds.InletStreamBond;
+import wromaciej.hvac_sim.thermo.generals.bonds.OutletStreamBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 
 public final class HeatStream extends AnyStream {
     private Parameter<HeatFlow> heatFlow;
-    public final InletBond<HeatStream, Device> inletBond;
-    public final OutletBond<HeatStream, Device> outletBond;
+    public final InletStreamBond<HeatStream> inletStreamBond;
+    public final OutletStreamBond<HeatStream> outletStreamBond;
 
 
 
-    public HeatStream(int id, IdGenerator idGenerator, Parameter<HeatFlow> heatFlow) {
-        super(id, idGenerator);
+    public HeatStream(int id, IdGenerator idGenerator, Parameter<HeatFlow> heatFlow, InletStreamBond<HeatStream> inletStreamBond, OutletStreamBond<HeatStream> outletStreamBond) {
+        super(id, idGenerator, inletStreamBond, outletStreamBond);
         this.heatFlow = heatFlow;
-        inletBond = new InletBond<>(idGenerator.getUniqueId(), this);
-        outletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
+        this.inletStreamBond = inletStreamBond;
+        this.outletStreamBond = outletStreamBond;
     }
 
     public Parameter<HeatFlow> getHeatFlow() {
@@ -32,7 +35,7 @@ public final class HeatStream extends AnyStream {
 
 
     @Override
-    public SolverResultType solve() {
+    public SolverResult solve() {
         return null;
     }
 }

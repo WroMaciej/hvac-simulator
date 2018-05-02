@@ -2,6 +2,8 @@ package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.thermo.generals.bonds.InletStreamBond;
+import wromaciej.hvac_sim.thermo.generals.bonds.OutletStreamBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -16,8 +18,8 @@ public abstract class MatterStream extends AnyStream {
 
     private Matter specificParameters;
 
-    public final InletBond<MatterStream, Device> inletBond;
-    public final OutletBond<MatterStream, Device> outletBond;
+    public final InletStreamBond<? extends MatterStream> inletStreamBond;
+    public final OutletStreamBond<? extends MatterStream> outletStreamBond;
 
 
 
@@ -32,11 +34,11 @@ public abstract class MatterStream extends AnyStream {
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 
-    public MatterStream(int id, IdGenerator idGenerator, Fluid specificParameters) {
-        super(id, idGenerator);
+    public MatterStream(int id, IdGenerator idGenerator, Matter specificParameters, InletStreamBond<? extends MatterStream> inletStreamBond, OutletStreamBond<? extends MatterStream> outletStreamBond) {
+        super(id, idGenerator, inletStreamBond, outletStreamBond);
         this.specificParameters = specificParameters;
-        inletBond = new InletBond<>(idGenerator.getUniqueId(), this);
-        outletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
+        this.inletStreamBond = inletStreamBond;
+        this.outletStreamBond = outletStreamBond;
     }
 
     public Matter getSpecificParameters() {

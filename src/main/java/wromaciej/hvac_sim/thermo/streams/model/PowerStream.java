@@ -1,21 +1,24 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
+import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.thermo.generals.bonds.InletStreamBond;
+import wromaciej.hvac_sim.thermo.generals.bonds.OutletStreamBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.Power;
 
 public class PowerStream extends AnyStream {
     private Parameter<Power> powerStream;
-    public final InletBond<PowerStream, Device> inletBond;
-    public final OutletBond<PowerStream, Device> outletBond;
+    public final InletStreamBond<PowerStream> inletStreamBond;
+    public final OutletStreamBond<PowerStream> outletStreamBond;
 
-    public PowerStream(int id, IdGenerator idGenerator, Parameter<Power> powerStream) {
-        super(id, idGenerator);
+    public PowerStream(int id, IdGenerator idGenerator, Parameter<Power> powerStream, InletStreamBond<PowerStream> inletStreamBond, OutletStreamBond<PowerStream> outletStreamBond) {
+        super(id, idGenerator, inletStreamBond, outletStreamBond);
         this.powerStream = powerStream;
-        inletBond = new InletBond<>(idGenerator.getUniqueId(), this);
-        outletBond = new OutletBond<>(idGenerator.getUniqueId(), this);
+        this.inletStreamBond = inletStreamBond;
+        this.outletStreamBond = outletStreamBond;
     }
 
 
@@ -26,7 +29,7 @@ public class PowerStream extends AnyStream {
 
 
     @Override
-    public SolverResultType solve() {
+    public SolverResult solve() {
         return null;
     }
 }
