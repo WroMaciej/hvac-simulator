@@ -183,8 +183,6 @@ public class Parameter<Q extends AnyQuantity> {
 
     @Override
     public boolean equals(Object that) {
-        System.out.println(this + " is equal"+ that +" ?");
-
         if (this == that) return true;
         if (that == null || getClass() != that.getClass()) return false;
         Parameter<Q> thatParameter = (Parameter<Q>) that;
