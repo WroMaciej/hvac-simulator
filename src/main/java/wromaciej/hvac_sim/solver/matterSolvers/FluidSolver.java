@@ -3,6 +3,7 @@ package wromaciej.hvac_sim.solver.matterSolvers;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
+import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 
 public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
@@ -76,4 +77,6 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
 
 
     }
+
+
 }

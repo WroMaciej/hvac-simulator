@@ -28,8 +28,10 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
      */
     private Parameter<PressureDifference> pressureDrop;
     /**
-     * Additional mass flow >0 when it comes from the outside
+     * Additional mass flow in/out
      */
+
+    private ParameterWithDirection extraMassFlow;
     private Parameter<MassFlow> additionalMassFlow;
 
     private ChannelSolver channelSolver;
