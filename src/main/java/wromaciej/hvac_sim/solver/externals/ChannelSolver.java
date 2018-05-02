@@ -27,38 +27,33 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         return new Junction(parametersWithDirections, junctionSolver);
     }
 
-    private Junction channelToPressureJunction(Channel toSolve){}
+    private Junction channelToPressureJunction(Channel toSolve){
+        List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
+        parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.INLET));
+        parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.OUTLET));
+        parametersWithDirections.add(new ParameterWithDirection(toSolve.getPressureDrop(), BondDirection.OUTLET));
+        return new Junction(parametersWithDirections, junctionSolver);
+    }
 
 
     private SolverResult solveMassFlows(Channel channelToSolve){
-        SolverResultType solverResultType;
-        final int NEEDED_PARAMETERS = 3;
-        JunctionSolver junctionSolver = new JunctionSolver(
-                NEEDED_PARAMETERS,
-                channelToSolve.getInletStream().getMassFlow(),
-                channelToSolve.getOutletStream().getMassFlow(),
-                channelToSolve.getAdditionalMassFlow());
-        solverResultType= junctionSolver.solverResultType();
-        if (solverResultType == SolverResultType.SOLVED){
-            if (channelToSolve.getAdditionalMassFlow()!=null){
-                channelToSolve.setAdditionalMassFlow(); //ITS FINAL
-            }
-
-
-        }
-        return new SolverResult(null,solverResultType);
+        return junctionSolver.solve(channelToMassFlowJunction(channelToSolve));
     }
 
     private SolverResult solvePressures(Channel channelToSolve){
-
-
-        return null;
+        return junctionSolver.solve(channelToPressureJunction(channelToSolve));
     }
 
 
 
     @Override
     public SolverResult solve(Channel<? extends MatterStream> channelToSolve) {
-        return null;
+        SolverResultType solverResultType;
+        SolverResult massFlowSolverResult = solveMassFlows(channelToSolve);
+        SolverResult pressuresSolverResult = solvePressures(channelToSolve);
+
+        if (massFlowSolverResult.getResultType() == SolverResultType.SOLVED) solverResultType = SolverResultType.SOLVED;
+        else solverResultType = SolverResultType.NOT_SOLVED_NODATA;
+        return new SolverResult(massFlowSolverResult.getMessage()+pressuresSolverResult.getMessage(), solverResultType);
     }
 }

@@ -98,12 +98,11 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
 
     @Override
     public SolverResult solve() {
-
         return channelSolver.solve(this);
     }
 
     @Override
     public boolean isSolved() {
-        return false;
+        return isSolved;
     }
 }
