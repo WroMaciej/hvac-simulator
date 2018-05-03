@@ -20,9 +20,9 @@ public class JunctionSolverTest {
         //GIVEN
         JunctionSolver junctionSolver = new JunctionSolver();
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        Parameter<MassFlow> inletMassFlow = new Parameter<MassFlow>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),20.0);
-        Parameter<MassFlow> outletMassFlow = new Parameter<MassFlow>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
-        Parameter<MassFlow> extraMassFlow = new Parameter<MassFlow>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
+        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),20.0);
+        Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
+        Parameter<MassFlow> extraMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
 
         parametersWithDirections.add(new ParameterWithDirection(inletMassFlow, BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(outletMassFlow, BondDirection.OUTLET));
@@ -35,8 +35,5 @@ public class JunctionSolverTest {
         //THEN
         Assert.assertEquals(junction.getAllParameters().get(2).getParameter().getValue(),80,0.1);
         Assert.assertEquals(junction.getAllParameters().get(2).getDirection(), BondDirection.INLET);
-
-
-
     }
 }

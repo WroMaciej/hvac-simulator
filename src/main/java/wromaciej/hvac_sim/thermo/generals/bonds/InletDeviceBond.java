@@ -7,7 +7,7 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 public class InletDeviceBond<T extends AnyStream> extends Bond {
 
-    public InletDeviceBond(int bondId, BondDirection flowDirection, Device ownerItem) {
+    public InletDeviceBond(int bondId, Device ownerItem) {
         super(bondId, BondDirection.INLET, ownerItem);
     }
 
