@@ -155,12 +155,12 @@ public class Parameter<Q extends AnyQuantity> {
     }
 
     public boolean isPositive(){
-        if (!abs().equals(opposite())) return false;
-        else return true;
+        if (!abs().equals(opposite())) return true;
+        else return false;
     }
 
     public boolean isNegative(){
-        return !isPositive();
+        return ((!isPositive()) && (!isZero()));
     }
 
     public boolean isZero(){
