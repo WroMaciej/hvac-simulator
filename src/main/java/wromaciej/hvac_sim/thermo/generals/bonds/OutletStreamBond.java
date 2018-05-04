@@ -20,7 +20,7 @@ public class OutletStreamBond <T extends AnyStream> extends Bond {
 
     @Override
     public InletDeviceBond<T> getTargetBond() {
-        return (InletDeviceBond<T>) targetBond;
+        return (InletDeviceBond<T>) super.targetBond;
     }
 
     @Override
