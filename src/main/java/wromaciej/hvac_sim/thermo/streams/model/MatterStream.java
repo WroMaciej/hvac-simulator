@@ -39,6 +39,8 @@ public abstract class MatterStream extends AnyStream {
         this.specificParameters = specificParameters;
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
+        this.inletStreamBond.setOwnerItem(this);
+        this.outletStreamBond.setOwnerItem(this);
     }
 
     public Matter getSpecificParameters() {

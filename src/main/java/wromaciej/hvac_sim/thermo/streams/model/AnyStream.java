@@ -15,6 +15,8 @@ public abstract class AnyStream extends Item {
         super(id, idGenerator);
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
+        this.inletStreamBond.setOwnerItem(this);
+        this.outletStreamBond.setOwnerItem(this);
     }
 
 

@@ -21,7 +21,7 @@ public abstract class Bond<T extends AnyStream> {
      * Id of the bond
      */
 
-    private final Item ownerItem;
+    private Item ownerItem;
     /**
      * Id of the object connected to
      */
@@ -41,10 +41,9 @@ public abstract class Bond<T extends AnyStream> {
     }
 
 
-    public Bond(int bondId, BondDirection flowDirection, Item ownerItem) {
+    public Bond(int bondId, BondDirection flowDirection) {
         this.bondId = bondId;
         this.flowDirection = flowDirection;
-        this.ownerItem = ownerItem;
     }
 
     public void disconnect(){
@@ -61,6 +60,10 @@ public abstract class Bond<T extends AnyStream> {
 
     public Item getOwnerItem() {
         return ownerItem;
+    }
+
+    public void setOwnerItem(Item ownerItem) {
+        this.ownerItem = ownerItem;
     }
 
     public Bond getTargetBond() {

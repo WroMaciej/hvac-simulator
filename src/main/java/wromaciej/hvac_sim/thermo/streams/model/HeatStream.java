@@ -21,6 +21,8 @@ public final class HeatStream extends AnyStream {
         this.heatFlow = heatFlow;
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
+        this.inletStreamBond.setOwnerItem(this);
+        this.outletStreamBond.setOwnerItem(this);
     }
 
     public Parameter<HeatFlow> getHeatFlow() {

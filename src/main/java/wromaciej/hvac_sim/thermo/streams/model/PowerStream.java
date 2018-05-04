@@ -19,6 +19,8 @@ public class PowerStream extends AnyStream {
         this.powerStream = powerStream;
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
+        this.inletStreamBond.setOwnerItem(this);
+        this.outletStreamBond.setOwnerItem(this);
     }
 
 

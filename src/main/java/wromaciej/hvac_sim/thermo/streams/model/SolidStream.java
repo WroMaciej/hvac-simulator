@@ -13,5 +13,7 @@ public class SolidStream extends MatterStream {
         super(id, idGenerator, specificParameters, inletStreamBond, outletStreamBond);
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
+        this.inletStreamBond.setOwnerItem(this);
+        this.outletStreamBond.setOwnerItem(this);
     }
 }

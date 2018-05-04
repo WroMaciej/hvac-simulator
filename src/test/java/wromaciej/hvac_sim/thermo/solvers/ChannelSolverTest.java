@@ -38,17 +38,22 @@ public class ChannelSolverTest {
         Fluid outletFluid = new Fluid(null);
         inletFluid.setAbsolutePressure(inletPressure);
 
-        InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1, null);
-        OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2, null);
+        InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
+        OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2);
+        InletStreamBond<FluidStream> inletOfInletStreamBond = new InletStreamBond<>(3);
+        OutletStreamBond<FluidStream> outletOfInletStreamBond = new OutletStreamBond<>(4);
+        InletStreamBond<FluidStream> inletOfIOutletStreamBond = new InletStreamBond<>(5);
+        OutletStreamBond<FluidStream> outletOfOutletStreamBond = new OutletStreamBond<>(6);
 
-        FluidStream inletFluidStream = new FluidStream(3, null, inletFluid, inletStreamBond, outletStreamBond);
+        FluidStream inletFluidStream = new FluidStream(7, null, inletFluid, inletOfInletStreamBond, outletOfInletStreamBond);
+        FluidStream outletFluidStream = new FluidStream(8, null, inletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
 
 
+        Channel<FluidStream> channel = new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, extraMassFlowWithDirection);
 
 
-
-        InletStreamBond<FluidStream> inletStreamBond = new InletStreamBond<>(3, in);i
-        OutletStreamBond<FluidStream> outletStreamBond = new OutletStreamBond<>(4, in);
+        inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
+        outletFluidStream.inletStreamBond.connectTo(channel.getOutletDeviceBond());
 
        // FluidData fluidData = new FluidData(true);
 
@@ -59,9 +64,9 @@ public class ChannelSolverTest {
 
 
 
-        Channel<FluidStream> channel = new Channel<FluidStream>(null, inletDeviceBond, outletDeviceBond, pressureDrop, extraMassFlowWithDirection);
         JunctionSolver junctionSolver = new JunctionSolver();
         ChannelSolver channelSolver = new ChannelSolver(junctionSolver);
+        channel.setChannelSolver(channelSolver);
 
         //WHEN
         channel.solve();

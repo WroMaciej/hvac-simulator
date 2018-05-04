@@ -6,8 +6,14 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 public class InletStreamBond<T extends AnyStream> extends Bond {
 
-    public InletStreamBond(int bondId, T ownerStream) {
-        super(bondId, BondDirection.INLET, ownerStream);
+
+    public InletStreamBond(int bondId) {
+        super(bondId, BondDirection.INLET);
+    }
+
+
+    public void setOwnerItem(T ownerItem) {
+        super.setOwnerItem(ownerItem);
     }
 
     public void connectTo(OutletDeviceBond<T> outletDeviceBond){
