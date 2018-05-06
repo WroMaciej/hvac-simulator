@@ -14,20 +14,21 @@ public class InletDeviceBond<T extends AnyStream> extends Bond {
 
 
     public void setOwnerItem(Device ownerItem) {
-        super.setOwnerItem(ownerItem);
+        this.ownerItem = ownerItem;
     }
 
-    public void connectTo(OutletStreamBond<T> inletStreamBond){
-        this.targetBond = inletStreamBond;
+    public void connectTo(OutletStreamBond<T> outletStreamBond){
+        this.targetBond = outletStreamBond;
+        outletStreamBond.targetBond = this;
     }
 
     @Override
     public OutletStreamBond<T> getTargetBond() {
-        return (OutletStreamBond<T>) super.getTargetBond();
+        return (OutletStreamBond<T>) this.targetBond;
     }
 
     @Override
     public Device getOwnerItem() {
-        return (Device) super.getOwnerItem();
+        return (Device) this.ownerItem;
     }
 }

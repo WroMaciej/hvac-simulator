@@ -43,8 +43,8 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         this.pressureDrop = pressureDrop;
         this.extraMassFlow = extraMassFlow;
 
-        inletStream = inletDeviceBond.getTargetBond().getOwnerItem();
-        outletStream = outletDeviceBond.getTargetBond().getOwnerItem();
+
+
     }
 
     public InletDeviceBond<T> getInletDeviceBond() {
@@ -56,10 +56,12 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
     }
 
     public T getInletStream() {
+        inletStream = inletDeviceBond.getTargetBond().getOwnerItem();
         return inletStream;
     }
 
     public T getOutletStream() {
+        outletStream = outletDeviceBond.getTargetBond().getOwnerItem();
         return outletStream;
     }
 

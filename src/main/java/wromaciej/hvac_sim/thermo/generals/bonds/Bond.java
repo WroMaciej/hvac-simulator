@@ -21,7 +21,7 @@ public abstract class Bond<T extends AnyStream> {
      * Id of the bond
      */
 
-    private Item ownerItem;
+    protected Item ownerItem;
     /**
      * Id of the object connected to
      */
@@ -54,9 +54,6 @@ public abstract class Bond<T extends AnyStream> {
         return bondId;
     }
 
-//    public boolean connectableWith(Bond<T> secondBond){
-//        if
-//    }
 
     public Item getOwnerItem() {
         return ownerItem;

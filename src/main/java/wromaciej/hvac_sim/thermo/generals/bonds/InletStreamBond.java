@@ -13,20 +13,21 @@ public class InletStreamBond<T extends AnyStream> extends Bond {
 
 
     public void setOwnerItem(T ownerItem) {
-        super.setOwnerItem(ownerItem);
+        this.ownerItem = ownerItem;
     }
 
     public void connectTo(OutletDeviceBond<T> outletDeviceBond){
         this.targetBond = outletDeviceBond;
+        outletDeviceBond.targetBond = this;
     }
 
     @Override
     public OutletDeviceBond<T> getTargetBond() {
-        return (OutletDeviceBond<T>) super.targetBond;
+        return (OutletDeviceBond<T>) this.targetBond;
     }
 
     @Override
     public T getOwnerItem() {
-        return (T) super.getOwnerItem();
+        return (T) this.ownerItem;
     }
 }

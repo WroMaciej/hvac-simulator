@@ -46,7 +46,9 @@ public class ChannelSolverTest {
         OutletStreamBond<FluidStream> outletOfOutletStreamBond = new OutletStreamBond<>(6);
 
         FluidStream inletFluidStream = new FluidStream(7, null, inletFluid, inletOfInletStreamBond, outletOfInletStreamBond);
-        FluidStream outletFluidStream = new FluidStream(8, null, inletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
+        FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
+
+
 
 
         Channel<FluidStream> channel = new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, extraMassFlowWithDirection);
@@ -54,6 +56,9 @@ public class ChannelSolverTest {
 
         inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
         outletFluidStream.inletStreamBond.connectTo(channel.getOutletDeviceBond());
+
+        System.out.println(channel.getInletDeviceBond().hashCode());
+        System.out.println(outletOfInletStreamBond.getTargetBond().hashCode());
 
        // FluidData fluidData = new FluidData(true);
 
