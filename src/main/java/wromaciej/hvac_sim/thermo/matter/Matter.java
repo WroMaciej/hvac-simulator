@@ -199,6 +199,22 @@ public abstract class Matter implements Solvable {
     }
 
     @Override
+    public String toString() {
+        return "Matter{" +
+                "matterType=" + matterType +
+                ", stateOfMatter=" + stateOfMatter +
+                ", temperature=" + temperature +
+                ", absoluteTemperature=" + absoluteTemperature +
+                ", absolutePressure=" + absolutePressure +
+                ", gaugePressure=" + gaugePressure +
+                ", specificEnthalpy=" + specificEnthalpy +
+                ", heatCapacity=" + heatCapacity +
+                ", specificVolume=" + specificVolume +
+                ", density=" + density +
+                '}';
+    }
+
+    @Override
     public SolverResult solve() {
         return matterSolver.solve(this);
     }

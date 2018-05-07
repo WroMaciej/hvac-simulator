@@ -13,13 +13,13 @@ import java.util.List;
 
 public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStream>> {
 
-    JunctionSolver junctionSolver;
+    private JunctionSolver junctionSolver;
 
     public ChannelSolver(JunctionSolver junctionSolver) {
         this.junctionSolver = junctionSolver;
     }
 
-    private Junction channelToMassFlowJunction(Channel toSolve){
+    public Junction channelToMassFlowJunction(Channel toSolve){
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getMassFlow(), BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getMassFlow(), BondDirection.OUTLET));
@@ -27,7 +27,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         return new Junction(parametersWithDirections, junctionSolver);
     }
 
-    private Junction channelToPressureJunction(Channel toSolve){
+    public Junction channelToPressureJunction(Channel toSolve){
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.OUTLET));
@@ -36,11 +36,11 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
     }
 
 
-    private SolverResult solveMassFlows(Channel channelToSolve){
+    public SolverResult solveMassFlows(Channel channelToSolve){
         return junctionSolver.solve(channelToMassFlowJunction(channelToSolve));
     }
 
-    private SolverResult solvePressures(Channel channelToSolve){
+    public SolverResult solvePressures(Channel channelToSolve){
         return junctionSolver.solve(channelToPressureJunction(channelToSolve));
     }
 
@@ -52,7 +52,8 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         SolverResult massFlowSolverResult = solveMassFlows(channelToSolve);
         SolverResult pressuresSolverResult = solvePressures(channelToSolve);
 
-        if (massFlowSolverResult.getResultType() == SolverResultType.SOLVED) solverResultType = SolverResultType.SOLVED;
+        if ((massFlowSolverResult.getResultType() == SolverResultType.SOLVED) && (pressuresSolverResult.getResultType() == SolverResultType.SOLVED))
+            solverResultType = SolverResultType.SOLVED;
         else solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         return new SolverResult(massFlowSolverResult.getMessage()+pressuresSolverResult.getMessage(), solverResultType);
     }

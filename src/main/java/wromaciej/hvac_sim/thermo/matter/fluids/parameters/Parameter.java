@@ -27,7 +27,9 @@ public class Parameter<Q extends AnyQuantity> {
     }
 
     public Double getValue() {
+        if ((isDefined()) && (actualUnit != null))
         return amount.doubleValue(actualUnit);
+        else return null;
     }
 
     public void setValue(double value) {
@@ -80,7 +82,9 @@ public class Parameter<Q extends AnyQuantity> {
     }
 
     public Unit<Q> getActualUnit() {
+        if (actualUnit!=null)
         return actualUnit;
+        else return null;
     }
 
     public void setActualUnit(Unit<Q> actualUnit) {
@@ -178,7 +182,10 @@ public class Parameter<Q extends AnyQuantity> {
 
     @Override
     public String toString() {
-        return getValue() + getActualUnit().toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        if (getValue() != null) stringBuilder.append(getValue());
+        if (getActualUnit() != null) stringBuilder.append(getActualUnit().toString());
+        return stringBuilder.toString();
     }
 
     @Override

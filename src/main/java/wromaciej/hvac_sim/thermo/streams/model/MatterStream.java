@@ -16,7 +16,7 @@ public abstract class MatterStream extends AnyStream {
     private Parameter<MassFlow> massFlow;
     private Parameter<VolumeFlow> volumeFlow;
 
-    private Matter specificParameters;
+    protected Matter specificParameters;
 
     public final InletStreamBond<? extends MatterStream> inletStreamBond;
     public final OutletStreamBond<? extends MatterStream> outletStreamBond;
@@ -26,11 +26,13 @@ public abstract class MatterStream extends AnyStream {
 
     public void setMassFlow(Parameter<MassFlow> massFlow) {
         this.massFlow = massFlow;
+        if (specificParameters.getDensity().isDefined())
         this.volumeFlow = this.massFlow.divide(specificParameters.getDensity());
     }
 
     public void setVolumeFlow(Parameter<VolumeFlow> volumeFlow) {
         this.volumeFlow = volumeFlow;
+        if (specificParameters.getDensity().isDefined())
         this.massFlow = this.volumeFlow.times(specificParameters.getDensity());
     }
 

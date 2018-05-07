@@ -13,7 +13,6 @@ public abstract class AnyStream extends Item {
 
     public AnyStream(int id, IdGenerator idGenerator, InletStreamBond<? extends AnyStream> inletStreamBond, OutletStreamBond<? extends AnyStream> outletStreamBond) {
         super(id, idGenerator);
-        System.out.println("Anystream: "+ this.hashCode());
         this.inletStreamBond = inletStreamBond;
         this.outletStreamBond = outletStreamBond;
         this.inletStreamBond.setOwnerItem(this);

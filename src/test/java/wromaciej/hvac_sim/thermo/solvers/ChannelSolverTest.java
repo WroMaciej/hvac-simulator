@@ -10,6 +10,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidSetter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
@@ -32,11 +33,13 @@ public class ChannelSolverTest {
         Parameter<MassFlow> extraMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
         ParameterWithDirection extraMassFlowWithDirection = new ParameterWithDirection(extraMassFlow, INLET);
 
-        Parameter<Pressure> inletPressure = new Parameter(SI.PASCAL.asType(Pressure.class),300);
+        Parameter<Pressure> inletPressure = new Parameter(ParameterType.PRESSURE, SI.PASCAL.asType(Pressure.class),300);
+        Parameter<Pressure> outletPressure = new Parameter(ParameterType.PRESSURE, SI.PASCAL.asType(Pressure.class));
         Parameter<PressureDifference> pressureDrop = new Parameter<>(SI.PASCAL.asType(PressureDifference.class),250);
         Fluid inletFluid = new Fluid(null);
         Fluid outletFluid = new Fluid(null);
         inletFluid.setAbsolutePressure(inletPressure);
+        outletFluid.setAbsolutePressure(outletPressure);
 
         InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
         OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2);
@@ -46,8 +49,9 @@ public class ChannelSolverTest {
         OutletStreamBond<FluidStream> outletOfOutletStreamBond = new OutletStreamBond<>(6);
 
         FluidStream inletFluidStream = new FluidStream(7, null, inletFluid, inletOfInletStreamBond, outletOfInletStreamBond);
+        inletFluidStream.setMassFlow(inletMassFlow);
         FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
-
+        outletFluidStream.setMassFlow(outletMassFlow);
 
 
 
@@ -57,8 +61,6 @@ public class ChannelSolverTest {
         inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
         outletFluidStream.inletStreamBond.connectTo(channel.getOutletDeviceBond());
 
-        System.out.println(channel.getInletDeviceBond().hashCode());
-        System.out.println(outletOfInletStreamBond.getTargetBond().hashCode());
 
        // FluidData fluidData = new FluidData(true);
 
@@ -75,7 +77,9 @@ public class ChannelSolverTest {
 
         //WHEN
         channel.solve();
-        System.out.println(channel.getOutletStream().getSpecificParameters().getAbsolutePressure());
+        System.out.println(channel.getExtraMassFlow().getParameter());
+        System.out.println(channel.getInletStream().getSpecificParameters());
+        System.out.println(channel.getOutletStream().getSpecificParameters());
 
         //THEN
         //Assert.assertEquals(junction.getAllParameters().get(2).getParameter().getValue(),80,0.1);

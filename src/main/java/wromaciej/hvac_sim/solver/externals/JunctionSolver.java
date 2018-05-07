@@ -70,7 +70,8 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         if (undefinedParametersNumber(toSolve)>1) solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else if (undefinedParametersNumber(toSolve)<1) solverResultType = SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
         else{
-            undefinedParameters.get(0).setParameter(getBalance(toSolve).getParameter());
+            //undefinedParameters.get(0).setParameter(getBalance(toSolve).getParameter());
+            undefinedParameters.get(0).getParameter().setAmount( getBalance(toSolve).getParameter().getAmount());
             undefinedParameters.get(0).setDirection(getBalance(toSolve).getDirection());
             solverResultType = SolverResultType.SOLVED;
         }
