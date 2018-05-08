@@ -18,7 +18,7 @@ public abstract class Matter implements Solvable {
     /**
      * Tool for dealing with solving fluid
      */
-    protected MatterDefinition matterDefinition;
+    public MatterDefinition matterDefinition;
     //private MatterSolver matterSolver;
     private ExternalSolver matterSolver;
     private boolean isSolved;

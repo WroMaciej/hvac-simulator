@@ -10,20 +10,8 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
     private char NEEDED_GENERAL_FLUID_PARAMETERS = 2;
     private char NEEDED_AIR_PARAMETERS = 3;
 
-    //private final FluidDefinition matterDefinition;
     private final FluidSetter fluidSetter;
 
-    //private SolverResultType solverResultType;
-
-//    public SolverResultType getSolverResultType() {
-//        return solverResultType;
-//    }
-//
-//    public FluidSolver(FluidDefinition matterDefinition, FluidSetter fluidSetter) {
-//        this.solverResultType = SolverResultType.NOT_SOLVED_NODATA;
-//        this.matterDefinition = matterDefinition;
-//        this.fluidSetter = fluidSetter;
-//    }
 
     public FluidSolver(FluidSetter fluidSetter) {
         this.fluidSetter = fluidSetter;
@@ -36,7 +24,7 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
         SolverResultType solverResultType=SolverResultType.NOT_SOLVED_NODATA;
         String message = "No message";
 
-        if ((fluidToSolve.matterDefinition.getFluidType() != MatterType.AIR) && (fluidToSolve.matterDefinition.getFluidName() == null))
+        if ((fluidToSolve.getMatterDefinition().getFluidType() != MatterType.AIR) && (fluidToSolve.getMatterDefinition().getFluidName() == null))
             solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluidToSolve.matterDefinition.numberOfUniqueParameters();

@@ -21,7 +21,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         this.junctionSolver = junctionSolver;
     }
 
-    public Junction channelToMassFlowJunction(Channel toSolve){
+    public Junction channelToMassFlowJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getMassFlow(), BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getMassFlow(), BondDirection.OUTLET));
@@ -29,27 +29,34 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         return new Junction(parametersWithDirections, junctionSolver);
     }
 
-    public Junction channelToPressureJunction(Channel toSolve){
+    public Junction channelToPressureJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        if (!toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()){
-            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(new Parameter(ParameterType.PRESSURE));
-            
+        Parameter inletPressureDefinition = new Parameter(ParameterType.PRESSURE);
+        Parameter outletPressureDefinition = new Parameter(ParameterType.PRESSURE);;
+        if (toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
+            inletPressureDefinition = toSolve.getInletStream().getSpecificParameters().getAbsolutePressure();
+        } else {
+            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletPressureDefinition);
         }
-        parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getSpecificParameters().getMatterDefinition().getParameterByType(ParameterType.PRESSURE) getAbsolutePressure(), BondDirection.INLET));
-        parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.OUTLET));
+        if (toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
+            outletPressureDefinition = toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure();
+        } else {
+            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletPressureDefinition);
+        }
+        parametersWithDirections.add(new ParameterWithDirection(inletPressureDefinition, BondDirection.INLET));
+        parametersWithDirections.add(new ParameterWithDirection(outletPressureDefinition, BondDirection.OUTLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getPressureDrop(), BondDirection.OUTLET));
         return new Junction(parametersWithDirections, junctionSolver);
     }
 
 
-    public SolverResult solveMassFlows(Channel channelToSolve){
+    public SolverResult solveMassFlows(Channel channelToSolve) {
         return junctionSolver.solve(channelToMassFlowJunction(channelToSolve));
     }
 
-    public SolverResult solvePressures(Channel channelToSolve){
+    public SolverResult solvePressures(Channel channelToSolve) {
         return junctionSolver.solve(channelToPressureJunction(channelToSolve));
     }
-
 
 
     @Override
@@ -61,6 +68,6 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         if ((massFlowSolverResult.getResultType() == SolverResultType.SOLVED) && (pressuresSolverResult.getResultType() == SolverResultType.SOLVED))
             solverResultType = SolverResultType.SOLVED;
         else solverResultType = SolverResultType.NOT_SOLVED_NODATA;
-        return new SolverResult(massFlowSolverResult.getMessage()+pressuresSolverResult.getMessage(), solverResultType);
+        return new SolverResult(massFlowSolverResult.getMessage() + pressuresSolverResult.getMessage(), solverResultType);
     }
 }

@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.solver.matterSolvers;
 
+import wromaciej.hvac_sim.thermo.matter.Matter;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -7,6 +9,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class MatterDefinition {
 
@@ -53,6 +56,14 @@ public abstract class MatterDefinition {
             for (Parameter parameter : parameters) {
                 addParameter(parameter);
             }
+        }
+
+    }
+
+    public void putOnlyUserDefinedParameters(Matter matter){
+        clearDefinedParameters();
+        for (Map.Entry<ParameterType, Parameter> entry : matter.getParametersByType().entrySet()){
+            if (entry.getValue().isUserDefined()) addParameter(entry.getValue());
         }
 
     }

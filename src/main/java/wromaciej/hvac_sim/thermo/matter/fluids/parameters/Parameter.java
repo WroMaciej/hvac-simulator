@@ -16,7 +16,7 @@ public class Parameter<Q extends AnyQuantity> {
 
     private ParameterType parameterType;
 
-    private boolean userDefined = false;
+    private boolean userDefined;
 
     public ParameterType getParameterType() {
         return parameterType;
