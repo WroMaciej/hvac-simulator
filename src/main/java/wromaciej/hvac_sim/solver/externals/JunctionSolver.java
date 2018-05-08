@@ -5,7 +5,9 @@ import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
 import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,10 @@ public class JunctionSolver implements ExternalSolver<Junction> {
     }
 
 
-    private ParameterWithDirection getBalance(Junction toSolve){
+
+
+    public ParameterWithDirection getBalance(Junction toSolve){
+
         Parameter sum = new Parameter();
         ParameterWithDirection resultingParameterWithDirection;
         for (ParameterWithDirection parameterWithDirection : getDefinedParameters(toSolve)){
@@ -71,6 +76,9 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         else if (undefinedParametersNumber(toSolve)<1) solverResultType = SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
         else{
             //undefinedParameters.get(0).setParameter(getBalance(toSolve).getParameter());
+            if (undefinedParameters.get(0).getParameter().getParameterType()!= ParameterType.OTHER){
+
+            }
             undefinedParameters.get(0).getParameter().setAmount( getBalance(toSolve).getParameter().getAmount());
             undefinedParameters.get(0).setDirection(getBalance(toSolve).getDirection());
             solverResultType = SolverResultType.SOLVED;

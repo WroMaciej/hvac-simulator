@@ -26,7 +26,7 @@ public class FluidSolverTest {
         Parameter<Pressure> pressure = new Parameter(ParameterType.PRESSURE, NonSI.BAR.asType(Pressure.class), 1);
         FluidDefinition fluidDefinition = new FluidDefinition(FluidName.WATER, MatterType.GENERAL_FLUID, temperature, pressure);
 
-        fluid.setFluidDefinition(fluidDefinition);
+        fluid.setMatterDefinition(fluidDefinition);
         fluid.solve();
 
         System.out.println(fluid);

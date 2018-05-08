@@ -3,10 +3,10 @@ package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
+import wromaciej.hvac_sim.solver.matterSolvers.MatterDefinition;
 import wromaciej.hvac_sim.thermo.matter.Matter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.StateOfMatter;
 import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class Fluid extends Matter{
     public Fluid(ExternalSolver<? extends Fluid> fluidSolver) {
         super(fluidSolver);
         clearAllParameters();
-        fluidDefinition = new FluidDefinition(null, null, null);
+        matterDefinition = new FluidDefinition(null, null, null);
         parametersByType = new HashMap<>();
     }
 
@@ -114,6 +114,16 @@ public class Fluid extends Matter{
 
     public void setQuality(Parameter<Quality> quality) {
         this.quality = quality;
+    }
+
+    @Override
+    public FluidDefinition getMatterDefinition() {
+        return this.getMatterDefinition();
+    }
+
+    @Override
+    public void setMatterDefinition(MatterDefinition matterDefinition) {
+        this.matterDefinition = matterDefinition;
     }
 
     @Override

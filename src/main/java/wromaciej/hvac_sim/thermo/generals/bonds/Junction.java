@@ -3,10 +3,12 @@ package wromaciej.hvac_sim.thermo.generals.bonds;
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 
 import java.util.List;
 
 public class Junction implements Solvable{
+
     private JunctionSolver junctionSolver;
 
     private List<ParameterWithDirection> allParameters;

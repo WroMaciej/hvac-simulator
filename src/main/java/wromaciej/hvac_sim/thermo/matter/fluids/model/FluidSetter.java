@@ -48,7 +48,7 @@ public class FluidSetter {
             fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
             fluid.setStateOfMatter(setStateOfMatter(fluid));
-            fluid.fluidDefinition = new FluidDefinition(fluidName, fluid.getMatterType(), knownParameter1, knownParameter2);
+            fluid.matterDefinition = new FluidDefinition(fluidName, fluid.getMatterType(), knownParameter1, knownParameter2);
             fluid.updateParameters();
         }
     }
@@ -88,7 +88,7 @@ public class FluidSetter {
 
         air.setStateOfMatter(setStateOfMatter(air));
 
-        air.fluidDefinition = new FluidDefinition(air.getFluidName(), air.getMatterType(), knownParameter1, knownParameter2, knownParameter3);
+        air.matterDefinition = new FluidDefinition(air.getFluidName(), air.getMatterType(), knownParameter1, knownParameter2, knownParameter3);
         air.updateParameters();
     }
 }

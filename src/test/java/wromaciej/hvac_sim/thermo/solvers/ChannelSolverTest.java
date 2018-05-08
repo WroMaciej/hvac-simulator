@@ -61,16 +61,6 @@ public class ChannelSolverTest {
         inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
         outletFluidStream.inletStreamBond.connectTo(channel.getOutletDeviceBond());
 
-
-       // FluidData fluidData = new FluidData(true);
-
-        //FluidFactory fluidFactory = new FluidFactory(fluidData, new FluidSolver(new FluidSetter(fluidData)));
-        //Fluid inletFluid = fluidFactory.createFluid();
-
-
-
-
-
         JunctionSolver junctionSolver = new JunctionSolver();
         ChannelSolver channelSolver = new ChannelSolver(junctionSolver);
         channel.setChannelSolver(channelSolver);

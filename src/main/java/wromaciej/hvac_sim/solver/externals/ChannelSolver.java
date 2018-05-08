@@ -6,6 +6,8 @@ import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.Channel;
 import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
 import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import java.util.ArrayList;
@@ -29,7 +31,11 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     public Junction channelToPressureJunction(Channel toSolve){
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.INLET));
+        if (!toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()){
+            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(new Parameter(ParameterType.PRESSURE));
+            
+        }
+        parametersWithDirections.add(new ParameterWithDirection(toSolve.getInletStream().getSpecificParameters().getMatterDefinition().getParameterByType(ParameterType.PRESSURE) getAbsolutePressure(), BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure(), BondDirection.OUTLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getPressureDrop(), BondDirection.OUTLET));
         return new Junction(parametersWithDirections, junctionSolver);
