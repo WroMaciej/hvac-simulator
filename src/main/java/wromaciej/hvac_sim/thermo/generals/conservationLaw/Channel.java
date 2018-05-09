@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.thermo.generals.bonds;
+package wromaciej.hvac_sim.thermo.generals.conservationLaw;
 
 import wromaciej.hvac_sim.solver.externals.ChannelSolver;
 import wromaciej.hvac_sim.solver.internals.Solvable;
@@ -8,9 +8,7 @@ import wromaciej.hvac_sim.thermo.generals.Item;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletDeviceBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
-import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 public class Channel<T extends MatterStream> implements Solvable, Bondable {
@@ -28,23 +26,25 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
      */
     private Parameter<PressureDifference> pressureDrop;
     /**
-     * Additional mass flow in/out
+     * Additional mass flow in/out (Use only for low flows)
      */
-
     private ParameterWithDirection extraMassFlow;
+
+    /**
+     * Heat flow
+     */
+    private ParameterWithDirection heatFlow;
 
     private ChannelSolver channelSolver;
     private boolean isSolved;
 
-    public Channel(Item ownerItem, InletDeviceBond<T> inletDeviceBond, OutletDeviceBond<T> outletDeviceBond, Parameter<PressureDifference> pressureDrop, ParameterWithDirection extraMassFlow) {
+    public Channel(Item ownerItem, InletDeviceBond<T> inletDeviceBond, OutletDeviceBond<T> outletDeviceBond, Parameter<PressureDifference> pressureDrop, ParameterWithDirection heatFlow, ParameterWithDirection extraMassFlow) {
         this.ownerItem = ownerItem;
         this.inletDeviceBond = inletDeviceBond;
         this.outletDeviceBond = outletDeviceBond;
         this.pressureDrop = pressureDrop;
+        this.heatFlow = heatFlow;
         this.extraMassFlow = extraMassFlow;
-
-
-
     }
 
     public InletDeviceBond<T> getInletDeviceBond() {
@@ -80,6 +80,14 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
 
     public void setSolved(boolean solved) {
         isSolved = solved;
+    }
+
+    public ParameterWithDirection getHeatFlow() {
+        return heatFlow;
+    }
+
+    public void setHeatFlow(ParameterWithDirection heatFlow) {
+        this.heatFlow = heatFlow;
     }
 
     public ParameterWithDirection getExtraMassFlow() {

@@ -3,12 +3,13 @@ package wromaciej.hvac_sim.solver.externals;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
-import wromaciej.hvac_sim.thermo.generals.bonds.Channel;
-import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
-import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.Channel;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.Junction;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
+import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import javax.measure.unit.SI;
@@ -53,6 +54,12 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         parametersWithDirections.add(new ParameterWithDirection(outletPressureDefinition, BondDirection.OUTLET));
         parametersWithDirections.add(new ParameterWithDirection(toSolve.getPressureDrop(), BondDirection.OUTLET));
         return new Junction(parametersWithDirections, junctionSolver);
+    }
+
+    public Junction channelToEnthalpyFlowJunction(Channel toSolve) {
+        List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
+        Parameter<SpecificEnthalpy> specificEnthalpyDifference = toSolve.getHeatFlow().getParameter().divide()
+
     }
 
 

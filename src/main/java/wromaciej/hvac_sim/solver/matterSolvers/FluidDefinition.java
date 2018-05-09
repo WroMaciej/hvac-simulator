@@ -20,7 +20,7 @@ public class FluidDefinition extends MatterDefinition {
 
 
     //    private FluidName fluidName;
-//    private MatterType fluidType;
+//    private MatterType matterType;
 //
 //
 //
@@ -34,22 +34,22 @@ public class FluidDefinition extends MatterDefinition {
 //        return fluidName;
 //    }
 //
-//    public MatterType getFluidType() {
-//        return fluidType;
+//    public MatterType getMatterType() {
+//        return matterType;
 //    }
 //
-//    public void setFluidType(MatterType fluidType) {
-//        this.fluidType = fluidType;
+//    public void setMatterType(MatterType matterType) {
+//        this.matterType = matterType;
 //    }
 //
 //    public  FluidDefinition(){
 //        this.definedParameters = new ArrayList<>();
 //    }
 //
-//    public FluidDefinition(FluidName fluidName, MatterType fluidType, Parameter... parameters) {
+//    public FluidDefinition(FluidName fluidName, MatterType matterType, Parameter... parameters) {
 //        this();
 //        this.fluidName = fluidName;
-//        this.fluidType = fluidType;
+//        this.matterType = matterType;
 //
 //        setDefinedParameters(parameters);
 //

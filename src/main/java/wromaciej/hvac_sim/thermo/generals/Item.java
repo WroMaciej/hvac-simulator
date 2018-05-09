@@ -5,7 +5,6 @@ import wromaciej.hvac_sim.display.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
-import wromaciej.hvac_sim.solver.internals.SolverChecker;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 
 /**
@@ -16,7 +15,6 @@ public abstract class Item implements Displayable, Solvable, Bondable {
     private final int id;
     private String name;
     private boolean isSolved;
-    protected SolverChecker solverChecker;
     private ExternalSolver actualExternalSolver;
 
     public ExternalSolver getActualExternalSolver() {

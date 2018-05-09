@@ -24,12 +24,12 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
         SolverResultType solverResultType=SolverResultType.NOT_SOLVED_NODATA;
         String message = "No message";
 
-        if ((fluidToSolve.getMatterDefinition().getFluidType() != MatterType.AIR) && (fluidToSolve.getMatterDefinition().getFluidName() == null))
+        if ((fluidToSolve.getMatterDefinition().getMatterType() != MatterType.AIR) && (fluidToSolve.getMatterDefinition().getFluidName() == null))
             solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         else{
             int numberOfUniqueParameters = fluidToSolve.matterDefinition.numberOfUniqueParameters();
 
-            if (fluidToSolve.matterDefinition.getFluidType() == MatterType.AIR){
+            if (fluidToSolve.matterDefinition.getMatterType() == MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_AIR_PARAMETERS) || (!fluidToSolve.matterDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_AIR_PARAMETERS)
@@ -44,7 +44,7 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
                 }
 
             }
-            else if (fluidToSolve.matterDefinition.getFluidType() != MatterType.AIR){
+            else if (fluidToSolve.matterDefinition.getMatterType() != MatterType.AIR){
                 if ((numberOfUniqueParameters > NEEDED_GENERAL_FLUID_PARAMETERS) || (!fluidToSolve.matterDefinition.hasOnlyUniqueParameters()))
                     solverResultType =  SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
                 else if (numberOfUniqueParameters < NEEDED_GENERAL_FLUID_PARAMETERS)

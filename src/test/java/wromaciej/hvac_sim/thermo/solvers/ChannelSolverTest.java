@@ -1,25 +1,20 @@
 package wromaciej.hvac_sim.thermo.solvers;
 
-import org.junit.Assert;
 import org.junit.Test;
 import wromaciej.hvac_sim.solver.externals.ChannelSolver;
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
-import wromaciej.hvac_sim.solver.matterSolvers.FluidSolver;
 import wromaciej.hvac_sim.thermo.generals.bonds.*;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.Channel;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidSetter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 
 import javax.measure.unit.SI;
-import java.util.ArrayList;
-import java.util.List;
 
 import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.INLET;
 
@@ -67,10 +62,7 @@ public class ChannelSolverTest {
 
         //WHEN
         channel.solve();
-        System.out.println(channel.getExtraMassFlow().getParameter());
-        System.out.println(channel.getInletStream().getSpecificParameters());
-        System.out.println(channel.getOutletStream().getSpecificParameters());
-        System.out.println(channel.getOutletStream().getSpecificParameters().getMatterDefinition());
+
 
         //THEN
         //Assert.assertEquals(junction.getAllParameters().get(2).getParameter().getValue(),80,0.1);

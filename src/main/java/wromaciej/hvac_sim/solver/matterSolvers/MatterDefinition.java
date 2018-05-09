@@ -1,7 +1,6 @@
 package wromaciej.hvac_sim.solver.matterSolvers;
 
 import wromaciej.hvac_sim.thermo.matter.Matter;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -14,17 +13,17 @@ import java.util.Map;
 public abstract class MatterDefinition {
 
     protected FluidName fluidName;
-    protected MatterType fluidType;
+    protected MatterType matterType;
     protected List<Parameter> definedParameters;
 
     public MatterDefinition() {
         definedParameters = new ArrayList<>();
     }
 
-    public MatterDefinition(FluidName fluidName, MatterType fluidType, Parameter... parameters) {
+    public MatterDefinition(FluidName fluidName, MatterType matterType, Parameter... parameters) {
         this();
         this.fluidName = fluidName;
-        this.fluidType = fluidType;
+        this.matterType = matterType;
 
         setDefinedParameters(parameters);
 
@@ -40,12 +39,12 @@ public abstract class MatterDefinition {
         return fluidName;
     }
 
-    public MatterType getFluidType() {
-        return fluidType;
+    public MatterType getMatterType() {
+        return matterType;
     }
 
-    public void setFluidType(MatterType fluidType) {
-        this.fluidType = fluidType;
+    public void setMatterType(MatterType matterType) {
+        this.matterType = matterType;
     }
 
 
@@ -146,7 +145,7 @@ public abstract class MatterDefinition {
 
         return "MatterDefinition{" +
                 "fluidName=" + fluidName +
-                ", fluidType=" + fluidType +
+                ", matterType=" + matterType +
                 ", definedParameters=" + definedParametersStringBuilder.toString() +
                 '}';
     }

@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
-import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
-import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.Junction;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 

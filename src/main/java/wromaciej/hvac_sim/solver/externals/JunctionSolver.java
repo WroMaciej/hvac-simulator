@@ -3,9 +3,8 @@ package wromaciej.hvac_sim.solver.externals;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
-import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
-import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.Junction;
+import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 

@@ -1,13 +1,16 @@
-package wromaciej.hvac_sim.solver.internals;
+package wromaciej.hvac_sim.solver.generalSolver;
+
+import wromaciej.hvac_sim.solver.internals.Solvable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolverChecker {
+public class GeneralSolver {
 
     List<Solvable> solvables;
 
-    public SolverChecker(Solvable... solvables) {
+
+    public GeneralSolver(Solvable... solvables) {
         this.solvables = new ArrayList<>();
         for (Solvable solvable : solvables) {
             this.solvables.add(solvable);

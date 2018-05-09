@@ -1,9 +1,8 @@
-package wromaciej.hvac_sim.thermo.generals.bonds;
+package wromaciej.hvac_sim.thermo.generals.conservationLaw;
 
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.result.SolverResult;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 
 import java.util.List;
 
