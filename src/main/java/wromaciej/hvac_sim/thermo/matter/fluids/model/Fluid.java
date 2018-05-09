@@ -118,7 +118,7 @@ public class Fluid extends Matter{
 
     @Override
     public FluidDefinition getMatterDefinition() {
-        return this.getMatterDefinition();
+        return (FluidDefinition) this.matterDefinition;
     }
 
     @Override

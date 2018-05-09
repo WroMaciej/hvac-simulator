@@ -70,6 +70,7 @@ public class ChannelSolverTest {
         System.out.println(channel.getExtraMassFlow().getParameter());
         System.out.println(channel.getInletStream().getSpecificParameters());
         System.out.println(channel.getOutletStream().getSpecificParameters());
+        System.out.println(channel.getOutletStream().getSpecificParameters().getMatterDefinition());
 
         //THEN
         //Assert.assertEquals(junction.getAllParameters().get(2).getParameter().getValue(),80,0.1);

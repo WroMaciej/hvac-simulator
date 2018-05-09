@@ -13,12 +13,24 @@ import java.util.Map;
 
 public abstract class MatterDefinition {
 
-    private FluidName fluidName;
-    private MatterType fluidType;
+    protected FluidName fluidName;
+    protected MatterType fluidType;
+    protected List<Parameter> definedParameters;
+
+    public MatterDefinition() {
+        definedParameters = new ArrayList<>();
+    }
+
+    public MatterDefinition(FluidName fluidName, MatterType fluidType, Parameter... parameters) {
+        this();
+        this.fluidName = fluidName;
+        this.fluidType = fluidType;
+
+        setDefinedParameters(parameters);
+
+    }
 
 
-
-    private List<Parameter> definedParameters;
 
     public void setFluidName(FluidName fluidName) {
         this.fluidName = fluidName;
@@ -90,9 +102,11 @@ public abstract class MatterDefinition {
     }
 
     public void addParameter(Parameter knownParameter) {
+
         if ((knownParameter.getParameterType() != ParameterType.OTHER)
                 && (definedParameters.indexOf(knownParameter) == -1))
             definedParameters.add(knownParameter);
+        System.out.println("added: " + knownParameter);
     }
 
     private boolean isOnlyOneParameterOfGivenType(ParameterType checkingParameter) {
@@ -118,5 +132,22 @@ public abstract class MatterDefinition {
     public boolean hasOnlyUniqueParameters(){
         if (numberOfUniqueParameters() == definedParameters.size()) return true;
         else return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder definedParametersStringBuilder = new StringBuilder();
+        if (definedParameters!=null){
+            for (Parameter parameter: definedParameters){
+                definedParametersStringBuilder.append(parameter);
+            }
+        }
+
+
+        return "MatterDefinition{" +
+                "fluidName=" + fluidName +
+                ", fluidType=" + fluidType +
+                ", definedParameters=" + definedParametersStringBuilder.toString() +
+                '}';
     }
 }

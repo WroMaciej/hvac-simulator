@@ -8,8 +8,10 @@ import wromaciej.hvac_sim.thermo.generals.bonds.Junction;
 import wromaciej.hvac_sim.thermo.generals.bonds.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
+import javax.measure.unit.SI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,17 +33,21 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     public Junction channelToPressureJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        Parameter inletPressureDefinition = new Parameter(ParameterType.PRESSURE);
-        Parameter outletPressureDefinition = new Parameter(ParameterType.PRESSURE);;
+        Parameter<Pressure> inletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);
+        Parameter<Pressure> outletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);;
         if (toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
             inletPressureDefinition = toSolve.getInletStream().getSpecificParameters().getAbsolutePressure();
+            System.out.println(1);
         } else {
+            System.out.println(2);
             toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletPressureDefinition);
         }
         if (toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
+            System.out.println(3);
             outletPressureDefinition = toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure();
         } else {
-            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletPressureDefinition);
+            System.out.println(4);
+            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(outletPressureDefinition);
         }
         parametersWithDirections.add(new ParameterWithDirection(inletPressureDefinition, BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(outletPressureDefinition, BondDirection.OUTLET));
