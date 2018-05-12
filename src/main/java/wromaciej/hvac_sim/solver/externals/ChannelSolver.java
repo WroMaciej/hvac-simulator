@@ -38,16 +38,12 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         Parameter<Pressure> outletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);;
         if (toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
             inletPressureDefinition = toSolve.getInletStream().getSpecificParameters().getAbsolutePressure();
-            System.out.println(1);
         } else {
-            System.out.println(2);
             toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletPressureDefinition);
         }
         if (toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
-            System.out.println(3);
             outletPressureDefinition = toSolve.getOutletStream().getSpecificParameters().getAbsolutePressure();
         } else {
-            System.out.println(4);
             toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(outletPressureDefinition);
         }
         parametersWithDirections.add(new ParameterWithDirection(inletPressureDefinition, BondDirection.INLET));
@@ -56,9 +52,31 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         return new Junction(parametersWithDirections, junctionSolver);
     }
 
-    public Junction channelToEnthalpyFlowJunction(Channel toSolve) {
+    public Junction channelToEnergyJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        Parameter<SpecificEnthalpy> specificEnthalpyDifference = toSolve.getHeatFlow().getParameter().divide()
+        Parameter<SpecificEnthalpy> specificEnthalpyDifference = new Parameter(SI.JOULE.divide(SI.KILOGRAM));
+        Parameter<SpecificEnthalpy> inletEnthalpyDefinition = new Parameter(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM));
+        Parameter<SpecificEnthalpy> outletEnthalpyDefinition = new Parameter(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM));
+        if (toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy().isDefined()) {
+            inletEnthalpyDefinition = toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy();
+        } else {
+            toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletEnthalpyDefinition);
+        }
+        if (toSolve.getOutletStream().getSpecificParameters().getSpecificEnthalpy().isDefined()) {
+            outletEnthalpyDefinition = toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy();
+        } else {
+            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(outletEnthalpyDefinition)
+        }
+
+        if (toSolve.getHeatFlow().getParameter().isDefined()) {
+            specificEnthalpyDifference = toSolve.getSpecificEnthalpyDifference();
+        } else {
+            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(inletEnthalpyDefinition)
+        }
+        parametersWithDirections.add(new ParameterWithDirection(inletEnthalpyDefinition, BondDirection.INLET));
+        parametersWithDirections.add(new ParameterWithDirection(outletEnthalpyDefinition, BondDirection.OUTLET));
+        parametersWithDirections.add(new ParameterWithDirection(specificEnthalpyDifference, BondDirection.OUTLET));
+        return new Junction(parametersWithDirections, junctionSolver);
 
     }
 
@@ -71,16 +89,29 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         return junctionSolver.solve(channelToPressureJunction(channelToSolve));
     }
 
+    public SolverResult solveEnergy(Channel channelToSolve) {
+        SolverResult energySolverResult = junctionSolver.solve(channelToEnergyJunction(channelToSolve));
+        channelToSolve.calculateHeatFlowFromSpecificEnthalpyDifference();
+        return energySolverResult;
+    }
+
 
     @Override
     public SolverResult solve(Channel<? extends MatterStream> channelToSolve) {
         SolverResultType solverResultType;
         SolverResult massFlowSolverResult = solveMassFlows(channelToSolve);
         SolverResult pressuresSolverResult = solvePressures(channelToSolve);
+        SolverResult energySolverResult = solveEnergy(channelToSolve);
 
-        if ((massFlowSolverResult.getResultType() == SolverResultType.SOLVED) && (pressuresSolverResult.getResultType() == SolverResultType.SOLVED))
+        if ((massFlowSolverResult.getResultType() == SolverResultType.SOLVED)
+                && (pressuresSolverResult.getResultType() == SolverResultType.SOLVED)
+                && (energySolverResult.getResultType() == SolverResultType.SOLVED))
             solverResultType = SolverResultType.SOLVED;
         else solverResultType = SolverResultType.NOT_SOLVED_NODATA;
-        return new SolverResult(massFlowSolverResult.getMessage() + pressuresSolverResult.getMessage(), solverResultType);
+        return new SolverResult(
+                massFlowSolverResult.getMessage()
+                        + pressuresSolverResult.getMessage()
+                        + energySolverResult.getMessage(),
+                solverResultType);
     }
 }
