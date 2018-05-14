@@ -52,7 +52,7 @@ public class ChannelSolverTest {
         FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
         outletFluidStream.setMassFlow(outletMassFlow);
 
-        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(), INLET);
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), INLET);
 
 
 

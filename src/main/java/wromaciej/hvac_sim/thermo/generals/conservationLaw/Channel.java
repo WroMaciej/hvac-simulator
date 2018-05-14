@@ -16,6 +16,8 @@ import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
+import javax.measure.unit.SI;
+
 public class Channel<T extends MatterStream> implements Solvable, Bondable {
 
 
@@ -51,7 +53,7 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         this.outletDeviceBond = outletDeviceBond;
         this.pressureDrop = pressureDrop;
         this.heatFlow = heatFlow;
-        this.specificEnthalpyDifference = new Parameter<>();
+        this.specificEnthalpyDifference = new Parameter<>(SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class));
         this.extraMassFlow = extraMassFlow;
         calculateSpecificEnthalpyDifferenceFromHeatFlow();
     }

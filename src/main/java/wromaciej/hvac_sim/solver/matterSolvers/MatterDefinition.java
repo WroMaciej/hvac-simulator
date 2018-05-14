@@ -105,7 +105,6 @@ public abstract class MatterDefinition {
                 && ((!definedParameters.isEmpty())
                 || (definedParameters.indexOf(knownParameter) == -1))){
             definedParameters.add(knownParameter);
-            System.out.println("added: " + knownParameter);
         }
     }
 
