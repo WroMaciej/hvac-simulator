@@ -26,7 +26,6 @@ public abstract class MatterDefinition {
         this.matterType = matterType;
 
         setDefinedParameters(parameters);
-
     }
 
 
@@ -103,10 +102,11 @@ public abstract class MatterDefinition {
     public void addParameter(Parameter knownParameter) {
 
         if ((knownParameter.getParameterType() != ParameterType.OTHER)
-                && (!definedParameters.isEmpty())
-                && (definedParameters.indexOf(knownParameter) == -1))
+                && ((!definedParameters.isEmpty())
+                || (definedParameters.indexOf(knownParameter) == -1))){
             definedParameters.add(knownParameter);
-        System.out.println("added: " + knownParameter);
+            System.out.println("added: " + knownParameter);
+        }
     }
 
     private boolean isOnlyOneParameterOfGivenType(ParameterType checkingParameter) {

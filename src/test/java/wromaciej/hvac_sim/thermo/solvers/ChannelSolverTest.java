@@ -39,6 +39,7 @@ public class ChannelSolverTest {
         outletFluid.setAbsolutePressure(outletPressure);
         outletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 20.0));
 
+
         InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
         OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2);
         InletStreamBond<FluidStream> inletOfInletStreamBond = new InletStreamBond<>(3);
@@ -68,7 +69,7 @@ public class ChannelSolverTest {
         //WHEN
         channel.solve();
 
-
+        System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter());
         System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
         System.out.println("heat flow: " + channel.getHeatFlow().getParameter());
         System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference());
