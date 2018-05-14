@@ -69,7 +69,7 @@ public class ChannelSolverTest {
         channel.solve();
 
 
-        System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getAbsolutePressure());
+        System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
         System.out.println("heat flow: " + channel.getHeatFlow().getParameter());
         System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference());
 

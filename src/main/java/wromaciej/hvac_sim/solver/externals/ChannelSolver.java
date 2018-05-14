@@ -16,6 +16,8 @@ import javax.measure.unit.SI;
 import java.util.ArrayList;
 import java.util.List;
 
+import static wromaciej.hvac_sim.solver.result.SolverResultType.SOLVED;
+
 public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStream>> {
 
     private JunctionSolver junctionSolver;
@@ -112,12 +114,12 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         SolverResultType solverResultType;
         SolverResult massFlowSolverResult = solveMassFlows(channelToSolve);
         SolverResult pressuresSolverResult = solvePressures(channelToSolve);
-        SolverResult energySolverResult = solveEnergy(channelToSolve);
+        SolverResult energySolverResult = new SolverResult(null, SOLVED); //solveEnergy(channelToSolve);
 
-        if ((massFlowSolverResult.getResultType() == SolverResultType.SOLVED)
-                && (pressuresSolverResult.getResultType() == SolverResultType.SOLVED)
-                && (energySolverResult.getResultType() == SolverResultType.SOLVED))
-            solverResultType = SolverResultType.SOLVED;
+        if ((massFlowSolverResult.getResultType() == SOLVED)
+                && (pressuresSolverResult.getResultType() == SOLVED)
+                && (energySolverResult.getResultType() == SOLVED))
+            solverResultType = SOLVED;
         else solverResultType = SolverResultType.NOT_SOLVED_NODATA;
         return new SolverResult(
                 massFlowSolverResult.getMessage()
