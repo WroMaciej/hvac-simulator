@@ -36,9 +36,9 @@ public class ChannelSolverTest {
         Fluid inletFluid = new Fluid(null);
         Fluid outletFluid = new Fluid(null);
         inletFluid.setAbsolutePressure(inletPressure);
-        inletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 80.0));
+        inletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 10.0));
         outletFluid.setAbsolutePressure(outletPressure);
-        outletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 20.0));
+        outletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 50.0));
 
 
         InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
@@ -53,7 +53,7 @@ public class ChannelSolverTest {
         FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
         outletFluidStream.setMassFlow(outletMassFlow);
 
-        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), OUTLET);
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), INLET);
 
 
 
@@ -73,7 +73,7 @@ public class ChannelSolverTest {
         System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter() + channel.getExtraMassFlow().getDirection());
         System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
         System.out.println("heat flow: " + channel.getHeatFlow().getParameter() + heatFlow.getDirection());
-        System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference());
+        System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference().getParameter() + channel.getSpecificEnthalpyDifference().getDirection());
 
 
         //THEN

@@ -41,7 +41,7 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
      * Heat flow
      */
     private ParameterWithDirection heatFlow;
-    private Parameter<SpecificEnthalpy> specificEnthalpyDifference;
+    private ParameterWithDirection specificEnthalpyDifference;
     private Parameter<MassFlow> massFlowToSpecificEnthalpyCalculation;
 
     private ChannelSolver channelSolver;
@@ -53,7 +53,7 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         this.outletDeviceBond = outletDeviceBond;
         this.pressureDrop = pressureDrop;
         this.heatFlow = heatFlow;
-        this.specificEnthalpyDifference = new Parameter<>(SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class));
+        this.specificEnthalpyDifference = new ParameterWithDirection(new Parameter<>(SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class)), heatFlow.getDirection());
         this.extraMassFlow = extraMassFlow;
         calculateSpecificEnthalpyDifferenceFromHeatFlow();
     }
@@ -107,11 +107,10 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
     public void calculateHeatFlowFromSpecificEnthalpyDifference() {
         calculateMassFlowToSpecificEnthalpyCalculation();
         if (massFlowToSpecificEnthalpyCalculation.isDefined()) {
-            if ((specificEnthalpyDifference != null) && (specificEnthalpyDifference.isDefined())) {
-                this.heatFlow.getParameter().setAmount(specificEnthalpyDifference.times(massFlowToSpecificEnthalpyCalculation).getAmount());
-//                if (specificEnthalpyDifference.isPositive()) heatFlow.setDirection(BondDirection.INLET);
-//                else heatFlow.setDirection(BondDirection.OUTLET);
+            if ((specificEnthalpyDifference != null) && (specificEnthalpyDifference.getParameter().isDefined())) {
+                this.heatFlow.getParameter().setAmount(specificEnthalpyDifference.getParameter().times(massFlowToSpecificEnthalpyCalculation).getAmount());
                 heatFlow.getParameter().setAmount(heatFlow.getParameter().abs().getAmount());
+                heatFlow.setDirection(specificEnthalpyDifference.getDirection());
             }
         }
     }
@@ -120,8 +119,8 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         calculateMassFlowToSpecificEnthalpyCalculation();
         if (massFlowToSpecificEnthalpyCalculation.isDefined()) {
             if ((heatFlow != null) && (heatFlow.getParameter() != null) && (heatFlow.getParameter().isDefined()) && (heatFlow.getDirection() != null)) {
-                this.specificEnthalpyDifference.setAmount(heatFlow.getParameter().divide(massFlowToSpecificEnthalpyCalculation).getAmount());
-//                if (heatFlow.getDirection() == BondDirection.OUTLET) heatFlow.getParameter().setAmount(heatFlow.getParameter().opposite().getAmount());
+                this.specificEnthalpyDifference.getParameter().setAmount(heatFlow.getParameter().divide(massFlowToSpecificEnthalpyCalculation).getAmount());
+                specificEnthalpyDifference.setDirection(heatFlow.getDirection());
             }
         }
     }
@@ -135,11 +134,11 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
         calculateSpecificEnthalpyDifferenceFromHeatFlow();
     }
 
-    public Parameter<SpecificEnthalpy> getSpecificEnthalpyDifference() {
+    public ParameterWithDirection getSpecificEnthalpyDifference() {
         return specificEnthalpyDifference;
     }
 
-    public void setSpecificEnthalpyDifference(Parameter<SpecificEnthalpy> specificEnthalpyDifference) {
+    public void setSpecificEnthalpyDifference(ParameterWithDirection specificEnthalpyDifference) {
         this.specificEnthalpyDifference = specificEnthalpyDifference;
         calculateHeatFlowFromSpecificEnthalpyDifference();
     }
