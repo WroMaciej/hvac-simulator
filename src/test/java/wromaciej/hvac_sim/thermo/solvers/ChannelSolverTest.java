@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.solvers;
 
+import org.junit.Assert;
 import org.junit.Test;
 import wromaciej.hvac_sim.solver.externals.ChannelSolver;
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
@@ -23,7 +24,7 @@ import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.OUTLET;
 public class ChannelSolverTest {
 
     @Test
-    public void shouldReturnOutletPressureWithInletAndPressureDropDefined(){
+    public void shouldReturnExtraMassFlowAndOutletPressureAndHeatFlow(){
         //GIVEN
         Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
         Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),95.0);
@@ -40,7 +41,6 @@ public class ChannelSolverTest {
         outletFluid.setAbsolutePressure(outletPressure);
         outletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 50.0));
 
-
         InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
         OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2);
         InletStreamBond<FluidStream> inletOfInletStreamBond = new InletStreamBond<>(3);
@@ -55,10 +55,8 @@ public class ChannelSolverTest {
 
         ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), INLET);
 
-
-
-        Channel<FluidStream> channel = new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, heatFlow, extraMassFlowWithDirection);
-
+        Channel<FluidStream> channel =
+                new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, heatFlow, extraMassFlowWithDirection);
 
         inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
         outletFluidStream.inletStreamBond.connectTo(channel.getOutletDeviceBond());
@@ -70,14 +68,17 @@ public class ChannelSolverTest {
         //WHEN
         channel.solve();
 
-        System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter() + channel.getExtraMassFlow().getDirection());
-        System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
-        System.out.println("heat flow: " + channel.getHeatFlow().getParameter() + heatFlow.getDirection());
-        System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference().getParameter() + channel.getSpecificEnthalpyDifference().getDirection());
+//        System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter() + channel.getExtraMassFlow().getDirection());
+//        System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
+//        System.out.println("heat flow: " + channel.getHeatFlow().getParameter() + heatFlow.getDirection());
+//        System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference().getParameter() + channel.getSpecificEnthalpyDifference().getDirection());
 
 
         //THEN
-        //Assert.assertEquals(junction.getAllParameters().get(2).getParameter().getValue(),80,0.1);
-       // Assert.assertEquals(junction.getAllParameters().get(2).getDirection(), INLET);
+        Assert.assertEquals(channel.getExtraMassFlow().getParameter(), new Parameter(SI.KILOGRAM.divide(SI.SECOND), 5.0));
+        Assert.assertEquals(channel.getOutletStream().getSpecificParameters().getMatterDefinition().getDefinedParameters().get(0), new Parameter(SI.PASCAL, 50.0));
+        Assert.assertEquals(channel.getHeatFlow().getParameter(), new Parameter(SI.JOULE.divide(SI.SECOND), 3900.0));
+        Assert.assertEquals(channel.getSpecificEnthalpyDifference().getParameter(), new Parameter(SI.JOULE.divide(SI.KILOGRAM), 40.0));
+
     }
 }

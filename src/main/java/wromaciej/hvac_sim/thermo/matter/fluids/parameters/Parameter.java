@@ -194,7 +194,7 @@ public class Parameter<Q extends AnyQuantity> {
         if (that == null || getClass() != that.getClass()) return false;
         Parameter<Q> thatParameter = (Parameter<Q>) that;
         Amount<Q> thatAmount= (Amount) thatParameter.amount;
-        return amount.equals(thatAmount); //.approximates(thatAmount);
+        return amount.approximates(thatAmount); //.equals(thatAmount); //
     }
 
     @Override
