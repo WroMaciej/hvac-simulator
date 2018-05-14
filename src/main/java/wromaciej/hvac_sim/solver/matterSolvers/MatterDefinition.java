@@ -103,6 +103,7 @@ public abstract class MatterDefinition {
     public void addParameter(Parameter knownParameter) {
 
         if ((knownParameter.getParameterType() != ParameterType.OTHER)
+                && (!definedParameters.isEmpty())
                 && (definedParameters.indexOf(knownParameter) == -1))
             definedParameters.add(knownParameter);
         System.out.println("added: " + knownParameter);

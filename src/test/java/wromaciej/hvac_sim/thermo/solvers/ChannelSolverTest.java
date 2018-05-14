@@ -12,6 +12,7 @@ import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
+import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 
 import javax.measure.unit.SI;
@@ -23,7 +24,7 @@ public class ChannelSolverTest {
     @Test
     public void shouldReturnOutletPressureWithInletAndPressureDropDefined(){
         //GIVEN
-        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),75.0);
+        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),95.0);
         Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
         Parameter<MassFlow> extraMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
         ParameterWithDirection extraMassFlowWithDirection = new ParameterWithDirection(extraMassFlow, INLET);
@@ -34,7 +35,9 @@ public class ChannelSolverTest {
         Fluid inletFluid = new Fluid(null);
         Fluid outletFluid = new Fluid(null);
         inletFluid.setAbsolutePressure(inletPressure);
+        inletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 80.0));
         outletFluid.setAbsolutePressure(outletPressure);
+        outletFluid.setSpecificEnthalpy(new Parameter<SpecificEnthalpy>(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 20.0));
 
         InletDeviceBond<FluidStream> inletDeviceBond = new InletDeviceBond<>(1);
         OutletDeviceBond<FluidStream> outletDeviceBond = new OutletDeviceBond<>(2);
@@ -48,9 +51,11 @@ public class ChannelSolverTest {
         FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
         outletFluidStream.setMassFlow(outletMassFlow);
 
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(), INLET);
 
 
-        Channel<FluidStream> channel = new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, extraMassFlowWithDirection);
+
+        Channel<FluidStream> channel = new Channel<>(null, inletDeviceBond, outletDeviceBond, pressureDrop, heatFlow, extraMassFlowWithDirection);
 
 
         inletFluidStream.outletStreamBond.connectTo(channel.getInletDeviceBond());
@@ -62,6 +67,11 @@ public class ChannelSolverTest {
 
         //WHEN
         channel.solve();
+
+
+        System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getAbsolutePressure());
+        System.out.println("heat flow: " + channel.getHeatFlow().getParameter());
+        System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference());
 
 
         //THEN

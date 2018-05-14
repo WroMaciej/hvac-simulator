@@ -61,6 +61,7 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         }
         if (sum.isPositive()) resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.OUTLET);
         else resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.INLET);
+
         return resultingParameterWithDirection;
     }
 
@@ -75,11 +76,9 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         else if (undefinedParametersNumber(toSolve)<1) solverResultType = SolverResultType.NOT_SOLVED_TOO_MUCH_DATA;
         else{
             //undefinedParameters.get(0).setParameter(getBalance(toSolve).getParameter());
-            if (undefinedParameters.get(0).getParameter().getParameterType()!= ParameterType.OTHER){
-
-            }
-            undefinedParameters.get(0).getParameter().setAmount( getBalance(toSolve).getParameter().getAmount());
-            undefinedParameters.get(0).setDirection(getBalance(toSolve).getDirection());
+            ParameterWithDirection junctionBalance = getBalance(toSolve);
+            undefinedParameters.get(0).getParameter().setAmount( junctionBalance.getParameter().getAmount());
+            undefinedParameters.get(0).setDirection(junctionBalance.getDirection());
             solverResultType = SolverResultType.SOLVED;
         }
         return new SolverResult(null, solverResultType);

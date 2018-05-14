@@ -59,23 +59,33 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         Parameter<SpecificEnthalpy> outletEnthalpyDefinition = new Parameter(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM));
         if (toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy().isDefined()) {
             inletEnthalpyDefinition = toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy();
+            System.out.println(1);
         } else {
             toSolve.getInletStream().getSpecificParameters().getMatterDefinition().addParameter(inletEnthalpyDefinition);
+            System.out.println(2);
         }
         if (toSolve.getOutletStream().getSpecificParameters().getSpecificEnthalpy().isDefined()) {
-            outletEnthalpyDefinition = toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy();
+            outletEnthalpyDefinition = toSolve.getOutletStream().getSpecificParameters().getSpecificEnthalpy();
+            System.out.println(3);
         } else {
-            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(outletEnthalpyDefinition)
+            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(outletEnthalpyDefinition);
+            System.out.println(4);
         }
 
         if (toSolve.getHeatFlow().getParameter().isDefined()) {
-            specificEnthalpyDifference = toSolve.getSpecificEnthalpyDifference();
+            toSolve.calculateSpecificEnthalpyDifferenceFromHeatFlow();
+            System.out.println(5);
         } else {
-            toSolve.getOutletStream().getSpecificParameters().getMatterDefinition().addParameter(inletEnthalpyDefinition)
+            System.out.println(6);
         }
+        specificEnthalpyDifference = toSolve.getSpecificEnthalpyDifference();
+
+        System.out.println(inletEnthalpyDefinition);
+        System.out.println(outletEnthalpyDefinition);
+
         parametersWithDirections.add(new ParameterWithDirection(inletEnthalpyDefinition, BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(outletEnthalpyDefinition, BondDirection.OUTLET));
-        parametersWithDirections.add(new ParameterWithDirection(specificEnthalpyDifference, BondDirection.OUTLET));
+        parametersWithDirections.add(new ParameterWithDirection(specificEnthalpyDifference, toSolve.getHeatFlow().getDirection()));
         return new Junction(parametersWithDirections, junctionSolver);
 
     }
@@ -91,6 +101,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     public SolverResult solveEnergy(Channel channelToSolve) {
         SolverResult energySolverResult = junctionSolver.solve(channelToEnergyJunction(channelToSolve));
+        System.out.println("specific just after solver: " + channelToSolve.getSpecificEnthalpyDifference());
         channelToSolve.calculateHeatFlowFromSpecificEnthalpyDifference();
         return energySolverResult;
     }
