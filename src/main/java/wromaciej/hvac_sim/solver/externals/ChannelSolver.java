@@ -93,6 +93,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     public SolverResult solveEnergy(Channel channelToSolve) {
         SolverResult energySolverResult = junctionSolver.solve(channelToEnergyJunction(channelToSolve));
+        System.out.println("Heat flow dir just after energy solver: " + channelToSolve.getHeatFlow().getDirection());
         channelToSolve.calculateHeatFlowFromSpecificEnthalpyDifference();
         return energySolverResult;
     }

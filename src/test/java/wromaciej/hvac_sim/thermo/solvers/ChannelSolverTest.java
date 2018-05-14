@@ -18,14 +18,15 @@ import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import javax.measure.unit.SI;
 
 import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.INLET;
+import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.OUTLET;
 
 public class ChannelSolverTest {
 
     @Test
     public void shouldReturnOutletPressureWithInletAndPressureDropDefined(){
         //GIVEN
-        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),95.0);
-        Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
+        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
+        Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),95.0);
         Parameter<MassFlow> extraMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
         ParameterWithDirection extraMassFlowWithDirection = new ParameterWithDirection(extraMassFlow, INLET);
 
@@ -52,7 +53,7 @@ public class ChannelSolverTest {
         FluidStream outletFluidStream = new FluidStream(8, null, outletFluid, inletOfIOutletStreamBond, outletOfOutletStreamBond);
         outletFluidStream.setMassFlow(outletMassFlow);
 
-        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), INLET);
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(SI.JOULE.divide(SI.SECOND)), OUTLET);
 
 
 
@@ -69,9 +70,9 @@ public class ChannelSolverTest {
         //WHEN
         channel.solve();
 
-        System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter());
+        System.out.println("extra mass flow" + channel.getExtraMassFlow().getParameter() + channel.getExtraMassFlow().getDirection());
         System.out.println("outlet pressure: " + channel.getOutletStream().getSpecificParameters().getMatterDefinition());
-        System.out.println("heat flow: " + channel.getHeatFlow().getParameter());
+        System.out.println("heat flow: " + channel.getHeatFlow().getParameter() + heatFlow.getDirection());
         System.out.println("specific enthalpy difference: " + channel.getSpecificEnthalpyDifference());
 
 
