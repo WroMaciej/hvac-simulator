@@ -7,7 +7,6 @@ public class HeaterSolver implements ExternalSolver<Heater> {
 
     @Override
     public SolverResult solve(Heater toSolve) {
-
-        return null;
+        return toSolve.getMainChannel().solve();
     }
 }

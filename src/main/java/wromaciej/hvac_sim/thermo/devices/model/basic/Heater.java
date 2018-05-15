@@ -10,30 +10,40 @@ import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
+import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import javax.measure.unit.SI;
 
 public class Heater extends Device {
-    public final InletDeviceBond<HeatStream> heatInlet;
+    public InletDeviceBond<HeatStream> heatStreamInletDeviceBond;
 
-    private final Channel<MatterStream> mainChannel;
+    private Channel<? extends MatterStream> mainChannel;
 
-    public Heater(int id, IdGenerator idGenerator, ExternalSolver<Heater> externalSolver, Channel<MatterStream> mainChannel, InletDeviceBond<HeatStream> heatInlet) {
-        super(id, idGenerator, externalSolver);
+    public Heater(int id, IdGenerator idGenerator, Channel<? extends MatterStream> mainChannel, InletDeviceBond<HeatStream> heatStreamInletDeviceBond) {
+        super(id, idGenerator);
         this.mainChannel = mainChannel;
-        this.heatInlet = heatInlet;
+        this.heatStreamInletDeviceBond = heatStreamInletDeviceBond;
         mainChannel.getHeatFlow().setDirection(BondDirection.INLET);
-        mainChannel.getHeatFlow().setParameter(heatInlet.getTargetBond().getOwnerItem().getHeatFlow());
+        mainChannel.getHeatFlow().setParameter(heatStreamInletDeviceBond.getTargetBond().getOwnerItem().getHeatFlow());
         mainChannel.getExtraMassFlow().setParameter(new Parameter (SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class), 0.0));
 
     }
 
+    public InletDeviceBond<HeatStream> getHeatStreamInletDeviceBond() {
+        return heatStreamInletDeviceBond;
+    }
 
+    public Channel<? extends MatterStream> getMainChannel() {
+        return mainChannel;
+    }
 
+    public void setHeatStreamInletDeviceBond(InletDeviceBond<HeatStream> heatStreamInletDeviceBond) {
+        this.heatStreamInletDeviceBond = heatStreamInletDeviceBond;
+    }
 
-
-
-
+    public void setMainChannel(Channel<? extends MatterStream> mainChannel) {
+        this.mainChannel = mainChannel;
+    }
 }
