@@ -8,4 +8,5 @@ public abstract class Device extends Item {
     public Device(int id, IdGenerator idGenerator) {
         super(id, idGenerator);
     }
+    
 }

@@ -15,14 +15,14 @@ public abstract class Item implements Displayable, Solvable, Bondable {
     private final int id;
     private String name;
     private boolean isSolved;
-    private ExternalSolver actualExternalSolver;
+    private ExternalSolver externalSolver;
 
-    public ExternalSolver getActualExternalSolver() {
-        return actualExternalSolver;
+    public ExternalSolver getExternalSolver() {
+        return externalSolver;
     }
 
-    public void setActualExternalSolver(ExternalSolver actualExternalSolver) {
-        this.actualExternalSolver = actualExternalSolver;
+    public void setExternalSolver(ExternalSolver externalSolver) {
+        this.externalSolver = externalSolver;
     }
 
 
@@ -54,7 +54,7 @@ public abstract class Item implements Displayable, Solvable, Bondable {
 
     @Override
     public SolverResult solve() {
-        return actualExternalSolver.solve(this);
+        return externalSolver.solve(this);
     }
 
     @Override
