@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Test;
 import wromaciej.hvac_sim.solver.externals.ChannelSolver;
+import wromaciej.hvac_sim.solver.externals.HeaterSolver;
 import wromaciej.hvac_sim.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Heater;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
@@ -19,7 +20,6 @@ import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
-import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import javax.measure.unit.SI;
 
@@ -30,8 +30,8 @@ public class HeaterSolverTest {
     @Test
     public void shouldReturnSolvedHeated(){
         //GIVEN
-        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100.0);
-        Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),95.0);
+        Parameter<MassFlow> inletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
+        Parameter<MassFlow> outletMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class), 2.0);
         Parameter<MassFlow> extraMassFlow = new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class));
         ParameterWithDirection extraMassFlowWithDirection = new ParameterWithDirection(extraMassFlow, INLET);
 
@@ -79,7 +79,17 @@ public class HeaterSolverTest {
 
         //WHEN
         Heater heater = new Heater(99, null, channel, heatInletBond);
+        HeaterSolver heaterSolver = new HeaterSolver();
+        heater.setExternalSolver(heaterSolver);
         heatStream.outletStreamBond.connectTo(heater.getHeatStreamInletDeviceBond());
+        heater.update();
+        heater.solve();
+
+        System.out.println(heater.getMainChannel().getHeatFlow().getParameter());
+        System.out.println(heater.getMainChannel().getOutletStream().getSpecificParameters().getMatterDefinition());
+        System.out.println(heatStream.getHeatFlow());
+        System.out.println(heater.getMainChannel().getExtraMassFlow().getParameter());
+        System.out.println(heater.getMainChannel().getInletStream().getMassFlow());
 
 
 
