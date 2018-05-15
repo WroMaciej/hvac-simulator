@@ -17,7 +17,7 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 import javax.measure.unit.SI;
 
 public class Heater extends Device {
-    public InletDeviceBond<HeatStream> heatStreamInletDeviceBond;
+    private InletDeviceBond<HeatStream> heatStreamInletDeviceBond;
 
     private Channel<? extends MatterStream> mainChannel;
 

@@ -71,7 +71,17 @@ public class HeaterSolverTest {
 
         InletDeviceBond<HeatStream> heatInletBond = new InletDeviceBond<>(0);
 
+        InletStreamBond<HeatStream> inletHeatStreamBond = new InletStreamBond<>(0);
+        OutletStreamBond<HeatStream> outletHeatStreamBond = new OutletStreamBond<>(0);
+
+        HeatStream heatStream = new HeatStream(0, null, heatFlow.getParameter(), inletHeatStreamBond, outletHeatStreamBond);
+
+
         //WHEN
         Heater heater = new Heater(99, null, channel, heatInletBond);
+        heatStream.outletStreamBond.connectTo(heater.getHeatStreamInletDeviceBond());
+
+
+
     }
 }
