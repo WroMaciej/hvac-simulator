@@ -72,12 +72,14 @@ public abstract class MatterDefinition {
 
     public void putOnlyUserDefinedParameters(Matter matter){
         clearDefinedParameters();
+        addAllUserDefinedParameters(matter);
+    }
+
+    public void addAllUserDefinedParameters(Matter matter){
         for (Map.Entry<ParameterType, Parameter> entry : matter.getParametersByType().entrySet()){
             if (entry.getValue().isUserDefined()) addParameter(entry.getValue());
         }
-
     }
-
 
     public void clearDefinedParameters() {
         definedParameters.clear();

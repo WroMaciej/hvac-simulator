@@ -1,21 +1,19 @@
 package wromaciej.hvac_sim.solver.generalSolver;
 
 import wromaciej.hvac_sim.solver.internals.Solvable;
+import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.thermo.generals.Item;
+import wromaciej.hvac_sim.thermo.matter.Matter;
+import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GeneralSolver {
 
-    List<Solvable> solvables;
 
-
-    public GeneralSolver(Solvable... solvables) {
-        this.solvables = new ArrayList<>();
-        for (Solvable solvable : solvables) {
-            this.solvables.add(solvable);
-        }
-    }
 
     public int notSolvedItemsNumber() {
         int notSolvedSum = 0;
