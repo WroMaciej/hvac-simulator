@@ -82,7 +82,6 @@ public class HeaterSolverTest {
         HeaterSolver heaterSolver = new HeaterSolver();
         heater.setExternalSolver(heaterSolver);
         heatStream.outletStreamBond.connectTo(heater.getHeatStreamInletDeviceBond());
-        heater.update();
         heater.solve();
 
         System.out.println(heater.getMainChannel().getHeatFlow().getParameter());
