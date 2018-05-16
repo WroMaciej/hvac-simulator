@@ -1,24 +1,24 @@
 package wromaciej.hvac_sim.simulation.view;
 
 public enum PaperSheetSize {
-    A4(210, 297),
-    A3(297, 420),
-    A2(420, 594),
-    A1(594, 841);
+    A4(297, 210),
+    A3(420, 297),
+    A2(594, 420),
+    A1(841, 594);
 
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    PaperSheetSize(int width, int height) {
+    PaperSheetSize(double width, double height) {
         this.width = width;
         this.height = height;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 }

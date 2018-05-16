@@ -1,16 +1,16 @@
 package wromaciej.hvac_sim.simulation;
 
-import wromaciej.hvac_sim.simulation.data.Elements;
-import wromaciej.hvac_sim.simulation.view.PaperSheet;
+import wromaciej.hvac_sim.simulation.data.AllElements;
+import wromaciej.hvac_sim.simulation.data.View;
 import wromaciej.hvac_sim.solver.generalSolver.GeneralSolver;
-
-import javax.xml.bind.Element;
+import wromaciej.hvac_sim.user.UserVersion;
 
 public class Simulation {
 
-    private Elements elements;
-    private PaperSheet paperSheet;
+    private AllElements allElements;
+    private View view;
     private GeneralSolver generalSolver;
+    private UserVersion userVersion;
 
 
 

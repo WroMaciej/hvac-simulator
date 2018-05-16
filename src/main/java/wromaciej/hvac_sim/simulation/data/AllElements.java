@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Elements {
+public class AllElements {
     private List<Solvable> solvables;
 
     /**
@@ -27,7 +27,7 @@ public class Elements {
     private final Map<Integer, Device> allDevices;
 
 
-    public Elements() {
+    public AllElements() {
         this.solvables = new ArrayList<>();
         this.allItems = new HashMap<>();
         this.allMatterStreams = new HashMap<>();
