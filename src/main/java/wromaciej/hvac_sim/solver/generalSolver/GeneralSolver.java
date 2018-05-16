@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.solver.generalSolver;
 
 import wromaciej.hvac_sim.simulation.data.AllElements;
 import wromaciej.hvac_sim.solver.internals.Solvable;
+import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.Item;
 import wromaciej.hvac_sim.thermo.matter.Matter;
@@ -46,6 +47,10 @@ public class GeneralSolver {
 
     public boolean isEverythingSolved(){
         return notSolvedItems().isEmpty();
+    }
+
+    public SolverResult solve(AllElements allElements){
+
     }
 
 

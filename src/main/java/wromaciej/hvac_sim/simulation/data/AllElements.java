@@ -3,7 +3,9 @@ package wromaciej.hvac_sim.simulation.data;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.Item;
+import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
+import wromaciej.hvac_sim.thermo.streams.model.PowerStream;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 public class AllElements {
-    private List<Solvable> solvables;
 
     /**
      * Map of all items by ID as a key
@@ -26,16 +27,49 @@ public class AllElements {
      */
     private final Map<Integer, Device> allDevices;
 
+    private final Map<Integer, HeatStream> allHeatStreams;
+
+    private final Map<Integer, PowerStream> allPowerStreams;
+
+
+    public AllElements(Map<Integer, Item> allItems, Map<Integer, MatterStream> allMatterStreams, Map<Integer, Device> allDevices, Map<Integer, HeatStream> allHeatStreams, Map<Integer, PowerStream> allPowerStreams) {
+        this.allItems = allItems;
+        this.allMatterStreams = allMatterStreams;
+        this.allDevices = allDevices;
+        this.allHeatStreams = allHeatStreams;
+        this.allPowerStreams = allPowerStreams;
+    }
 
     public AllElements() {
-        this.solvables = new ArrayList<>();
         this.allItems = new HashMap<>();
         this.allMatterStreams = new HashMap<>();
+        this.allHeatStreams = new HashMap<>();
+        this.allPowerStreams = new HashMap<>();
         this.allDevices = new HashMap<>();
     }
 
-    public List<Solvable> getSolvables() {
-        return solvables;
+    private void addItem(Item item){
+        allItems.put(item.getId(), item);
+    }
+
+    public void addDevice(Device device){
+        allDevices.put(device.getId(), device);
+        addItem(device);
+    }
+
+    public void addMatterStream(MatterStream matterStream){
+        allMatterStreams.put(matterStream.getId(), matterStream);
+        addItem(matterStream);
+    }
+
+    public void addHeatStream(HeatStream heatStream){
+        allHeatStreams.put(heatStream.getId(), heatStream);
+        addItem(heatStream);
+    }
+
+    public void addPowerStream(PowerStream powerStream){
+        allPowerStreams.put(powerStream.getId(), powerStream);
+        addItem(powerStream);
     }
 
     public Map<Integer, Item> getAllItems() {

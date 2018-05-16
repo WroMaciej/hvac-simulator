@@ -17,6 +17,7 @@ public class CompanyData {
     private final UnitSystem defaultUnitSystem;
     private final PaperSheet defaultPaperSheet;
     private List<UserData> companyUsers;
+    private String logo; //TODO change logo to a image file
 
     public CompanyData(int companyID, String companyName, String country, String taxNumber, UserVersion userVersion, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet) {
         this.companyID = companyID;
