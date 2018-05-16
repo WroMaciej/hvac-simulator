@@ -50,8 +50,8 @@ public final class Air extends Fluid {
     }
 
     @Override
-    public void updateParameters() {
-        super.updateParameters();
+    public void update() {
+        super.update();
         addParameter(relativeHumidity);
         addParameter(moistureContent);
         addParameter(dewPointTemperature);

@@ -59,9 +59,9 @@ public class Fluid extends Matter{
     }
 
 
-
-    public void updateParameters(){
-        super.updateParameters();
+    @Override
+    public void update(){
+        super.update();
         addParameter(specificEntropy);
         addParameter(quality);
     }

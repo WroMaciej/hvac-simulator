@@ -51,7 +51,7 @@ public class FluidFactory {
 
         fluid.setStateOfMatter(setStateOfMatter(fluid));
         fluid.matterDefinition = new FluidDefinition(fluidName, MatterType.GENERAL_FLUID, knownParameter1, knownParameter2);
-        fluid.updateParameters();
+        fluid.update();
         return fluid;
     }
 
@@ -92,7 +92,7 @@ public class FluidFactory {
         air.setStateOfMatter(setStateOfMatter(air));
 
         air.matterDefinition = new FluidDefinition(air.getFluidName(), MatterType.AIR, knownParameter1, knownParameter2, knownParameter3);
-        air.updateParameters();
+        air.update();
         return air;
     }
 

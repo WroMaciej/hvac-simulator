@@ -49,7 +49,7 @@ public class FluidSetter {
 
             fluid.setStateOfMatter(setStateOfMatter(fluid));
             fluid.matterDefinition = new FluidDefinition(fluidName, fluid.getMatterType(), knownParameter1, knownParameter2);
-            fluid.updateParameters();
+            fluid.update();
         }
     }
 
@@ -89,6 +89,6 @@ public class FluidSetter {
         air.setStateOfMatter(setStateOfMatter(air));
 
         air.matterDefinition = new FluidDefinition(air.getFluidName(), air.getMatterType(), knownParameter1, knownParameter2, knownParameter3);
-        air.updateParameters();
+        air.update();
     }
 }

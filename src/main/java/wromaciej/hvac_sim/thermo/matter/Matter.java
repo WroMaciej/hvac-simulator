@@ -1,10 +1,10 @@
 package wromaciej.hvac_sim.thermo.matter;
 
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
-import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.matterSolvers.MatterDefinition;
 import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.thermo.generals.NeedUpdates;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
@@ -13,7 +13,7 @@ import wromaciej.hvac_sim.thermo.quantities.specific.*;
 
 import java.util.Map;
 
-public abstract class Matter implements Solvable {
+public abstract class Matter implements Solvable, NeedUpdates {
 
     /**
      * Tool for dealing with solving fluid
@@ -180,7 +180,7 @@ public abstract class Matter implements Solvable {
     }
 
     public Parameter getParameterByType(ParameterType parameterType){
-        updateParameters();
+        update();
         return parametersByType.get(parameterType);
     }
 
@@ -190,7 +190,8 @@ public abstract class Matter implements Solvable {
         }
     }
 
-    public void updateParameters(){
+    @Override
+    public void update(){
         parametersByType.clear();
         addParameter(absoluteTemperature);
         addParameter(absolutePressure);
