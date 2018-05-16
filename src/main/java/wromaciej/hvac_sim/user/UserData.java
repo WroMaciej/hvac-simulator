@@ -1,7 +1,10 @@
 package wromaciej.hvac_sim.user;
 
+import wromaciej.hvac_sim.simulation.Simulation;
 import wromaciej.hvac_sim.simulation.view.PaperSheet;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
+
+import java.util.List;
 
 public class UserData {
     private final int userID;
@@ -12,6 +15,8 @@ public class UserData {
     private Language language;
     private UnitSystem defaultUnitSystem;
     private PaperSheet defaultPaperSheet;
+    private List<Simulation> allSimulations;
+    private Simulation currentSimulation;
 
     public UserData(int userID, String personalTitle, String firstName, String lastName, CompanyData companyData, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet) {
         this.userID = userID;
