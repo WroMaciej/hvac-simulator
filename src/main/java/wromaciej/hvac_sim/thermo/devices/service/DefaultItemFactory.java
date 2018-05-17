@@ -22,6 +22,9 @@ import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
+import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.INLET;
+import static wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType.OTHER;
+
 /**
  * Creates brand new and complete devices
  */
@@ -40,9 +43,9 @@ public class DefaultItemFactory {
     }
 
     public HeatStream createDefaultHeatStream(){
-        int uniqueId = idGenerator.getUniqueId();
         HeatStream heatStream;
-        Parameter<HeatFlow> heatFlow = new Parameter<>(ParameterType.OTHER, unitSystem.getHeatFlowUnit());
+        int uniqueId = idGenerator.getUniqueId();
+        Parameter<HeatFlow> heatFlow = new Parameter<>(OTHER, unitSystem.getHeatFlowUnit());
         InletStreamBond<HeatStream>  inletStreamBond = new InletStreamBond<>(idGenerator.getUniqueId());
         OutletStreamBond<HeatStream> outletStreamBond = new OutletStreamBond<>(idGenerator.getUniqueId());
         heatStream = new HeatStream(uniqueId, idGenerator, heatFlow, inletStreamBond, outletStreamBond);
@@ -54,8 +57,8 @@ public class DefaultItemFactory {
     }
 
     public FluidStream createDefaultFluidStream(){
-        int uniqueId = idGenerator.getUniqueId();
         FluidStream fluidStream;
+        int uniqueId = idGenerator.getUniqueId();
         InletStreamBond<FluidStream>  inletStreamBond = new InletStreamBond<>(idGenerator.getUniqueId());
         OutletStreamBond<FluidStream> outletStreamBond = new OutletStreamBond<>(idGenerator.getUniqueId());
         Fluid specificParameters = new Fluid(allSolvers.getFluidSolver());
@@ -71,20 +74,21 @@ public class DefaultItemFactory {
         Channel channel;
         InletDeviceBond inletDeviceBond = new InletDeviceBond(idGenerator.getUniqueId());
         OutletDeviceBond outletDeviceBond = new OutletDeviceBond(idGenerator.getUniqueId());
-
         channel = new Channel(ownerItem, inletDeviceBond, outletDeviceBond, pressureDrop, heatFlow, extraMassFlow);
-
         return channel;
 
     }
 
     public Heater createDefaultHeater(){
-        int uniqueId = idGenerator.getUniqueId();
         Heater heater;
-        Channel<MatterStream> c = createDefaultChannel();
-
-        heater = new Heater(0, null, c, null);
-
+        int uniqueId = idGenerator.getUniqueId();
+        Parameter<PressureDifference> pressureDrop = new Parameter<>(OTHER, unitSystem.getPressureDifferenceUnit(), 0.0);
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(OTHER, unitSystem.getHeatFlowUnit()), INLET);
+        ParameterWithDirection extraMassFlow = new ParameterWithDirection(new Parameter(OTHER, unitSystem.getMassFlowUnit(), 0.0), INLET);
+        InletDeviceBond<HeatStream> heatStreamInletDeviceBond= new InletDeviceBond<>(idGenerator.getUniqueId());
+        heater = new Heater(uniqueId, idGenerator, null, heatStreamInletDeviceBond);
+        Channel<MatterStream> channel = createDefaultChannel(heater, pressureDrop, heatFlow, extraMassFlow);
+        heater.setMainChannel(channel);
         return heater;
     }
 
