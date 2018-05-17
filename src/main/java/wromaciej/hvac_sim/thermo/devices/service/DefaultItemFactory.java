@@ -45,7 +45,7 @@ public class DefaultItemFactory {
     public HeatStream createDefaultHeatStream(){
         HeatStream heatStream;
         int uniqueId = idGenerator.getUniqueId();
-        Parameter<HeatFlow> heatFlow = new Parameter<>(OTHER, unitSystem.getHeatFlowUnit());
+        Parameter<HeatFlow> heatFlow = new Parameter<>(unitSystem.getHeatFlowUnit());
         InletStreamBond<HeatStream>  inletStreamBond = new InletStreamBond<>(idGenerator.getUniqueId());
         OutletStreamBond<HeatStream> outletStreamBond = new OutletStreamBond<>(idGenerator.getUniqueId());
         heatStream = new HeatStream(uniqueId, idGenerator, heatFlow, inletStreamBond, outletStreamBond);
@@ -76,15 +76,14 @@ public class DefaultItemFactory {
         OutletDeviceBond outletDeviceBond = new OutletDeviceBond(idGenerator.getUniqueId());
         channel = new Channel(ownerItem, inletDeviceBond, outletDeviceBond, pressureDrop, heatFlow, extraMassFlow);
         return channel;
-
     }
 
     public Heater createDefaultHeater(){
         Heater heater;
         int uniqueId = idGenerator.getUniqueId();
-        Parameter<PressureDifference> pressureDrop = new Parameter<>(OTHER, unitSystem.getPressureDifferenceUnit(), 0.0);
-        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(OTHER, unitSystem.getHeatFlowUnit()), INLET);
-        ParameterWithDirection extraMassFlow = new ParameterWithDirection(new Parameter(OTHER, unitSystem.getMassFlowUnit(), 0.0), INLET);
+        Parameter<PressureDifference> pressureDrop = new Parameter<>(unitSystem.getPressureDifferenceUnit(), 0.0);
+        ParameterWithDirection heatFlow = new ParameterWithDirection(new Parameter(unitSystem.getHeatFlowUnit()), INLET);
+        ParameterWithDirection extraMassFlow = new ParameterWithDirection(new Parameter(unitSystem.getMassFlowUnit(), 0.0), INLET);
         InletDeviceBond<HeatStream> heatStreamInletDeviceBond= new InletDeviceBond<>(idGenerator.getUniqueId());
         heater = new Heater(uniqueId, idGenerator, null, heatStreamInletDeviceBond);
         Channel<MatterStream> channel = createDefaultChannel(heater, pressureDrop, heatFlow, extraMassFlow);

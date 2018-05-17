@@ -30,29 +30,31 @@ public class FluidFactory {
 
     public Fluid createFluid(FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
         if (fluidName == FluidName.MOIST_AIR) return createAirAtAtmosphericPressure(knownParameter1, knownParameter2);
-        Fluid fluid = new Fluid(fluidSolver);
-        fluid.setFluidName(fluidName);
-        fluid.setMatterType(MatterType.GENERAL_FLUID);
-        fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setTemperature(fluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
-        fluid.setDensity(fluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEnthalpy(fluidData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
-        fluid.setHeatCapacity(fluidData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificEntropy(fluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
-        fluid.setSpecificVolume(fluid.getDensity().inverse());
-        fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
-        if (UnitSystem.getActualUnitSystem() != null)
-            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
-        else
-            fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+        else{
+            Fluid fluid = new Fluid(fluidSolver);
+            fluid.setFluidName(fluidName);
+            fluid.setMatterType(MatterType.GENERAL_FLUID);
+            fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
+            fluid.setTemperature(fluidData.findParameter(ParameterType.TEMPERATURE, fluidName, knownParameter1, knownParameter2));
+            fluid.setDensity(fluidData.findParameter(ParameterType.DENSITY, fluidName, knownParameter1, knownParameter2));
+            fluid.setSpecificEnthalpy(fluidData.findParameter(ParameterType.SPECIFIC_ENTHALPY, fluidName, knownParameter1, knownParameter2));
+            fluid.setHeatCapacity(fluidData.findParameter(ParameterType.HEAT_CAPACITY, fluidName, knownParameter1, knownParameter2));
+            fluid.setSpecificEntropy(fluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
+            fluid.setSpecificVolume(fluid.getDensity().inverse());
+            fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
+            if (UnitSystem.getActualUnitSystem() != null)
+                fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
+            else
+                fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
 
-        fluid.setAbsoluteTemperature(fluid.getTemperature());
-        fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
+            fluid.setAbsoluteTemperature(fluid.getTemperature());
+            fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
 
-        fluid.setStateOfMatter(setStateOfMatter(fluid));
-        fluid.matterDefinition = new FluidDefinition(fluidName, MatterType.GENERAL_FLUID, knownParameter1, knownParameter2);
-        fluid.update();
-        return fluid;
+            fluid.setStateOfMatter(setStateOfMatter(fluid));
+            fluid.matterDefinition = new FluidDefinition(fluidName, MatterType.GENERAL_FLUID, knownParameter1, knownParameter2);
+            fluid.update();
+            return fluid;
+        }
     }
 
     public Air createAirAtAtmosphericPressure(Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2) {

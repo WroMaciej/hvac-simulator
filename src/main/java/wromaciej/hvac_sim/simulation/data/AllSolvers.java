@@ -2,6 +2,7 @@ package wromaciej.hvac_sim.simulation.data;
 
 import wromaciej.hvac_sim.solver.externals.*;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidSolver;
+import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 
 public class AllSolvers {
 
@@ -12,6 +13,7 @@ public class AllSolvers {
     private MatterStreamSolver matterStreamSolver;
     private HeatStreamSolver heatStreamSolver;
     private PowerStreamSolver powerStreamSolver;
+    private FluidFactory fluidFactory;
 
     public AllSolvers() {
     }
@@ -70,5 +72,13 @@ public class AllSolvers {
 
     public void setPowerStreamSolver(PowerStreamSolver powerStreamSolver) {
         this.powerStreamSolver = powerStreamSolver;
+    }
+
+    public FluidFactory getFluidFactory() {
+        return fluidFactory;
+    }
+
+    public void setFluidFactory(FluidFactory fluidFactory) {
+        this.fluidFactory = fluidFactory;
     }
 }

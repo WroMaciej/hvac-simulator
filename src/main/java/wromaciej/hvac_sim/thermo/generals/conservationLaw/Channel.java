@@ -5,6 +5,7 @@ import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.Bondable;
 import wromaciej.hvac_sim.thermo.generals.Item;
+import wromaciej.hvac_sim.thermo.generals.NeedUpdates;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletDeviceBond;
@@ -18,7 +19,7 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 
 import javax.measure.unit.SI;
 
-public class Channel<T extends MatterStream> implements Solvable, Bondable {
+public class Channel<T extends MatterStream> implements Solvable, Bondable, NeedUpdates {
 
 
     private final Item ownerItem;
@@ -167,5 +168,16 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable {
     @Override
     public boolean isSolved() {
         return isSolved;
+    }
+
+    @Override
+    public void update() {
+        if ((inletStream != null) && (outletStream != null)
+                && (inletStream.getSpecificParameters() !=null) && (outletStream.getSpecificParameters() !=null)){
+            if ((inletStream.getSpecificParameters().getMatterType() != outletStream.getSpecificParameters().getMatterType())
+                || (inletStream.getSpecificParameters().getMatterDefinition().getFluidName() != outletStream.getSpecificParameters().getMatterDefinition().getFluidName() )){
+                throw (new IllegalArgumentException("Inlet and outlet matters are different") e);
+            }
+        }
     }
 }
