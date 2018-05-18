@@ -21,36 +21,36 @@ public class GeneralSolver {
         this.allElements = allElements;
     }
 
-    public int notSolvedItemsNumber() {
-        int notSolvedSum = 0;
-        for (Solvable solvable : allElements.getSolvables()) {
-            if (solvable.isSolved() == false) notSolvedSum++;
-        }
-        return notSolvedSum;
-    }
-
-    public List<Solvable> solvedItems() {
-        List<Solvable> solvedItemsList = new ArrayList<>();
-        for (Solvable solvable : allElements.getSolvables()) {
-            if (solvable.isSolved()) solvedItemsList.add(solvable);
-        }
-        return solvedItemsList;
-    }
-
-    public List<Solvable> notSolvedItems() {
-        List<Solvable> notSolvedItemsList = new ArrayList<>();
-        for (Solvable solvable : allElements.getSolvables()) {
-            if (!solvable.isSolved()) notSolvedItemsList.add(solvable);
-        }
-        return notSolvedItemsList;
-    }
-
-    public boolean isEverythingSolved(){
-        return notSolvedItems().isEmpty();
-    }
+//    public int notSolvedItemsNumber() {
+//        int notSolvedSum = 0;
+//        for (Solvable solvable : allElements.getSolvables()) {
+//            if (solvable.isSolved() == false) notSolvedSum++;
+//        }
+//        return notSolvedSum;
+//    }
+//
+//    public List<Solvable> solvedItems() {
+//        List<Solvable> solvedItemsList = new ArrayList<>();
+//        for (Solvable solvable : allElements.getSolvables()) {
+//            if (solvable.isSolved()) solvedItemsList.add(solvable);
+//        }
+//        return solvedItemsList;
+//    }
+//
+//    public List<Solvable> notSolvedItems() {
+//        List<Solvable> notSolvedItemsList = new ArrayList<>();
+//        for (Solvable solvable : allElements.getSolvables()) {
+//            if (!solvable.isSolved()) notSolvedItemsList.add(solvable);
+//        }
+//        return notSolvedItemsList;
+//    }
+//
+//    public boolean isEverythingSolved(){
+//        return notSolvedItems().isEmpty();
+//    }
 
     public SolverResult solve(AllElements allElements){
-
+        return null;
     }
 
 

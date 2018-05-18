@@ -176,8 +176,10 @@ public class Channel<T extends MatterStream> implements Solvable, Bondable, Need
                 && (inletStream.getSpecificParameters() !=null) && (outletStream.getSpecificParameters() !=null)){
             if ((inletStream.getSpecificParameters().getMatterType() != outletStream.getSpecificParameters().getMatterType())
                 || (inletStream.getSpecificParameters().getMatterDefinition().getFluidName() != outletStream.getSpecificParameters().getMatterDefinition().getFluidName() )){
-                throw (new IllegalArgumentException("Inlet and outlet matters are different") e);
+                throw new IllegalArgumentException("Inlet and outlet matters are different");
             }
         }
+
+
     }
 }

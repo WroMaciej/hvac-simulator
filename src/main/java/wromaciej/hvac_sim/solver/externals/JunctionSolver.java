@@ -24,6 +24,7 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         for (ParameterWithDirection parameterWithDirection : getAllParameters(toSolve)) {
             if (!parameterWithDirection.getParameter().isDefined()) undefinedParameters.add(parameterWithDirection);
         }
+
         return undefinedParameters;
     }
 
@@ -59,6 +60,8 @@ public class JunctionSolver implements ExternalSolver<Junction> {
             if (!sum.isDefined()) sum=parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer);
             else sum = sum.plus(parameterWithDirection.getParameter().times(parameterWithDirection.getDirection().balanceMultiplyer));
         }
+
+
         if (sum.isPositive()) resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.OUTLET);
         else resultingParameterWithDirection = new ParameterWithDirection(sum.abs(), BondDirection.INLET);
 
