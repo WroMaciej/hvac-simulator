@@ -112,54 +112,54 @@ public class Parameter<Q extends AnyQuantity> {
     }
 
     public Parameter plus (Parameter that){
-        amount = amount.plus(that.getAmount());
-        return this;
+        Amount resultingAmount=amount.plus(that.getAmount());
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter minus (Parameter that){
-        amount = amount.minus(that.getAmount());
-        return this;
+        Amount resultingAmount=amount.minus(that.getAmount());
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter times (double factor){
-        amount = amount.times(factor);
-        return this;
+        Amount resultingAmount=amount.times(factor);
+        return amountToParameter(resultingAmount);
     }
 
 
     public Parameter times (Parameter that){
-        amount = (Amount<Q>) amount.times(that.getAmount());
-        return this;
+        Amount resultingAmount=amount.times(that.getAmount());
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter divide (double factor){
-        amount = amount.divide(factor);
-        return this;
+        Amount resultingAmount=amount.divide(factor);
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter divide (Parameter that){
-        amount = (Amount<Q>) amount.divide(that.getAmount());
-        return this;
+        Amount resultingAmount=amount.divide(that.getAmount());
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter power (int exp){
-        amount = (Amount<Q>) amount.pow(exp);
-        return this;
+        Amount resultingAmount=amount.pow(exp);
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter inverse(){
-        amount = (Amount<Q>)  amount.inverse();
-        return this;
+        Amount resultingAmount=amount.inverse();
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter abs(){
-        amount = amount.abs();
-        return this;
+        Amount resultingAmount=amount.abs();
+        return amountToParameter(resultingAmount);
     }
 
     public Parameter opposite(){
-        amount = amount.opposite();
-        return this;
+        Amount resultingAmount=amount.opposite();
+        return amountToParameter(resultingAmount);
     }
 
     public boolean isPositive(){
