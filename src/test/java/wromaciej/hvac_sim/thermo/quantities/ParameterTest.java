@@ -83,7 +83,7 @@ public class ParameterTest {
     }
 
     @Test
-    public void shouldReturnDensityForMassFlowDevidedByVolumeFlow(){
+    public void shouldReturnDensityForMassFlowDividedByVolumeFlow(){
         //GIVEN
         Parameter<MassFlow> massFlow = new Parameter(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),100);
         Parameter<VolumeFlow> volumeFlow = new Parameter(SI.CUBIC_METRE.divide(SI.SECOND).asType(VolumeFlow.class),200);
@@ -95,7 +95,19 @@ public class ParameterTest {
     }
 
     @Test
-    public void shouldReturn(){
+    public void shouldReturnHeatFlowFromMassFlowAndEnthalpyDifference(){
+        //GIVEN
+        Parameter<HeatFlow> definedHeatFlow = new Parameter<>(SI.WATT.asType(HeatFlow.class), 50);
+        Parameter<HeatFlow> heatFlowWithDefinedUnit = new Parameter<>(SI.KILO(SI.WATT).asType(HeatFlow.class));
+        Parameter<MassFlow> massFlow= new Parameter<>(SI.KILOGRAM.divide(SI.SECOND).asType(MassFlow.class),25);
+        Parameter<SpecificEnthalpy> specificEnthalpyDifference = new Parameter<>(SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 2);
+
+        //WHEN
+        heatFlowWithDefinedUnit = massFlow.times(specificEnthalpyDifference);
+
+        //THEN
+
+        System.out.println(heatFlowWithDefinedUnit);
 
     }
 }
