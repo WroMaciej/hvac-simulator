@@ -103,7 +103,7 @@ public class ParameterTest {
         Parameter<SpecificEnthalpy> specificEnthalpyDifference = new Parameter<>(SI.JOULE.divide(SI.KILOGRAM).asType(SpecificEnthalpy.class), 2);
 
         //WHEN
-        heatFlowWithDefinedUnit = massFlow.times(specificEnthalpyDifference);
+        heatFlowWithDefinedUnit.calculate(massFlow.times(specificEnthalpyDifference));
 
         //THEN
 

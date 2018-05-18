@@ -107,6 +107,10 @@ public class Parameter<Q extends AnyQuantity> {
         return resultingParameter;
     }
 
+    public void calculate(Parameter operations){
+        this.amount = operations.amount;
+    }
+
     public Parameter plus (Parameter that){
         amount = amount.plus(that.getAmount());
         return this;
