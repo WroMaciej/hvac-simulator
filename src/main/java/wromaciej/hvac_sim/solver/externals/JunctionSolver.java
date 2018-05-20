@@ -80,7 +80,7 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         else{
             //undefinedParameters.get(0).setParameter(getBalance(toSolve).getParameter());
             ParameterWithDirection junctionBalance = getBalance(toSolve);
-            undefinedParameters.get(0).getParameter().setAmount( junctionBalance.getParameter().getAmount());
+            undefinedParameters.get(0).getParameter().calculate(junctionBalance.getParameter());
             undefinedParameters.get(0).setDirection(junctionBalance.getDirection());
             solverResultType = SolverResultType.SOLVED;
         }
