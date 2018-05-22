@@ -1,10 +1,12 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.service.processes;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 
+@Service
 public class IdealProcess {
 
     private FluidFactory fluidFactory;

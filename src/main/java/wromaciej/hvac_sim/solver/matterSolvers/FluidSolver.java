@@ -1,10 +1,12 @@
 package wromaciej.hvac_sim.solver.matterSolvers;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
 
+@Service
 public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
 
     private char NEEDED_GENERAL_FLUID_PARAMETERS = 2;

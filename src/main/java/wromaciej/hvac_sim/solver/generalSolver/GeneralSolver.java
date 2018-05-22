@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.solver.generalSolver;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.data.AllElements;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.solver.result.SolverResult;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class GeneralSolver {
 
     private AllElements allElements;

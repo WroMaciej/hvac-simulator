@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import thermoCP.CoolProp;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
@@ -9,12 +11,18 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 /**
  * ThermoCP library ADAPTER
  */
+
+@Service
 public class FluidData {
 
     private boolean isLibraryLoaded = false;
 
     public boolean isLibraryLoaded(){
         return isLibraryLoaded;
+    }
+
+    public FluidData(@Value("true") boolean shouldLoadLibrary) {
+        if ((!isLibraryLoaded) && (shouldLoadLibrary)) loadLibrary();
     }
 
     private void loadLibrary(){
@@ -74,7 +82,5 @@ public class FluidData {
         return findParameter(wantedParameterType, fluidName, knownParameter1, knownParameter2);
     }
 
-    public FluidData(boolean shouldLoadLibrary) {
-        if ((!isLibraryLoaded) && (shouldLoadLibrary)) loadLibrary();
-    }
+
 }

@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.simulation.data;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import wromaciej.hvac_sim.solver.internals.Solvable;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.thermo.generals.Item;
@@ -12,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class AllElements {
 
     /**

@@ -1,9 +1,12 @@
 package wromaciej.hvac_sim.simulation.data;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import wromaciej.hvac_sim.solver.externals.*;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 
+@Component
 public class AllSolvers {
 
     private FluidSolver fluidSolver;

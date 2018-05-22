@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.solver.matterSolvers.FluidSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.*;
@@ -12,6 +13,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
+@Service
 public class FluidFactory {
 
     private final FluidData fluidData;

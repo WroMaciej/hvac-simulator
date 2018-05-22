@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.service.processes;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
@@ -10,6 +11,7 @@ import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;
 
+@Service
 public class RealProcess {
 
     private IdealProcess idealProcess;

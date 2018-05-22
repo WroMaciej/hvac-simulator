@@ -1,5 +1,7 @@
 package wromaciej.hvac_sim.thermo.devices.service;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.data.AllElements;
 import wromaciej.hvac_sim.simulation.data.AllSolvers;
@@ -28,6 +30,8 @@ import static wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType.O
 /**
  * Creates brand new and complete devices
  */
+
+
 public class DefaultItemFactory {
 
     private AllElements allElements;

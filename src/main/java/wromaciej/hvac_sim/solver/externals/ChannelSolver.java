@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.solver.externals;
 
+import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
 import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import static wromaciej.hvac_sim.solver.result.SolverResultType.SOLVED;
 
+@Service
 public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStream>> {
 
     private JunctionSolver junctionSolver;
