@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.simulation.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import wromaciej.hvac_sim.solver.externals.*;
@@ -9,13 +10,21 @@ import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
 @Component
 public class AllSolvers {
 
+    @Autowired
     private FluidSolver fluidSolver;
+    @Autowired
     private ChannelSolver channelSolver;
+    @Autowired
     private JunctionSolver junctionSolver;
+    @Autowired
     private HeaterSolver heaterSolver;
+    @Autowired
     private MatterStreamSolver matterStreamSolver;
+    @Autowired
     private HeatStreamSolver heatStreamSolver;
+    @Autowired
     private PowerStreamSolver powerStreamSolver;
+    @Autowired
     private FluidFactory fluidFactory;
 
     public AllSolvers() {
