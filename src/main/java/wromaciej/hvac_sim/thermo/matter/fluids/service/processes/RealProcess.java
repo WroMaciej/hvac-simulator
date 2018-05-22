@@ -52,7 +52,7 @@ public class RealProcess {
     }
 
     public Fluid idealCompression(Fluid fluid, Parameter endParameter) {
-        return idealProcess.isentropic(fluid, endParameter);
+        return idealProcess.sameEntropy(fluid, endParameter);
     }
 
     public Fluid idealExpansion(Fluid fluid, Parameter endParameter) {
@@ -60,11 +60,11 @@ public class RealProcess {
     }
 
     public Fluid throttling(Fluid fluid, Parameter endParameter) {
-        return idealProcess.isenthalpic(fluid, endParameter);
+        return idealProcess.sameEnthalpy(fluid, endParameter);
     }
 
     public Fluid humidification(Air air, Parameter endParameter) {
-        return idealProcess.isenthalpic(air, endParameter);
+        return idealProcess.sameEnthalpy(air, endParameter);
     }
 
     public Fluid heatExchange(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureDrop) {
@@ -72,7 +72,7 @@ public class RealProcess {
     }
 
     private Fluid heatExchangeWithoutPressureDrop(Fluid fluid, Parameter endParameter) {
-        return idealProcess.isobaric(fluid, endParameter);
+        return idealProcess.samePressure(fluid, endParameter);
     }
 
     private Fluid heatExchangeOneStep(Fluid fluid, Parameter endParameter, Parameter<PressureDifference> pressureLoss) {

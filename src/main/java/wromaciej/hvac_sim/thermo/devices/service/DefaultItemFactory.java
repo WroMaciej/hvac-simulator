@@ -1,6 +1,7 @@
 package wromaciej.hvac_sim.thermo.devices.service;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.data.AllElements;
