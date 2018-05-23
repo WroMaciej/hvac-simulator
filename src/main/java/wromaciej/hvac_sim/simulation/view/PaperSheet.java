@@ -18,17 +18,13 @@ public class PaperSheet {
     }
 
     public double getPaperWidth() {
-        double actualWidth;
-        if (paperSheetOrientation == PaperSheetOrientation.HORIZONTAL) actualWidth = paperSheetSize.getWidth();
-        else actualWidth = paperSheetSize.getHeight();
-        return actualWidth;
+        if (paperSheetOrientation == PaperSheetOrientation.HORIZONTAL) return paperSheetSize.getWidth();
+        else return paperSheetSize.getHeight();
     }
 
     public double getPaperHeight() {
-        double actualHeight;
-        if (paperSheetOrientation == PaperSheetOrientation.HORIZONTAL) actualHeight = paperSheetSize.getHeight();
-        else actualHeight = paperSheetSize.getHeight();
-        return actualHeight;
+        if (paperSheetOrientation == PaperSheetOrientation.HORIZONTAL) return paperSheetSize.getHeight();
+        else return paperSheetSize.getHeight();
     }
 
     public double getPaperWidthWithScale() {

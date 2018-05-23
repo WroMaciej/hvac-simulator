@@ -16,6 +16,12 @@ public abstract class Item implements Displayable, Solvable, Bondable {
     private String name;
     private boolean isSolved;
     private ExternalSolver externalSolver;
+    private DisplayParameters displayParameters;
+
+    public Item(int id, IdGenerator idGenerator) {
+        this.id = id;
+        isSolved = false;
+    }
 
     public ExternalSolver getExternalSolver() {
         return externalSolver;
@@ -25,14 +31,6 @@ public abstract class Item implements Displayable, Solvable, Bondable {
         this.externalSolver = externalSolver;
     }
 
-
-
-    private DisplayParameters displayParameters;
-
-    public Item(int id, IdGenerator idGenerator) {
-        this.id = id;
-        isSolved = false;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -44,6 +42,18 @@ public abstract class Item implements Displayable, Solvable, Bondable {
 
     public String getName() {
         return name;
+    }
+
+    public void setSolved(boolean solved) {
+        isSolved = solved;
+    }
+
+    public DisplayParameters getDisplayParameters() {
+        return displayParameters;
+    }
+
+    public void setDisplayParameters(DisplayParameters displayParameters) {
+        this.displayParameters = displayParameters;
     }
 
     @Override

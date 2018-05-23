@@ -41,7 +41,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
     public Junction channelToPressureJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
         Parameter<Pressure> inletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);
-        Parameter<Pressure> outletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);;
+        Parameter<Pressure> outletPressureDefinition = new Parameter(ParameterType.PRESSURE, SI.PASCAL);
         if (toSolve.getInletStream().getSpecificParameters().getAbsolutePressure().isDefined()) {
             inletPressureDefinition = toSolve.getInletStream().getSpecificParameters().getAbsolutePressure();
         } else {
@@ -60,7 +60,6 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     public Junction channelToEnergyJunction(Channel toSolve) {
         List<ParameterWithDirection> parametersWithDirections = new ArrayList<>();
-        ParameterWithDirection specificEnthalpyDifference;
         Parameter<SpecificEnthalpy> inletEnthalpyDefinition = new Parameter(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM));
         Parameter<SpecificEnthalpy> outletEnthalpyDefinition = new Parameter(ParameterType.SPECIFIC_ENTHALPY, SI.JOULE.divide(SI.KILOGRAM));
         if (toSolve.getInletStream().getSpecificParameters().getSpecificEnthalpy().isDefined()) {
@@ -77,7 +76,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
         if (toSolve.getHeatFlow().getParameter().isDefined()) {
             toSolve.calculateSpecificEnthalpyDifferenceFromHeatFlow();
         }
-        specificEnthalpyDifference = toSolve.getSpecificEnthalpyDifference();
+        ParameterWithDirection specificEnthalpyDifference = toSolve.getSpecificEnthalpyDifference();
 
         parametersWithDirections.add(new ParameterWithDirection(inletEnthalpyDefinition, BondDirection.INLET));
         parametersWithDirections.add(new ParameterWithDirection(outletEnthalpyDefinition, BondDirection.OUTLET));
