@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.user;
+package wromaciej.hvac_sim.core.user;
 
 import wromaciej.hvac_sim.simulation.view.PaperSheet;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
@@ -16,7 +16,7 @@ public class CompanyData {
     private final Language language;
     private final UnitSystem defaultUnitSystem;
     private final PaperSheet defaultPaperSheet;
-    private List<UserData> companyUsers;
+    private List<User> companyUsers;
     private String logo; //TODO change logo to a image file
 
     public CompanyData(int companyID, String companyName, String country, String taxNumber, UserVersion userVersion, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet) {
@@ -33,12 +33,12 @@ public class CompanyData {
 
     public boolean addNewCompanyUser(int UserID, String personalTitle, String firstName, String lastName){
         //TODO generate unique id
-        UserData newUser = new UserData(0, personalTitle, firstName, lastName, this, language, defaultUnitSystem, defaultPaperSheet);
+        User newUser = new User(0, personalTitle, firstName, lastName, this, language, defaultUnitSystem, defaultPaperSheet);
         companyUsers.add(newUser);
         return true;
     }
 
-    public List<UserData> getCompanyUsers() {
+    public List<User> getCompanyUsers() {
         return companyUsers;
     }
 

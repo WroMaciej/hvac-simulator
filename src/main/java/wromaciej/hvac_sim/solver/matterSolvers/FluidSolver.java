@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.solver.matterSolvers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.solver.result.SolverResult;
@@ -14,7 +15,7 @@ public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {
 
     private final FluidSetter fluidSetter;
 
-
+    @Autowired
     public FluidSolver(FluidSetter fluidSetter) {
         this.fluidSetter = fluidSetter;
     }

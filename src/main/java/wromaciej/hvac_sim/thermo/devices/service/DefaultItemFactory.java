@@ -1,8 +1,7 @@
 package wromaciej.hvac_sim.thermo.devices.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.data.AllElements;
 import wromaciej.hvac_sim.simulation.data.AllSolvers;
@@ -16,9 +15,7 @@ import wromaciej.hvac_sim.thermo.generals.conservationLaw.Channel;
 import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
 import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
-import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
@@ -26,12 +23,10 @@ import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
 import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 
 import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.INLET;
-import static wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType.OTHER;
 
 /**
  * Creates brand new and complete devices
  */
-
 
 public class DefaultItemFactory {
 
@@ -47,7 +42,7 @@ public class DefaultItemFactory {
         this.allSolvers = allSolvers;
     }
 
-    public HeatStream createDefaultHeatStream(){
+    public HeatStream defaultHeatStream(){
         HeatStream heatStream;
         int uniqueId = idGenerator.getUniqueId();
         Parameter<HeatFlow> heatFlow = new Parameter<>(unitSystem.getHeatFlowUnit());
@@ -61,7 +56,7 @@ public class DefaultItemFactory {
         return heatStream;
     }
 
-    public FluidStream createDefaultFluidStream(){
+    public FluidStream defaultFluidStream(){
         FluidStream fluidStream;
         int uniqueId = idGenerator.getUniqueId();
         InletStreamBond<FluidStream>  inletStreamBond = new InletStreamBond<>(idGenerator.getUniqueId());
@@ -75,7 +70,7 @@ public class DefaultItemFactory {
         return fluidStream;
     }
 
-    private Channel createDefaultChannel(Item ownerItem, Parameter<PressureDifference> pressureDrop, ParameterWithDirection heatFlow, ParameterWithDirection extraMassFlow){
+    private Channel defaultChannel(Item ownerItem, Parameter<PressureDifference> pressureDrop, ParameterWithDirection heatFlow, ParameterWithDirection extraMassFlow){
         Channel channel;
         InletDeviceBond inletDeviceBond = new InletDeviceBond(idGenerator.getUniqueId());
         OutletDeviceBond outletDeviceBond = new OutletDeviceBond(idGenerator.getUniqueId());
@@ -83,7 +78,7 @@ public class DefaultItemFactory {
         return channel;
     }
 
-    public Heater createDefaultHeater(){
+    public Heater defaultHeater(){
         Heater heater;
         int uniqueId = idGenerator.getUniqueId();
         Parameter<PressureDifference> pressureDrop = new Parameter<>(unitSystem.getPressureDifferenceUnit(), 0.0);
@@ -91,7 +86,7 @@ public class DefaultItemFactory {
         ParameterWithDirection extraMassFlow = new ParameterWithDirection(new Parameter(unitSystem.getMassFlowUnit(), 0.0), INLET);
         InletDeviceBond<HeatStream> heatStreamInletDeviceBond= new InletDeviceBond<>(idGenerator.getUniqueId());
         heater = new Heater(uniqueId, idGenerator, null, heatStreamInletDeviceBond);
-        Channel<MatterStream> channel = createDefaultChannel(heater, pressureDrop, heatFlow, extraMassFlow);
+        Channel<MatterStream> channel = defaultChannel(heater, pressureDrop, heatFlow, extraMassFlow);
         heater.setMainChannel(channel);
         return heater;
     }

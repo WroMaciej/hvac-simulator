@@ -7,13 +7,15 @@ public class Ids implements IdGenerator {
 
     private AtomicInteger maximalId;
 
+    public Ids() {
+        maximalId = new AtomicInteger();
+    }
+
     @Override
     public int getUniqueId(){
         return maximalId.incrementAndGet();
     }
 
-    public Ids() {
-        maximalId = new AtomicInteger();
-    }
+
 
 }

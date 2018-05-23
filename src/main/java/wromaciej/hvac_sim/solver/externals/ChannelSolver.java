@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.solver.externals;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.solver.result.SolverResult;
 import wromaciej.hvac_sim.solver.result.SolverResultType;
@@ -24,6 +25,7 @@ public class ChannelSolver implements ExternalSolver<Channel<? extends MatterStr
 
     private JunctionSolver junctionSolver;
 
+    @Autowired
     public ChannelSolver(JunctionSolver junctionSolver) {
         this.junctionSolver = junctionSolver;
     }

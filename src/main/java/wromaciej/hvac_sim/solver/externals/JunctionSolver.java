@@ -37,8 +37,6 @@ public class JunctionSolver implements ExternalSolver<Junction> {
         return definedParameters;
     }
 
-    public JunctionSolver() {}
-
     private int allParametersNumber(Junction toSolve){
         return getAllParameters(toSolve).size();
     }
