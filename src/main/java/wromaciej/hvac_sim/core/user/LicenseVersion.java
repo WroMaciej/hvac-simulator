@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.core.user;
 
-public enum UserVersion {
+public enum LicenseVersion {
     STUDENT,
     BASIC,
     ENGINEER,
