@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Company {
 
-    private final int companyID;
+    private final Integer companyID;
     private final String companyName;
     private final String country;
     private final String taxNumber;
@@ -19,7 +19,7 @@ public class Company {
     private List<User> companyUsers;
     private String logo; //TODO change logo to a image file
 
-    public Company(int companyID, String companyName, String country, String taxNumber, LicenseVersion licenseVersion, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet) {
+    public Company(Integer companyID, String companyName, String country, String taxNumber, LicenseVersion licenseVersion, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet) {
         this.companyID = companyID;
         this.companyName = companyName;
         this.country = country;

@@ -12,13 +12,13 @@ import wromaciej.hvac_sim.solver.result.SolverResult;
  */
 public abstract class Item implements Displayable, Solvable, Bondable {
 
-    private final int id;
+    private final Integer id;
     private String name;
     private boolean isSolved;
     private ExternalSolver externalSolver;
     private DisplayParameters displayParameters;
 
-    public Item(int id, IdGenerator idGenerator) {
+    public Item(Integer id, IdGenerator idGenerator) {
         this.id = id;
         isSolved = false;
     }
@@ -36,7 +36,7 @@ public abstract class Item implements Displayable, Solvable, Bondable {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

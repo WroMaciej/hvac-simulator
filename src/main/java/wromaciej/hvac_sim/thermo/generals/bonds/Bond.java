@@ -7,7 +7,7 @@ import wromaciej.hvac_sim.thermo.streams.model.AnyStream;
 import java.util.Objects;
 
 public abstract class Bond<T extends AnyStream> {
-    private final int bondId;
+    private final Integer bondId;
     /**
      * Id of the owner of the bond
      */
@@ -41,7 +41,7 @@ public abstract class Bond<T extends AnyStream> {
     }
 
 
-    public Bond(int bondId, BondDirection flowDirection) {
+    public Bond(Integer bondId, BondDirection flowDirection) {
         this.bondId = bondId;
         this.flowDirection = flowDirection;
     }
@@ -50,7 +50,7 @@ public abstract class Bond<T extends AnyStream> {
         this.targetBond =  null;
     }
 
-    public int getBondId() {
+    public Integer getBondId() {
         return bondId;
     }
 

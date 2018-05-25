@@ -7,7 +7,7 @@ import wromaciej.hvac_sim.thermo.generals.NeedUpdates;
 
 public abstract class Device extends Item implements NeedUpdates {
 
-    public Device(int id, IdGenerator idGenerator) {
+    public Device(Integer id, IdGenerator idGenerator) {
         super(id, idGenerator);
     }
 

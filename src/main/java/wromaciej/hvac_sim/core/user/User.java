@@ -7,7 +7,7 @@ import wromaciej.hvac_sim.thermo.unitSystems.UnitSystem;
 import java.util.Map;
 
 public class User {
-    private final int userID;
+    private final Integer userID;
     private boolean isLogged;
     private String personalTitle;
     private String firstName;
@@ -18,7 +18,7 @@ public class User {
     private PaperSheet defaultPaperSheet;
     private Simulation currentSimulation;
 
-    public User(int userID, boolean isLogged, String personalTitle, String firstName, String lastName, Company company, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet, Map<Integer, Simulation> allSimulations) {
+    public User(Integer userID, boolean isLogged, String personalTitle, String firstName, String lastName, Company company, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet, Map<Integer, Simulation> allSimulations) {
         this.userID = userID;
         this.isLogged = isLogged;
         this.personalTitle = personalTitle;

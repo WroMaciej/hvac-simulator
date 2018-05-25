@@ -8,7 +8,7 @@ import wromaciej.hvac_sim.thermo.devices.service.DefaultItemFactory;
 
 public class Simulation {
 
-    private final int simulationId;
+    private final Integer simulationId;
     private AllElements allElements;
     private View view;
     private SimulationSolver simulationSolver;
@@ -18,7 +18,7 @@ public class Simulation {
     private DefaultItemFactory defaultItemFactory;
     private boolean isActive;
 
-    public Simulation(int simulationId) {
+    public Simulation(Integer simulationId) {
         this.simulationId = simulationId;
     }
 
@@ -78,7 +78,7 @@ public class Simulation {
         this.defaultItemFactory = defaultItemFactory;
     }
 
-    public int getSimulationId() {
+    public Integer getSimulationId() {
         return simulationId;
     }
 

@@ -2,16 +2,17 @@ package wromaciej.hvac_sim.core.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wromaciej.hvac_sim.core.repository.CompanyRepository;
 
 @Service
 public class ServerService {
 
     private Server server;
-    private ServerRepository serverRepository;
+    private CompanyRepository companyRepository;
 
     @Autowired
-    public ServerService(Server server, ServerRepository serverRepository) {
+    public ServerService(Server server, CompanyRepository companyRepository) {
         this.server = server;
-        this.serverRepository = serverRepository;
+        this.companyRepository = companyRepository;
     }
 }
