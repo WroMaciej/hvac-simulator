@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.core.domain;
+package wromaciej.hvac_sim.core.model;
 
 import wromaciej.hvac_sim.core.user_version.Language;
 import wromaciej.hvac_sim.simulation.general.Simulation;

@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.simulation.thermo.generals;
 
-import wromaciej.hvac_sim.display.DisplayParameters;
-import wromaciej.hvac_sim.display.Displayable;
+import wromaciej.hvac_sim.view.DisplayParameters;
+import wromaciej.hvac_sim.view.Displayable;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
 import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;

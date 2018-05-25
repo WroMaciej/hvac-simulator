@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.display;
+package wromaciej.hvac_sim.view;
 
 public interface Displayable {
 
