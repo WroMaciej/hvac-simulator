@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import wromaciej.hvac_sim.solver.externals.ExternalSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
 import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;

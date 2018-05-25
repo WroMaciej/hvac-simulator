@@ -1,6 +1,6 @@
 package wromaciej.hvac_sim.thermo.devices.model.basic;
 
-import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.Item;
 import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.thermo.generals.NeedUpdates;

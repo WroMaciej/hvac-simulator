@@ -1,9 +1,9 @@
 package wromaciej.hvac_sim.thermo.matter;
 
-import wromaciej.hvac_sim.solver.externals.ExternalSolver;
-import wromaciej.hvac_sim.solver.internals.Solvable;
-import wromaciej.hvac_sim.solver.matterSolvers.MatterDefinition;
-import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
+import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
+import wromaciej.hvac_sim.simulation.solver.matterSolvers.MatterDefinition;
+import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.NeedUpdates;
 import wromaciej.hvac_sim.thermo.matter.fluids.model.MatterType;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;

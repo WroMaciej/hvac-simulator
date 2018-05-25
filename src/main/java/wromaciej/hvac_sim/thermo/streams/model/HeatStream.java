@@ -1,9 +1,7 @@
 package wromaciej.hvac_sim.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.solver.result.SolverResult;
-import wromaciej.hvac_sim.solver.result.SolverResultType;
-import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletStreamBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletStreamBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;

@@ -1,9 +1,9 @@
 package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Test;
-import wromaciej.hvac_sim.solver.externals.ChannelSolver;
-import wromaciej.hvac_sim.solver.externals.HeaterSolver;
-import wromaciej.hvac_sim.solver.externals.JunctionSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.ChannelSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.HeaterSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Heater;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletStreamBond;

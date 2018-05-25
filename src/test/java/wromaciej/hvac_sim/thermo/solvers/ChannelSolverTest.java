@@ -2,8 +2,8 @@ package wromaciej.hvac_sim.thermo.solvers;
 
 import org.junit.Assert;
 import org.junit.Test;
-import wromaciej.hvac_sim.solver.externals.ChannelSolver;
-import wromaciej.hvac_sim.solver.externals.JunctionSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.ChannelSolver;
+import wromaciej.hvac_sim.simulation.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.thermo.generals.bonds.*;
 import wromaciej.hvac_sim.thermo.generals.conservationLaw.Channel;
 import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
@@ -19,7 +19,6 @@ import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
 import javax.measure.unit.SI;
 
 import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.INLET;
-import static wromaciej.hvac_sim.thermo.generals.bonds.BondDirection.OUTLET;
 
 public class ChannelSolverTest {
 

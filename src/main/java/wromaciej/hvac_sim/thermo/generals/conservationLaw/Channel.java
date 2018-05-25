@@ -1,17 +1,14 @@
 package wromaciej.hvac_sim.thermo.generals.conservationLaw;
 
-import wromaciej.hvac_sim.solver.externals.ChannelSolver;
-import wromaciej.hvac_sim.solver.internals.Solvable;
-import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.simulation.solver.externals.ChannelSolver;
+import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
+import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.thermo.generals.Bondable;
 import wromaciej.hvac_sim.thermo.generals.Item;
 import wromaciej.hvac_sim.thermo.generals.NeedUpdates;
-import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.thermo.generals.bonds.OutletDeviceBond;
 import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.thermo.quantities.specific.SpecificEnthalpy;

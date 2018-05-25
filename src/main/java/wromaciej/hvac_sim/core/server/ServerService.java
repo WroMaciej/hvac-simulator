@@ -2,7 +2,7 @@ package wromaciej.hvac_sim.core.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wromaciej.hvac_sim.core.repository.CompanyRepository;
+import wromaciej.hvac_sim.core.database.repository.core.CompanyRepository;
 
 @Service
 public class ServerService {

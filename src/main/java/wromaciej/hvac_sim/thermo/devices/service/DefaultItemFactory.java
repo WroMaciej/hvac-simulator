@@ -1,10 +1,8 @@
 package wromaciej.hvac_sim.thermo.devices.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.simulation.data.AllElements;
-import wromaciej.hvac_sim.simulation.data.AllSolvers;
+import wromaciej.hvac_sim.simulation.general.data.AllElements;
+import wromaciej.hvac_sim.simulation.general.data.AllSolvers;
 import wromaciej.hvac_sim.thermo.devices.model.basic.Heater;
 import wromaciej.hvac_sim.thermo.generals.Item;
 import wromaciej.hvac_sim.thermo.generals.bonds.InletDeviceBond;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * Logger used for saving all actions of actual user
+ * Logger used for saving all actions of actual core_domain
  */
 
 @Component

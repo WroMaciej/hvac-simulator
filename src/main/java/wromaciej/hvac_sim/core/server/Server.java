@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim.core.server;
 
 import org.springframework.stereotype.Component;
-import wromaciej.hvac_sim.core.user.User;
-import wromaciej.hvac_sim.simulation.Simulation;
+import wromaciej.hvac_sim.core.core_domain.User;
+import wromaciej.hvac_sim.simulation.general.Simulation;
 
 import java.util.Map;
 

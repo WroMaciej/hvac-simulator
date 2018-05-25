@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim.thermo.generals.conservationLaw;
 
-import wromaciej.hvac_sim.solver.externals.JunctionSolver;
-import wromaciej.hvac_sim.solver.internals.Solvable;
-import wromaciej.hvac_sim.solver.result.SolverResult;
+import wromaciej.hvac_sim.simulation.solver.externals.JunctionSolver;
+import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
+import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 
 import java.util.List;
 
