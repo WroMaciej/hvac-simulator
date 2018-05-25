@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim.simulation.general;
 
-import wromaciej.hvac_sim.thermo.devices.model.basic.Heater;
-import wromaciej.hvac_sim.thermo.streams.model.FluidStream;
-import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
+import wromaciej.hvac_sim.simulation.thermo.devices.model.basic.Heater;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.FluidStream;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.HeatStream;
 
 public class SimulationService {
 

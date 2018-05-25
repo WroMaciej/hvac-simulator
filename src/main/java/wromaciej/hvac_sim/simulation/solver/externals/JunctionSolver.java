@@ -3,10 +3,10 @@ package wromaciej.hvac_sim.simulation.solver.externals;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResultType;
-import wromaciej.hvac_sim.thermo.generals.bonds.BondDirection;
-import wromaciej.hvac_sim.thermo.generals.conservationLaw.Junction;
-import wromaciej.hvac_sim.thermo.generals.conservationLaw.ParameterWithDirection;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.generals.bonds.BondDirection;
+import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.Junction;
+import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.ParameterWithDirection;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
 
 import java.util.ArrayList;
 import java.util.List;

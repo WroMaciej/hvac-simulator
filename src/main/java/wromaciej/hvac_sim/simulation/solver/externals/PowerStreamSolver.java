@@ -3,7 +3,7 @@ package wromaciej.hvac_sim.simulation.solver.externals;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResultType;
-import wromaciej.hvac_sim.thermo.streams.model.PowerStream;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.PowerStream;
 
 @Service
 public class PowerStreamSolver implements ExternalSolver<PowerStream>  {

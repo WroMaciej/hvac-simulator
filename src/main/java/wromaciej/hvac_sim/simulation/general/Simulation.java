@@ -3,8 +3,8 @@ package wromaciej.hvac_sim.simulation.general;
 import wromaciej.hvac_sim.simulation.general.data.AllElements;
 import wromaciej.hvac_sim.simulation.general.data.View;
 import wromaciej.hvac_sim.simulation.solver.generalSolver.SimulationSolver;
-import wromaciej.hvac_sim.core.core_domain.User;
-import wromaciej.hvac_sim.thermo.devices.service.DefaultItemFactory;
+import wromaciej.hvac_sim.core.domain.User;
+import wromaciej.hvac_sim.simulation.thermo.devices.service.DefaultItemFactory;
 
 public class Simulation {
 

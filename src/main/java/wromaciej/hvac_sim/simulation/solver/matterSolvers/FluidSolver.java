@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResultType;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.*;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.*;
 
 @Service
 public class FluidSolver extends MatterSolver implements ExternalSolver<Fluid> {

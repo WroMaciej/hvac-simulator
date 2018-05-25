@@ -1,10 +1,10 @@
 package wromaciej.hvac_sim.simulation.general.data;
 
-import wromaciej.hvac_sim.thermo.devices.model.basic.Device;
-import wromaciej.hvac_sim.thermo.generals.Item;
-import wromaciej.hvac_sim.thermo.streams.model.HeatStream;
-import wromaciej.hvac_sim.thermo.streams.model.MatterStream;
-import wromaciej.hvac_sim.thermo.streams.model.PowerStream;
+import wromaciej.hvac_sim.simulation.thermo.devices.model.basic.Device;
+import wromaciej.hvac_sim.simulation.thermo.generals.Item;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.HeatStream;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.MatterStream;
+import wromaciej.hvac_sim.simulation.thermo.streams.model.PowerStream;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import wromaciej.hvac_sim.simulation.general.solver.externals.*;
 import wromaciej.hvac_sim.simulation.solver.externals.*;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.FluidSolver;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.FluidFactory;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.FluidFactory;
 
 @Component
 public class AllSolvers {
