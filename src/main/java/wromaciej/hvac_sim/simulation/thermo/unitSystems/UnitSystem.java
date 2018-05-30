@@ -2,7 +2,7 @@ package wromaciej.hvac_sim.simulation.thermo.unitSystems;
 
 
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.Air;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.*;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.*;
 import wromaciej.hvac_sim.simulation.thermo.quantities.coefficients.*;

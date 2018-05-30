@@ -3,8 +3,8 @@ package wromaciej.hvac_sim.simulation.solver.matterSolvers;
 import wromaciej.hvac_sim.simulation.thermo.matter.Matter;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.FluidName;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.MatterType;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.ParameterType;
 
 import java.util.ArrayList;
 import java.util.List;

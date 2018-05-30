@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.simulation.thermo.quantities;
 
 import org.junit.Test;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.Power;

@@ -8,7 +8,7 @@ import wromaciej.hvac_sim.simulation.thermo.generals.Item;
 import wromaciej.hvac_sim.simulation.thermo.generals.NeedUpdates;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.InletDeviceBond;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.OutletDeviceBond;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.SpecificEnthalpy;

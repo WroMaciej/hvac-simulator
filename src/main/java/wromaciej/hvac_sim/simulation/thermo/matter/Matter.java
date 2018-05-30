@@ -6,14 +6,18 @@ import wromaciej.hvac_sim.simulation.solver.matterSolvers.MatterDefinition;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.simulation.thermo.generals.NeedUpdates;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.MatterType;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.StateOfMatter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.ParameterType;
+import wromaciej.hvac_sim.simulation.thermo.parameters.StateOfMatter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.*;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public abstract class Matter implements Solvable, NeedUpdates {
+/**
+ * Base class for all matter - fluid, solid...
+ */
+public abstract class Matter implements Solvable, NeedUpdates, Serializable {
 
     /**
      * Tool for dealing with solving fluid
@@ -31,8 +35,10 @@ public abstract class Matter implements Solvable, NeedUpdates {
      */
     protected MatterType matterType;
 
+    /**
+     * State of matter
+     */
     protected StateOfMatter stateOfMatter;
-
     /**
      * Temperature
      */
@@ -67,6 +73,12 @@ public abstract class Matter implements Solvable, NeedUpdates {
      */
     protected Parameter<Density> density;
 
+
+    public Matter(ExternalSolver matterSolver) {
+        this.matterSolver = matterSolver;
+        clearAllParameters();
+    }
+
     protected void clearAllParameters(){
         temperature = new Parameter<>();
         absoluteTemperature = new Parameter<>(ParameterType.TEMPERATURE);
@@ -78,10 +90,7 @@ public abstract class Matter implements Solvable, NeedUpdates {
         density = new Parameter<>(ParameterType.DENSITY);
     }
 
-    public Matter(ExternalSolver matterSolver) {
-        this.matterSolver = matterSolver;
-        clearAllParameters();
-    }
+
 
     public MatterDefinition getMatterDefinition() {
         return matterDefinition;

@@ -4,7 +4,7 @@ import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.Channel;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.InletDeviceBond;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.simulation.thermo.streams.model.HeatStream;
 import wromaciej.hvac_sim.simulation.thermo.streams.model.MatterStream;

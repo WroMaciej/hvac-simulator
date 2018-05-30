@@ -6,7 +6,7 @@ import wromaciej.hvac_sim.simulation.solver.externals.JunctionSolver;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.BondDirection;
 import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.Junction;
 import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.ParameterWithDirection;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.MassFlow;
 
 import javax.measure.unit.SI;

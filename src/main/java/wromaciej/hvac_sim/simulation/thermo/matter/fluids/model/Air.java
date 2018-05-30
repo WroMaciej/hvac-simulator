@@ -1,8 +1,8 @@
 package wromaciej.hvac_sim.simulation.thermo.matter.fluids.model;
 
 import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.ParameterType;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.MoistureContent;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.Pressure;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.RelativeHumidity;

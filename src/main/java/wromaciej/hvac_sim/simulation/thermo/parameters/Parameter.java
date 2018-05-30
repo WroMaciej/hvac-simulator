@@ -1,12 +1,13 @@
-package wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters;
+package wromaciej.hvac_sim.simulation.thermo.parameters;
 
 
 import org.jscience.physics.amount.Amount;
 import wromaciej.hvac_sim.simulation.thermo.quantities.base.AnyQuantity;
 import javax.measure.unit.Unit;
+import java.io.Serializable;
 
 
-public class Parameter<Q extends AnyQuantity> {
+public class Parameter<Q extends AnyQuantity> implements Serializable {
 
     public static final Parameter<?> ONE = amountToParameter(Amount.ONE);
 

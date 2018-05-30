@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import thermoCP.CoolProp;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.FluidName;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.*;
+import wromaciej.hvac_sim.simulation.thermo.parameters.*;
 import wromaciej.hvac_sim.simulation.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.simulation.thermo.unitSystems.UnitSystem;
 
 /**
- * ThermoCP library ADAPTER
+ * ThermoCP library ADAPTER design pattern
  */
 
 @Service

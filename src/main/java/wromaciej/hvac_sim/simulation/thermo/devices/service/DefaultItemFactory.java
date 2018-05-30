@@ -12,7 +12,7 @@ import wromaciej.hvac_sim.simulation.thermo.generals.bonds.OutletStreamBond;
 import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.Channel;
 import wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw.ParameterWithDirection;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.Fluid;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.HeatFlow;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.PressureDifference;
 import wromaciej.hvac_sim.simulation.thermo.streams.model.FluidStream;

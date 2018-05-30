@@ -5,8 +5,8 @@ import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.MatterDefinition;
 import wromaciej.hvac_sim.simulation.thermo.matter.Matter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.ParameterType;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.ParameterType;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.*;
 
 import java.util.HashMap;

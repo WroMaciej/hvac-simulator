@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters;
+package wromaciej.hvac_sim.simulation.thermo.parameters;
 
 public enum StateOfMatter {
     GAS,

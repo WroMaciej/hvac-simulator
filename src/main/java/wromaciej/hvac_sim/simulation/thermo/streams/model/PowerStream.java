@@ -4,7 +4,7 @@ import wromaciej.hvac_sim.ids.IdGenerator;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.InletStreamBond;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.OutletStreamBond;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.Power;
 
 public class PowerStream extends AnyStream {

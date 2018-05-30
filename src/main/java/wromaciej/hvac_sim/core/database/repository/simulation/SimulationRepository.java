@@ -1,4 +1,4 @@
-package wromaciej.hvac_sim.core.database.repository.core;
+package wromaciej.hvac_sim.core.database.repository.simulation;
 
 
 import org.springframework.data.repository.CrudRepository;

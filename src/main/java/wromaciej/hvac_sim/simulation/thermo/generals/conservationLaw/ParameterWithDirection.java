@@ -1,7 +1,7 @@
 package wromaciej.hvac_sim.simulation.thermo.generals.conservationLaw;
 
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.BondDirection;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 
 public class ParameterWithDirection {
     private Parameter parameter;

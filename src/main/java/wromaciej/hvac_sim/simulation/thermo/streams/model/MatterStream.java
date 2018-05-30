@@ -1,12 +1,10 @@
 package wromaciej.hvac_sim.simulation.thermo.streams.model;
 
 import wromaciej.hvac_sim.ids.IdGenerator;
-import wromaciej.hvac_sim.simulation.thermo.devices.model.basic.Device;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.InletStreamBond;
 import wromaciej.hvac_sim.simulation.thermo.generals.bonds.OutletStreamBond;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.Fluid;
 import wromaciej.hvac_sim.simulation.thermo.matter.Matter;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.MassFlow;
 import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.VolumeFlow;
 

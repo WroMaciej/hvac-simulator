@@ -3,7 +3,7 @@ package wromaciej.hvac_sim.simulation.thermo.matter.fluids.model;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.FluidSolver;
-import wromaciej.hvac_sim.simulation.thermo.matter.fluids.parameters.*;
+import wromaciej.hvac_sim.simulation.thermo.parameters.*;
 import wromaciej.hvac_sim.simulation.thermo.matter.fluids.service.FluidData;
 import wromaciej.hvac_sim.simulation.thermo.quantities.base.AirQuantity;
 import wromaciej.hvac_sim.simulation.thermo.quantities.specific.Quality;
