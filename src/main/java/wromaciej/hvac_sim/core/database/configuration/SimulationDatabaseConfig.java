@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@PropertySource({"classpath:persistence-multiple-db.properties"})
+@PropertySource({"classpath:application.properties"})
 @EnableJpaRepositories(
         basePackages = "wromaciej.hvac_sim.core.database.repository.simulation",
         entityManagerFactoryRef = "simulationEntityManager",

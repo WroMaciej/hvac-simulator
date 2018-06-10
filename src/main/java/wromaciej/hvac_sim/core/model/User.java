@@ -5,14 +5,23 @@ import wromaciej.hvac_sim.simulation.general.Simulation;
 import wromaciej.hvac_sim.simulation.general.view.PaperSheet;
 import wromaciej.hvac_sim.simulation.thermo.unitSystems.UnitSystem;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Map;
 
+@Entity
+@Table(schema = "public")
 public class User {
     private final Integer userID;
     private boolean isLogged;
     private String personalTitle;
     private String firstName;
     private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
     private Language language;
     private UnitSystem defaultUnitSystem;
