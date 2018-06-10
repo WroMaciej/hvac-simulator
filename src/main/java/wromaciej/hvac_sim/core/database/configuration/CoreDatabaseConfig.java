@@ -57,10 +57,10 @@ public class CoreDatabaseConfig {
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
         dataSource.setDriverClassName(
-                env.getProperty("jdbc.driverClassName"));
+                env.getProperty("spring.database_core.driver"));
         dataSource.setUrl(env.getProperty("spring.database_core.url"));
         dataSource.setUsername(env.getProperty("spring.database_core.username"));
-        dataSource.setPassword(env.getProperty("spring.database_coreb.password"));
+        dataSource.setPassword(env.getProperty("spring.database_core.password"));
 
         return dataSource;
     }
