@@ -14,20 +14,32 @@ public class User {
     @Id
     @Column(name = "id")
     private Integer userID;
+
+    @Column(name = "is_logged")
     private boolean isLogged;
+    @Column(name = "personal_title")
     private String personalTitle;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
-    private Language language;
-    private UnitSystem defaultUnitSystem;
-    private PaperSheet defaultPaperSheet;
-    private Simulation currentSimulation;
 
-    public User(Integer userID, boolean isLogged, String personalTitle, String firstName, String lastName, Company company, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet, Map<Integer, Simulation> allSimulations) {
+    @Column(name = "language_id")
+    private int languageId;
+    @Column(name = "default_unitsystem_id")
+    private int defaultUnitSystemId;
+    @Column(name = "default_papersheet_id")
+    private int defaultPaperSheetId;
+
+    @Column(name = "current_simulation_id")
+    private int currentSimulationId;
+
+
+    public User(Integer userID, boolean isLogged, String personalTitle, String firstName, String lastName, Company company, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet, int currentSimulationId) {
         this.userID = userID;
         this.isLogged = isLogged;
         this.personalTitle = personalTitle;
@@ -37,6 +49,6 @@ public class User {
         this.language = language;
         this.defaultUnitSystem = defaultUnitSystem;
         this.defaultPaperSheet = defaultPaperSheet;
-        this.currentSimulation = currentSimulation;
+        this.currentSimulationId = currentSimulationId;
     }
 }
