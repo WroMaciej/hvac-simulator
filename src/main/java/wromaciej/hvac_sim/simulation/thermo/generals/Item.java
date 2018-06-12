@@ -7,14 +7,20 @@ import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
 import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Any object that could be treated as a part of process
  */
+
+@Entity
+@Table(schema = "public")
 public abstract class Item implements Displayable, Solvable, Bondable {
 
     private final Integer id;
     private String name;
-    private boolean isSolved;
+    private Boolean isSolved;
     private ExternalSolver externalSolver;
     private DisplayParameters displayParameters;
 

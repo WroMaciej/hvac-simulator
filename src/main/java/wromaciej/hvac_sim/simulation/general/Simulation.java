@@ -6,51 +6,73 @@ import wromaciej.hvac_sim.simulation.solver.generalSolver.SimulationSolver;
 import wromaciej.hvac_sim.core.model.User;
 import wromaciej.hvac_sim.simulation.thermo.devices.service.DefaultItemFactory;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(schema = "public")
 public class Simulation {
 
-    private final Integer simulationId;
-    private AllElements allElements;
-    private View view;
-    private SimulationSolver simulationSolver;
-    private User ownerUser;
-    private String simulationName;
-    private String simulationDescription;
-    private DefaultItemFactory defaultItemFactory;
-    private boolean isActive;
+    @Id
+    @Column(name = "id")
+    private Integer simulationId;
 
-    public Simulation(Integer simulationId) {
+
+    //private AllElements allElements;
+
+    @Column(name = "view_id")
+    private Integer viewId;
+
+    @Column(name = "solver_id")
+    private Integer simulationSolverId;
+
+    @Column(name = "ownet_user_id")
+    private Integer ownerUser;
+
+    @Column(name = "name")
+    private String simulationName;
+
+    @Column(name = "description")
+    private String simulationDescription;
+
+    @Column(name = "default_item_factory_id")
+    private Integer defaultItemFactoryId;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+
+    public Integer getSimulationId() {
+        return simulationId;
+    }
+
+    public void setSimulationId(Integer simulationId) {
         this.simulationId = simulationId;
     }
 
-    public AllElements getAllElements() {
-        return allElements;
+    public Integer getViewId() {
+        return viewId;
     }
 
-    public void setAllElements(AllElements allElements) {
-        this.allElements = allElements;
+    public void setViewId(Integer viewId) {
+        this.viewId = viewId;
     }
 
-    public View getView() {
-        return view;
+    public Integer getSimulationSolverId() {
+        return simulationSolverId;
     }
 
-    public void setView(View view) {
-        this.view = view;
+    public void setSimulationSolverId(Integer simulationSolverId) {
+        this.simulationSolverId = simulationSolverId;
     }
 
-    public SimulationSolver getSimulationSolver() {
-        return simulationSolver;
-    }
-
-    public void setSimulationSolver(SimulationSolver simulationSolver) {
-        this.simulationSolver = simulationSolver;
-    }
-
-    public User getOwnerUser() {
+    public Integer getOwnerUser() {
         return ownerUser;
     }
 
-    public void setOwnerUser(User ownerUser) {
+    public void setOwnerUser(Integer ownerUser) {
         this.ownerUser = ownerUser;
     }
 
@@ -70,23 +92,19 @@ public class Simulation {
         this.simulationDescription = simulationDescription;
     }
 
-    public DefaultItemFactory getDefaultItemFactory() {
-        return defaultItemFactory;
+    public Integer getDefaultItemFactoryId() {
+        return defaultItemFactoryId;
     }
 
-    public void setDefaultItemFactory(DefaultItemFactory defaultItemFactory) {
-        this.defaultItemFactory = defaultItemFactory;
+    public void setDefaultItemFactoryId(Integer defaultItemFactoryId) {
+        this.defaultItemFactoryId = defaultItemFactoryId;
     }
 
-    public Integer getSimulationId() {
-        return simulationId;
-    }
-
-    public boolean isActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 }

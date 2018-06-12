@@ -35,12 +35,12 @@ public class Company {
     private Language language;
 
     @Column(name = "default_unitsystem_id")
-    private int defaultUnitSystemId;
+    private Integer defaultUnitSystemId;
 
     //private final UnitSystem defaultUnitSystem;
 
     @Column(name = "default_papersheet_id")
-    private int defaultPaperSheetId;
+    private Integer defaultPaperSheetId;
 
     //private final PaperSheet defaultPaperSheet;
 

@@ -54,7 +54,7 @@ public class SimulationDatabaseConfig {
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
         dataSource.setDriverClassName(
-                env.getProperty("jdbc.driverClassName"));
+                env.getProperty("spring.database_simulation.driver"));
         dataSource.setUrl(env.getProperty("spring.database_simulation.url"));
         dataSource.setUsername(env.getProperty("spring.database_simulation.username"));
         dataSource.setPassword(env.getProperty("spring.database_simulation.password"));

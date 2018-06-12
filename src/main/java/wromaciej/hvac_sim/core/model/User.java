@@ -16,7 +16,7 @@ public class User {
     private Integer userID;
 
     @Column(name = "is_logged")
-    private boolean isLogged;
+    private Boolean isLogged;
     @Column(name = "personal_title")
     private String personalTitle;
     @Column(name = "first_name")
@@ -29,26 +29,93 @@ public class User {
     private Company company;
 
     @Column(name = "language_id")
-    private int languageId;
+    private Integer languageId;
     @Column(name = "default_unitsystem_id")
-    private int defaultUnitSystemId;
+    private Integer defaultUnitSystemId;
     @Column(name = "default_papersheet_id")
-    private int defaultPaperSheetId;
+    private Integer defaultPaperSheetId;
 
     @Column(name = "current_simulation_id")
-    private int currentSimulationId;
+    private Integer currentSimulationId;
 
 
-    public User(Integer userID, boolean isLogged, String personalTitle, String firstName, String lastName, Company company, Language language, UnitSystem defaultUnitSystem, PaperSheet defaultPaperSheet, int currentSimulationId) {
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
         this.userID = userID;
-        this.isLogged = isLogged;
+    }
+
+    public Boolean getLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(Boolean logged) {
+        isLogged = logged;
+    }
+
+    public String getPersonalTitle() {
+        return personalTitle;
+    }
+
+    public void setPersonalTitle(String personalTitle) {
         this.personalTitle = personalTitle;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
         this.company = company;
-        this.language = language;
-        this.defaultUnitSystem = defaultUnitSystem;
-        this.defaultPaperSheet = defaultPaperSheet;
+    }
+
+    public Integer getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Integer languageId) {
+        this.languageId = languageId;
+    }
+
+    public Integer getDefaultUnitSystemId() {
+        return defaultUnitSystemId;
+    }
+
+    public void setDefaultUnitSystemId(Integer defaultUnitSystemId) {
+        this.defaultUnitSystemId = defaultUnitSystemId;
+    }
+
+    public Integer getDefaultPaperSheetId() {
+        return defaultPaperSheetId;
+    }
+
+    public void setDefaultPaperSheetId(Integer defaultPaperSheetId) {
+        this.defaultPaperSheetId = defaultPaperSheetId;
+    }
+
+    public Integer getCurrentSimulationId() {
+        return currentSimulationId;
+    }
+
+    public void setCurrentSimulationId(Integer currentSimulationId) {
         this.currentSimulationId = currentSimulationId;
     }
 }
