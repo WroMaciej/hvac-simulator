@@ -19,22 +19,22 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @PropertySource({"classpath:application.properties"})
 @EnableJpaRepositories(
-        basePackages = "wromaciej.hvac_sim.core.database.repository.simulation",
-        entityManagerFactoryRef = "simulationEntityManager",
-        transactionManagerRef = "simulationTransactionManager"
+        basePackages = "wromaciej.hvac_sim",
+        entityManagerFactoryRef = "mainEntityManager",
+        transactionManagerRef = "mainTransactionManager"
 )
-public class SimulationDatabaseConfig {
+public class MainDatabaseConfig {
 
     @Autowired
     private Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean simulationEntityManager() {
+    public LocalContainerEntityManagerFactoryBean mainEntityManager() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(simulationDataSource());
+        em.setDataSource(mainDataSource());
         em.setPackagesToScan(
-                new String[]{"wromaciej.hvac_sim.simulation"});
+                new String[]{"wromaciej.hvac_sim"});
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -49,26 +49,26 @@ public class SimulationDatabaseConfig {
     }
 
     @Bean
-    public DataSource simulationDataSource() {
+    public DataSource mainDataSource() {
 
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
         dataSource.setDriverClassName(
-                env.getProperty("spring.database_simulation.driver"));
-        dataSource.setUrl(env.getProperty("spring.database_simulation.url"));
-        dataSource.setUsername(env.getProperty("spring.database_simulation.username"));
-        dataSource.setPassword(env.getProperty("spring.database_simulation.password"));
+                env.getProperty("spring.database_main.driver"));
+        dataSource.setUrl(env.getProperty("spring.database_main.url"));
+        dataSource.setUsername(env.getProperty("spring.database_main.username"));
+        dataSource.setPassword(env.getProperty("spring.database_main.password"));
 
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager simulationTransactionManager() {
+    public PlatformTransactionManager mainTransactionManager() {
 
         JpaTransactionManager transactionManager
                 = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(
-                simulationEntityManager().getObject());
+                mainEntityManager().getObject());
         return transactionManager;
     }
 }
