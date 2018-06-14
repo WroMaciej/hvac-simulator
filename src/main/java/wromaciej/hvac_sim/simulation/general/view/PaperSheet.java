@@ -1,8 +1,24 @@
 package wromaciej.hvac_sim.simulation.general.view;
 
+import wromaciej.hvac_sim.core.model.Company;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "papersheet", schema = "public")
 public class PaperSheet {
+
+    @Id
+    @Column(name = "id")
+    private Integer paperSheetId;
+    @Column(name = "size")
     private PaperSheetSize paperSheetSize;
+    @Column(name = "orientation")
     private PaperSheetOrientation paperSheetOrientation;
+
+    @OneToMany(mappedBy = "company")
+    private Set<Company> companies;
 
     /**
      * How many pixels represents 1mm
@@ -45,5 +61,31 @@ public class PaperSheet {
         return scale;
     }
 
+    public Integer getPaperSheetId() {
+        return paperSheetId;
+    }
 
+    public void setPaperSheetId(Integer paperSheetId) {
+        this.paperSheetId = paperSheetId;
+    }
+
+    public void setPaperSheetSize(PaperSheetSize paperSheetSize) {
+        this.paperSheetSize = paperSheetSize;
+    }
+
+    public void setPaperSheetOrientation(PaperSheetOrientation paperSheetOrientation) {
+        this.paperSheetOrientation = paperSheetOrientation;
+    }
+
+    public Set<Company> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(Set<Company> companies) {
+        this.companies = companies;
+    }
+
+    public void setScale(double scale) {
+        this.scale = scale;
+    }
 }

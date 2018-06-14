@@ -8,9 +8,18 @@ import wromaciej.hvac_sim.simulation.thermo.quantities.extensive.*;
 import wromaciej.hvac_sim.simulation.thermo.quantities.coefficients.*;
 
 import javax.measure.unit.Unit;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(schema = "public")
 public final class UnitSystem {
+
+    @Id
+    @Column(name = "id")
+    private Integer unitSystemId;
 
     private String unitSystemName;
 
