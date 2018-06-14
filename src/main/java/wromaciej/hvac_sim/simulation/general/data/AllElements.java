@@ -47,26 +47,26 @@ public class AllElements {
     }
 
     private void addItem(Item item){
-        allItems.put(item.getId(), item);
+        allItems.put(item.getItemId(), item);
     }
 
     public void addDevice(Device device){
-        allDevices.put(device.getId(), device);
+        allDevices.put(device.getItemId(), device);
         addItem(device);
     }
 
     public void addMatterStream(MatterStream matterStream){
-        allMatterStreams.put(matterStream.getId(), matterStream);
+        allMatterStreams.put(matterStream.getItemId(), matterStream);
         addItem(matterStream);
     }
 
     public void addHeatStream(HeatStream heatStream){
-        allHeatStreams.put(heatStream.getId(), heatStream);
+        allHeatStreams.put(heatStream.getItemId(), heatStream);
         addItem(heatStream);
     }
 
     public void addPowerStream(PowerStream powerStream){
-        allPowerStreams.put(powerStream.getId(), powerStream);
+        allPowerStreams.put(powerStream.getItemId(), powerStream);
         addItem(powerStream);
     }
 

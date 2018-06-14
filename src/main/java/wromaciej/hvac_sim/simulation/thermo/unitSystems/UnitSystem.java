@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "public")
+@Table(schema = "simulation")
 public final class UnitSystem {
 
     @Id

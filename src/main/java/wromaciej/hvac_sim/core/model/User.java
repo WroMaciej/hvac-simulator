@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Map;
 
 @Entity
-@Table(schema = "public")
+@Table(schema = "core")
 public class User {
     @Id
     @Column(name = "id")

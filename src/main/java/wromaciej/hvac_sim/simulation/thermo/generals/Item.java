@@ -7,25 +7,30 @@ import wromaciej.hvac_sim.simulation.solver.internals.Solvable;
 import wromaciej.hvac_sim.simulation.solver.externals.ExternalSolver;
 import wromaciej.hvac_sim.simulation.solver.result.SolverResult;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Any object that could be treated as a part of process
  */
 
 @Entity
-@Table(schema = "public")
+@Table(schema = "simulation")
 public abstract class Item implements Displayable, Solvable, Bondable {
 
-    private final Integer id;
+    @Id
+    @Column(name = "id")
+    private Integer itemId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "is_solved")
     private Boolean isSolved;
     private ExternalSolver externalSolver;
+    @ManyToOne
+    @JoinColumn(name = "display_parameters_id")
     private DisplayParameters displayParameters;
 
-    public Item(Integer id, IdGenerator idGenerator) {
-        this.id = id;
+    public Item(Integer itemId, IdGenerator idGenerator) {
+        this.itemId = itemId;
         isSolved = false;
     }
 
@@ -42,8 +47,8 @@ public abstract class Item implements Displayable, Solvable, Bondable {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getItemId() {
+        return itemId;
     }
 
     public String getName() {

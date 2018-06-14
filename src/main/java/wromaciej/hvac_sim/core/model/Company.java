@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(schema = "public")
+@Table(schema = "core")
 public class Company {
 
     @Id
@@ -35,12 +35,12 @@ public class Company {
     private Language language;
 
     @ManyToOne
-    @JoinColumn(name = "default_unitsystem_id", nullable = false)
+    @JoinColumn(name = "default_unitsystem_id")
     private UnitSystem defaultUnitSystem;
 
 
     @ManyToOne
-    @JoinColumn(name = "default_papersheet_id", nullable = false)
+    @JoinColumn(name = "default_papersheet_id")
     private PaperSheet defaultPaperSheet;
 
     @OneToMany(mappedBy = "company")

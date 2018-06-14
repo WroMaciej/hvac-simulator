@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "papersheet", schema = "public")
+@Table(schema = "simulation")
 public class PaperSheet {
 
     @Id
@@ -25,9 +25,11 @@ public class PaperSheet {
      */
     private double scale;
 
-    public PaperSheet(PaperSheetSize paperSheetSize, PaperSheetOrientation paperSheetOrientation, double scale) {
+    public PaperSheet(Integer paperSheetId, PaperSheetSize paperSheetSize, PaperSheetOrientation paperSheetOrientation, Set<Company> companies, double scale) {
+        this.paperSheetId = paperSheetId;
         this.paperSheetSize = paperSheetSize;
         this.paperSheetOrientation = paperSheetOrientation;
+        this.companies = companies;
         this.scale = scale;
     }
 
