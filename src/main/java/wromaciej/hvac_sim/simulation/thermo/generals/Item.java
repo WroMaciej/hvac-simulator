@@ -24,6 +24,8 @@ public abstract class Item implements Displayable, Solvable, Bondable {
     private String name;
     @Column(name = "is_solved")
     private Boolean isSolved;
+
+    @Transient
     private ExternalSolver externalSolver;
     @ManyToOne
     @JoinColumn(name = "display_parameters_id")

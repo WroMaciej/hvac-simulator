@@ -40,12 +40,13 @@ public class Company {
 
 
     @ManyToOne
-    @JoinColumn(name = "default_papersheet_id")
+    @JoinColumn(name = "default_papersheet_id", nullable = false)
     private PaperSheet defaultPaperSheet;
 
     @OneToMany(mappedBy = "company")
     private Set<User> users;
 
+    @Transient
     private String logo; //TODO change logo to a image file
 
     public Company() {

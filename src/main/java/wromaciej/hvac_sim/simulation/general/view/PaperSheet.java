@@ -5,8 +5,8 @@ import wromaciej.hvac_sim.core.model.Company;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(schema = "simulation")
+@Entity(name = "papersheet")
+@Table(name = "papersheet", schema = "simulation")
 public class PaperSheet {
 
     @Id
@@ -17,20 +17,22 @@ public class PaperSheet {
     @Column(name = "orientation")
     private PaperSheetOrientation paperSheetOrientation;
 
-    @OneToMany(mappedBy = "company")
-    private Set<Company> companies;
-
     /**
      * How many pixels represents 1mm
      */
-    private double scale;
+    @Column(name = "scale")
+    private Double scale;
 
-    public PaperSheet(Integer paperSheetId, PaperSheetSize paperSheetSize, PaperSheetOrientation paperSheetOrientation, Set<Company> companies, double scale) {
+
+    @OneToMany
+    private Set<Company> companies;
+
+    public PaperSheet(Integer paperSheetId, PaperSheetSize paperSheetSize, PaperSheetOrientation paperSheetOrientation, Double scale, Set<Company> companies) {
         this.paperSheetId = paperSheetId;
         this.paperSheetSize = paperSheetSize;
         this.paperSheetOrientation = paperSheetOrientation;
-        this.companies = companies;
         this.scale = scale;
+        this.companies = companies;
     }
 
     public double getPaperWidth() {
@@ -59,9 +61,6 @@ public class PaperSheet {
         return paperSheetOrientation;
     }
 
-    public double getScale() {
-        return scale;
-    }
 
     public Integer getPaperSheetId() {
         return paperSheetId;
@@ -79,15 +78,19 @@ public class PaperSheet {
         this.paperSheetOrientation = paperSheetOrientation;
     }
 
+    public Double getScale() {
+        return scale;
+    }
+
+    public void setScale(Double scale) {
+        this.scale = scale;
+    }
+
     public Set<Company> getCompanies() {
         return companies;
     }
 
     public void setCompanies(Set<Company> companies) {
         this.companies = companies;
-    }
-
-    public void setScale(double scale) {
-        this.scale = scale;
     }
 }
