@@ -1,24 +1,24 @@
-package wromaciej.hvac_sim.thermo.fluids;
+package wromaciej.hvac_sim.thermo.matter.fluids.model;
 
-import org.junit.Test;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Air;
-import wromaciej.hvac_sim.thermo.matter.fluids.model.Fluid;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.FluidName;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.Parameter;
-import wromaciej.hvac_sim.thermo.matter.fluids.parameters.ParameterType;
-import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidData;
-import wromaciej.hvac_sim.thermo.matter.fluids.service.FluidFactory;
-import wromaciej.hvac_sim.thermo.quantities.specific.Pressure;
-import wromaciej.hvac_sim.thermo.quantities.specific.RelativeHumidity;
-import wromaciej.hvac_sim.thermo.quantities.specific.Temperature;
+import static org.junit.Assert.assertEquals;
 
 import javax.measure.quantity.Dimensionless;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.ProductUnit;
 import javax.measure.unit.SI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
+
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.Air;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.Fluid;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.FluidFactory;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.model.FluidName;
+import wromaciej.hvac_sim.simulation.thermo.matter.fluids.service.FluidData;
+import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
+import wromaciej.hvac_sim.simulation.thermo.parameters.ParameterType;
+import wromaciej.hvac_sim.simulation.thermo.quantities.specific.Pressure;
+import wromaciej.hvac_sim.simulation.thermo.quantities.specific.RelativeHumidity;
+import wromaciej.hvac_sim.simulation.thermo.quantities.specific.Temperature;
 
 public class FluidFactoryTest {
 
