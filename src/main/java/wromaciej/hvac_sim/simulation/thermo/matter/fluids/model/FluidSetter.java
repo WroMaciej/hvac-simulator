@@ -1,5 +1,6 @@
 package wromaciej.hvac_sim.simulation.thermo.matter.fluids.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wromaciej.hvac_sim.simulation.solver.matterSolvers.FluidDefinition;
 import wromaciej.hvac_sim.simulation.thermo.parameters.Parameter;
@@ -18,6 +19,7 @@ import javax.measure.unit.SI;
 public class FluidSetter {
     private final FluidData fluidData;
 
+    @Autowired
     public FluidSetter(FluidData fluidData) {
         this.fluidData = fluidData;
     }
@@ -29,8 +31,9 @@ public class FluidSetter {
 
 
     public void changeFluidState(Fluid fluid, FluidName fluidName, Parameter knownParameter1, Parameter knownParameter2) {
-        if (fluidName == FluidName.MOIST_AIR)  changeAirStateAtAtmosphericPressure((Air) fluid, knownParameter1, knownParameter2);
-        else{
+        if (fluidName == FluidName.MOIST_AIR) {
+			changeAirStateAtAtmosphericPressure((Air) fluid, knownParameter1, knownParameter2);
+		} else{
             fluid.setFluidName(fluidName);
             fluid.setMatterType(MatterType.GENERAL_FLUID);
             fluid.setAbsolutePressure(fluidData.findParameter(ParameterType.PRESSURE, fluidName, knownParameter1, knownParameter2));
@@ -41,10 +44,11 @@ public class FluidSetter {
             fluid.setSpecificEntropy(fluidData.findParameter(ParameterType.SPECIFIC_ENTROPY, fluidName, knownParameter1, knownParameter2));
             fluid.setSpecificVolume(fluid.getDensity().inverse());
             fluid.setQuality(fluidData.findParameter(ParameterType.QUALITY, fluidName, knownParameter1, knownParameter2));
-            if (UnitSystem.getActualUnitSystem() != null)
-                fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
-            else
-                fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+            if (UnitSystem.getActualUnitSystem() != null) {
+				fluid.setGaugePressure(fluid.getAbsolutePressure().minus(UnitSystem.getActualUnitSystem().getAtmosphericPressure()));
+			} else {
+				fluid.setGaugePressure(fluid.getAbsolutePressure().minus(new Parameter(NonSI.BAR, 1)));
+			}
 
             fluid.setAbsoluteTemperature(fluid.getTemperature());
             fluid.getAbsoluteTemperature().setActualUnit(SI.KELVIN.asType(Temperature.class));
@@ -56,9 +60,11 @@ public class FluidSetter {
     }
 
     public void changeAirStateAtAtmosphericPressure(Air air, Parameter<? extends AirQuantity> parameter1, Parameter<? extends AirQuantity> parameter2) {
-        if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null)
-            changeAirState(air, parameter1, parameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
-        else changeAirState(air, parameter1, parameter2, new Parameter(NonSI.BAR, 1));
+        if (UnitSystem.getActualUnitSystem().getAtmosphericPressure() != null) {
+			changeAirState(air, parameter1, parameter2, UnitSystem.getActualUnitSystem().getAtmosphericPressure());
+		} else {
+			changeAirState(air, parameter1, parameter2, new Parameter(NonSI.BAR, 1));
+		}
 
     }
 
